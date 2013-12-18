@@ -317,6 +317,50 @@ module.exports = function (grunt) {
       ]
     },
 
+    'bower-install': {
+
+      target: {
+
+        // Point to the html file that should be updated
+        // when you run `grunt bower-install`
+        html: 'app/index.html',
+
+        // ---------
+        // Optional:
+        // ---------
+
+        // If your file paths shouldn't contain a certain
+        // portion of a url, it can be excluded
+        //
+        //   default: ''
+        ignorePath: 'app/',
+
+        // Customize how your stylesheets are included on
+        // your page.
+        //
+        //   default: '<link rel="stylesheet" href="{{filePath}}" />'
+        cssPattern: '<link href="{{filePath}}" rel="stylesheet">',
+
+        // Customize how your <script>s are included into
+        // your HTML file.
+        //
+        //   default: '<script src="{{filePath}}"></script>'
+        jsPattern: '<script type="text/javascript" src="{{filePath}}"></script>',
+
+        // An array of strings or regular expressions to
+        // exclude from your HTML file.
+        //
+        //   default: [],
+        exclude: [/jquery/, 'bower_components/modernizr/modernizr.js'],
+
+        // The directory from which we look for .bowerrc
+        // and bower.json.
+        //
+        //   default: '.'
+        cwd: 'module'
+      }
+    },
+
     // By default, your `index.html`'s <!-- Usemin block --> will take care of
     // minification. These next options are pre-configured if you do not wish
     // to use the Usemin blocks.
@@ -400,4 +444,6 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+
+  grunt.loadNpmTasks('grunt-bower-install');
 };
