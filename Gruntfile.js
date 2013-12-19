@@ -318,7 +318,6 @@ module.exports = function (grunt) {
     },
 
     'bower-install': {
-
       target: {
 
         // Point to the html file that should be updated
