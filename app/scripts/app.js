@@ -12,6 +12,10 @@ angular.module('phosphoApp', [
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
+      .when('/share', {
+        templateUrl: 'views/share.html',
+        controller: 'ShareCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
