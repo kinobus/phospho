@@ -3,4 +3,7 @@
 angular.module('phosphoApp')
   .service('Buildkinome', function Buildkinome() {
     // AngularJS will instantiate a singleton by calling "new" on this function
-});
+    this.build = function(means) {
+      return means;
+    };
+  });
