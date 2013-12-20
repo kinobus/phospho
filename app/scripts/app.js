@@ -4,8 +4,7 @@ angular.module('phosphoApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute',
-  '$strap.directives'
+  'ngRoute'
 ])
   .config(function ($routeProvider) {
     $routeProvider
