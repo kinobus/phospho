@@ -7,6 +7,10 @@
   <h3 class="text-muted">phospho</h3>
 </div>
 <div class="btn-group">
-  <button type="button" class="btn" bs-dropdown="dropdown">Dropdown <b class="caret"></b></button>
+  <button type="button" class="btn" bs-dropdown="ms2Dropdown">Choose an MS2 dataset <b class="caret"></b></button>
 </div>
+<div class="btn-group">
+  <button type="button" class="btn" bs-dropdown="ksiDropdown">Choose a Kinase-Substrate Interactome <b class="caret"></b></button>
+</div>
+<h3>The current ksi is {{ksi}}</h3>
 <ko-render val="kinome"></ko-render>
