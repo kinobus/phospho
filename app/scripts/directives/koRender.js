@@ -507,6 +507,8 @@ angular.module('phosphoApp')
 
         scope.$watch('val', function (newVal, oldVal) {
 
+        //each time val changes, do the mapping of radius and color values from val
+
           var endpoints = vis.selectAll('circle')
             .data(kotable)
             .enter()
