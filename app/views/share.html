@@ -9,7 +9,7 @@
 <div class="btn-group">
     <a class="btn btn-inverse dropdown-toggle" >Load Interactome <span class="caret"></span></a>
     <ul class="dropdown-menu">
-        <li ng-repeat="interactome in Interactomes"><a ng-click="loadInteractome(interactome.Name, interactome.Links);">{{interactome.Name}}</a></li>
+        <li ng-repeat="interactome in interactomes"><a ng-click="loadInteractome(interactome.title, interactome.links);">{{interactome.title}}</a></li>
     </ul>
 </div>
 Kinome built with {{loadedInteractome}}
