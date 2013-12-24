@@ -8,487 +8,2392 @@ angular.module('phosphoApp')
       height = 975;
 
     var kotable = [
-      { 'KinaseName': 'BARK1', 'GeneID': '156', 'HGNCSymbol': 'ADRBK1', 'x': '2379', 'y': '2391' },
-      { 'KinaseName': 'BARK2', 'GeneID': '157', 'HGNCSymbol': 'ADRBK2', 'x': '2379', 'y': '2392' },
-      { 'KinaseName': 'AKT1', 'GeneID': '207', 'HGNCSymbol': 'AKT1', 'x': '2924', 'y': '2587' },
-      { 'KinaseName': 'AKT2', 'GeneID': '208', 'HGNCSymbol': 'AKT2', 'x': '2924', 'y': '2570' },
-      { 'KinaseName': 'AKT3', 'GeneID': '10000', 'HGNCSymbol': 'AKT3', 'x': '2855', 'y': '2592' },
-      { 'KinaseName': 'MRCKa', 'GeneID': '8476', 'HGNCSymbol': 'CDC42BPA', 'x': '2606', 'y': '3208' },
-      { 'KinaseName': 'MRCKb', 'GeneID': '9578', 'HGNCSymbol': 'CDC42BPB', 'x': '2632', 'y': '3193' },
-      { 'KinaseName': 'DMPK2', 'GeneID': '55561', 'HGNCSymbol': 'CDC42BPG', 'x': '2596', 'y': '3108' },
-      { 'KinaseName': 'CRIK', 'GeneID': '11113', 'HGNCSymbol': 'CIT', 'x': '2474', 'y': '3031' },
-      { 'KinaseName': 'RHOK', 'GeneID': '6011', 'HGNCSymbol': 'GRK1', 'x': '2559', 'y': '2396' },
-      { 'KinaseName': 'GPRK4', 'GeneID': '2868', 'HGNCSymbol': 'GRK4', 'x': '2786', 'y': '2441' },
-      { 'KinaseName': 'GPRK5', 'GeneID': '2869', 'HGNCSymbol': 'GRK5', 'x': '2785', 'y': '2404' },
-      { 'KinaseName': 'GPRK6', 'GeneID': '2870', 'HGNCSymbol': 'GRK6', 'x': '2660', 'y': '2442' },
-      { 'KinaseName': 'LATS1', 'GeneID': '9113', 'HGNCSymbol': 'LATS1', 'x': '2329', 'y': '2690' },
-      { 'KinaseName': 'LATS2', 'GeneID': '26524', 'HGNCSymbol': 'LATS2', 'x': '2329', 'y': '2714' },
-      { 'KinaseName': 'MAST1', 'GeneID': '22983', 'HGNCSymbol': 'MAST1', 'x': '2356', 'y': '3010' },
-      { 'KinaseName': 'MAST2', 'GeneID': '23139', 'HGNCSymbol': 'MAST2', 'x': '2267', 'y': '2884' },
-      { 'KinaseName': 'MAST3', 'GeneID': '23031', 'HGNCSymbol': 'MAST3', 'x': '2266', 'y': '2781' },
-      { 'KinaseName': 'MAST4', 'GeneID': '375449', 'HGNCSymbol': 'MAST4', 'x': '2311', 'y': '3012' },
-      { 'KinaseName': 'MASTL', 'GeneID': '84930', 'HGNCSymbol': 'MASTL', 'x': '2212', 'y': '2796' },
-      { 'KinaseName': 'GPRK7', 'GeneID': '2872', 'HGNCSymbol': 'MKNK2', 'x': '2411', 'y': '2417' },
-      { 'KinaseName': 'NDR1', 'GeneID': '10397', 'HGNCSymbol': 'NDRG1', 'x': '2302', 'y': '2741' },
-      { 'KinaseName': 'PDK1', 'GeneID': '5163', 'HGNCSymbol': 'PDK1', 'x': '2164', 'y': '2497' },
-      { 'KinaseName': 'PKN1', 'GeneID': '5585', 'HGNCSymbol': 'PKN1', 'x': '2669', 'y': '2684' },
-      { 'KinaseName': 'PKN2', 'GeneID': '5586', 'HGNCSymbol': 'PKN2', 'x': '2670', 'y': '2699' },
-      { 'KinaseName': 'PKN3', 'GeneID': '29941', 'HGNCSymbol': 'PKN3', 'x': '2641', 'y': '2724' },
-      { 'KinaseName': 'PKACa', 'GeneID': '5566', 'HGNCSymbol': 'PRKACA', 'x': '2657', 'y': '2880' },
-      { 'KinaseName': 'PKACb', 'GeneID': '5567', 'HGNCSymbol': 'PRKACB', 'x': '2636', 'y': '2895' },
-      { 'KinaseName': 'PKACg', 'GeneID': '5568', 'HGNCSymbol': 'PRKACG', 'x': '2563', 'y': '2846' },
-      { 'KinaseName': 'PKCa', 'GeneID': '5578', 'HGNCSymbol': 'PRKCA', 'x': '2960', 'y': '2962' },
-      { 'KinaseName': 'PKCb', 'GeneID': '5579', 'HGNCSymbol': 'PRKCB', 'x': '2494', 'y': '2975' },
-      { 'KinaseName': 'PKCd', 'GeneID': '5580', 'HGNCSymbol': 'PRKCD', 'x': '2749', 'y': '2831' },
-      { 'KinaseName': 'PKCe', 'GeneID': '5581', 'HGNCSymbol': 'PRKCE', 'x': '2837', 'y': '2812' },
-      { 'KinaseName': 'PKCg', 'GeneID': '5582', 'HGNCSymbol': 'PRKCG', 'x': '2916', 'y': '2878' },
-      { 'KinaseName': 'PKCi', 'GeneID': '5584', 'HGNCSymbol': 'PRKCI', 'x': '2689', 'y': '2824' },
-      { 'KinaseName': 'PRKX', 'GeneID': '5613', 'HGNCSymbol': 'PRKX', 'x': '2566', 'y': '2774' },
-      { 'KinaseName': 'PRKY', 'GeneID': '5616', 'HGNCSymbol': 'PRKY', 'x': '2571', 'y': '2758' },
-      { 'KinaseName': 'ROCK1', 'GeneID': '6093', 'HGNCSymbol': 'ROCK1', 'x': '2555', 'y': '2962' },
-      { 'KinaseName': 'ROCK2', 'GeneID': '9475', 'HGNCSymbol': 'ROCK2', 'x': '2550', 'y': '2981' },
-      { 'KinaseName': 'RSK1', 'GeneID': '6195', 'HGNCSymbol': 'RPS6KA1', 'x': '2855', 'y': '2505' },
-      { 'KinaseName': 'RSK3', 'GeneID': '6196', 'HGNCSymbol': 'RPS6KA2', 'x': '2711', 'y': '2555' },
-      { 'KinaseName': 'RSK2', 'GeneID': '6197', 'HGNCSymbol': 'RPS6KA3', 'x': '2859', 'y': '2533' },
-      { 'KinaseName': 'MSK2', 'GeneID': '8986', 'HGNCSymbol': 'RPS6KA4', 'x': '2511', 'y': '2541' },
-      { 'KinaseName': 'MSK1', 'GeneID': '9252', 'HGNCSymbol': 'RPS6KA5', 'x': '2503', 'y': '2526' },
-      { 'KinaseName': 'RSK4', 'GeneID': '27330', 'HGNCSymbol': 'RPS6KA6', 'x': '2773', 'y': '2540' },
-      { 'KinaseName': 'p70S6Kb', 'GeneID': '6199', 'HGNCSymbol': 'RPS6KB2', 'x': '2600', 'y': '2592' },
-      { 'KinaseName': 'SGK', 'GeneID': '6446', 'HGNCSymbol': 'SGK1', 'x': '2926', 'y': '2642' },
-      { 'KinaseName': 'SGK2', 'GeneID': '10110', 'HGNCSymbol': 'SGK2', 'x': '2863', 'y': '2659' },
-      { 'KinaseName': 'SGK3', 'GeneID': '23678', 'HGNCSymbol': 'SGK3', 'x': '2922', 'y': '2660' },
-      { 'KinaseName': 'SgK494', 'GeneID': '124923', 'HGNCSymbol': 'SGK494', 'x': '2109', 'y': '2424' },
-      { 'KinaseName': 'YANK1', 'GeneID': '202374', 'HGNCSymbol': 'STK32A', 'x': '2131', 'y': '2769' },
-      { 'KinaseName': 'YANK2', 'GeneID': '55351', 'HGNCSymbol': 'STK32B', 'x': '2126', 'y': '2826' },
-      { 'KinaseName': 'YANK3', 'GeneID': '282974', 'HGNCSymbol': 'STK32C', 'x': '2094', 'y': '2837' },
-      { 'KinaseName': 'NDR2', 'GeneID': '23012', 'HGNCSymbol': 'STK38L', 'x': '2291', 'y': '2748' },
-      { 'KinaseName': 'PKG1', 'GeneID': '5592', 'HGNCSymbol': 'PRKG1', 'x': '2453', 'y': '2698' },
-      { 'KinaseName': 'PKG2', 'GeneID': '5593', 'HGNCSymbol': 'PRKG2', 'x': '2457', 'y': '2684' },
-      { 'KinaseName': 'DMPK1', 'GeneID': '1760', 'HGNCSymbol': 'DMPK', 'x': '2538', 'y': '3020' },
-      { 'KinaseName': 'p70S6K', 'GeneID': '6198', 'HGNCSymbol': 'RPS6KB1', 'x': '2599', 'y': '2570' },
-      { 'KinaseName': 'PKCh', 'GeneID': '5583', 'HGNCSymbol': 'PRKCH', 'x': '2839', 'y': '2793' },
-      { 'KinaseName': 'PKCt', 'GeneID': '5588', 'HGNCSymbol': 'PRKCQ', 'x': '2738', 'y': '2842' },
-      { 'KinaseName': 'PKCz', 'GeneID': '5590', 'HGNCSymbol': 'PRKCZ', 'x': '2673', 'y': '2831' },
-      { 'KinaseName': 'RSKL2', 'GeneID': '83694', 'HGNCSymbol': 'RPS6KL1', 'x': '2689', 'y': '2495' },
-      { 'KinaseName': 'RSKL1', 'GeneID': '26750', 'HGNCSymbol': 'RPS6KC1', 'x': '2696', 'y': '2471' },
-      { 'KinaseName': 'BRSK1', 'GeneID': '84446', 'HGNCSymbol': 'BRSK1', 'x': '1647', 'y': '3346' },
-      { 'KinaseName': 'BRSK2', 'GeneID': '9024', 'HGNCSymbol': 'BRSK2', 'x': '1623', 'y': '3336' },
-      { 'KinaseName': 'CaMK1d', 'GeneID': '57118', 'HGNCSymbol': 'CAMK1D', 'x': '2296', 'y': '3683' },
-      { 'KinaseName': 'CaMK1g', 'GeneID': '57172', 'HGNCSymbol': 'CAMK1G', 'x': '2317', 'y': '3596' },
-      { 'KinaseName': 'CaMK2a', 'GeneID': '815', 'HGNCSymbol': 'CAMK2A', 'x': '2030', 'y': '3309' },
-      { 'KinaseName': 'CaMK2b ', 'GeneID': '816', 'HGNCSymbol': 'CAMK2B', 'x': '2086', 'y': '3314' },
-      { 'KinaseName': 'CaMK2d', 'GeneID': '817', 'HGNCSymbol': 'CAMK2D', 'x': '2050', 'y': '3321' },
-      { 'KinaseName': 'CaMK2g', 'GeneID': '818', 'HGNCSymbol': 'CAMK2G', 'x': '2118', 'y': '3305' },
-      { 'KinaseName': 'CaMK4', 'GeneID': '814', 'HGNCSymbol': 'CAMK4', 'x': '2244', 'y': '3386' },
-      { 'KinaseName': 'VACAMKL', 'GeneID': '79012', 'HGNCSymbol': 'CAMKV', 'x': '2229', 'y': '3229' },
-      { 'KinaseName': 'CASK', 'GeneID': '8573', 'HGNCSymbol': 'CASK', 'x': '2013', 'y': '3173' },
-      { 'KinaseName': 'CHK1', 'GeneID': '1111', 'HGNCSymbol': 'CHEK1', 'x': '1724', 'y': '2560' },
-      { 'KinaseName': 'CHK2', 'GeneID': '11200', 'HGNCSymbol': 'CHEK2', 'x': '2087', 'y': '3005' },
-      { 'KinaseName': 'DAPK1', 'GeneID': '1612', 'HGNCSymbol': 'DAPK1', 'x': '1286', 'y': '3184' },
-      { 'KinaseName': 'DAPK2', 'GeneID': '23604', 'HGNCSymbol': 'DAPK2', 'x': '1309', 'y': '3162' },
-      { 'KinaseName': 'DAPK3', 'GeneID': '1613', 'HGNCSymbol': 'DAPK3', 'x': '1239', 'y': '3170' },
-      { 'KinaseName': 'DCAMKL1', 'GeneID': '9201', 'HGNCSymbol': 'DCLK1', 'x': '2301', 'y': '3164' },
-      { 'KinaseName': 'DCAMKL2', 'GeneID': '166614', 'HGNCSymbol': 'DCLK2', 'x': '2297', 'y': '3183' },
-      { 'KinaseName': 'DCAMKL3', 'GeneID': '85443', 'HGNCSymbol': 'DCLK3', 'x': '2214', 'y': '3132' },
-      { 'KinaseName': 'HUNK', 'GeneID': '30811', 'HGNCSymbol': 'HUNK', 'x': '1808', 'y': '2971' },
-      { 'KinaseName': 'MAPKAPK2', 'GeneID': '9261', 'HGNCSymbol': 'MAPKAPK2', 'x': '1960', 'y': '3297' },
-      { 'KinaseName': 'MAPKAPK3', 'GeneID': '7867', 'HGNCSymbol': 'MAPKAPK3', 'x': '1925', 'y': '3313' },
-      { 'KinaseName': 'MAPKAPK5', 'GeneID': '8550', 'HGNCSymbol': 'MAPKAPK5', 'x': '1960', 'y': '3234' },
-      { 'KinaseName': 'MARK1', 'GeneID': '4139', 'HGNCSymbol': 'MARK1', 'x': '1612', 'y': '3719' },
-      { 'KinaseName': 'MARK2', 'GeneID': '2011', 'HGNCSymbol': 'MARK2', 'x': '1647', 'y': '3737' },
-      { 'KinaseName': 'MARK3', 'GeneID': '4140', 'HGNCSymbol': 'MARK3', 'x': '1684', 'y': '3701' },
-      { 'KinaseName': 'MARK4', 'GeneID': '57787', 'HGNCSymbol': 'MARK4', 'x': '1713', 'y': '3661' },
-      { 'KinaseName': 'MELK', 'GeneID': '9833', 'HGNCSymbol': 'MELK', 'x': '1715', 'y': '3164' },
-      { 'KinaseName': 'NIM1', 'GeneID': '167359', 'HGNCSymbol': 'MGC42105', 'x': '1724', 'y': '3038' },
-      { 'KinaseName': 'MNK1', 'GeneID': '8569', 'HGNCSymbol': 'MKNK1', 'x': '1833', 'y': '3238' },
-      { 'KinaseName': 'MNK2', 'GeneID': '2872', 'HGNCSymbol': 'MKNK2', 'x': '1857', 'y': '3245' },
-      { 'KinaseName': 'smMLCK', 'GeneID': '4638', 'HGNCSymbol': 'MYLK', 'x': '1305', 'y': '2952' },
-      { 'KinaseName': 'skMLCK', 'GeneID': '85366', 'HGNCSymbol': 'MYLK2', 'x': '1227', 'y': '3020' },
-      { 'KinaseName': 'caMLCK', 'GeneID': '91807', 'HGNCSymbol': 'MYLK3', 'x': '1181', 'y': '3144' },
-      { 'KinaseName': 'SgK085', 'GeneID': '340156', 'HGNCSymbol': 'MYLK4', 'x': '1159', 'y': '3114' },
-      { 'KinaseName': 'NuaK1', 'GeneID': '9891', 'HGNCSymbol': 'NUAK1', 'x': '1691', 'y': '3403' },
-      { 'KinaseName': 'NuaK2', 'GeneID': '81788', 'HGNCSymbol': 'NUAK2', 'x': '1667', 'y': '3383' },
-      { 'KinaseName': 'Obscn', 'GeneID': '84033', 'HGNCSymbol': 'OBSCN', 'x': '1427', 'y': '2779' },
-      { 'KinaseName': 'PASK', 'GeneID': '23178', 'HGNCSymbol': 'PASK', 'x': '1696', 'y': '2490' },
-      { 'KinaseName': 'PHKg1', 'GeneID': '5260', 'HGNCSymbol': 'PHKG1', 'x': '2139', 'y': '3246' },
-      { 'KinaseName': 'PHKg2', 'GeneID': '5261', 'HGNCSymbol': 'PHKG2', 'x': '2119', 'y': '3256' },
-      { 'KinaseName': 'PIM1', 'GeneID': '5292', 'HGNCSymbol': 'PIM1', 'x': '1353', 'y': '2679' },
-      { 'KinaseName': 'PIM2', 'GeneID': '11040', 'HGNCSymbol': 'PIM2', 'x': '1480', 'y': '2675' },
-      { 'KinaseName': 'PIM3', 'GeneID': '415116', 'HGNCSymbol': 'PIM3', 'x': '1376', 'y': '2702' },
-      { 'KinaseName': 'PKD1', 'GeneID': '5310', 'HGNCSymbol': 'PKD1', 'x': '1826', 'y': '3147' },
-      { 'KinaseName': 'PKD2', 'GeneID': '5311', 'HGNCSymbol': 'PKD2', 'x': '1840', 'y': '3068' },
-      { 'KinaseName': 'PKD3', 'GeneID': '5312', 'HGNCSymbol': 'PKD3', 'x': '1854', 'y': '3156' },
-      { 'KinaseName': 'CaMK1b', 'GeneID': '139728', 'HGNCSymbol': 'PNCK', 'x': '2289', 'y': '3499' },
-      { 'KinaseName': 'AMPKa1', 'GeneID': '5562', 'HGNCSymbol': 'PRKAA1', 'x': '1609', 'y': '3293' },
-      { 'KinaseName': 'PSKH1', 'GeneID': '5681', 'HGNCSymbol': 'PSKH1', 'x': '2336', 'y': '3285' },
-      { 'KinaseName': 'PSKH2', 'GeneID': '85481', 'HGNCSymbol': 'PSKH2', 'x': '2302', 'y': '3295' },
-      { 'KinaseName': 'Trad', 'GeneID': '5892', 'HGNCSymbol': 'RAD51L3', 'x': '1518', 'y': '2936' },
-      { 'KinaseName': 'SIK', 'GeneID': '150094', 'HGNCSymbol': 'SIK1', 'x': '1623', 'y': '3550' },
-      { 'KinaseName': 'QIK', 'GeneID': '23235', 'HGNCSymbol': 'SIK2', 'x': '1656', 'y': '3560' },
-      { 'KinaseName': 'QSK', 'GeneID': '23387', 'HGNCSymbol': 'SIK3', 'x': '1656', 'y': '3471' },
-      { 'KinaseName': 'SNRK', 'GeneID': '54861', 'HGNCSymbol': 'SNRK', 'x': '1695', 'y': '3015' },
-      { 'KinaseName': 'SPEG', 'GeneID': '10290', 'HGNCSymbol': 'SPEG', 'x': '1427', 'y': '2857' },
-      { 'KinaseName': 'LKB1', 'GeneID': '6794', 'HGNCSymbol': 'STK11', 'x': '1708', 'y': '2532' },
-      { 'KinaseName': 'DRAK1', 'GeneID': '9263', 'HGNCSymbol': 'STK17A', 'x': '1302', 'y': '3070' },
-      { 'KinaseName': 'DRAK2', 'GeneID': '9262', 'HGNCSymbol': 'STK17B', 'x': '1289', 'y': '3048' },
-      { 'KinaseName': 'STK33', 'GeneID': '65975', 'HGNCSymbol': 'STK33', 'x': '1843', 'y': '2809' },
-      { 'KinaseName': 'SgK495', 'GeneID': '83931', 'HGNCSymbol': 'STK40', 'x': '1580', 'y': '2480' },
-      { 'KinaseName': 'Trb3', 'GeneID': '50838', 'HGNCSymbol': 'TAS2R13', 'x': '1189', 'y': '2680' },
-      { 'KinaseName': 'Trb1', 'GeneID': '10221', 'HGNCSymbol': 'TRIB1', 'x': '1160', 'y': '2747' },
-      { 'KinaseName': 'Trb2', 'GeneID': '28951', 'HGNCSymbol': 'TRIB2', 'x': '1141', 'y': '2724' },
-      { 'KinaseName': 'Trio', 'GeneID': '7204', 'HGNCSymbol': 'TRIO', 'x': '1493', 'y': '2921' },
-      { 'KinaseName': 'TSSK1', 'GeneID': '23752', 'HGNCSymbol': 'TSSK1A', 'x': '1532', 'y': '3115' },
-      { 'KinaseName': 'TSSK2', 'GeneID': '23617', 'HGNCSymbol': 'TSSK2', 'x': '1554', 'y': '3135' },
-      { 'KinaseName': 'TSSK3', 'GeneID': '81629', 'HGNCSymbol': 'TSSK3', 'x': '1536', 'y': '3075' },
-      { 'KinaseName': 'TSSK4', 'GeneID': '283629', 'HGNCSymbol': 'TSSK4', 'x': '1689', 'y': '2958' },
-      { 'KinaseName': 'SSTK', 'GeneID': '83983', 'HGNCSymbol': 'TSSK6', 'x': '1510', 'y': '3053' },
-      { 'KinaseName': 'TTN', 'GeneID': '7273', 'HGNCSymbol': 'TTN', 'x': '1403', 'y': '2890' },
-      { 'KinaseName': 'AMPKa2', 'GeneID': '5563', 'HGNCSymbol': 'PRKAA2', 'x': '1596', 'y': '3270' },
-      { 'KinaseName': 'CaMK1a', 'GeneID': '8536', 'HGNCSymbol': 'CAMK1', 'x': '2329', 'y': '3668' },
-      { 'KinaseName': 'CK1g2', 'GeneID': '1455', 'HGNCSymbol': 'CSNK1G2', 'x': '2455', 'y': '2032' },
-      { 'KinaseName': 'TTBK1', 'GeneID': '84630', 'HGNCSymbol': 'TTBK1', 'x': '2408', 'y': '1935' },
-      { 'KinaseName': 'TTBK2', 'GeneID': '146057', 'HGNCSymbol': 'TTBK2', 'x': '2412', 'y': '1960' },
-      { 'KinaseName': 'VRK1', 'GeneID': '7443', 'HGNCSymbol': 'VRK1', 'x': '2432', 'y': '2181' },
-      { 'KinaseName': 'VRK2', 'GeneID': '7444', 'HGNCSymbol': 'VRK2', 'x': '2417', 'y': '2194' },
-      { 'KinaseName': 'VRK3', 'GeneID': '51231', 'HGNCSymbol': 'VRK3', 'x': '2281', 'y': '2029' },
-      { 'KinaseName': 'CK1a', 'GeneID': '1452', 'HGNCSymbol': 'CSNK1A1', 'x': '2596', 'y': '1972' },
-      { 'KinaseName': 'CK1d', 'GeneID': '1453', 'HGNCSymbol': 'CSNK1D', 'x': '2582', 'y': '1915' },
-      { 'KinaseName': 'CK1e', 'GeneID': '1454', 'HGNCSymbol': 'CSNK1E', 'x': '2595', 'y': '1945' },
-      { 'KinaseName': 'CK1g3', 'GeneID': '1456', 'HGNCSymbol': 'CSNK1G3', 'x': '2495', 'y': '2102' },
-      { 'KinaseName': 'CK1a2', 'GeneID': '122011', 'HGNCSymbol': 'CSNK1A1L', 'x': '2602', 'y': '2000' },
-      { 'KinaseName': 'CK1g1', 'GeneID': '53944', 'HGNCSymbol': 'CSNK1G1', 'x': '2504', 'y': '2080' },
-      { 'KinaseName': 'CDC2', 'GeneID': '983', 'HGNCSymbol': 'CDK1', 'x': '572', 'y': '2285' },
-      { 'KinaseName': 'CDK10', 'GeneID': '8558', 'HGNCSymbol': 'CDK10', 'x': '752', 'y': '2289' },
-      { 'KinaseName': 'PITSLRE', 'GeneID': '728642', 'HGNCSymbol': 'CDK11A', 'x': '740', 'y': '2266' },
-      { 'KinaseName': 'CDK11', 'GeneID': '984', 'HGNCSymbol': 'CDK11B', 'x': '971', 'y': '2311' },
-      { 'KinaseName': 'CRK7', 'GeneID': '51755', 'HGNCSymbol': 'CDK12', 'x': '681', 'y': '2512' },
-      { 'KinaseName': 'PFTAIRE1', 'GeneID': '5218', 'HGNCSymbol': 'CDK14', 'x': '471', 'y': '2457' },
-      { 'KinaseName': 'PCTAIRE1', 'GeneID': '5127', 'HGNCSymbol': 'CDK16', 'x': '402', 'y': '2533' },
-      { 'KinaseName': 'PCTAIRE2', 'GeneID': '5128', 'HGNCSymbol': 'CDK17', 'x': '392', 'y': '2493' },
-      { 'KinaseName': 'PCTAIRE3', 'GeneID': '5129', 'HGNCSymbol': 'CDK18', 'x': '455', 'y': '2523' },
-      { 'KinaseName': 'CDK2', 'GeneID': '1017', 'HGNCSymbol': 'CDK2', 'x': '512', 'y': '2634' },
-      { 'KinaseName': 'CCRK', 'GeneID': '23552', 'HGNCSymbol': 'CDK20', 'x': '865', 'y': '2335' },
-      { 'KinaseName': 'CDK3', 'GeneID': '1018', 'HGNCSymbol': 'CDK3', 'x': '488', 'y': '2620' },
-      { 'KinaseName': 'CDK4', 'GeneID': '1019', 'HGNCSymbol': 'CDK4', 'x': '568', 'y': '2354' },
-      { 'KinaseName': 'CDK5', 'GeneID': '1020', 'HGNCSymbol': 'CDK5', 'x': '617', 'y': '2516' },
-      { 'KinaseName': 'CDK6', 'GeneID': '1021', 'HGNCSymbol': 'CDK6', 'x': '569', 'y': '2381' },
-      { 'KinaseName': 'CDK7', 'GeneID': '1022', 'HGNCSymbol': 'CDK7', 'x': '784', 'y': '2234' },
-      { 'KinaseName': 'CDK8', 'GeneID': '1024', 'HGNCSymbol': 'CDK8', 'x': '950', 'y': '2309' },
-      { 'KinaseName': 'CDK9', 'GeneID': '1025', 'HGNCSymbol': 'CDK9', 'x': '772', 'y': '2436' },
-      { 'KinaseName': 'CDKL1', 'GeneID': '8814', 'HGNCSymbol': 'CDKL1', 'x': '554', 'y': '2057' },
-      { 'KinaseName': 'CDKL2', 'GeneID': '8999', 'HGNCSymbol': 'CDKL2', 'x': '553', 'y': '2026' },
-      { 'KinaseName': 'CDKL3', 'GeneID': '51265', 'HGNCSymbol': 'CDKL3', 'x': '560', 'y': '2006' },
-      { 'KinaseName': 'CDKL4', 'GeneID': '344387', 'HGNCSymbol': 'CDKL4', 'x': '568', 'y': '2083' },
-      { 'KinaseName': 'CDKL5', 'GeneID': '6792', 'HGNCSymbol': 'CDKL5', 'x': '672', 'y': '2061' },
-      { 'KinaseName': 'CHED', 'GeneID': '8197', 'HGNCSymbol': 'CHED1', 'x': '716', 'y': '2514' },
-      { 'KinaseName': 'CLK1', 'GeneID': '1195', 'HGNCSymbol': 'CLK1', 'x': '688', 'y': '1711' },
-      { 'KinaseName': 'CLK2', 'GeneID': '1196', 'HGNCSymbol': 'CLK2', 'x': '638', 'y': '1727' },
-      { 'KinaseName': 'CLK3', 'GeneID': '1198', 'HGNCSymbol': 'CLK3', 'x': '628', 'y': '1749' },
-      { 'KinaseName': 'CLK4', 'GeneID': '57396', 'HGNCSymbol': 'CLK4', 'x': '705', 'y': '1691' },
-      { 'KinaseName': 'DYRK1A', 'GeneID': '1859', 'HGNCSymbol': 'DYRK1A', 'x': '678', 'y': '1478' },
-      { 'KinaseName': 'DYRK1B', 'GeneID': '9149', 'HGNCSymbol': 'DYRK1B', 'x': '656', 'y': '1495' },
-      { 'KinaseName': 'DYRK2', 'GeneID': '8445', 'HGNCSymbol': 'DYRK2', 'x': '747', 'y': '1436' },
-      { 'KinaseName': 'DYRK3', 'GeneID': '8444', 'HGNCSymbol': 'DYRK3', 'x': '721', 'y': '1445' },
-      { 'KinaseName': 'DYRK4', 'GeneID': '8798', 'HGNCSymbol': 'DYRK4', 'x': '797', 'y': '1471' },
-      { 'KinaseName': 'GSK3A', 'GeneID': '2931', 'HGNCSymbol': 'GSK3A', 'x': '625', 'y': '1698' },
-      { 'KinaseName': 'GSK3B', 'GeneID': '2932', 'HGNCSymbol': 'GSK3B', 'x': '636', 'y': '1954' },
-      { 'KinaseName': 'HIPK1', 'GeneID': '204851', 'HGNCSymbol': 'HIPK1', 'x': '560', 'y': '1613' },
-      { 'KinaseName': 'HIPK2', 'GeneID': '28996', 'HGNCSymbol': 'HIPK2', 'x': '559', 'y': '1640' },
-      { 'KinaseName': 'HIPK3', 'GeneID': '10114', 'HGNCSymbol': 'HIPK3', 'x': '679', 'y': '1623' },
-      { 'KinaseName': 'HIPK4', 'GeneID': '147746', 'HGNCSymbol': 'HIPK4', 'x': '824', 'y': '1705' },
-      { 'KinaseName': 'ICK', 'GeneID': '22858', 'HGNCSymbol': 'ICK', 'x': '743', 'y': '1942' },
-      { 'KinaseName': 'MAK', 'GeneID': '4117', 'HGNCSymbol': 'MAK', 'x': '745', 'y': '1920' },
-      { 'KinaseName': 'Erk2', 'GeneID': '5594', 'HGNCSymbol': 'MAPK1', 'x': '383', 'y': '2234' },
-      { 'KinaseName': 'JNK3', 'GeneID': '5602', 'HGNCSymbol': 'MAPK10', 'x': '586', 'y': '2273' },
-      { 'KinaseName': 'p38b', 'GeneID': '5600', 'HGNCSymbol': 'MAPK11', 'x': '428', 'y': '2309' },
-      { 'KinaseName': 'Erk7', 'GeneID': '225689', 'HGNCSymbol': 'MAPK15', 'x': '844', 'y': '2074' },
-      { 'KinaseName': 'Erk1', 'GeneID': '5595', 'HGNCSymbol': 'MAPK3', 'x': '383', 'y': '2201' },
-      { 'KinaseName': 'Erk3', 'GeneID': '5596', 'HGNCSymbol': 'MAPK4', 'x': '719', 'y': '2112' },
-      { 'KinaseName': 'Erk4', 'GeneID': '5596', 'HGNCSymbol': 'MAPK4', 'x': '720', 'y': '2086' },
-      { 'KinaseName': 'Erk5', 'GeneID': '5598', 'HGNCSymbol': 'MAPK7', 'x': '495', 'y': '2155' },
-      { 'KinaseName': 'JNK1', 'GeneID': '5599', 'HGNCSymbol': 'MAPK8', 'x': '563', 'y': '2260' },
-      { 'KinaseName': 'JNK2', 'GeneID': '5601', 'HGNCSymbol': 'MAPK9', 'x': '623', 'y': '2260' },
-      { 'KinaseName': 'NLK', 'GeneID': '51701', 'HGNCSymbol': 'NLK', 'x': '607', 'y': '2133' },
-      { 'KinaseName': 'PRP4', 'GeneID': '8899', 'HGNCSymbol': 'PRPF4B', 'x': '907', 'y': '1693' },
-      { 'KinaseName': 'MOK', 'GeneID': '5891', 'HGNCSymbol': 'RAGE', 'x': '773', 'y': '1983' },
-      { 'KinaseName': 'SRPK1', 'GeneID': '6732', 'HGNCSymbol': 'SRPK1', 'x': '829', 'y': '1875' },
-      { 'KinaseName': 'SRPK2', 'GeneID': '6733', 'HGNCSymbol': 'SRPK2', 'x': '792', 'y': '1851' },
-      { 'KinaseName': 'MSSK1', 'GeneID': '26576', 'HGNCSymbol': 'SRPK3', 'x': '794', 'y': '1828' },
-      { 'KinaseName': 'p38a', 'GeneID': '1432', 'HGNCSymbol': 'MAPK14', 'x': '443', 'y': '2325' },
-      { 'KinaseName': 'p38g', 'GeneID': '6300', 'HGNCSymbol': 'MAPK12', 'x': '431', 'y': '2245' },
-      { 'KinaseName': 'p38d', 'GeneID': '5603', 'HGNCSymbol': 'MAPK13', 'x': '440', 'y': '2265' },
-      { 'KinaseName': 'PFTAIRE2', 'GeneID': '65061', 'HGNCSymbol': 'CDK15', 'x': '466', 'y': '2432' },
-      { 'KinaseName': 'AAK1', 'GeneID': '22848', 'HGNCSymbol': 'AAK1', 'x': '1139', 'y': '2311' },
-      { 'KinaseName': 'AurA', 'GeneID': '6790', 'HGNCSymbol': 'AURKA', 'x': '1897', 'y': '2569' },
-      { 'KinaseName': 'AurB', 'GeneID': '9212', 'HGNCSymbol': 'AURKB', 'x': '1989', 'y': '2644' },
-      { 'KinaseName': 'AurC', 'GeneID': '6795', 'HGNCSymbol': 'AURKC', 'x': '1949', 'y': '2660' },
-      { 'KinaseName': 'BIKE', 'GeneID': '55589', 'HGNCSymbol': 'BMP2K', 'x': '1157', 'y': '2339' },
-      { 'KinaseName': 'BUB1', 'GeneID': '699', 'HGNCSymbol': 'BUB1', 'x': '2203', 'y': '2124' },
-      { 'KinaseName': 'BUBR1', 'GeneID': '701', 'HGNCSymbol': 'BUB1B', 'x': '2183', 'y': '2135' },
-      { 'KinaseName': 'SgK071', 'GeneID': '169436', 'HGNCSymbol': 'C9ORF96', 'x': '1353', 'y': '1837' },
-      { 'KinaseName': 'CaMKK1', 'GeneID': '84254', 'HGNCSymbol': 'CAMKK1', 'x': '1267', 'y': '2325' },
-      { 'KinaseName': 'CaMKK2', 'GeneID': '10645', 'HGNCSymbol': 'CAMKK2', 'x': '1281', 'y': '2355' },
-      { 'KinaseName': 'CDC7', 'GeneID': '8317', 'HGNCSymbol': 'CDC7', 'x': '1353', 'y': '1926' },
-      { 'KinaseName': 'IKKa', 'GeneID': '1147', 'HGNCSymbol': 'CHUK', 'x': '1240', 'y': '2173' },
-      { 'KinaseName': 'CK2a1', 'GeneID': '1457', 'HGNCSymbol': 'CSNK2A1', 'x': '1199', 'y': '1891' },
-      { 'KinaseName': 'CK2a2', 'GeneID': '1459', 'HGNCSymbol': 'CSNK2A2', 'x': '1191', 'y': '1913' },
-      { 'KinaseName': 'HRI', 'GeneID': '27102', 'HGNCSymbol': 'EIF2AK1', 'x': '1425', 'y': '1699' },
-      { 'KinaseName': 'PEK', 'GeneID': '9451', 'HGNCSymbol': 'EIF2AK3', 'x': '1223', 'y': '1568' },
-      { 'KinaseName': 'GCN2', 'GeneID': '440275', 'HGNCSymbol': 'EIF2AK4', 'x': '1337', 'y': '1620' },
-      { 'KinaseName': 'IRE1', 'GeneID': '2081', 'HGNCSymbol': 'ERN1', 'x': '1204', 'y': '1723' },
-      { 'KinaseName': 'GAK', 'GeneID': '2580', 'HGNCSymbol': 'GAK', 'x': '1327', 'y': '2286' },
-      { 'KinaseName': 'Haspin', 'GeneID': '83903', 'HGNCSymbol': 'GSG2', 'x': '1863', 'y': '1956' },
-      { 'KinaseName': 'IKKb', 'GeneID': '3551', 'HGNCSymbol': 'IKBKB', 'x': '1247', 'y': '2200' },
-      { 'KinaseName': 'IKKe', 'GeneID': '9641', 'HGNCSymbol': 'IKBKE', 'x': '1260', 'y': '2212' },
-      { 'KinaseName': 'SgK110', 'GeneID': '100130827', 'HGNCSymbol': 'LOC100130827', 'x': '1277', 'y': '2104' },
-      { 'KinaseName': 'MOS', 'GeneID': '4342', 'HGNCSymbol': 'MOS', 'x': '1669', 'y': '1350' },
-      { 'KinaseName': 'MYT1', 'GeneID': '4661', 'HGNCSymbol': 'MYT1', 'x': '2068', 'y': '1860' },
-      { 'KinaseName': 'NEK1', 'GeneID': '4750', 'HGNCSymbol': 'NEK1', 'x': '907', 'y': '2776' },
-      { 'KinaseName': 'NEK10', 'GeneID': '152110', 'HGNCSymbol': 'NEK10', 'x': '1393', 'y': '2491' },
-      { 'KinaseName': 'NEK11', 'GeneID': '79858', 'HGNCSymbol': 'NEK11', 'x': '1098', 'y': '2601' },
-      { 'KinaseName': 'NEK2', 'GeneID': '4751', 'HGNCSymbol': 'NEK2', 'x': '1161', 'y': '2569' },
-      { 'KinaseName': 'NEK3', 'GeneID': '4752', 'HGNCSymbol': 'NEK3', 'x': '905', 'y': '2708' },
-      { 'KinaseName': 'NEK4', 'GeneID': '6787', 'HGNCSymbol': 'NEK4', 'x': '1040', 'y': '2649' },
-      { 'KinaseName': 'NEK5', 'GeneID': '341676', 'HGNCSymbol': 'NEK5', 'x': '894', 'y': '2744' },
-      { 'KinaseName': 'NEK6', 'GeneID': '10783', 'HGNCSymbol': 'NEK6', 'x': '1273', 'y': '2482' },
-      { 'KinaseName': 'NEK7', 'GeneID': '140609', 'HGNCSymbol': 'NEK7', 'x': '1262', 'y': '2500' },
-      { 'KinaseName': 'NEK8', 'GeneID': '284086', 'HGNCSymbol': 'NEK8', 'x': '1199', 'y': '2517' },
-      { 'KinaseName': 'NEK9', 'GeneID': '91754', 'HGNCSymbol': 'NEK9', 'x': '1190', 'y': '2530' },
-      { 'KinaseName': 'NRBP1', 'GeneID': '29959', 'HGNCSymbol': 'NRBP1', 'x': '1912', 'y': '1473' },
-      { 'KinaseName': 'NRBP2', 'GeneID': '340371', 'HGNCSymbol': 'NRBP2', 'x': '1945', 'y': '1468' },
-      { 'KinaseName': 'PBK', 'GeneID': '55872', 'HGNCSymbol': 'PBK', 'x': '1716', 'y': '1436' },
-      { 'KinaseName': 'CLIK1L', 'GeneID': '149420', 'HGNCSymbol': 'PDIK1L', 'x': '1318', 'y': '1741' },
-      { 'KinaseName': 'SgK269', 'GeneID': '79834', 'HGNCSymbol': 'PEAK1', 'x': '1218', 'y': '2050' },
-      { 'KinaseName': 'PIK3R4', 'GeneID': '30849', 'HGNCSymbol': 'PIK3R4', 'x': '1733', 'y': '2097' },
-      { 'KinaseName': 'PINK1', 'GeneID': '65018', 'HGNCSymbol': 'PINK1', 'x': '1324', 'y': '2025' },
-      { 'KinaseName': 'SgK493', 'GeneID': '91461', 'HGNCSymbol': 'PKDCC', 'x': '1826', 'y': '2025' },
-      { 'KinaseName': 'PKR', 'GeneID': '5313', 'HGNCSymbol': 'PKLR', 'x': '1210', 'y': '1583' },
-      { 'KinaseName': 'PLK1', 'GeneID': '5347', 'HGNCSymbol': 'PLK1', 'x': '2280', 'y': '2314' },
-      { 'KinaseName': 'PLK2', 'GeneID': '10769', 'HGNCSymbol': 'PLK2', 'x': '2397', 'y': '2326' },
-      { 'KinaseName': 'PLK3', 'GeneID': '1263', 'HGNCSymbol': 'PLK3', 'x': '2400', 'y': '2297' },
-      { 'KinaseName': 'PLK4', 'GeneID': '10733', 'HGNCSymbol': 'PLK4', 'x': '2030', 'y': '2231' },
-      { 'KinaseName': 'RNAseL', 'GeneID': '6041', 'HGNCSymbol': 'RNASEL', 'x': '1273', 'y': '1783' },
-      { 'KinaseName': 'SBK', 'GeneID': '388228', 'HGNCSymbol': 'SBK1', 'x': '1346', 'y': '2143' },
-      { 'KinaseName': 'SgK069', 'GeneID': '646643', 'HGNCSymbol': 'SBK2', 'x': '1269', 'y': '2132' },
-      { 'KinaseName': 'SCYL1', 'GeneID': '57410', 'HGNCSymbol': 'SCYL1', 'x': '1533', 'y': '1652' },
-      { 'KinaseName': 'SCYL2', 'GeneID': '55681', 'HGNCSymbol': 'SCYL2', 'x': '1459', 'y': '1668' },
-      { 'KinaseName': 'SCYL3', 'GeneID': '57147', 'HGNCSymbol': 'SCYL3', 'x': '1476', 'y': '1646' },
-      { 'KinaseName': 'SgK196', 'GeneID': '84197', 'HGNCSymbol': 'SGK196', 'x': '1873', 'y': '1912' },
-      { 'KinaseName': 'SgK223', 'GeneID': '157285', 'HGNCSymbol': 'SGK223', 'x': '1211', 'y': '2074' },
-      { 'KinaseName': 'SgK396', 'GeneID': '56164', 'HGNCSymbol': 'STK31', 'x': '1799', 'y': '2053' },
-      { 'KinaseName': 'CLIK1', 'GeneID': '140901', 'HGNCSymbol': 'STK35', 'x': '1337', 'y': '1720' },
-      { 'KinaseName': 'TBCK', 'GeneID': '93627', 'HGNCSymbol': 'TBCK', 'x': '1492', 'y': '1762' },
-      { 'KinaseName': 'TBK1', 'GeneID': '29110', 'HGNCSymbol': 'TBK1', 'x': '1271', 'y': '2238' },
-      { 'KinaseName': 'TLK1', 'GeneID': '9874', 'HGNCSymbol': 'TLK1', 'x': '1901', 'y': '2305' },
-      { 'KinaseName': 'TLK2', 'GeneID': '11011', 'HGNCSymbol': 'TLK2', 'x': '1899', 'y': '2274' },
-      { 'KinaseName': 'PRPK', 'GeneID': '112858', 'HGNCSymbol': 'TP53RK', 'x': '1868', 'y': '1933' },
-      { 'KinaseName': 'TTK', 'GeneID': '7272', 'HGNCSymbol': 'TTK', 'x': '1212', 'y': '1820' },
-      { 'KinaseName': 'KIS', 'GeneID': '127933', 'HGNCSymbol': 'UHMK1', 'x': '1207', 'y': '1841' },
-      { 'KinaseName': 'ULK1', 'GeneID': '8408', 'HGNCSymbol': 'ULK1', 'x': '1318', 'y': '2393' },
-      { 'KinaseName': 'ULK2', 'GeneID': '9706', 'HGNCSymbol': 'ULK2', 'x': '1331', 'y': '2423' },
-      { 'KinaseName': 'ULK3', 'GeneID': '25989', 'HGNCSymbol': 'ULK3', 'x': '1437', 'y': '2333' },
-      { 'KinaseName': 'ULK4', 'GeneID': '54986', 'HGNCSymbol': 'ULK4', 'x': '1473', 'y': '2431' },
-      { 'KinaseName': 'Wee1', 'GeneID': '7465', 'HGNCSymbol': 'WEE1', 'x': '2209', 'y': '1890' },
-      { 'KinaseName': 'Wee1B', 'GeneID': '494551', 'HGNCSymbol': 'WEE2', 'x': '2216', 'y': '1912' },
-      { 'KinaseName': 'Wnk1', 'GeneID': '65125', 'HGNCSymbol': 'WNK1', 'x': '2129', 'y': '1382' },
-      { 'KinaseName': 'Wnk2', 'GeneID': '65268', 'HGNCSymbol': 'WNK2', 'x': '2086', 'y': '1441' },
-      { 'KinaseName': 'Wnk3', 'GeneID': '65267', 'HGNCSymbol': 'WNK3', 'x': '2140', 'y': '1406' },
-      { 'KinaseName': 'Wnk4', 'GeneID': '65266', 'HGNCSymbol': 'WNK4', 'x': '2003', 'y': '1508' },
-      { 'KinaseName': 'Fused', 'GeneID': '27148', 'HGNCSymbol': 'STK36', 'x': '1461', 'y': '2405' },
-      { 'KinaseName': 'IRE2', 'GeneID': '10595', 'HGNCSymbol': 'ERN2', 'x': '1197', 'y': '1739' },
-      { 'KinaseName': 'MPSK1', 'GeneID': '8576', 'HGNCSymbol': 'STK16', 'x': '1483', 'y': '2254' },
-      { 'KinaseName': 'SgK496', 'GeneID': '25778', 'HGNCSymbol': 'DSTYK', 'x': '1700', 'y': '1390' },
-      { 'KinaseName': 'Slob', 'GeneID': '54899', 'HGNCSymbol': 'PXK', 'x': '1768', 'y': '2077' },
-      { 'KinaseName': 'SgK307', 'GeneID': '56155', 'HGNCSymbol': 'TEX14', 'x': '1520', 'y': '1582' },
-      { 'KinaseName': 'CYGD', 'GeneID': '3000', 'HGNCSymbol': 'GUCY2D', 'x': '1098', 'y': '1444' },
-      { 'KinaseName': 'CYGF', 'GeneID': '2986', 'HGNCSymbol': 'GUCY2F', 'x': '1095', 'y': '1471' },
-      { 'KinaseName': 'ANPa', 'GeneID': '4881', 'HGNCSymbol': 'NPR1', 'x': '1053', 'y': '1296' },
-      { 'KinaseName': 'ANPb', 'GeneID': '4882', 'HGNCSymbol': 'NPR2', 'x': '1034', 'y': '1315' },
-      { 'KinaseName': 'HSER', 'GeneID': '2984', 'HGNCSymbol': 'GUCY2C', 'x': '1058', 'y': '1372' },
-      { 'KinaseName': 'GCK', 'GeneID': '2645', 'HGNCSymbol': 'GCK', 'x': '2678', 'y': '1386' },
-      { 'KinaseName': 'MAP2K1', 'GeneID': '5604', 'HGNCSymbol': 'MAP2K1', 'x': '2511', 'y': '1763' },
-      { 'KinaseName': 'MAP2K2', 'GeneID': '5605', 'HGNCSymbol': 'MAP2K2', 'x': '2495', 'y': '1775' },
-      { 'KinaseName': 'MAP2K3', 'GeneID': '5606', 'HGNCSymbol': 'MAP2K3', 'x': '2463', 'y': '1845' },
-      { 'KinaseName': 'MAP2K4', 'GeneID': '6416', 'HGNCSymbol': 'MAP2K4', 'x': '2380', 'y': '1849' },
-      { 'KinaseName': 'MAP2K5', 'GeneID': '5607', 'HGNCSymbol': 'MAP2K5', 'x': '2252', 'y': '1721' },
-      { 'KinaseName': 'MAP2K6', 'GeneID': '5608', 'HGNCSymbol': 'MAP2K6', 'x': '2450', 'y': '1857' },
-      { 'KinaseName': 'MAP2K7', 'GeneID': '5609', 'HGNCSymbol': 'MAP2K7', 'x': '2268', 'y': '1765' },
-      { 'KinaseName': 'MAP3K1', 'GeneID': '4214', 'HGNCSymbol': 'MAP3K1', 'x': '2117', 'y': '1496' },
-      { 'KinaseName': 'NIK', 'GeneID': '9020', 'HGNCSymbol': 'MAP3K14', 'x': '1867', 'y': '1667' },
-      { 'KinaseName': 'MAP3K2', 'GeneID': '10746', 'HGNCSymbol': 'MAP3K2', 'x': '2428', 'y': '1222' },
-      { 'KinaseName': 'MAP3K3', 'GeneID': '4215', 'HGNCSymbol': 'MAP3K3', 'x': '2461', 'y': '1234' },
-      { 'KinaseName': 'MAP3K4', 'GeneID': '4216', 'HGNCSymbol': 'MAP3K4', 'x': '2237', 'y': '1442' },
-      { 'KinaseName': 'MAP3K5', 'GeneID': '4217', 'HGNCSymbol': 'MAP3K5', 'x': '2497', 'y': '1259' },
-      { 'KinaseName': 'MAP3K6', 'GeneID': '9064', 'HGNCSymbol': 'MAP3K6', 'x': '2426', 'y': '1376' },
-      { 'KinaseName': 'MAP3K7', 'GeneID': '6885', 'HGNCSymbol': 'MAP3K7', 'x': '2523', 'y': '1284' },
-      { 'KinaseName': 'COT', 'GeneID': '1326', 'HGNCSymbol': 'MAP3K8', 'x': '1907', 'y': '1658' },
-      { 'KinaseName': 'MAP3K8', 'GeneID': '1326', 'HGNCSymbol': 'MAP3K8', 'x': '2373', 'y': '1282' },
-      { 'KinaseName': 'HPK1', 'GeneID': '11184', 'HGNCSymbol': 'MAP4K1', 'x': '2601', 'y': '1373' },
-      { 'KinaseName': 'KHS1', 'GeneID': '11183', 'HGNCSymbol': 'MAP4K5', 'x': '2691', 'y': '1334' },
-      { 'KinaseName': 'MST1', 'GeneID': '4485', 'HGNCSymbol': 'MST1', 'x': '2794', 'y': '1348' },
-      { 'KinaseName': 'MST4', 'GeneID': '51765', 'HGNCSymbol': 'MST4', 'x': '2867', 'y': '1403' },
-      { 'KinaseName': 'MYO3A', 'GeneID': '53904', 'HGNCSymbol': 'MYO3A', 'x': '2787', 'y': '1532' },
-      { 'KinaseName': 'MYO3B', 'GeneID': '140469', 'HGNCSymbol': 'MYO3B', 'x': '2779', 'y': '1554' },
-      { 'KinaseName': 'OSR1', 'GeneID': '130497', 'HGNCSymbol': 'OSR1', 'x': '2278', 'y': '1499' },
-      { 'KinaseName': 'PAK1', 'GeneID': '5058', 'HGNCSymbol': 'PAK1', 'x': '2575', 'y': '1668' },
-      { 'KinaseName': 'PAK2', 'GeneID': '5062', 'HGNCSymbol': 'PAK2', 'x': '2528', 'y': '1696' },
-      { 'KinaseName': 'PAK3', 'GeneID': '5063', 'HGNCSymbol': 'PAK3', 'x': '2576', 'y': '1683' },
-      { 'KinaseName': 'PAK4', 'GeneID': '10298', 'HGNCSymbol': 'PAK4', 'x': '2696', 'y': '1696' },
-      { 'KinaseName': 'PAK6', 'GeneID': '56924', 'HGNCSymbol': 'PAK6', 'x': '2667', 'y': '1739' },
-      { 'KinaseName': 'PAK5', 'GeneID': '56924', 'HGNCSymbol': 'PAK6', 'x': '2704', 'y': '1713' },
-      { 'KinaseName': 'SLK', 'GeneID': '9748', 'HGNCSymbol': 'SLK', 'x': '2466', 'y': '1566' },
-      { 'KinaseName': 'LOK', 'GeneID': '6793', 'HGNCSymbol': 'STK10', 'x': '2471', 'y': '1586' },
-      { 'KinaseName': 'MST3', 'GeneID': '8428', 'HGNCSymbol': 'STK24', 'x': '2896', 'y': '1359' },
-      { 'KinaseName': 'YSK1', 'GeneID': '10494', 'HGNCSymbol': 'STK25', 'x': '2883', 'y': '1335' },
-      { 'KinaseName': 'MST2', 'GeneID': '6788', 'HGNCSymbol': 'STK3', 'x': '2809', 'y': '1361' },
-      { 'KinaseName': 'TAO2', 'GeneID': '9344', 'HGNCSymbol': 'TAOK2', 'x': '2590', 'y': '1628' },
-      { 'KinaseName': 'TAO1', 'GeneID': '9344', 'HGNCSymbol': 'TAOK2', 'x': '2589', 'y': '1613' },
-      { 'KinaseName': 'KHS2', 'GeneID': '8491', 'HGNCSymbol': 'MAP4K3', 'x': '2702', 'y': '1350' },
-      { 'KinaseName': 'STLK3', 'GeneID': '27347', 'HGNCSymbol': 'STK39', 'x': '2300', 'y': '1515' },
-      { 'KinaseName': 'STLK5', 'GeneID': '92335', 'HGNCSymbol': 'STRADA', 'x': '2321', 'y': '1548' },
-      { 'KinaseName': 'STLK6', 'GeneID': '55437', 'HGNCSymbol': 'STRADB', 'x': '2318', 'y': '1569' },
-      { 'KinaseName': 'TAO3', 'GeneID': '51347', 'HGNCSymbol': 'TAOK3', 'x': '2506', 'y': '1634' },
-      { 'KinaseName': 'ZC1/HGK', 'GeneID': '9448', 'HGNCSymbol': 'MAP4K4', 'x': '2891', 'y': '1442' },
-      { 'KinaseName': 'ZC2/TNIK', 'GeneID': '23043', 'HGNCSymbol': 'TNIK', 'x': '2813', 'y': '1476' },
-      { 'KinaseName': 'ZC3/MINK', 'GeneID': '3753', 'HGNCSymbol': 'KCNE1', 'x': '2886', 'y': '1466' },
-      { 'KinaseName': 'ZC4/NRK', 'GeneID': '203447', 'HGNCSymbol': 'NRK', 'x': '2723', 'y': '1489' },
-      { 'KinaseName': 'LMR1', 'GeneID': '9625', 'HGNCSymbol': 'AATK', 'x': '1606', 'y': '906' },
-      { 'KinaseName': 'ABL', 'GeneID': '25', 'HGNCSymbol': 'ABL1', 'x': '661', 'y': '1123' },
-      { 'KinaseName': 'ARG', 'GeneID': '27', 'HGNCSymbol': 'ABL2', 'x': '645', 'y': '1107' },
-      { 'KinaseName': 'ALK', 'GeneID': '238', 'HGNCSymbol': 'ALK', 'x': '1009', 'y': '628' },
-      { 'KinaseName': 'AXL', 'GeneID': '558', 'HGNCSymbol': 'AXL', 'x': '1178', 'y': '471' },
-      { 'KinaseName': 'BLK', 'GeneID': '640', 'HGNCSymbol': 'BLK', 'x': '671', 'y': '817' },
-      { 'KinaseName': 'BMX', 'GeneID': '660', 'HGNCSymbol': 'BMX', 'x': '617', 'y': '1029' },
-      { 'KinaseName': 'BTK', 'GeneID': '695', 'HGNCSymbol': 'BTK', 'x': '610', 'y': '1010' },
-      { 'KinaseName': 'FMS', 'GeneID': '1436', 'HGNCSymbol': 'CSF1R', 'x': '1387', 'y': '400' },
-      { 'KinaseName': 'CSK', 'GeneID': '1445', 'HGNCSymbol': 'CSK', 'x': '620', 'y': '1090' },
-      { 'KinaseName': 'DDR1', 'GeneID': '780', 'HGNCSymbol': 'DDR1', 'x': '979', 'y': '467' },
-      { 'KinaseName': 'DDR2', 'GeneID': '4921', 'HGNCSymbol': 'DDR2', 'x': '985', 'y': '451' },
-      { 'KinaseName': 'EGFR', 'GeneID': '1956', 'HGNCSymbol': 'EGFR', 'x': '1506', 'y': '567' },
-      { 'KinaseName': 'EphA1', 'GeneID': '2041', 'HGNCSymbol': 'EPHA1', 'x': '1014', 'y': '877' },
-      { 'KinaseName': 'EphA10', 'GeneID': '284656', 'HGNCSymbol': 'EPHA10', 'x': '1144', 'y': '1055' },
-      { 'KinaseName': 'EphA2', 'GeneID': '1969', 'HGNCSymbol': 'EPHA2', 'x': '941', 'y': '808' },
-      { 'KinaseName': 'EphA3', 'GeneID': '2042', 'HGNCSymbol': 'EPHA3', 'x': '525', 'y': '449' },
-      { 'KinaseName': 'EphA4', 'GeneID': '2043', 'HGNCSymbol': 'EPHA4', 'x': '608', 'y': '472' },
-      { 'KinaseName': 'EphA5', 'GeneID': '2044', 'HGNCSymbol': 'EPHA5', 'x': '528', 'y': '407' },
-      { 'KinaseName': 'EphA6', 'GeneID': '285220', 'HGNCSymbol': 'EPHA6', 'x': '684', 'y': '524' },
-      { 'KinaseName': 'EphA7', 'GeneID': '2045', 'HGNCSymbol': 'EPHA7', 'x': '777', 'y': '633' },
-      { 'KinaseName': 'EphA8', 'GeneID': '2046', 'HGNCSymbol': 'EPHA8', 'x': '840', 'y': '710' },
-      { 'KinaseName': 'EphB1', 'GeneID': '2047', 'HGNCSymbol': 'EPHB1', 'x': '647', 'y': '369' },
-      { 'KinaseName': 'EphB2', 'GeneID': '2048', 'HGNCSymbol': 'EPHB2', 'x': '662', 'y': '330' },
-      { 'KinaseName': 'EphB3', 'GeneID': '2049', 'HGNCSymbol': 'EPHB3', 'x': '746', 'y': '439' },
-      { 'KinaseName': 'EphB4', 'GeneID': '2050', 'HGNCSymbol': 'EPHB4', 'x': '854', 'y': '580' },
-      { 'KinaseName': 'EphB6', 'GeneID': '2051', 'HGNCSymbol': 'EPHB6', 'x': '1074', 'y': '974' },
-      { 'KinaseName': 'FER', 'GeneID': '2241', 'HGNCSymbol': 'FER', 'x': '819', 'y': '1157' },
-      { 'KinaseName': 'FES', 'GeneID': '2242', 'HGNCSymbol': 'FES', 'x': '804', 'y': '1139' },
-      { 'KinaseName': 'FGFR1', 'GeneID': '2260', 'HGNCSymbol': 'FGFR1', 'x': '1205', 'y': '314' },
-      { 'KinaseName': 'FGFR2', 'GeneID': '2263', 'HGNCSymbol': 'FGFR2', 'x': '1209', 'y': '235' },
-      { 'KinaseName': 'FGFR3', 'GeneID': '2261', 'HGNCSymbol': 'FGFR3', 'x': '1235', 'y': '233' },
-      { 'KinaseName': 'FGFR4', 'GeneID': '2264', 'HGNCSymbol': 'FGFR4', 'x': '1287', 'y': '341' },
-      { 'KinaseName': 'FGR', 'GeneID': '2268', 'HGNCSymbol': 'FGR', 'x': '735', 'y': '747' },
-      { 'KinaseName': 'FLT1', 'GeneID': '2321', 'HGNCSymbol': 'FLT1', 'x': '1306', 'y': '387' },
-      { 'KinaseName': 'FLT3', 'GeneID': '2322', 'HGNCSymbol': 'FLT3', 'x': '1392', 'y': '514' },
-      { 'KinaseName': 'FLT4', 'GeneID': '2324', 'HGNCSymbol': 'FLT4', 'x': '1333', 'y': '487' },
-      { 'KinaseName': 'FRK', 'GeneID': '2444', 'HGNCSymbol': 'FRK', 'x': '902', 'y': '948' },
-      { 'KinaseName': 'FYN', 'GeneID': '2534', 'HGNCSymbol': 'FYN', 'x': '673', 'y': '682' },
-      { 'KinaseName': 'HCK', 'GeneID': '3055', 'HGNCSymbol': 'HCK', 'x': '488', 'y': '679' },
-      { 'KinaseName': 'IGF1R', 'GeneID': '3480', 'HGNCSymbol': 'IGF1R', 'x': '985', 'y': '520' },
-      { 'KinaseName': 'INSR', 'GeneID': '3643', 'HGNCSymbol': 'INSR', 'x': '977', 'y': '536' },
-      { 'KinaseName': 'IRR', 'GeneID': '3645', 'HGNCSymbol': 'INSRR', 'x': '1057', 'y': '523' },
-      { 'KinaseName': 'ITK', 'GeneID': '3702', 'HGNCSymbol': 'ITK', 'x': '681', 'y': '927' },
-      { 'KinaseName': 'JAK1', 'GeneID': '3716', 'HGNCSymbol': 'JAK1', 'x': '1233', 'y': '1271' },
-      { 'KinaseName': 'JAK2', 'GeneID': '3717', 'HGNCSymbol': 'JAK2', 'x': '1255', 'y': '1221' },
-      { 'KinaseName': 'JAK3', 'GeneID': '3718', 'HGNCSymbol': 'JAK3', 'x': '1275', 'y': '1201' },
-      { 'KinaseName': 'KDR', 'GeneID': '3791', 'HGNCSymbol': 'KDR', 'x': '1333', 'y': '395' },
-      { 'KinaseName': 'KIT', 'GeneID': '3815', 'HGNCSymbol': 'KIT', 'x': '1412', 'y': '407' },
-      { 'KinaseName': 'LCK', 'GeneID': '3932', 'HGNCSymbol': 'LCK', 'x': '556', 'y': '741' },
-      { 'KinaseName': 'LMR2', 'GeneID': '22853', 'HGNCSymbol': 'LMTK2', 'x': '1623', 'y': '911' },
-      { 'KinaseName': 'LMR3', 'GeneID': '114783', 'HGNCSymbol': 'LMTK3', 'x': '1599', 'y': '1021' },
-      { 'KinaseName': 'LTK', 'GeneID': '4058', 'HGNCSymbol': 'LTK', 'x': '1006', 'y': '645' },
-      { 'KinaseName': 'LYN', 'GeneID': '4067', 'HGNCSymbol': 'LYN', 'x': '492', 'y': '660' },
-      { 'KinaseName': 'CTK', 'GeneID': '4145', 'HGNCSymbol': 'MATK', 'x': '610', 'y': '1072' },
-      { 'KinaseName': 'MER', 'GeneID': '10461', 'HGNCSymbol': 'MERTK', 'x': '1195', 'y': '460' },
-      { 'KinaseName': 'MET', 'GeneID': '4233', 'HGNCSymbol': 'MET', 'x': '1209', 'y': '575' },
-      { 'KinaseName': 'RON', 'GeneID': '4486', 'HGNCSymbol': 'MST1R', 'x': '1193', 'y': '587' },
-      { 'KinaseName': 'MUSK', 'GeneID': '4593', 'HGNCSymbol': 'MUSK', 'x': '1006', 'y': '417' },
-      { 'KinaseName': 'TRKA', 'GeneID': '4914', 'HGNCSymbol': 'NTRK1', 'x': '993', 'y': '373' },
-      { 'KinaseName': 'TRKB', 'GeneID': '4915', 'HGNCSymbol': 'NTRK2', 'x': '948', 'y': '317' },
-      { 'KinaseName': 'TRKC', 'GeneID': '4916', 'HGNCSymbol': 'NTRK3', 'x': '973', 'y': '283' },
-      { 'KinaseName': 'PDGFRa', 'GeneID': '5156', 'HGNCSymbol': 'PDGFRA', 'x': '1423', 'y': '505' },
-      { 'KinaseName': 'PDGFRb', 'GeneID': '5159', 'HGNCSymbol': 'PDGFRB', 'x': '1441', 'y': '515' },
-      { 'KinaseName': 'FAK', 'GeneID': '5747', 'HGNCSymbol': 'PTK2', 'x': '1136', 'y': '900' },
-      { 'KinaseName': 'PYK2', 'GeneID': '2185', 'HGNCSymbol': 'PTK2B', 'x': '1150', 'y': '879' },
-      { 'KinaseName': 'BRK', 'GeneID': '5753', 'HGNCSymbol': 'PTK6', 'x': '906', 'y': '1005' },
-      { 'KinaseName': 'CCK4', 'GeneID': '5754', 'HGNCSymbol': 'PTK7', 'x': '1145', 'y': '712' },
-      { 'KinaseName': 'RET', 'GeneID': '5979', 'HGNCSymbol': 'RET', 'x': '1238', 'y': '447' },
-      { 'KinaseName': 'ROR1', 'GeneID': '4919', 'HGNCSymbol': 'ROR1', 'x': '1119', 'y': '430' },
-      { 'KinaseName': 'ROR2', 'GeneID': '4920', 'HGNCSymbol': 'ROR2', 'x': '1092', 'y': '429' },
-      { 'KinaseName': 'ROS', 'GeneID': '6098', 'HGNCSymbol': 'ROS1', 'x': '1039', 'y': '609' },
-      { 'KinaseName': 'RYK', 'GeneID': '6259', 'HGNCSymbol': 'RYK', 'x': '1287', 'y': '693' },
-      { 'KinaseName': 'SRC', 'GeneID': '6714', 'HGNCSymbol': 'SRC', 'x': '560', 'y': '588' },
-      { 'KinaseName': 'SRM', 'GeneID': '6723', 'HGNCSymbol': 'SRM', 'x': '914', 'y': '980' },
-      { 'KinaseName': 'SuRTK106', 'GeneID': '55359', 'HGNCSymbol': 'STYK1', 'x': '1445', 'y': '1275' },
-      { 'KinaseName': 'SYK', 'GeneID': '6850', 'HGNCSymbol': 'SYK', 'x': '1193', 'y': '885' },
-      { 'KinaseName': 'TEC', 'GeneID': '100124696', 'HGNCSymbol': 'TEC', 'x': '564', 'y': '959' },
-      { 'KinaseName': 'TIE2', 'GeneID': '7010', 'HGNCSymbol': 'TEK', 'x': '1415', 'y': '649' },
-      { 'KinaseName': 'TIE1', 'GeneID': '7075', 'HGNCSymbol': 'TIE1', 'x': '1442', 'y': '659' },
-      { 'KinaseName': 'TNK1', 'GeneID': '8711', 'HGNCSymbol': 'TNK1', 'x': '1463', 'y': '760' },
-      { 'KinaseName': 'ACK', 'GeneID': '10188', 'HGNCSymbol': 'TNK2', 'x': '1440', 'y': '761' },
-      { 'KinaseName': 'TXK', 'GeneID': '7294', 'HGNCSymbol': 'TXK', 'x': '569', 'y': '980' },
-      { 'KinaseName': 'TYK2', 'GeneID': '7297', 'HGNCSymbol': 'TYK2', 'x': '1589', 'y': '759' },
-      { 'KinaseName': 'TYRO3', 'GeneID': '7301', 'HGNCSymbol': 'TYRO3', 'x': '1247', 'y': '482' },
-      { 'KinaseName': 'YES', 'GeneID': '7525', 'HGNCSymbol': 'YES1', 'x': '566', 'y': '569' },
-      { 'KinaseName': 'ZAP70', 'GeneID': '7535', 'HGNCSymbol': 'ZAP70', 'x': '1216', 'y': '873' },
-      { 'KinaseName': 'HER2/ErbB2', 'GeneID': '2064', 'HGNCSymbol': 'ERBB2', 'x': '1521', 'y': '559' },
-      { 'KinaseName': 'HER3/ErbB3', 'GeneID': '2065', 'HGNCSymbol': 'ERBB3', 'x': '1504', 'y': '789' },
-      { 'KinaseName': 'HER4/ErbB4', 'GeneID': '2066', 'HGNCSymbol': 'ERBB4', 'x': '1571', 'y': '677' },
-      { 'KinaseName': 'ACTR2', 'GeneID': '10097', 'HGNCSymbol': 'ACTR2', 'x': '2248', 'y': '1124' },
-      { 'KinaseName': 'ALK2', 'GeneID': '90', 'HGNCSymbol': 'ACVR1', 'x': '2320', 'y': '1095' },
-      { 'KinaseName': 'ALK4', 'GeneID': '91', 'HGNCSymbol': 'ACVR1B', 'x': '2343', 'y': '922' },
-      { 'KinaseName': 'ALK7', 'GeneID': '130399', 'HGNCSymbol': 'ACVR1C', 'x': '2312', 'y': '1023' },
-      { 'KinaseName': 'ALK1', 'GeneID': '94', 'HGNCSymbol': 'ACVRL1', 'x': '2309', 'y': '1074' },
-      { 'KinaseName': 'MISR2', 'GeneID': '269', 'HGNCSymbol': 'AMHR2', 'x': '2223', 'y': '1212' },
-      { 'KinaseName': 'ARAF', 'GeneID': '369', 'HGNCSymbol': 'ARAF', 'x': '2211', 'y': '1035' },
-      { 'KinaseName': 'BMPR1A', 'GeneID': '657', 'HGNCSymbol': 'BMPR1A', 'x': '2366', 'y': '1044' },
-      { 'KinaseName': 'BMPR1B', 'GeneID': '658', 'HGNCSymbol': 'BMPR1B', 'x': '2366', 'y': '1028' },
-      { 'KinaseName': 'BMPR2', 'GeneID': '659', 'HGNCSymbol': 'BMPR2', 'x': '2221', 'y': '1235' },
-      { 'KinaseName': 'BRAF', 'GeneID': '673', 'HGNCSymbol': 'BRAF', 'x': '2261', 'y': '959' },
-      { 'KinaseName': 'ILK', 'GeneID': '3611', 'HGNCSymbol': 'ILK', 'x': '2060', 'y': '1076' },
-      { 'KinaseName': 'IRAK1', 'GeneID': '3654', 'HGNCSymbol': 'IRAK1', 'x': '1782', 'y': '1024' },
-      { 'KinaseName': 'IRAK2', 'GeneID': '3656', 'HGNCSymbol': 'IRAK2', 'x': '1736', 'y': '1152' },
-      { 'KinaseName': 'IRAK3', 'GeneID': '11213', 'HGNCSymbol': 'IRAK3', 'x': '1756', 'y': '1034' },
-      { 'KinaseName': 'IRAK4', 'GeneID': '51135', 'HGNCSymbol': 'IRAK4', 'x': '1714', 'y': '1276' },
-      { 'KinaseName': 'MLK4', 'GeneID': '84451', 'HGNCSymbol': 'KIAA1804', 'x': '2265', 'y': '689' },
-      { 'KinaseName': 'KSR1', 'GeneID': '8844', 'HGNCSymbol': 'KSR1', 'x': '2140', 'y': '978' },
-      { 'KinaseName': 'KSR2', 'GeneID': '283455', 'HGNCSymbol': 'KSR2', 'x': '2159', 'y': '981' },
-      { 'KinaseName': 'LIMK1', 'GeneID': '3984', 'HGNCSymbol': 'LIMK1', 'x': '1925', 'y': '1058' },
-      { 'KinaseName': 'LIMK2', 'GeneID': '3985', 'HGNCSymbol': 'LIMK2', 'x': '1949', 'y': '1069' },
-      { 'KinaseName': 'LRRK1', 'GeneID': '79705', 'HGNCSymbol': 'LRRK1', 'x': '1853', 'y': '1247' },
-      { 'KinaseName': 'LRRK2', 'GeneID': '120892', 'HGNCSymbol': 'LRRK2', 'x': '1876', 'y': '1250' },
-      { 'KinaseName': 'MLK2', 'GeneID': '4294', 'HGNCSymbol': 'MAP3K10', 'x': '2166', 'y': '735' },
-      { 'KinaseName': 'MLK3', 'GeneID': '4296', 'HGNCSymbol': 'MAP3K11', 'x': '2288', 'y': '600' },
-      { 'KinaseName': 'DLK', 'GeneID': '7786', 'HGNCSymbol': 'MAP3K12', 'x': '2174', 'y': '840' },
-      { 'KinaseName': 'LZK', 'GeneID': '9175', 'HGNCSymbol': 'MAP3K13', 'x': '2188', 'y': '854' },
-      { 'KinaseName': 'TAK1', 'GeneID': '6885', 'HGNCSymbol': 'MAP3K7', 'x': '2092', 'y': '1077' },
-      { 'KinaseName': 'MLK1', 'GeneID': '4293', 'HGNCSymbol': 'MAP3K9', 'x': '2313', 'y': '621' },
-      { 'KinaseName': 'MLKL', 'GeneID': '197259', 'HGNCSymbol': 'MLKL', 'x': '1710', 'y': '1530' },
-      { 'KinaseName': 'RAF1', 'GeneID': '5894', 'HGNCSymbol': 'RAF1', 'x': '2241', 'y': '947' },
-      { 'KinaseName': 'RIPK1', 'GeneID': '8737', 'HGNCSymbol': 'RIPK1', 'x': '1813', 'y': '1188' },
-      { 'KinaseName': 'RIPK2', 'GeneID': '8767', 'HGNCSymbol': 'RIPK2', 'x': '1836', 'y': '991' },
-      { 'KinaseName': 'RIPK3', 'GeneID': '11035', 'HGNCSymbol': 'RIPK3', 'x': '1823', 'y': '1094' },
-      { 'KinaseName': 'ANKRD3', 'GeneID': '54101', 'HGNCSymbol': 'RIPK4', 'x': '1862', 'y': '860' },
-      { 'KinaseName': 'TESK1', 'GeneID': '7016', 'HGNCSymbol': 'TESK1', 'x': '1973', 'y': '1072' },
-      { 'KinaseName': 'TESK2', 'GeneID': '10420', 'HGNCSymbol': 'TESK2', 'x': '1992', 'y': '1085' },
-      { 'KinaseName': 'TGFbR1', 'GeneID': '7046', 'HGNCSymbol': 'TGFBR1', 'x': '2365', 'y': '936' },
-      { 'KinaseName': 'TGFbR2', 'GeneID': '7048', 'HGNCSymbol': 'TGFBR2', 'x': '2236', 'y': '1181' },
-      { 'KinaseName': 'ZAK', 'GeneID': '51776', 'HGNCSymbol': 'ZAK', 'x': '2044', 'y': '962' },
-      { 'KinaseName': 'ACTR2B', 'GeneID': '93', 'HGNCSymbol': 'ACVR2B', 'x': '2258', 'y': '1146' },
-      { 'KinaseName': 'HH498', 'GeneID': '51086', 'HGNCSymbol': 'TNNI3K', 'x': '2103', 'y': '1093' },
-      { 'KinaseName': 'SgK288', 'GeneID': '255239', 'HGNCSymbol': 'ANKK1', 'x': '1900', 'y': '860' }
-    ];
-
-
-
+        {
+          'gene':'AAK1',
+          'x':1139,
+          'y':2311
+        },
+        {
+          'gene':'AATK',
+          'x':1606,
+          'y':906
+        },
+        {
+          'gene':'ABL1',
+          'x':661,
+          'y':1123
+        },
+        {
+          'gene':'ABL2',
+          'x':645,
+          'y':1107
+        },
+        {
+          'gene':'ACTR2',
+          'x':2248,
+          'y':1124
+        },
+        {
+          'gene':'ACVR1',
+          'x':2320,
+          'y':1095
+        },
+        {
+          'gene':'ACVR1B',
+          'x':2343,
+          'y':922
+        },
+        {
+          'gene':'ACVR1C',
+          'x':2312,
+          'y':1023
+        },
+        {
+          'gene':'ACVR2B',
+          'x':2258,
+          'y':1146
+        },
+        {
+          'gene':'ACVRL1',
+          'x':2309,
+          'y':1074
+        },
+        {
+          'gene':'ADRBK1',
+          'x':2379,
+          'y':2391
+        },
+        {
+          'gene':'ADRBK2',
+          'x':2379,
+          'y':2392
+        },
+        {
+          'gene':'AKT1',
+          'x':2924,
+          'y':2587
+        },
+        {
+          'gene':'AKT2',
+          'x':2924,
+          'y':2570
+        },
+        {
+          'gene':'AKT3',
+          'x':2855,
+          'y':2592
+        },
+        {
+          'gene':'ALK',
+          'x':1009,
+          'y':628
+        },
+        {
+          'gene':'AMHR2',
+          'x':2223,
+          'y':1212
+        },
+        {
+          'gene':'ANKK1',
+          'x':1900,
+          'y':860
+        },
+        {
+          'gene':'ARAF',
+          'x':2211,
+          'y':1035
+        },
+        {
+          'gene':'AURKA',
+          'x':1897,
+          'y':2569
+        },
+        {
+          'gene':'AURKB',
+          'x':1989,
+          'y':2644
+        },
+        {
+          'gene':'AURKC',
+          'x':1949,
+          'y':2660
+        },
+        {
+          'gene':'AXL',
+          'x':1178,
+          'y':471
+        },
+        {
+          'gene':'BLK',
+          'x':671,
+          'y':817
+        },
+        {
+          'gene':'BMP2K',
+          'x':1157,
+          'y':2339
+        },
+        {
+          'gene':'BMPR1A',
+          'x':2366,
+          'y':1044
+        },
+        {
+          'gene':'BMPR1B',
+          'x':2366,
+          'y':1028
+        },
+        {
+          'gene':'BMPR2',
+          'x':2221,
+          'y':1235
+        },
+        {
+          'gene':'BMX',
+          'x':617,
+          'y':1029
+        },
+        {
+          'gene':'BRAF',
+          'x':2261,
+          'y':959
+        },
+        {
+          'gene':'BRSK1',
+          'x':1647,
+          'y':3346
+        },
+        {
+          'gene':'BRSK2',
+          'x':1623,
+          'y':3336
+        },
+        {
+          'gene':'BTK',
+          'x':610,
+          'y':1010
+        },
+        {
+          'gene':'BUB1',
+          'x':2203,
+          'y':2124
+        },
+        {
+          'gene':'BUB1B',
+          'x':2183,
+          'y':2135
+        },
+        {
+          'gene':'C9ORF96',
+          'x':1353,
+          'y':1837
+        },
+        {
+          'gene':'CAMK1',
+          'x':2329,
+          'y':3668
+        },
+        {
+          'gene':'CAMK1D',
+          'x':2296,
+          'y':3683
+        },
+        {
+          'gene':'CAMK1G',
+          'x':2317,
+          'y':3596
+        },
+        {
+          'gene':'CAMK2A',
+          'x':2030,
+          'y':3309
+        },
+        {
+          'gene':'CAMK2B',
+          'x':2086,
+          'y':3314
+        },
+        {
+          'gene':'CAMK2D',
+          'x':2050,
+          'y':3321
+        },
+        {
+          'gene':'CAMK2G',
+          'x':2118,
+          'y':3305
+        },
+        {
+          'gene':'CAMK4',
+          'x':2244,
+          'y':3386
+        },
+        {
+          'gene':'CAMKK1',
+          'x':1267,
+          'y':2325
+        },
+        {
+          'gene':'CAMKK2',
+          'x':1281,
+          'y':2355
+        },
+        {
+          'gene':'CAMKV',
+          'x':2229,
+          'y':3229
+        },
+        {
+          'gene':'CASK',
+          'x':2013,
+          'y':3173
+        },
+        {
+          'gene':'CDC42BPA',
+          'x':2606,
+          'y':3208
+        },
+        {
+          'gene':'CDC42BPB',
+          'x':2632,
+          'y':3193
+        },
+        {
+          'gene':'CDC42BPG',
+          'x':2596,
+          'y':3108
+        },
+        {
+          'gene':'CDC7',
+          'x':1353,
+          'y':1926
+        },
+        {
+          'gene':'CDK1',
+          'x':572,
+          'y':2285
+        },
+        {
+          'gene':'CDK10',
+          'x':752,
+          'y':2289
+        },
+        {
+          'gene':'CDK11A',
+          'x':740,
+          'y':2266
+        },
+        {
+          'gene':'CDK11B',
+          'x':971,
+          'y':2311
+        },
+        {
+          'gene':'CDK12',
+          'x':681,
+          'y':2512
+        },
+        {
+          'gene':'CDK14',
+          'x':471,
+          'y':2457
+        },
+        {
+          'gene':'CDK15',
+          'x':466,
+          'y':2432
+        },
+        {
+          'gene':'CDK16',
+          'x':402,
+          'y':2533
+        },
+        {
+          'gene':'CDK17',
+          'x':392,
+          'y':2493
+        },
+        {
+          'gene':'CDK18',
+          'x':455,
+          'y':2523
+        },
+        {
+          'gene':'CDK2',
+          'x':512,
+          'y':2634
+        },
+        {
+          'gene':'CDK20',
+          'x':865,
+          'y':2335
+        },
+        {
+          'gene':'CDK3',
+          'x':488,
+          'y':2620
+        },
+        {
+          'gene':'CDK4',
+          'x':568,
+          'y':2354
+        },
+        {
+          'gene':'CDK5',
+          'x':617,
+          'y':2516
+        },
+        {
+          'gene':'CDK6',
+          'x':569,
+          'y':2381
+        },
+        {
+          'gene':'CDK7',
+          'x':784,
+          'y':2234
+        },
+        {
+          'gene':'CDK8',
+          'x':950,
+          'y':2309
+        },
+        {
+          'gene':'CDK9',
+          'x':772,
+          'y':2436
+        },
+        {
+          'gene':'CDKL1',
+          'x':554,
+          'y':2057
+        },
+        {
+          'gene':'CDKL2',
+          'x':553,
+          'y':2026
+        },
+        {
+          'gene':'CDKL3',
+          'x':560,
+          'y':2006
+        },
+        {
+          'gene':'CDKL4',
+          'x':568,
+          'y':2083
+        },
+        {
+          'gene':'CDKL5',
+          'x':672,
+          'y':2061
+        },
+        {
+          'gene':'CHED1',
+          'x':716,
+          'y':2514
+        },
+        {
+          'gene':'CHEK1',
+          'x':1724,
+          'y':2560
+        },
+        {
+          'gene':'CHEK2',
+          'x':2087,
+          'y':3005
+        },
+        {
+          'gene':'CHUK',
+          'x':1240,
+          'y':2173
+        },
+        {
+          'gene':'CIT',
+          'x':2474,
+          'y':3031
+        },
+        {
+          'gene':'CLK1',
+          'x':688,
+          'y':1711
+        },
+        {
+          'gene':'CLK2',
+          'x':638,
+          'y':1727
+        },
+        {
+          'gene':'CLK3',
+          'x':628,
+          'y':1749
+        },
+        {
+          'gene':'CLK4',
+          'x':705,
+          'y':1691
+        },
+        {
+          'gene':'CSF1R',
+          'x':1387,
+          'y':400
+        },
+        {
+          'gene':'CSK',
+          'x':620,
+          'y':1090
+        },
+        {
+          'gene':'CSNK1A1',
+          'x':2596,
+          'y':1972
+        },
+        {
+          'gene':'CSNK1A1L',
+          'x':2602,
+          'y':2000
+        },
+        {
+          'gene':'CSNK1D',
+          'x':2582,
+          'y':1915
+        },
+        {
+          'gene':'CSNK1E',
+          'x':2595,
+          'y':1945
+        },
+        {
+          'gene':'CSNK1G1',
+          'x':2504,
+          'y':2080
+        },
+        {
+          'gene':'CSNK1G2',
+          'x':2455,
+          'y':2032
+        },
+        {
+          'gene':'CSNK1G3',
+          'x':2495,
+          'y':2102
+        },
+        {
+          'gene':'CSNK2A1',
+          'x':1199,
+          'y':1891
+        },
+        {
+          'gene':'CSNK2A2',
+          'x':1191,
+          'y':1913
+        },
+        {
+          'gene':'DAPK1',
+          'x':1286,
+          'y':3184
+        },
+        {
+          'gene':'DAPK2',
+          'x':1309,
+          'y':3162
+        },
+        {
+          'gene':'DAPK3',
+          'x':1239,
+          'y':3170
+        },
+        {
+          'gene':'DCLK1',
+          'x':2301,
+          'y':3164
+        },
+        {
+          'gene':'DCLK2',
+          'x':2297,
+          'y':3183
+        },
+        {
+          'gene':'DCLK3',
+          'x':2214,
+          'y':3132
+        },
+        {
+          'gene':'DDR1',
+          'x':979,
+          'y':467
+        },
+        {
+          'gene':'DDR2',
+          'x':985,
+          'y':451
+        },
+        {
+          'gene':'DMPK',
+          'x':2538,
+          'y':3020
+        },
+        {
+          'gene':'DSTYK',
+          'x':1700,
+          'y':1390
+        },
+        {
+          'gene':'DYRK1A',
+          'x':678,
+          'y':1478
+        },
+        {
+          'gene':'DYRK1B',
+          'x':656,
+          'y':1495
+        },
+        {
+          'gene':'DYRK2',
+          'x':747,
+          'y':1436
+        },
+        {
+          'gene':'DYRK3',
+          'x':721,
+          'y':1445
+        },
+        {
+          'gene':'DYRK4',
+          'x':797,
+          'y':1471
+        },
+        {
+          'gene':'EGFR',
+          'x':1506,
+          'y':567
+        },
+        {
+          'gene':'EIF2AK1',
+          'x':1425,
+          'y':1699
+        },
+        {
+          'gene':'EIF2AK3',
+          'x':1223,
+          'y':1568
+        },
+        {
+          'gene':'EIF2AK4',
+          'x':1337,
+          'y':1620
+        },
+        {
+          'gene':'EPHA1',
+          'x':1014,
+          'y':877
+        },
+        {
+          'gene':'EPHA10',
+          'x':1144,
+          'y':1055
+        },
+        {
+          'gene':'EPHA2',
+          'x':941,
+          'y':808
+        },
+        {
+          'gene':'EPHA3',
+          'x':525,
+          'y':449
+        },
+        {
+          'gene':'EPHA4',
+          'x':608,
+          'y':472
+        },
+        {
+          'gene':'EPHA5',
+          'x':528,
+          'y':407
+        },
+        {
+          'gene':'EPHA6',
+          'x':684,
+          'y':524
+        },
+        {
+          'gene':'EPHA7',
+          'x':777,
+          'y':633
+        },
+        {
+          'gene':'EPHA8',
+          'x':840,
+          'y':710
+        },
+        {
+          'gene':'EPHB1',
+          'x':647,
+          'y':369
+        },
+        {
+          'gene':'EPHB2',
+          'x':662,
+          'y':330
+        },
+        {
+          'gene':'EPHB3',
+          'x':746,
+          'y':439
+        },
+        {
+          'gene':'EPHB4',
+          'x':854,
+          'y':580
+        },
+        {
+          'gene':'EPHB6',
+          'x':1074,
+          'y':974
+        },
+        {
+          'gene':'ERBB2',
+          'x':1521,
+          'y':559
+        },
+        {
+          'gene':'ERBB3',
+          'x':1504,
+          'y':789
+        },
+        {
+          'gene':'ERBB4',
+          'x':1571,
+          'y':677
+        },
+        {
+          'gene':'ERN1',
+          'x':1204,
+          'y':1723
+        },
+        {
+          'gene':'ERN2',
+          'x':1197,
+          'y':1739
+        },
+        {
+          'gene':'FER',
+          'x':819,
+          'y':1157
+        },
+        {
+          'gene':'FES',
+          'x':804,
+          'y':1139
+        },
+        {
+          'gene':'FGFR1',
+          'x':1205,
+          'y':314
+        },
+        {
+          'gene':'FGFR2',
+          'x':1209,
+          'y':235
+        },
+        {
+          'gene':'FGFR3',
+          'x':1235,
+          'y':233
+        },
+        {
+          'gene':'FGFR4',
+          'x':1287,
+          'y':341
+        },
+        {
+          'gene':'FGR',
+          'x':735,
+          'y':747
+        },
+        {
+          'gene':'FLT1',
+          'x':1306,
+          'y':387
+        },
+        {
+          'gene':'FLT3',
+          'x':1392,
+          'y':514
+        },
+        {
+          'gene':'FLT4',
+          'x':1333,
+          'y':487
+        },
+        {
+          'gene':'FRK',
+          'x':902,
+          'y':948
+        },
+        {
+          'gene':'FYN',
+          'x':673,
+          'y':682
+        },
+        {
+          'gene':'GAK',
+          'x':1327,
+          'y':2286
+        },
+        {
+          'gene':'GCK',
+          'x':2678,
+          'y':1386
+        },
+        {
+          'gene':'GRK1',
+          'x':2559,
+          'y':2396
+        },
+        {
+          'gene':'GRK4',
+          'x':2786,
+          'y':2441
+        },
+        {
+          'gene':'GRK5',
+          'x':2785,
+          'y':2404
+        },
+        {
+          'gene':'GRK6',
+          'x':2660,
+          'y':2442
+        },
+        {
+          'gene':'GSG2',
+          'x':1863,
+          'y':1956
+        },
+        {
+          'gene':'GSK3A',
+          'x':625,
+          'y':1698
+        },
+        {
+          'gene':'GSK3B',
+          'x':636,
+          'y':1954
+        },
+        {
+          'gene':'GUCY2C',
+          'x':1058,
+          'y':1372
+        },
+        {
+          'gene':'GUCY2D',
+          'x':1098,
+          'y':1444
+        },
+        {
+          'gene':'GUCY2F',
+          'x':1095,
+          'y':1471
+        },
+        {
+          'gene':'HCK',
+          'x':488,
+          'y':679
+        },
+        {
+          'gene':'HIPK1',
+          'x':560,
+          'y':1613
+        },
+        {
+          'gene':'HIPK2',
+          'x':559,
+          'y':1640
+        },
+        {
+          'gene':'HIPK3',
+          'x':679,
+          'y':1623
+        },
+        {
+          'gene':'HIPK4',
+          'x':824,
+          'y':1705
+        },
+        {
+          'gene':'HUNK',
+          'x':1808,
+          'y':2971
+        },
+        {
+          'gene':'ICK',
+          'x':743,
+          'y':1942
+        },
+        {
+          'gene':'IGF1R',
+          'x':985,
+          'y':520
+        },
+        {
+          'gene':'IKBKB',
+          'x':1247,
+          'y':2200
+        },
+        {
+          'gene':'IKBKE',
+          'x':1260,
+          'y':2212
+        },
+        {
+          'gene':'ILK',
+          'x':2060,
+          'y':1076
+        },
+        {
+          'gene':'INSR',
+          'x':977,
+          'y':536
+        },
+        {
+          'gene':'INSRR',
+          'x':1057,
+          'y':523
+        },
+        {
+          'gene':'IRAK1',
+          'x':1782,
+          'y':1024
+        },
+        {
+          'gene':'IRAK2',
+          'x':1736,
+          'y':1152
+        },
+        {
+          'gene':'IRAK3',
+          'x':1756,
+          'y':1034
+        },
+        {
+          'gene':'IRAK4',
+          'x':1714,
+          'y':1276
+        },
+        {
+          'gene':'ITK',
+          'x':681,
+          'y':927
+        },
+        {
+          'gene':'JAK1',
+          'x':1233,
+          'y':1271
+        },
+        {
+          'gene':'JAK2',
+          'x':1255,
+          'y':1221
+        },
+        {
+          'gene':'JAK3',
+          'x':1275,
+          'y':1201
+        },
+        {
+          'gene':'KCNE1',
+          'x':2886,
+          'y':1466
+        },
+        {
+          'gene':'KDR',
+          'x':1333,
+          'y':395
+        },
+        {
+          'gene':'KIAA1804',
+          'x':2265,
+          'y':689
+        },
+        {
+          'gene':'KIT',
+          'x':1412,
+          'y':407
+        },
+        {
+          'gene':'KSR1',
+          'x':2140,
+          'y':978
+        },
+        {
+          'gene':'KSR2',
+          'x':2159,
+          'y':981
+        },
+        {
+          'gene':'LATS1',
+          'x':2329,
+          'y':2690
+        },
+        {
+          'gene':'LATS2',
+          'x':2329,
+          'y':2714
+        },
+        {
+          'gene':'LCK',
+          'x':556,
+          'y':741
+        },
+        {
+          'gene':'LIMK1',
+          'x':1925,
+          'y':1058
+        },
+        {
+          'gene':'LIMK2',
+          'x':1949,
+          'y':1069
+        },
+        {
+          'gene':'LMTK2',
+          'x':1623,
+          'y':911
+        },
+        {
+          'gene':'LMTK3',
+          'x':1599,
+          'y':1021
+        },
+        {
+          'gene':'LOC100130827',
+          'x':1277,
+          'y':2104
+        },
+        {
+          'gene':'LRRK1',
+          'x':1853,
+          'y':1247
+        },
+        {
+          'gene':'LRRK2',
+          'x':1876,
+          'y':1250
+        },
+        {
+          'gene':'LTK',
+          'x':1006,
+          'y':645
+        },
+        {
+          'gene':'LYN',
+          'x':492,
+          'y':660
+        },
+        {
+          'gene':'MAK',
+          'x':745,
+          'y':1920
+        },
+        {
+          'gene':'MAP2K1',
+          'x':2511,
+          'y':1763
+        },
+        {
+          'gene':'MAP2K2',
+          'x':2495,
+          'y':1775
+        },
+        {
+          'gene':'MAP2K3',
+          'x':2463,
+          'y':1845
+        },
+        {
+          'gene':'MAP2K4',
+          'x':2380,
+          'y':1849
+        },
+        {
+          'gene':'MAP2K5',
+          'x':2252,
+          'y':1721
+        },
+        {
+          'gene':'MAP2K6',
+          'x':2450,
+          'y':1857
+        },
+        {
+          'gene':'MAP2K7',
+          'x':2268,
+          'y':1765
+        },
+        {
+          'gene':'MAP3K1',
+          'x':2117,
+          'y':1496
+        },
+        {
+          'gene':'MAP3K10',
+          'x':2166,
+          'y':735
+        },
+        {
+          'gene':'MAP3K11',
+          'x':2288,
+          'y':600
+        },
+        {
+          'gene':'MAP3K12',
+          'x':2174,
+          'y':840
+        },
+        {
+          'gene':'MAP3K13',
+          'x':2188,
+          'y':854
+        },
+        {
+          'gene':'MAP3K14',
+          'x':1867,
+          'y':1667
+        },
+        {
+          'gene':'MAP3K2',
+          'x':2428,
+          'y':1222
+        },
+        {
+          'gene':'MAP3K3',
+          'x':2461,
+          'y':1234
+        },
+        {
+          'gene':'MAP3K4',
+          'x':2237,
+          'y':1442
+        },
+        {
+          'gene':'MAP3K5',
+          'x':2497,
+          'y':1259
+        },
+        {
+          'gene':'MAP3K6',
+          'x':2426,
+          'y':1376
+        },
+        {
+          'gene':'MAP3K7',
+          'x':2523,
+          'y':1284
+        },
+        {
+          'gene':'MAP3K7',
+          'x':2092,
+          'y':1077
+        },
+        {
+          'gene':'MAP3K8',
+          'x':1907,
+          'y':1658
+        },
+        {
+          'gene':'MAP3K8',
+          'x':2373,
+          'y':1282
+        },
+        {
+          'gene':'MAP3K9',
+          'x':2313,
+          'y':621
+        },
+        {
+          'gene':'MAP4K1',
+          'x':2601,
+          'y':1373
+        },
+        {
+          'gene':'MAP4K3',
+          'x':2702,
+          'y':1350
+        },
+        {
+          'gene':'MAP4K4',
+          'x':2891,
+          'y':1442
+        },
+        {
+          'gene':'MAP4K5',
+          'x':2691,
+          'y':1334
+        },
+        {
+          'gene':'MAPK1',
+          'x':383,
+          'y':2234
+        },
+        {
+          'gene':'MAPK10',
+          'x':586,
+          'y':2273
+        },
+        {
+          'gene':'MAPK11',
+          'x':428,
+          'y':2309
+        },
+        {
+          'gene':'MAPK12',
+          'x':431,
+          'y':2245
+        },
+        {
+          'gene':'MAPK13',
+          'x':440,
+          'y':2265
+        },
+        {
+          'gene':'MAPK14',
+          'x':443,
+          'y':2325
+        },
+        {
+          'gene':'MAPK15',
+          'x':844,
+          'y':2074
+        },
+        {
+          'gene':'MAPK3',
+          'x':383,
+          'y':2201
+        },
+        {
+          'gene':'MAPK4',
+          'x':719,
+          'y':2112
+        },
+        {
+          'gene':'MAPK4',
+          'x':720,
+          'y':2086
+        },
+        {
+          'gene':'MAPK7',
+          'x':495,
+          'y':2155
+        },
+        {
+          'gene':'MAPK8',
+          'x':563,
+          'y':2260
+        },
+        {
+          'gene':'MAPK9',
+          'x':623,
+          'y':2260
+        },
+        {
+          'gene':'MAPKAPK2',
+          'x':1960,
+          'y':3297
+        },
+        {
+          'gene':'MAPKAPK3',
+          'x':1925,
+          'y':3313
+        },
+        {
+          'gene':'MAPKAPK5',
+          'x':1960,
+          'y':3234
+        },
+        {
+          'gene':'MARK1',
+          'x':1612,
+          'y':3719
+        },
+        {
+          'gene':'MARK2',
+          'x':1647,
+          'y':3737
+        },
+        {
+          'gene':'MARK3',
+          'x':1684,
+          'y':3701
+        },
+        {
+          'gene':'MARK4',
+          'x':1713,
+          'y':3661
+        },
+        {
+          'gene':'MAST1',
+          'x':2356,
+          'y':3010
+        },
+        {
+          'gene':'MAST2',
+          'x':2267,
+          'y':2884
+        },
+        {
+          'gene':'MAST3',
+          'x':2266,
+          'y':2781
+        },
+        {
+          'gene':'MAST4',
+          'x':2311,
+          'y':3012
+        },
+        {
+          'gene':'MASTL',
+          'x':2212,
+          'y':2796
+        },
+        {
+          'gene':'MATK',
+          'x':610,
+          'y':1072
+        },
+        {
+          'gene':'MELK',
+          'x':1715,
+          'y':3164
+        },
+        {
+          'gene':'MERTK',
+          'x':1195,
+          'y':460
+        },
+        {
+          'gene':'MET',
+          'x':1209,
+          'y':575
+        },
+        {
+          'gene':'MGC42105',
+          'x':1724,
+          'y':3038
+        },
+        {
+          'gene':'MKNK1',
+          'x':1833,
+          'y':3238
+        },
+        {
+          'gene':'MKNK2',
+          'x':2411,
+          'y':2417
+        },
+        {
+          'gene':'MKNK2',
+          'x':1857,
+          'y':3245
+        },
+        {
+          'gene':'MLKL',
+          'x':1710,
+          'y':1530
+        },
+        {
+          'gene':'MOS',
+          'x':1669,
+          'y':1350
+        },
+        {
+          'gene':'MST1',
+          'x':2794,
+          'y':1348
+        },
+        {
+          'gene':'MST1R',
+          'x':1193,
+          'y':587
+        },
+        {
+          'gene':'MST4',
+          'x':2867,
+          'y':1403
+        },
+        {
+          'gene':'MUSK',
+          'x':1006,
+          'y':417
+        },
+        {
+          'gene':'MYLK',
+          'x':1305,
+          'y':2952
+        },
+        {
+          'gene':'MYLK2',
+          'x':1227,
+          'y':3020
+        },
+        {
+          'gene':'MYLK3',
+          'x':1181,
+          'y':3144
+        },
+        {
+          'gene':'MYLK4',
+          'x':1159,
+          'y':3114
+        },
+        {
+          'gene':'MYO3A',
+          'x':2787,
+          'y':1532
+        },
+        {
+          'gene':'MYO3B',
+          'x':2779,
+          'y':1554
+        },
+        {
+          'gene':'MYT1',
+          'x':2068,
+          'y':1860
+        },
+        {
+          'gene':'NDRG1',
+          'x':2302,
+          'y':2741
+        },
+        {
+          'gene':'NEK1',
+          'x':907,
+          'y':2776
+        },
+        {
+          'gene':'NEK10',
+          'x':1393,
+          'y':2491
+        },
+        {
+          'gene':'NEK11',
+          'x':1098,
+          'y':2601
+        },
+        {
+          'gene':'NEK2',
+          'x':1161,
+          'y':2569
+        },
+        {
+          'gene':'NEK3',
+          'x':905,
+          'y':2708
+        },
+        {
+          'gene':'NEK4',
+          'x':1040,
+          'y':2649
+        },
+        {
+          'gene':'NEK5',
+          'x':894,
+          'y':2744
+        },
+        {
+          'gene':'NEK6',
+          'x':1273,
+          'y':2482
+        },
+        {
+          'gene':'NEK7',
+          'x':1262,
+          'y':2500
+        },
+        {
+          'gene':'NEK8',
+          'x':1199,
+          'y':2517
+        },
+        {
+          'gene':'NEK9',
+          'x':1190,
+          'y':2530
+        },
+        {
+          'gene':'NLK',
+          'x':607,
+          'y':2133
+        },
+        {
+          'gene':'NPR1',
+          'x':1053,
+          'y':1296
+        },
+        {
+          'gene':'NPR2',
+          'x':1034,
+          'y':1315
+        },
+        {
+          'gene':'NRBP1',
+          'x':1912,
+          'y':1473
+        },
+        {
+          'gene':'NRBP2',
+          'x':1945,
+          'y':1468
+        },
+        {
+          'gene':'NRK',
+          'x':2723,
+          'y':1489
+        },
+        {
+          'gene':'NTRK1',
+          'x':993,
+          'y':373
+        },
+        {
+          'gene':'NTRK2',
+          'x':948,
+          'y':317
+        },
+        {
+          'gene':'NTRK3',
+          'x':973,
+          'y':283
+        },
+        {
+          'gene':'NUAK1',
+          'x':1691,
+          'y':3403
+        },
+        {
+          'gene':'NUAK2',
+          'x':1667,
+          'y':3383
+        },
+        {
+          'gene':'OBSCN',
+          'x':1427,
+          'y':2779
+        },
+        {
+          'gene':'OSR1',
+          'x':2278,
+          'y':1499
+        },
+        {
+          'gene':'PAK1',
+          'x':2575,
+          'y':1668
+        },
+        {
+          'gene':'PAK2',
+          'x':2528,
+          'y':1696
+        },
+        {
+          'gene':'PAK3',
+          'x':2576,
+          'y':1683
+        },
+        {
+          'gene':'PAK4',
+          'x':2696,
+          'y':1696
+        },
+        {
+          'gene':'PAK6',
+          'x':2667,
+          'y':1739
+        },
+        {
+          'gene':'PAK6',
+          'x':2704,
+          'y':1713
+        },
+        {
+          'gene':'PASK',
+          'x':1696,
+          'y':2490
+        },
+        {
+          'gene':'PBK',
+          'x':1716,
+          'y':1436
+        },
+        {
+          'gene':'PDGFRA',
+          'x':1423,
+          'y':505
+        },
+        {
+          'gene':'PDGFRB',
+          'x':1441,
+          'y':515
+        },
+        {
+          'gene':'PDIK1L',
+          'x':1318,
+          'y':1741
+        },
+        {
+          'gene':'PDK1',
+          'x':2164,
+          'y':2497
+        },
+        {
+          'gene':'PEAK1',
+          'x':1218,
+          'y':2050
+        },
+        {
+          'gene':'PHKG1',
+          'x':2139,
+          'y':3246
+        },
+        {
+          'gene':'PHKG2',
+          'x':2119,
+          'y':3256
+        },
+        {
+          'gene':'PIK3R4',
+          'x':1733,
+          'y':2097
+        },
+        {
+          'gene':'PIM1',
+          'x':1353,
+          'y':2679
+        },
+        {
+          'gene':'PIM2',
+          'x':1480,
+          'y':2675
+        },
+        {
+          'gene':'PIM3',
+          'x':1376,
+          'y':2702
+        },
+        {
+          'gene':'PINK1',
+          'x':1324,
+          'y':2025
+        },
+        {
+          'gene':'PKD1',
+          'x':1826,
+          'y':3147
+        },
+        {
+          'gene':'PKD2',
+          'x':1840,
+          'y':3068
+        },
+        {
+          'gene':'PKD3',
+          'x':1854,
+          'y':3156
+        },
+        {
+          'gene':'PKDCC',
+          'x':1826,
+          'y':2025
+        },
+        {
+          'gene':'PKLR',
+          'x':1210,
+          'y':1583
+        },
+        {
+          'gene':'PKN1',
+          'x':2669,
+          'y':2684
+        },
+        {
+          'gene':'PKN2',
+          'x':2670,
+          'y':2699
+        },
+        {
+          'gene':'PKN3',
+          'x':2641,
+          'y':2724
+        },
+        {
+          'gene':'PLK1',
+          'x':2280,
+          'y':2314
+        },
+        {
+          'gene':'PLK2',
+          'x':2397,
+          'y':2326
+        },
+        {
+          'gene':'PLK3',
+          'x':2400,
+          'y':2297
+        },
+        {
+          'gene':'PLK4',
+          'x':2030,
+          'y':2231
+        },
+        {
+          'gene':'PNCK',
+          'x':2289,
+          'y':3499
+        },
+        {
+          'gene':'PRKAA1',
+          'x':1609,
+          'y':3293
+        },
+        {
+          'gene':'PRKAA2',
+          'x':1596,
+          'y':3270
+        },
+        {
+          'gene':'PRKACA',
+          'x':2657,
+          'y':2880
+        },
+        {
+          'gene':'PRKACB',
+          'x':2636,
+          'y':2895
+        },
+        {
+          'gene':'PRKACG',
+          'x':2563,
+          'y':2846
+        },
+        {
+          'gene':'PRKCA',
+          'x':2960,
+          'y':2962
+        },
+        {
+          'gene':'PRKCB',
+          'x':2494,
+          'y':2975
+        },
+        {
+          'gene':'PRKCD',
+          'x':2749,
+          'y':2831
+        },
+        {
+          'gene':'PRKCE',
+          'x':2837,
+          'y':2812
+        },
+        {
+          'gene':'PRKCG',
+          'x':2916,
+          'y':2878
+        },
+        {
+          'gene':'PRKCH',
+          'x':2839,
+          'y':2793
+        },
+        {
+          'gene':'PRKCI',
+          'x':2689,
+          'y':2824
+        },
+        {
+          'gene':'PRKCQ',
+          'x':2738,
+          'y':2842
+        },
+        {
+          'gene':'PRKCZ',
+          'x':2673,
+          'y':2831
+        },
+        {
+          'gene':'PRKG1',
+          'x':2453,
+          'y':2698
+        },
+        {
+          'gene':'PRKG2',
+          'x':2457,
+          'y':2684
+        },
+        {
+          'gene':'PRKX',
+          'x':2566,
+          'y':2774
+        },
+        {
+          'gene':'PRKY',
+          'x':2571,
+          'y':2758
+        },
+        {
+          'gene':'PRPF4B',
+          'x':907,
+          'y':1693
+        },
+        {
+          'gene':'PSKH1',
+          'x':2336,
+          'y':3285
+        },
+        {
+          'gene':'PSKH2',
+          'x':2302,
+          'y':3295
+        },
+        {
+          'gene':'PTK2',
+          'x':1136,
+          'y':900
+        },
+        {
+          'gene':'PTK2B',
+          'x':1150,
+          'y':879
+        },
+        {
+          'gene':'PTK6',
+          'x':906,
+          'y':1005
+        },
+        {
+          'gene':'PTK7',
+          'x':1145,
+          'y':712
+        },
+        {
+          'gene':'PXK',
+          'x':1768,
+          'y':2077
+        },
+        {
+          'gene':'RAD51L3',
+          'x':1518,
+          'y':2936
+        },
+        {
+          'gene':'RAF1',
+          'x':2241,
+          'y':947
+        },
+        {
+          'gene':'RAGE',
+          'x':773,
+          'y':1983
+        },
+        {
+          'gene':'RET',
+          'x':1238,
+          'y':447
+        },
+        {
+          'gene':'RIPK1',
+          'x':1813,
+          'y':1188
+        },
+        {
+          'gene':'RIPK2',
+          'x':1836,
+          'y':991
+        },
+        {
+          'gene':'RIPK3',
+          'x':1823,
+          'y':1094
+        },
+        {
+          'gene':'RIPK4',
+          'x':1862,
+          'y':860
+        },
+        {
+          'gene':'RNASEL',
+          'x':1273,
+          'y':1783
+        },
+        {
+          'gene':'ROCK1',
+          'x':2555,
+          'y':2962
+        },
+        {
+          'gene':'ROCK2',
+          'x':2550,
+          'y':2981
+        },
+        {
+          'gene':'ROR1',
+          'x':1119,
+          'y':430
+        },
+        {
+          'gene':'ROR2',
+          'x':1092,
+          'y':429
+        },
+        {
+          'gene':'ROS1',
+          'x':1039,
+          'y':609
+        },
+        {
+          'gene':'RPS6KA1',
+          'x':2855,
+          'y':2505
+        },
+        {
+          'gene':'RPS6KA2',
+          'x':2711,
+          'y':2555
+        },
+        {
+          'gene':'RPS6KA3',
+          'x':2859,
+          'y':2533
+        },
+        {
+          'gene':'RPS6KA4',
+          'x':2511,
+          'y':2541
+        },
+        {
+          'gene':'RPS6KA5',
+          'x':2503,
+          'y':2526
+        },
+        {
+          'gene':'RPS6KA6',
+          'x':2773,
+          'y':2540
+        },
+        {
+          'gene':'RPS6KB1',
+          'x':2599,
+          'y':2570
+        },
+        {
+          'gene':'RPS6KB2',
+          'x':2600,
+          'y':2592
+        },
+        {
+          'gene':'RPS6KC1',
+          'x':2696,
+          'y':2471
+        },
+        {
+          'gene':'RPS6KL1',
+          'x':2689,
+          'y':2495
+        },
+        {
+          'gene':'RYK',
+          'x':1287,
+          'y':693
+        },
+        {
+          'gene':'SBK1',
+          'x':1346,
+          'y':2143
+        },
+        {
+          'gene':'SBK2',
+          'x':1269,
+          'y':2132
+        },
+        {
+          'gene':'SCYL1',
+          'x':1533,
+          'y':1652
+        },
+        {
+          'gene':'SCYL2',
+          'x':1459,
+          'y':1668
+        },
+        {
+          'gene':'SCYL3',
+          'x':1476,
+          'y':1646
+        },
+        {
+          'gene':'SGK1',
+          'x':2926,
+          'y':2642
+        },
+        {
+          'gene':'SGK196',
+          'x':1873,
+          'y':1912
+        },
+        {
+          'gene':'SGK2',
+          'x':2863,
+          'y':2659
+        },
+        {
+          'gene':'SGK223',
+          'x':1211,
+          'y':2074
+        },
+        {
+          'gene':'SGK3',
+          'x':2922,
+          'y':2660
+        },
+        {
+          'gene':'SGK494',
+          'x':2109,
+          'y':2424
+        },
+        {
+          'gene':'SIK1',
+          'x':1623,
+          'y':3550
+        },
+        {
+          'gene':'SIK2',
+          'x':1656,
+          'y':3560
+        },
+        {
+          'gene':'SIK3',
+          'x':1656,
+          'y':3471
+        },
+        {
+          'gene':'SLK',
+          'x':2466,
+          'y':1566
+        },
+        {
+          'gene':'SNRK',
+          'x':1695,
+          'y':3015
+        },
+        {
+          'gene':'SPEG',
+          'x':1427,
+          'y':2857
+        },
+        {
+          'gene':'SRC',
+          'x':560,
+          'y':588
+        },
+        {
+          'gene':'SRM',
+          'x':914,
+          'y':980
+        },
+        {
+          'gene':'SRPK1',
+          'x':829,
+          'y':1875
+        },
+        {
+          'gene':'SRPK2',
+          'x':792,
+          'y':1851
+        },
+        {
+          'gene':'SRPK3',
+          'x':794,
+          'y':1828
+        },
+        {
+          'gene':'STK10',
+          'x':2471,
+          'y':1586
+        },
+        {
+          'gene':'STK11',
+          'x':1708,
+          'y':2532
+        },
+        {
+          'gene':'STK16',
+          'x':1483,
+          'y':2254
+        },
+        {
+          'gene':'STK17A',
+          'x':1302,
+          'y':3070
+        },
+        {
+          'gene':'STK17B',
+          'x':1289,
+          'y':3048
+        },
+        {
+          'gene':'STK24',
+          'x':2896,
+          'y':1359
+        },
+        {
+          'gene':'STK25',
+          'x':2883,
+          'y':1335
+        },
+        {
+          'gene':'STK3',
+          'x':2809,
+          'y':1361
+        },
+        {
+          'gene':'STK31',
+          'x':1799,
+          'y':2053
+        },
+        {
+          'gene':'STK32A',
+          'x':2131,
+          'y':2769
+        },
+        {
+          'gene':'STK32B',
+          'x':2126,
+          'y':2826
+        },
+        {
+          'gene':'STK32C',
+          'x':2094,
+          'y':2837
+        },
+        {
+          'gene':'STK33',
+          'x':1843,
+          'y':2809
+        },
+        {
+          'gene':'STK35',
+          'x':1337,
+          'y':1720
+        },
+        {
+          'gene':'STK36',
+          'x':1461,
+          'y':2405
+        },
+        {
+          'gene':'STK38L',
+          'x':2291,
+          'y':2748
+        },
+        {
+          'gene':'STK39',
+          'x':2300,
+          'y':1515
+        },
+        {
+          'gene':'STK40',
+          'x':1580,
+          'y':2480
+        },
+        {
+          'gene':'STRADA',
+          'x':2321,
+          'y':1548
+        },
+        {
+          'gene':'STRADB',
+          'x':2318,
+          'y':1569
+        },
+        {
+          'gene':'STYK1',
+          'x':1445,
+          'y':1275
+        },
+        {
+          'gene':'SYK',
+          'x':1193,
+          'y':885
+        },
+        {
+          'gene':'TAOK2',
+          'x':2590,
+          'y':1628
+        },
+        {
+          'gene':'TAOK2',
+          'x':2589,
+          'y':1613
+        },
+        {
+          'gene':'TAOK3',
+          'x':2506,
+          'y':1634
+        },
+        {
+          'gene':'TAS2R13',
+          'x':1189,
+          'y':2680
+        },
+        {
+          'gene':'TBCK',
+          'x':1492,
+          'y':1762
+        },
+        {
+          'gene':'TBK1',
+          'x':1271,
+          'y':2238
+        },
+        {
+          'gene':'TEC',
+          'x':564,
+          'y':959
+        },
+        {
+          'gene':'TEK',
+          'x':1415,
+          'y':649
+        },
+        {
+          'gene':'TESK1',
+          'x':1973,
+          'y':1072
+        },
+        {
+          'gene':'TESK2',
+          'x':1992,
+          'y':1085
+        },
+        {
+          'gene':'TEX14',
+          'x':1520,
+          'y':1582
+        },
+        {
+          'gene':'TGFBR1',
+          'x':2365,
+          'y':936
+        },
+        {
+          'gene':'TGFBR2',
+          'x':2236,
+          'y':1181
+        },
+        {
+          'gene':'TIE1',
+          'x':1442,
+          'y':659
+        },
+        {
+          'gene':'TLK1',
+          'x':1901,
+          'y':2305
+        },
+        {
+          'gene':'TLK2',
+          'x':1899,
+          'y':2274
+        },
+        {
+          'gene':'TNIK',
+          'x':2813,
+          'y':1476
+        },
+        {
+          'gene':'TNK1',
+          'x':1463,
+          'y':760
+        },
+        {
+          'gene':'TNK2',
+          'x':1440,
+          'y':761
+        },
+        {
+          'gene':'TNNI3K',
+          'x':2103,
+          'y':1093
+        },
+        {
+          'gene':'TP53RK',
+          'x':1868,
+          'y':1933
+        },
+        {
+          'gene':'TRIB1',
+          'x':1160,
+          'y':2747
+        },
+        {
+          'gene':'TRIB2',
+          'x':1141,
+          'y':2724
+        },
+        {
+          'gene':'TRIO',
+          'x':1493,
+          'y':2921
+        },
+        {
+          'gene':'TSSK1A',
+          'x':1532,
+          'y':3115
+        },
+        {
+          'gene':'TSSK2',
+          'x':1554,
+          'y':3135
+        },
+        {
+          'gene':'TSSK3',
+          'x':1536,
+          'y':3075
+        },
+        {
+          'gene':'TSSK4',
+          'x':1689,
+          'y':2958
+        },
+        {
+          'gene':'TSSK6',
+          'x':1510,
+          'y':3053
+        },
+        {
+          'gene':'TTBK1',
+          'x':2408,
+          'y':1935
+        },
+        {
+          'gene':'TTBK2',
+          'x':2412,
+          'y':1960
+        },
+        {
+          'gene':'TTK',
+          'x':1212,
+          'y':1820
+        },
+        {
+          'gene':'TTN',
+          'x':1403,
+          'y':2890
+        },
+        {
+          'gene':'TXK',
+          'x':569,
+          'y':980
+        },
+        {
+          'gene':'TYK2',
+          'x':1589,
+          'y':759
+        },
+        {
+          'gene':'TYRO3',
+          'x':1247,
+          'y':482
+        },
+        {
+          'gene':'UHMK1',
+          'x':1207,
+          'y':1841
+        },
+        {
+          'gene':'ULK1',
+          'x':1318,
+          'y':2393
+        },
+        {
+          'gene':'ULK2',
+          'x':1331,
+          'y':2423
+        },
+        {
+          'gene':'ULK3',
+          'x':1437,
+          'y':2333
+        },
+        {
+          'gene':'ULK4',
+          'x':1473,
+          'y':2431
+        },
+        {
+          'gene':'VRK1',
+          'x':2432,
+          'y':2181
+        },
+        {
+          'gene':'VRK2',
+          'x':2417,
+          'y':2194
+        },
+        {
+          'gene':'VRK3',
+          'x':2281,
+          'y':2029
+        },
+        {
+          'gene':'WEE1',
+          'x':2209,
+          'y':1890
+        },
+        {
+          'gene':'WEE2',
+          'x':2216,
+          'y':1912
+        },
+        {
+          'gene':'WNK1',
+          'x':2129,
+          'y':1382
+        },
+        {
+          'gene':'WNK2',
+          'x':2086,
+          'y':1441
+        },
+        {
+          'gene':'WNK3',
+          'x':2140,
+          'y':1406
+        },
+        {
+          'gene':'WNK4',
+          'x':2003,
+          'y':1508
+        },
+        {
+          'gene':'YES1',
+          'x':566,
+          'y':569
+        },
+        {
+          'gene':'ZAK',
+          'x':2044,
+          'y':962
+        },
+        {
+          'gene':'ZAP70',
+          'x':1216,
+          'y':873
+        }
+      ];
     return {
       restrict: 'E',
       scope: { // attributes bound to the scope of the directive
@@ -508,14 +2413,20 @@ angular.module('phosphoApp')
         scope.$watch('val', function (newVal, oldVal) {
 
         //each time val changes, do the mapping of radius and color values from val
+          vis.selectAll('circle').remove();
+
+          var kodraw = _.map(newVal, function (thiskinase) {
+            var coords = _.findWhere(kotable, {gene: thiskinase.gene});
+            return {gene: thiskinase.gene, activity: thiskinase.activity, x: coords.x, y: coords.y};
+          });
 
           var endpoints = vis.selectAll('circle')
-            .data(kotable)
+            .data(kodraw)
             .enter()
             .append('svg:circle')
             .attr('cx', function(d) { return d.x / 4; })
             .attr('cy', function(d) { return d.y / 4; })
-            .attr('r', function(d) { return 4; })
+            .attr('r', function(d) { return d.activity * 4; })
             .attr('class', 'kinase')
             //.attr('id', function(d) { return d.GeneID; })
             .style('stroke', 'black')

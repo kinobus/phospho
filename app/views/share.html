@@ -6,6 +6,13 @@
   </ul>
   <h3 class="text-muted">phospho</h3>
 </div>
-<p>Choose an ms2 dataset:</p>
-<select ng-model="dataset" ng-options="d.title for d in ms2datasets | orderByPriority" ng-change="change()"></select>
-<ko-render val="kinome"></ko-render>
+<p> The kinome of cells treated with
+  <select ng-model="dataset" ng-options="d.title for d in ms2datasets | orderByPriority" ng-change="change()">
+    <option value="">-- experimental condition --</option>
+  </select>
+  according to
+  <select ng-model="interactome" ng-options="i.title for i in interactomes | orderByPriority" ng-change="change()">
+    <option value="">-- kinase interactome --</option>
+  </select>
+</p>
+<ko-render val="kinomeFilt"></ko-render>
