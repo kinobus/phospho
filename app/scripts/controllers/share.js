@@ -3,25 +3,22 @@
 angular.module('phosphoApp')
   .controller('ShareCtrl', function ($scope, Buildkinome, $firebase) {
 
-    $scope.interactomes = $firebase(new Firebase('https://phospho.firebaseio.com/interactomes'));
+    //$scope.testitems = $firebase(new Firebase('https://phospho2.firebaseio.com/testitems'));
+    //$scope.item = $scope.testitems[0]
 
-    $scope.loadedInteractome = 'blank interactome';
-    $scope.kinomelinks = 'empty link';
-
-    $scope.selectInteractome = function(title, links) {
-      $scope.loadedInteractome = title;
-      $scope.kinomelinks = links;
-    };
+    //$scope.interactomes = $firebase(new Firebase('https://phospho.firebaseio.com/interactomes'));
+    //$scope.interactome = $scope.interactomes[0];
 
     $scope.ms2datasets = $firebase(new Firebase('https://phospho.firebaseio.com/ms2datasets'));
 
-    $scope.loadedMs2dataset = 'blank dataset';
-    $scope.ms2means = 'empty means';
-
-    $scope.selectMs2dataset = function(title, data) {
-      $scope.loadedMs2dataset = title;
-      $scope.ms2means = data;
+    $scope.change = function() {
+      var values = $scope.dataset.data;
+      $scope.kinome = [];
+      angular.forEach(values, function(value, key){
+        this.push(value.Gene);
+      }, $scope.kinome);
     };
 
-    $scope.kinome = new Buildkinome.build([0.5, 0.3, 0.2]);
+
+    //$scope.kinome = new Buildkinome.build([0.5, 0.3, 0.2]);
   });
