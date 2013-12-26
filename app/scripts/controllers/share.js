@@ -3,8 +3,7 @@
 angular.module('phosphoApp')
   .controller('ShareCtrl', function ($scope, Buildkinome, $firebase) {
 
-    //$scope.testitems = $firebase(new Firebase('https://phospho2.firebaseio.com/testitems'));
-    //$scope.item = $scope.testitems[0]
+    $scope.kinomeScale = 0.125; //hard coded for now, note that koRender directive needs this
 
     $scope.interactomes = $firebase(new Firebase('https://phospho.firebaseio.com/interactomes'));
 
@@ -18,6 +17,7 @@ angular.module('phosphoApp')
       if (!$scope.interactome) {
         return;
       }
+
       var ms2data = $scope.dataset.data;
       var links = $scope.interactome.links;
 
@@ -30,7 +30,6 @@ angular.module('phosphoApp')
         return linkedObjects;
       });
       var ms2linked = _.flatten(ms2linkedNested);
-      //console.log(ms2linked);
 
       var initkinome = new Buildkinome.build();
       var kinome = _.map(initkinome, function (thiskinase) {
