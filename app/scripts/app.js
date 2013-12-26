@@ -20,4 +20,11 @@ angular.module('phosphoApp', [
       .otherwise({
         redirectTo: '/'
       });
+  })
+   // establish authentication
+  .run(function (loginService, $rootScope) {
+     $rootScope.auth = loginService.init('/');
+     $rootScope.FBURL = 'https://phospho.firebaseio.com';
   });
+
+
