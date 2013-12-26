@@ -14,10 +14,12 @@ angular.module('phosphoApp', [
         controller: 'MainCtrl'
       })
       .when('/share', {
+        authRequired: true,
         templateUrl: 'views/share.html',
         controller: 'ShareCtrl'
       })
       .when('/feed', {
+        authRequired: true,
         templateUrl: 'views/feed.html',
         controller: 'FeedCtrl'
       })

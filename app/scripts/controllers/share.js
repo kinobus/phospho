@@ -1,7 +1,12 @@
 'use strict';
 
 angular.module('phosphoApp')
-  .controller('ShareCtrl', function ($scope, Buildkinome, $firebase) {
+  .controller('ShareCtrl', function ($scope, Buildkinome, loginService, $firebase) {
+
+    $scope.logout = function() {
+      loginService.logout()
+      $location.path('/');
+    };
 
     $scope.kinomeScale = 0.125; //hard coded for now, note that koRender directive needs this
 
@@ -13,7 +18,7 @@ angular.module('phosphoApp')
 
     $scope.shareKinome = function () {
       $scope.kinomes.$add({
-        kinome: $scope.kinomeFilt,
+        kinome: $scope.kinome,
         dataset: $scope.dataset.title,
         interactome: $scope.interactome.title,
         user: $scope.auth.user.id
@@ -51,6 +56,6 @@ angular.module('phosphoApp')
       });
 
       var kinomeFilt = _.filter(kinome, function(kinase){ return kinase.activity  !== 1; });
-      $scope.kinomeFilt = kinomeFilt;
+      $scope.kinome = kinomeFilt;
     };
   });

@@ -1,8 +1,10 @@
 <div class="header">
   <ul class="nav nav-pills pull-right">
     <li><a ng-href="#">Home</a></li>
-    <li  class="active"><a ng-href="#share">Share a Kinome</a></li>
-    <li><a ng-href="#">Contact</a></li>
+    <li  class="active"><a ng-href="#share">Share Data</a></li>
+    <li><a ng-href="#feed">Data Feed</a></li>
+    <li ng-hide="auth.user"><a ng-href="#" ng-click="login()">Log In</a></li>
+    <li ng-show="auth.user"><a ng-href="#" ng-click="logout()">Log Out</a></li>
   </ul>
   <h3 class="text-muted">phospho</h3>
 </div>
@@ -14,7 +16,7 @@
   <select ng-model="interactome" ng-options="i.title for i in interactomes | orderByPriority" ng-change="change()">
     <option value="">-- kinase interactome --</option>
   </select>
-  <button ng-show="kinomeFilt" ng-click="shareKinome()">Share This Kinome</button>
+  <button ng-show="kinome" ng-click="shareKinome()">Share This Kinome</button>
 </p>
 
-<ko-render val="kinomeFilt" scaler="kinomeScale"></ko-render>
+<ko-render val="kinome" scaler="kinomeScale"></ko-render>
