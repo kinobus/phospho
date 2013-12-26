@@ -14,10 +14,23 @@ angular.module('phosphoApp', [
         controller: 'MainCtrl'
       })
       .when('/share', {
+        authRequired: true,
         templateUrl: 'views/share.html',
         controller: 'ShareCtrl'
+      })
+      .when('/feed', {
+        authRequired: true,
+        templateUrl: 'views/feed.html',
+        controller: 'FeedCtrl'
       })
       .otherwise({
         redirectTo: '/'
       });
+  })
+   // establish authentication
+  .run(function (loginService, $rootScope) {
+     $rootScope.auth = loginService.init('/');
+     $rootScope.FBURL = 'https://phospho.firebaseio.com';
   });
+
+
