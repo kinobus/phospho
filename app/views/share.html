@@ -14,6 +14,7 @@
   <select ng-model="interactome" ng-options="i.title for i in interactomes | orderByPriority" ng-change="change()">
     <option value="">-- kinase interactome --</option>
   </select>
+  <button ng-show="kinomeFilt" ng-click="shareKinome()">Share This Kinome</button>
 </p>
-<button ng-show="kinomeFilt" ng-click="shareKinome()">Share This Kinome</button>
+
 <ko-render val="kinomeFilt" scaler="kinomeScale"></ko-render>

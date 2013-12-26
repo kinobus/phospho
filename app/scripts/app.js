@@ -17,6 +17,10 @@ angular.module('phosphoApp', [
         templateUrl: 'views/share.html',
         controller: 'ShareCtrl'
       })
+      .when('/feed', {
+        templateUrl: 'views/feed.html',
+        controller: 'FeedCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
