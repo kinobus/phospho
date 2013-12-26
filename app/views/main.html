@@ -1,11 +1,11 @@
 <div class="header">
   <ul class="nav nav-pills pull-right">
     <li class="active"><a ng-href="#">Home</a></li>
-    <li><a ng-href="#share">Share a Kinome</a></li>
-    <li><a ng-href="#">Contact</a></li>
+    <li><a ng-href="#share">Share Data</a></li>
+    <li ng-hide="auth.user"><a ng-href="#" ng-click="login()">Log In</a></li>
+    <li ng-show="auth.user"><a ng-href="#" ng-click="logout()">Log Out</a></li>
   </ul>
   <h3 class="text-muted">phospho</h3>
-  <button ng-click="login()">Log In</button>
 </div>
 
 <div class="jumbotron">

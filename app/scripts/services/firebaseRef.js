@@ -23,5 +23,5 @@ angular.module('phosphoApp')
     // Public API here
     return function (path) {
         return new Firebase(pathRef([FBURL].concat(Array.prototype.slice.call(arguments))));
-    }
+    };
   });

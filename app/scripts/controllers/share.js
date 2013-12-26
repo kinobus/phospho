@@ -9,6 +9,17 @@ angular.module('phosphoApp')
 
     $scope.ms2datasets = $firebase(new Firebase('https://phospho.firebaseio.com/ms2datasets'));
 
+    $scope.kinomes = $firebase(new Firebase('https://phospho.firebaseio.com/kinomes'));
+
+    $scope.shareKinome = function () {
+      $scope.kinomes.$add({
+        kinome: $scope.kinomeFilt,
+        dataset: $scope.dataset.title,
+        interactome: $scope.interactome.title,
+        user: $scope.auth.user.id
+      });
+    };
+
     $scope.change = function() {
       //escape if required values are null
       if (!$scope.dataset) {
