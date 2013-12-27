@@ -17,4 +17,9 @@ angular.module('phosphoApp')
       loginService.logout()
       $location.path('/');
     };
+
+    //jQuery typer function
+    $(function () {
+      $('[data-typer-targets]').typer();
+    });
   });
