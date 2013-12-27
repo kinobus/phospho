@@ -8,15 +8,15 @@
   </ul>
   <h3 class="text-muted">phospho</h3>
 </div>
-<p> The kinome of cells treated with
+<p> The kinome of 
   <select ng-model="dataset" ng-options="d.title for d in ms2datasets | orderByPriority" ng-change="change()">
     <option value="">-- experimental condition --</option>
   </select>
-  according to
+  using
   <select ng-model="interactome" ng-options="i.title for i in interactomes | orderByPriority" ng-change="change()">
     <option value="">-- kinase interactome --</option>
   </select>
-  <button ng-show="kinome" ng-click="shareKinome()">Share This Kinome</button>
+  <button ng-disabled="!kinome" ng-click="shareKinome()">Share This Kinome</button>
 </p>
 
 <ko-render val="kinome" scaler="kinomeScale"></ko-render>
