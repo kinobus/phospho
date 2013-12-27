@@ -23,6 +23,11 @@ angular.module('phosphoApp', [
         templateUrl: 'views/feed.html',
         controller: 'FeedCtrl'
       })
+      .when('/curate', {
+        authRequired: true,
+        templateUrl: 'views/curate.html',
+        controller: 'CurateCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
