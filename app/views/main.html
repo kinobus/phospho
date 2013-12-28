@@ -1,59 +1,43 @@
 <div class="header">
   <ul class="nav nav-pills pull-right">
-    <li ng-show="auth.user" class="active"><a ng-href="#">Home</a></li>
-    <li ng-show="auth.user"><a ng-href="#curate">Curate Interactome</a></li>
-    <li ng-show="auth.user"><a ng-href="#share">Share Data</a></li>
     <li ng-show="auth.user"><a ng-href="#feed">Data Feed</a></li>
-    <li ng-hide="auth.user"><a ng-href="#" ng-click="login()">Log In Using Twitter</a></li>
+    <li ng-show="auth.user"><a ng-href="#share">Share</a></li>
+    <li ng-show="auth.user"><a ng-href="#curate">Curate</a></li>
+    <li ng-hide="auth.user"><a ng-href="#feed" ng-click="login()">Log In</a></li>
     <li ng-show="auth.user"><a ng-href="#" ng-click="logout()">Log Out</a></li>
+    <li><a ng-href="#">About</a></li>
   </ul>
-  <h3 class="text-muted" data-typer-targets="phospho JNK,phospho AKT,phospho ERK,phospho MAPK3">phospho</h3>
+  <h3 class="text-muted">Phospho</h3>
 </div>
 <div class="jumbotron">
   <div class="container">
-    <h1>Hello, world!</h1>
-    <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-    <p><a class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
+    <h2>Proteomics meets Clinical</h2>
+    <p data-typer-targets="Does dasatinib inhibit phospho AKT?,
+      Does ibrutinib inhibit phospho AKT?,
+      What's the level of AKT phosphorylation in lymphoma patients?,
+      Which substrates does BRAF phosphorylate in melanoma patients?"
+    >
+    </p>
+    <p><a class="btn btn-primary btn-lg" role="button" ng-href="#feed">Take a look at the data &raquo;</a></p>
   </div>
 </div>
-
 <div class="container">
-  <!-- Example row of columns -->
+  <!-- row of columns -->
   <div class="row">
     <div class="col-md-4">
-      <h2>Heading</h2>
-      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-      <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+      <h4>Instant Collaboration</h4>
+      <p>Phospho enables seamless collaboration between proteomics experts and clinicians. </p>
     </div>
     <div class="col-md-4">
-      <h2>Heading</h2>
-      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-      <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+      <h4>Spend More Time Exploring MS2 Data.</h4>
+      <p>Phospho takes care of the data processesing so investigators can focus on uncovering connections between cell signaling and disease.</p>
    </div>
     <div class="col-md-4">
-      <h2>Heading</h2>
-      <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-      <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+      <h4>Why Phospho?</h4>
+      <p>Modern MS instruments can capture high-resolution proteomic snapshots of patient biopsies. Phospho enables researchers to bind biochemical models to disease data.</p>
     </div>
   </div>
-<div class="jumbotron">
-  <h1>Digital Digital Digital</h1>
-
-  <p class="lead">
-    <img src="images/rza420.jpg" alt="doodooodooodoodoodoo"><br>
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Word is bond</a></p>
 </div>
-<p>Spend more time exploring ms2 data. Phospho handles data pre-processing and generates publication quality figures, so researchers can focus on answering questions about biology. 
-
-
-A collaborative platform for:
-<ul>
-Cell signlaing experts curate 
-Proteomics experts provide 
-
-
-Bind biochemical models to disease data. </p>
 <div class="footer">
-  <p>from the slums of Shaolin - Kinobus is back again</p>
+  <p>Kinobus 2014</p>
 </div>

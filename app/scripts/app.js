@@ -19,7 +19,6 @@ angular.module('phosphoApp', [
         controller: 'ShareCtrl'
       })
       .when('/feed', {
-        authRequired: true,
         templateUrl: 'views/feed.html',
         controller: 'FeedCtrl'
       })
