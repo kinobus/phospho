@@ -29,7 +29,7 @@ angular.module('phosphoApp')
 
           var nodes = newVal.nodes,
             links = newVal.links;
-          console.log(links);
+
           var force = d3.layout.force()
             .size([width , height])
             .charge(-820)
@@ -39,9 +39,9 @@ angular.module('phosphoApp')
             .links(links)
             .start();
 
-          //var drag = force.drag()
-            //.on('dragstart', dragstart);
-
+          var drag = force.drag()
+            .on('dragstart', dragstart);
+            
           var link = svg.selectAll('.link')
             .data(links)
             .enter()
@@ -58,8 +58,8 @@ angular.module('phosphoApp')
             .attr('d','M24.5,18.5 L96.5,18.5 C103.127,18.5 108.5,23.873 108.5,30.5 L108.5,42.5 C108.5,49.127 103.127,54.5 96.5,54.5 L24.5,54.5 C17.873,54.5 12.5,49.127 12.5,42.5 L12.5,30.5 C12.5,23.873 17.873,18.5 24.5,18.5 z')
             .attr('fill','#F3B73E')
             .attr('stroke', '#000')
-            .attr('stroke-width', '1.5px');
-            //.call(drag);
+            .attr('stroke-width', '1.5px')
+            .call(force.drag);
 
           var nodeLabels = svg.selectAll('node')
             .data(nodes)
@@ -86,8 +86,7 @@ angular.module('phosphoApp')
           }
 
           function dragstart (d) {
-            d.fixed = true;
-            d3.select(this).classed('fixed', true);
+            d3.select(this).classed('fixed', d.fixed = true);
           }
 
         });
