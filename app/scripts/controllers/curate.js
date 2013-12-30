@@ -17,83 +17,83 @@ angular.module('phosphoApp')
     var objs = {'interactome':{
       'nodes': [
         {
-          'Id':0,
-          'Label':'BCR',
+          'id':0,
+          'label':'BCR',
           'Type':'Prot'
         },
         {
-          'Id':1,
-          'Label':'PIK3CD',
+          'id':1,
+          'label':'PIK3CD',
           'Type':'Prot'
         },
         {
-          'Id':2,
-          'Label':'PIK3R1',
+          'id':2,
+          'label':'PIK3R1',
           'Type':'Prot'
         },
         {
-          'Id':3,
-          'Label':'Cell Growth',
+          'id':3,
+          'label':'Cell Growth',
           'Type':'Event'
         },
         {
-          'Id':4,
-          'Label':'LYN',
+          'id':4,
+          'label':'LYN',
           'Type':'Prot'
         },
         {
-          'Id':5,
-          'Label':'CD79',
+          'id':5,
+          'label':'CD79',
           'Type':'Prot'
         },
         {
-          'Id':6,
-          'Label':'SYK',
+          'id':6,
+          'label':'SYK',
           'Type':'Prot'
         },
         {
-          'Id':7,
-          'Label':'IRAK4',
+          'id':7,
+          'label':'IRAK4',
           'Type':'Prot'
         },
         {
-          'Id':8,
-          'Label':'BCL6',
+          'id':8,
+          'label':'BCL6',
           'Type':'Prot'
         },
         {
-          'Id':9,
-          'Label':'NFKB Path',
+          'id':9,
+          'label':'NFKB Path',
           'Type':'Path'
         },
         {
-          'Id':10,
-          'Label':'Ca2+ Rel',
+          'id':10,
+          'label':'Ca2+ Rel',
           'Type':'Event'
         },
         {
-          'Id':11,
-          'Label':'BTK',
+          'id':11,
+          'label':'BTK',
           'Type':'Prot'
         },
         {
-          'Id':12,
-          'Label':'CARD11',
+          'id':12,
+          'label':'CARD11',
           'Type':'Prot'
         },
         {
-          'Id':13,
-          'Label':'JAK2',
+          'id':13,
+          'label':'JAK2',
           'Type':'Prot'
         },
         {
-          'Id':14,
-          'Label':'STAT3',
+          'id':14,
+          'label':'STAT3',
           'Type':'Prot'
         },
         {
-          'Id':15,
-          'Label':'Cell Survival',
+          'id':15,
+          'label':'Cell Survival',
           'Type':'Event'
         }
       ],
@@ -101,82 +101,82 @@ angular.module('phosphoApp')
         {
           'source':0,
           'target':1,
-          'Type':'activ'
+          'type': 'activate'
         },
         {
           'source':1,
           'target':2,
-          'Type':'activ'
+          'type': 'activate'
         },
         {
           'source':2,
           'target':3,
-          'Type':'activ'
+          'type': 'activate'
         },
         {
           'source':4,
           'target':0,
-          'Type':'inhib'
+          'type': 'inhibit'
         },
         {
           'source':4,
           'target':5,
-          'Type':'inhib'
+          'type': 'inhibit'
         },
         {
           'source':4,
           'target':6,
-          'Type':'activ'
+          'type': 'activate'
         },
         {
           'source':6,
           'target':11,
-          'Type':'activ'
+          'type': 'activate'
         },
         {
           'source':11,
           'target':10,
-          'Type':'activ'
+          'type': 'activate'
         },
         {
           'source':10,
           'target':12,
-          'Type':'activ'
+          'type': 'activate'
         },
         {
           'source':12,
           'target':9,
-          'Type':'activ'
+          'type': 'activate'
         },
         {
           'source':13,
           'target':14,
-          'Type':'activ'
+          'type': 'activate'
         },
         {
           'source':14,
           'target':15,
-          'Type':'activ'
+          'type': 'activate'
         },
         {
           'source':7,
           'target':9,
-          'Type':'activ'
+          'type': 'activate'
         },
         {
           'source':8,
           'target':3,
-          'Type':'activ'
+          'type': 'activate'
         },
         {
           'source':9,
           'target':15,
-          'Type':'activ'
+          'type': 'activate'
         },
         {
           'source':9,
           'target':3,
-          'Type':'activ'
+          'type': 'activate'
         }
       ],
       'metadata': {
