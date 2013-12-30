@@ -27,8 +27,6 @@ angular.module('phosphoApp')
             return;
           }
 
-          //var defs = svg.append('defs');
-
           svg.append('svg:defs').append('svg:marker')
               .attr('id', 'activate-arrow')
               .attr('viewBox', '0 -5 10 10')
@@ -51,6 +49,27 @@ angular.module('phosphoApp')
               .attr('d', 'M0,-5L10,0L0,5')
               .attr('fill', '#FF0000');
 
+          svg.append('svg:defs').append('svg:path')
+              .attr('id', 'prot-node')
+              .attr('d','M24.5,18.5 L96.5,18.5 C103.127,18.5 108.5,23.873 108.5,30.5 L108.5,42.5 C108.5,49.127 103.127,54.5 96.5,54.5 L24.5,54.5 C17.873,54.5 12.5,49.127 12.5,42.5 L12.5,30.5 C12.5,23.873 17.873,18.5 24.5,18.5 z')
+              .attr('fill','#F3B73E')
+              .attr('stroke', '#000')
+              .attr('stroke-width', '2px');
+
+          svg.append('svg:defs').append('svg:path')
+              .attr('id', 'event-node')
+              .attr('d','M0.5,12.5 L120.5,12.5 L120.5,60.5 L0.5,60.5 z')
+              .attr('fill','#B5D5C6')
+              .attr('stroke', '#000')
+              .attr('stroke-width', '2px');
+
+          svg.append('svg:defs').append('svg:path')
+              .attr('id', 'pathway-node')
+              .attr('d','M0.5,12.5 L120.5,12.5 L120.5,60.5 L0.5,60.5 z')
+              .attr('fill','#DE3265')
+              .attr('stroke', '#000')
+              .attr('stroke-width', '2px');
+
           var nodes = newVal.nodes,
             links = newVal.links;
 
@@ -67,37 +86,33 @@ angular.module('phosphoApp')
             .on('dragstart', dragstart);
 
           var path = svg.append('svg:g')
-            .selectAll('path');
-            
-          path = path.data(links);
-            
-          path.enter()
+            .selectAll('path')
+            .data(links)
+            .enter()
             .append('svg:path')
             .attr('class', function(d) { return d.type; })
             .style('marker-end', function(d) { return 'url(#' + d.type + '-arrow)'; });
 
-          var node = svg.selectAll('.node')
-            .data(nodes)
-            .enter()
-            .append('path')
-            .attr('class','node')
-            .attr('d','M24.5,18.5 L96.5,18.5 C103.127,18.5 108.5,23.873 108.5,30.5 L108.5,42.5 C108.5,49.127 103.127,54.5 96.5,54.5 L24.5,54.5 C17.873,54.5 12.5,49.127 12.5,42.5 L12.5,30.5 C12.5,23.873 17.873,18.5 24.5,18.5 z')
-            .attr('fill','#F3B73E')
-            .attr('stroke', '#000')
-            .attr('stroke-width', '2px')
-            .call(force.drag);
+          var node = svg.append('svg:g')
+            .selectAll('g')
+            .data(nodes);
 
-          var nodeLabels = svg.selectAll('node')
-            .data(nodes)
-            .enter()
-            .append('text')
+          var g = node.enter()
+            .append('svg:g');
+
+          g.append('use')
+            .attr('xlink:href',function(d) { return '#' + d.type + '-node'; });
+
+          g.append('svg:text')
+            .attr('x', 60)
+            .attr('y', 42)
             .attr('font-family', 'sans-serif')
             .attr('font-size', '18px')
             .attr('text-anchor', 'middle')
-            .text(function (d) {
-              return d.label;
-            });
+            .text(function(d) { return d.label; });
 
+          g.call(force.drag);
+            
           function tick() {
             path.attr('d', function(d) {
               var deltaX = d.target.x - d.source.x,
@@ -105,20 +120,20 @@ angular.module('phosphoApp')
                   dist = Math.sqrt(deltaX * deltaX + deltaY * deltaY),
                   normX = deltaX / dist,
                   normY = deltaY / dist,
-                  sourcePadding = 40,
-                  targetPadding = 40,
-                  sourceX = d.source.x + (sourcePadding * normX) + 60,
-                  sourceY = d.source.y + (sourcePadding * normY) + 36,
-                  targetX = d.target.x - (targetPadding * normX) + 60,
-                  targetY = d.target.y - (targetPadding * normY) + 36;
+                  sourcePadding = 0,
+                  targetPadding = 50,
+                  sourceX = d.source.x + (sourcePadding * normX),
+                  sourceY = d.source.y + (sourcePadding * normY),
+                  targetX = d.target.x - (targetPadding * normX),
+                  targetY = d.target.y - (targetPadding * normY);
               return 'M' + sourceX + ',' + sourceY + 'L' + targetX + ',' + targetY;
             });
 
             node.attr('transform', function (d) {
-                  return 'translate(' + (d.x) + ',' + (d.y) + ')'; });
+                  return 'translate(' + (d.x - 60) + ',' + (d.y - 36) + ')'; });
 
-            nodeLabels.attr('x', function(d) {return d.x + 60;} )
-                .attr('y', function(d) { return d.y + 42;});
+            //nodeLabels.attr('x', function(d) {return d.x;} )
+                //.attr('y', function(d) { return d.y + 6;});
           }
 
           function dragstart (d) {

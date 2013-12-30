@@ -19,82 +19,82 @@ angular.module('phosphoApp')
         {
           'id':0,
           'label':'BCR',
-          'Type':'Prot'
+          'type':'prot'
         },
         {
           'id':1,
           'label':'PIK3CD',
-          'Type':'Prot'
+          'type':'prot'
         },
         {
           'id':2,
           'label':'PIK3R1',
-          'Type':'Prot'
+          'type':'prot'
         },
         {
           'id':3,
           'label':'Cell Growth',
-          'Type':'Event'
+          'type':'event'
         },
         {
           'id':4,
           'label':'LYN',
-          'Type':'Prot'
+          'type':'prot'
         },
         {
           'id':5,
           'label':'CD79',
-          'Type':'Prot'
+          'type':'prot'
         },
         {
           'id':6,
           'label':'SYK',
-          'Type':'Prot'
+          'type':'prot'
         },
         {
           'id':7,
           'label':'IRAK4',
-          'Type':'Prot'
+          'type':'prot'
         },
         {
           'id':8,
           'label':'BCL6',
-          'Type':'Prot'
+          'type':'prot'
         },
         {
           'id':9,
           'label':'NFKB Path',
-          'Type':'Path'
+          'type':'pathway'
         },
         {
           'id':10,
           'label':'Ca2+ Rel',
-          'Type':'Event'
+          'type':'event'
         },
         {
           'id':11,
           'label':'BTK',
-          'Type':'Prot'
+          'type':'prot'
         },
         {
           'id':12,
           'label':'CARD11',
-          'Type':'Prot'
+          'type':'prot'
         },
         {
           'id':13,
           'label':'JAK2',
-          'Type':'Prot'
+          'type':'prot'
         },
         {
           'id':14,
           'label':'STAT3',
-          'Type':'Prot'
+          'type':'prot'
         },
         {
           'id':15,
           'label':'Cell Survival',
-          'Type':'Event'
+          'type':'event'
         }
       ],
       'links': [
