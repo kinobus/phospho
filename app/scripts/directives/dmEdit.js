@@ -121,7 +121,7 @@ angular.module('phosphoApp')
                   normX = deltaX / dist,
                   normY = deltaY / dist,
                   sourcePadding = 0,
-                  targetPadding = 50,
+                  targetPadding = 60,
                   sourceX = d.source.x + (sourcePadding * normX),
                   sourceY = d.source.y + (sourcePadding * normY),
                   targetX = d.target.x - (targetPadding * normX),
