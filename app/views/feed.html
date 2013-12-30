@@ -10,9 +10,15 @@
   <h3 class="text-muted">Phospho</h3>
 </div>
 
-<ul ng-repeat="k in kinomes | orderByPriority">
-  <li>
-    Posted by {{k.user}}
-    <ko-render val="k.kinome" scaler="kinomeScale"></ko-render>
-  </li>
-</ul>
+<div class="container">
+<div ng-repeat="k in kinomes | orderByPriority">
+  <div class="row">
+    <div class="col-md-8">
+      <ko-render val="k.kinome" scaler="kinomeScale"></ko-render>
+    </div>
+    <div class="col-md-4">
+      Posted by {{k.user}}
+    </div>
+  </div>
+</div>
+</div>
