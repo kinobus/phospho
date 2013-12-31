@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('phosphoApp')
-  .controller('ShareCtrl', function ($scope, Buildkinome, loginService, $firebase) {
+  .controller('ShareCtrl', function ($scope, Buildkinome, loginService, $firebase, $location) {
 
     $scope.logout = function() {
-      loginService.logout()
+      loginService.logout();
       $location.path('/');
     };
 
