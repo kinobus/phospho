@@ -1,0 +1,21 @@
+<div class="header">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="content-heading clearfix media">
+        <img class="pull-left" src="images/phosphate.png">
+        <h3 class="text-muted">Phospho</h3>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <ul class="nav nav-pills pull-right">
+        <li><a ng-href="#feed">Data Feed</a></li>
+        <li><a ng-href="#share">Share</a></li>
+        <li class="active"><a ng-href="#curate">Curate</a></li>
+        <li ng-hide="auth.user"><a ng-href="#" ng-click="login()">Log In</a></li>
+        <li ng-show="auth.user"><a ng-href="#" ng-click="logout()">Log Out</a></li>
+        <li><a ng-href="#">About</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<dm-edit val="interactome" scaler="dmScale"></dm-edit>
