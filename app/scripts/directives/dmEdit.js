@@ -17,7 +17,7 @@ angular.module('phosphoApp')
         var svg = d3.select(element[0])
             .append('svg')
             .attr('width', width)
-            .attr('height', height)
+            .attr('height', height);
 
         scope.$watch('val', function (newVal, oldVal) {
 
@@ -130,7 +130,8 @@ angular.module('phosphoApp')
             });
 
             node.attr('transform', function (d) {
-                  return 'translate(' + (d.x - 60) + ',' + (d.y - 36) + ')'; });
+                  return 'translate(' + (d.x - 60) + ',' + (d.y - 36) + ')';
+                });
 
             //nodeLabels.attr('x', function(d) {return d.x;} )
                 //.attr('y', function(d) { return d.y + 6;});

@@ -182,9 +182,9 @@ angular.module('phosphoApp')
       'metadata': {
         'user': 'Ricker',
         'title': 'DLBCL pathway'
-        }
       }
-    };
+    }
+  };
 
     $scope.interactome = objs.interactome; //why does this work but i can't do it from firebase??
     //$scope.interactome = $scope.interactomes.interactome;

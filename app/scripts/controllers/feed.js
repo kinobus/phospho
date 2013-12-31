@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('phosphoApp')
-  .controller('FeedCtrl', function ($scope, loginService, $firebase) {
+  .controller('FeedCtrl', function ($scope, loginService, $firebase, $location) {
 
     $scope.logout = function() {
-      loginService.logout()
+      loginService.logout();
       $location.path('/');
     };
 
