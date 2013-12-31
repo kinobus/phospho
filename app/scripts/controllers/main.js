@@ -14,7 +14,7 @@ angular.module('phosphoApp')
     };
 
     $scope.logout = function() {
-      loginService.logout()
+      loginService.logout();
       $location.path('/');
     };
 

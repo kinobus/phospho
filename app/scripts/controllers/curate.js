@@ -17,174 +17,174 @@ angular.module('phosphoApp')
     var objs = {'interactome':{
       'nodes': [
         {
-          'Id':0,
-          'Label':'BCR',
-          'Type':'Prot'
+          'id':0,
+          'label':'BCR',
+          'type':'prot'
         },
         {
-          'Id':1,
-          'Label':'PIK3CD',
-          'Type':'Prot'
+          'id':1,
+          'label':'PIK3CD',
+          'type':'prot'
         },
         {
-          'Id':2,
-          'Label':'PIK3R1',
-          'Type':'Prot'
+          'id':2,
+          'label':'PIK3R1',
+          'type':'prot'
         },
         {
-          'Id':3,
-          'Label':'Cell Growth',
-          'Type':'Event'
+          'id':3,
+          'label':'Cell Growth',
+          'type':'event'
         },
         {
-          'Id':4,
-          'Label':'LYN',
-          'Type':'Prot'
+          'id':4,
+          'label':'LYN',
+          'type':'prot'
         },
         {
-          'Id':5,
-          'Label':'CD79',
-          'Type':'Prot'
+          'id':5,
+          'label':'CD79',
+          'type':'prot'
         },
         {
-          'Id':6,
-          'Label':'SYK',
-          'Type':'Prot'
+          'id':6,
+          'label':'SYK',
+          'type':'prot'
         },
         {
-          'Id':7,
-          'Label':'IRAK4',
-          'Type':'Prot'
+          'id':7,
+          'label':'IRAK4',
+          'type':'prot'
         },
         {
-          'Id':8,
-          'Label':'BCL6',
-          'Type':'Prot'
+          'id':8,
+          'label':'BCL6',
+          'type':'prot'
         },
         {
-          'Id':9,
-          'Label':'NFKB Path',
-          'Type':'Path'
+          'id':9,
+          'label':'NFKB Path',
+          'type':'pathway'
         },
         {
-          'Id':10,
-          'Label':'Ca2+ Rel',
-          'Type':'Event'
+          'id':10,
+          'label':'Ca2+ Rel',
+          'type':'event'
         },
         {
-          'Id':11,
-          'Label':'BTK',
-          'Type':'Prot'
+          'id':11,
+          'label':'BTK',
+          'type':'prot'
         },
         {
-          'Id':12,
-          'Label':'CARD11',
-          'Type':'Prot'
+          'id':12,
+          'label':'CARD11',
+          'type':'prot'
         },
         {
-          'Id':13,
-          'Label':'JAK2',
-          'Type':'Prot'
+          'id':13,
+          'label':'JAK2',
+          'type':'prot'
         },
         {
-          'Id':14,
-          'Label':'STAT3',
-          'Type':'Prot'
+          'id':14,
+          'label':'STAT3',
+          'type':'prot'
         },
         {
-          'Id':15,
-          'Label':'Cell Survival',
-          'Type':'Event'
+          'id':15,
+          'label':'Cell Survival',
+          'type':'event'
         }
       ],
       'links': [
         {
           'source':0,
           'target':1,
-          'Type':'activ'
+          'type': 'activate'
         },
         {
           'source':1,
           'target':2,
-          'Type':'activ'
+          'type': 'activate'
         },
         {
           'source':2,
           'target':3,
-          'Type':'activ'
+          'type': 'activate'
         },
         {
           'source':4,
           'target':0,
-          'Type':'inhib'
+          'type': 'inhibit'
         },
         {
           'source':4,
           'target':5,
-          'Type':'inhib'
+          'type': 'inhibit'
         },
         {
           'source':4,
           'target':6,
-          'Type':'activ'
+          'type': 'activate'
         },
         {
           'source':6,
           'target':11,
-          'Type':'activ'
+          'type': 'activate'
         },
         {
           'source':11,
           'target':10,
-          'Type':'activ'
+          'type': 'activate'
         },
         {
           'source':10,
           'target':12,
-          'Type':'activ'
+          'type': 'activate'
         },
         {
           'source':12,
           'target':9,
-          'Type':'activ'
+          'type': 'activate'
         },
         {
           'source':13,
           'target':14,
-          'Type':'activ'
+          'type': 'activate'
         },
         {
           'source':14,
           'target':15,
-          'Type':'activ'
+          'type': 'activate'
         },
         {
           'source':7,
           'target':9,
-          'Type':'activ'
+          'type': 'activate'
         },
         {
           'source':8,
           'target':3,
-          'Type':'activ'
+          'type': 'activate'
         },
         {
           'source':9,
           'target':15,
-          'Type':'activ'
+          'type': 'activate'
         },
         {
           'source':9,
           'target':3,
-          'Type':'activ'
+          'type': 'activate'
         }
       ],
       'metadata': {
         'user': 'Ricker',
         'title': 'DLBCL pathway'
-        }
       }
-    };
+    }
+  };
 
     $scope.interactome = objs.interactome; //why does this work but i can't do it from firebase??
     //$scope.interactome = $scope.interactomes.interactome;
