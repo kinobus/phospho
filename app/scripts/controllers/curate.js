@@ -190,4 +190,10 @@ angular.module('phosphoApp')
     //$scope.interactome = $scope.interactomes.interactome;
     //console.log(objs);
 
+    $scope.selectNode = function(item) {
+      $scope.$apply(function() {
+        $scope.selectedNode = item;
+      });
+    };
+
   });

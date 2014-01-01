@@ -10,7 +10,8 @@ angular.module('phosphoApp')
       restrict: 'E',
       scope: { // attributes bound to the scope of the directive
         val: '=',
-        scaler: '='
+        scaler: '=',
+        dblClick: '&'
       },
       link: function postLink(scope, element, attrs) {
 
@@ -111,7 +112,8 @@ angular.module('phosphoApp')
             .attr('text-anchor', 'middle')
             .text(function(d) { return d.label; });
 
-          g.call(force.drag);
+          g.on("dblclick", dblclick)
+            .call(force.drag);
             
           function tick() {
             path.attr('d', function(d) {
@@ -132,13 +134,14 @@ angular.module('phosphoApp')
             node.attr('transform', function (d) {
                   return 'translate(' + (d.x - 60) + ',' + (d.y - 36) + ')';
                 });
-
-            //nodeLabels.attr('x', function(d) {return d.x;} )
-                //.attr('y', function(d) { return d.y + 6;});
           }
 
           function dragstart (d) {
             d3.select(this).classed('fixed', d.fixed = true);
+          }
+
+          function dblclick (d) {
+            return scope.dblClick({item: d});
           }
 
         });
