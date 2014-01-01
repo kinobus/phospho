@@ -1,21 +1,51 @@
 <div class="header">
-  <ul class="nav nav-pills pull-right">
-    <li class="active"><a ng-href="#">Home</a></li>
-    <li><a ng-href="#share">Share a Kinome</a></li>
-    <li><a ng-href="#">Contact</a></li>
-  </ul>
-  <h3 class="text-muted">phospho</h3>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="content-heading clearfix media">
+        <img class="pull-left" src="images/28d477ca.phosphate.png">
+        <h3 class="text-muted">Phospho</h3>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <ul class="nav nav-pills pull-right">
+        <li ng-show="auth.user"><a ng-href="#feed">Data Feed</a></li>
+        <li ng-show="auth.user"><a ng-href="#share">Share</a></li>
+        <li ng-show="auth.user"><a ng-href="#curate">Curate</a></li>
+        <li ng-hide="auth.user"><a ng-href="#feed" ng-click="login()">Log In</a></li>
+        <li ng-show="auth.user"><a ng-href="#" ng-click="logout()">Log Out</a></li>
+        <li><a ng-href="#">About</a></li>
+      </ul>
+    </div>
+  </div>
 </div>
 
-<div class="jumbotron">
-  <h1>Digitial Digital Digital</h1>
-  <p class="lead">
-    <img src="images/e9a929df.rza420.jpg" alt="doodooodooodoodoodoo"><br>
-    Up from the thirtysix chaaambaaaas.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Word is bond</a></p>
+<div class="container">
+  <div class="jumbotron">
+    <div class="row">
+      <h2>Proteomics meets Clinical</h2>
+      <p data-typer-targets="Does dasatinib inhibit phospho AKT?,Does ibrutinib inhibit phospho AKT?,What's the level of AKT phosphorylation in lymphoma patients?,Which substrates does BRAF phosphorylate in melanoma patients?">
+    </p>
+    <p><a class="btn btn-primary btn-lg" role="button" ng-href="#feed">Take a look at the data &raquo;</a></p>
+  </div>
+  </div>
 </div>
-
+<div class="container">
+  <!-- row of columns -->
+  <div class="row">
+    <div class="col-md-4">
+      <h4>Instant Collaboration</h4>
+      <p>Phospho enables seamless collaboration between proteomics experts and clinicians. </p>
+    </div>
+    <div class="col-md-4">
+      <h4>Spend More Time Exploring MS2 Data.</h4>
+      <p>Phospho takes care of the data processesing so investigators can focus on uncovering connections between cell signaling and disease.</p>
+    </div>
+    <div class="col-md-4">
+      <h4>Why Phospho?</h4>
+      <p>Modern MS instruments can capture high-resolution proteomic snapshots of patient biopsies. Phospho enables researchers to bind biochemical models to disease data.</p>
+    </div>
+  </div>
+</div>
 <div class="footer">
-  <p>from the slums of Shaolin - Kinobus is back again</p>
+  <p>Kinobus 2014</p>
 </div>
