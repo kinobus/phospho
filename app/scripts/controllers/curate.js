@@ -9,7 +9,7 @@ angular.module('phosphoApp')
 
     $scope.dmScale = 1;
 
-    $scope.interactomes = $firebase(new Firebase('https://phospho.firebaseio.com/test2'));
+    //$scope.interactomes = $firebase(new Firebase('https://phospho.firebaseio.com/test2'));
     //console.log($scope.interactomes);
 
     //using objs as a hard coded place filler for $scope.interactomes loaded from firebase... 
@@ -189,6 +189,24 @@ angular.module('phosphoApp')
     $scope.interactome = objs.interactome; //why does this work but i can't do it from firebase??
     //$scope.interactome = $scope.interactomes.interactome;
     //console.log(objs);
+
+    console.log($scope.interactome.nodes);
+    $scope.spliceNode = function(node) {
+      if ($scope.selectedNode) {
+        $scope.interactome.nodes.splice($scope.interactome.nodes.indexOf(node), 1);
+        $scope.spliceLinksForNode(node);
+        $scope.selectedNode = null;
+      }
+    };
+
+    $scope.spliceLinksForNode = function(node) {
+      var toSplice = $scope.interactome.links.filter(function(l) {
+        return (l.source === node || l.target === node);
+      });
+      toSplice.map(function(l) {
+        $scope.interactome.links.splice($scope.interactome.links.indexOf(l), 1);
+      });
+    };
 
     $scope.selectNode = function(item) {
       $scope.$apply(function() {

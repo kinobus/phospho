@@ -144,7 +144,7 @@ angular.module('phosphoApp')
             return scope.dblClick({item: d});
           }
 
-        });
+        }, true);
       }
     };
   });

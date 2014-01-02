@@ -18,4 +18,8 @@
     </div>
   </div>
 </div>
+<h5 ng-hide="selectedNode">doubleclick to select a node or link</h5>
+<div id="nodeSelectPanel" ng-hide="!selectedNode">
+  <h4>Selected: {{selectedNode.label}}</h4><button ng-click="spliceNode(selectedNode)" ng-disabled="!selectedNode">Remove Node</button>
+</div>
 <dm-edit val="interactome" scaler="dmScale" dbl-click="selectNode(item)"></dm-edit>
