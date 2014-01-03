@@ -190,7 +190,10 @@ angular.module('phosphoApp')
     //$scope.interactome = $scope.interactomes.interactome;
     //console.log(objs);
 
-    console.log($scope.interactome.nodes);
+    $scope.selectedNode = null;
+    $scope.selectedPath = null;
+    $scope.editMode = false;
+
     $scope.spliceNode = function(node) {
       if ($scope.selectedNode) {
         $scope.interactome.nodes.splice($scope.interactome.nodes.indexOf(node), 1);
@@ -208,9 +211,22 @@ angular.module('phosphoApp')
       });
     };
 
+    $scope.spliceLink = function(link) {
+      $scope.interactome.links.splice($scope.interactome.links.indexOf(link), 1);
+      $scope.selectedPath = null;
+    };
+
     $scope.selectNode = function(item) {
       $scope.$apply(function() {
         $scope.selectedNode = item;
+        $scope.selectedPath = null;
+      });
+    };
+
+    $scope.selectPath = function(item) {
+      $scope.$apply(function() {
+        $scope.selectedPath = item;
+        $scope.selectedNode = null;
       });
     };
 

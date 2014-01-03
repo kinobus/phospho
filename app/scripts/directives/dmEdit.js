@@ -3,7 +3,7 @@
 angular.module('phosphoApp')
   .directive('dmEdit', function () {
     //constants
-    var width = 600,
+    var width = 510,
       height = 600;
 
     return {
@@ -11,7 +11,8 @@ angular.module('phosphoApp')
       scope: { // attributes bound to the scope of the directive
         val: '=',
         scaler: '=',
-        dblClick: '&'
+        selectNode: '&',
+        selectPath: '&'
       },
       link: function postLink(scope, element, attrs) {
 
@@ -90,21 +91,23 @@ angular.module('phosphoApp')
             .selectAll('path')
             .data(links)
             .enter()
-            .append('svg:path')
-            .attr('class', function(d) { return d.type; })
+            .append('svg:path');
+
+          path.attr('class', function(d) { return d.type; })
             .style('marker-end', function(d) { return 'url(#' + d.type + '-arrow)'; });
+
+          path.on('dblclick', dblclickPath);
 
           var node = svg.append('svg:g')
             .selectAll('g')
-            .data(nodes);
-
-          var g = node.enter()
+            .data(nodes)
+            .enter()
             .append('svg:g');
 
-          g.append('use')
+          node.append('use')
             .attr('xlink:href',function(d) { return '#' + d.type + '-node'; });
 
-          g.append('svg:text')
+          node.append('svg:text')
             .attr('x', 60)
             .attr('y', 42)
             .attr('font-family', 'sans-serif')
@@ -112,10 +115,25 @@ angular.module('phosphoApp')
             .attr('text-anchor', 'middle')
             .text(function(d) { return d.label; });
 
-          g.on("dblclick", dblclick)
+          node.on('dblclick', dblclickNode)
             .call(force.drag);
             
           function tick() {
+
+            //bounding box
+            node.attr('x', function (d) {
+                return d.x = Math.max(60, Math.min(width - 64, d.x));
+              })
+              .attr('y', function (d) {
+                return d.y = Math.max(36, Math.min(height - 36, d.y));
+              });
+
+            //update node positions
+            node.attr('transform', function (d) {
+                return 'translate(' + (d.x - 60) + ',' + (d.y - 36) + ')';
+              });
+
+            //update link positions
             path.attr('d', function(d) {
               var deltaX = d.target.x - d.source.x,
                   deltaY = d.target.y - d.source.y,
@@ -130,18 +148,18 @@ angular.module('phosphoApp')
                   targetY = d.target.y - (targetPadding * normY);
               return 'M' + sourceX + ',' + sourceY + 'L' + targetX + ',' + targetY;
             });
-
-            node.attr('transform', function (d) {
-                  return 'translate(' + (d.x - 60) + ',' + (d.y - 36) + ')';
-                });
           }
 
           function dragstart (d) {
             d3.select(this).classed('fixed', d.fixed = true);
           }
 
-          function dblclick (d) {
-            return scope.dblClick({item: d});
+          function dblclickNode (d) {
+            return scope.selectNode({item: d});
+          }
+
+          function dblclickPath (d) {
+            return scope.selectPath({item: d});
           }
 
         }, true);

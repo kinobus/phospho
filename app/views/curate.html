@@ -18,8 +18,38 @@
     </div>
   </div>
 </div>
-<h5 ng-hide="selectedNode">doubleclick to select a node or link</h5>
-<div id="nodeSelectPanel" ng-hide="!selectedNode">
-  <h4>Selected: {{selectedNode.label}}</h4><button ng-click="spliceNode(selectedNode)" ng-disabled="!selectedNode">Remove Node</button>
+<div class="row">
+  <div class="col-md-3">
+    <div class="panel panel-default" id="instructionPanel">
+      <h5>doubleclick to select a node or link</h5>
+    </div>
+    <div class="panel panel-default" id="nodeSelectPanel" ng-hide="!selectedNode || selectedPath">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{selectedNode.label}}</h3>
+      </div>
+      <div class="panel-body" ng-hide="editMode === true">
+        <span>Type: {{selectedNode.type}}</span>
+        <div class="btn-group">
+          <button type="button" class="btn btn-success" ng-click="selectedNode = null">
+            <span class="glyphicon glyphicon-ok"></span>
+          </button>
+          <button type="button" class="btn btn-warning" ng-click="editMode = true">
+            <span class="glyphicon glyphicon-pencil"></span>
+          </button>
+          <button type="button" class="btn btn-danger" ng-click="spliceNode(selectedNode)">
+            <span class="glyphicon glyphicon-trash"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default" id="pathSelectPanel" ng-hide="!selectedPath || selectedNode">
+      <h4>Link: {{selectedPath.source.label}} {{selectedPath.type}}s {{selectedPath.target.label}}</h4>
+      <button ng-click="spliceLink(selectedPath)">Remove Link</button>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <div class="panel panel-default">
+      <dm-edit val="interactome" scaler="dmScale" select-node="selectNode(item)" select-path="selectPath(item)"></dm-edit>
+    </div>
+  </div>
 </div>
-<dm-edit val="interactome" scaler="dmScale" dbl-click="selectNode(item)"></dm-edit>
