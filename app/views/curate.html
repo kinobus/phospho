@@ -20,36 +20,118 @@
 </div>
 <div class="row">
   <div class="col-md-3">
-    <div class="panel panel-default" id="instructionPanel">
-      <h5>doubleclick to select a node or link</h5>
-    </div>
     <div class="panel panel-default" id="nodeSelectPanel" ng-hide="!selectedNode || selectedPath">
       <div class="panel-heading">
-        <h3 class="panel-title">{{selectedNode.label}}</h3>
+        <h3 class="panel-title">Node</h3>
       </div>
-      <div class="panel-body" ng-hide="editMode === true">
+      <ul class="list-group" ng-hide="editMode === true">
+        <li class="list-group-item">
+          <strong class="list-group-item-heading">Label</strong><br>
+          {{selectedNode.label}}
+        </li>
+        <li class="list-group-item">
+          <strong class="list-group-item-heading">Type</strong><br>
+          {{selectedNode.type}}
+        </li>
+        <li class="list-group-item">
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary" ng-click="selectedNode = null">
+              <span class="glyphicon glyphicon-ok"></span>
+            </button>
+            <button type="button" class="btn btn-warning" ng-click="editMode = true">
+              <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+            <button type="button" class="btn btn-danger" ng-click="spliceNode(selectedNode)">
+              <span class="glyphicon glyphicon-trash"></span>
+            </button>
+          </div>
+        </li>
+      </ul>
+      <div class="panel-body" ng-hide="editMode === false">
+        New Label: <input type="text" name="lastName" ng-model="editNode.label"
+          ng-minlength="3" ng-maxlength="10" size="10">
+        <span class="error" ng-show="myForm.lastName.$error.minlength">
+          Too short!</span>
+        <span class="error" ng-show="myForm.lastName.$error.maxlength">
+          Too long!</span><br>
         <span>Type: {{selectedNode.type}}</span>
-        <div class="btn-group">
+        <div class="btn-group btn-group-sm">
           <button type="button" class="btn btn-success" ng-click="selectedNode = null">
-            <span class="glyphicon glyphicon-ok"></span>
+            Accept
           </button>
-          <button type="button" class="btn btn-warning" ng-click="editMode = true">
-            <span class="glyphicon glyphicon-pencil"></span>
-          </button>
-          <button type="button" class="btn btn-danger" ng-click="spliceNode(selectedNode)">
-            <span class="glyphicon glyphicon-trash"></span>
+          <button type="button" class="btn btn-warning" ng-click="editMode = false; selectedNode = null">
+            Cancel
           </button>
         </div>
       </div>
     </div>
     <div class="panel panel-default" id="pathSelectPanel" ng-hide="!selectedPath || selectedNode">
-      <h4>Link: {{selectedPath.source.label}} {{selectedPath.type}}s {{selectedPath.target.label}}</h4>
-      <button ng-click="spliceLink(selectedPath)">Remove Link</button>
+      <div class="panel-heading">
+        <h3 class="panel-title">Link</h3>
+      </div>
+      <ul class="list-group" ng-hide="editMode === true">
+        <li class="list-group-item">
+          <strong class="list-group-item-heading">Source</strong><br>
+          {{selectedPath.source.label}}
+        </li>
+        <li class="list-group-item">
+          <strong class="list-group-item-heading">Target</strong><br>
+          {{selectedPath.target.label}}
+        </li>
+        <li class="list-group-item">
+          <strong class="list-group-item-heading">Type</strong><br>
+          {{selectedPath.type}}
+        </li>
+        <li class="list-group-item">
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary" ng-click="selectedLink = null">
+              <span class="glyphicon glyphicon-ok"></span>
+            </button>
+            <button type="button" class="btn btn-warning" ng-click="editMode = true">
+              <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+            <button type="button" class="btn btn-danger" ng-click="spliceLink(selectedPath)">
+              <span class="glyphicon glyphicon-trash"></span>
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="panel panel-default" id="mainOptionsPanel">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary" ng-click="">
+              <span class="glyphicon glyphicon-file"></span>
+            </button>
+            <button type="button" class="btn btn-primary" ng-click="">
+              <span class="glyphicon glyphicon-cloud-upload"></span>
+            </button>
+            <button type="button" class="btn btn-primary" ng-click="">
+              <span class="glyphicon glyphicon-floppy-save"></span>
+            </button>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <button type="button" class="btn btn-primary btn-block" ng-click="">Insert Node</button>
+          <button type="button" class="btn btn-primary btn-block" ng-click="">Insert Link</button>
+        </li>
+      </ul>
     </div>
   </div>
   <div class="col-md-9">
-    <div class="panel panel-default">
-      <dm-edit val="interactome" scaler="dmScale" select-node="selectNode(item)" select-path="selectPath(item)"></dm-edit>
+    <div class="alert alert-info alert-dismissable" font-size="x-small">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <strong>Tip:</strong> Drag to move, doubleclick to select/edit.
+    </div>
+    <div class="panel panel-default" id="graphPanel">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{interactome.metadata.title}}</h3>
+        <button type="button" class="btn btn-primary" ng-click="">
+          <span class="glyphicon glyphicon-pencil"></span>
+        </button>
+      </div>
+        <dm-edit val="interactome" scaler="dmScale" select-node="selectNode(item)" select-path="selectPath(item)"></dm-edit>
     </div>
   </div>
 </div>

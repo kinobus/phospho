@@ -186,13 +186,16 @@ angular.module('phosphoApp')
     }
   };
 
-    $scope.interactome = objs.interactome; //why does this work but i can't do it from firebase??
+    $scope.interactome = objs.interactome;
+    //$scope.metadata = objs.metadata; //why does this work but i can't do it from firebase??
     //$scope.interactome = $scope.interactomes.interactome;
     //console.log(objs);
 
     $scope.selectedNode = null;
     $scope.selectedPath = null;
     $scope.editMode = false;
+
+    $scope.editNode = {label: 'node label'};
 
     $scope.spliceNode = function(node) {
       if ($scope.selectedNode) {
@@ -221,6 +224,7 @@ angular.module('phosphoApp')
         $scope.selectedNode = item;
         $scope.selectedPath = null;
       });
+      $scope.editNode.label = $scope.selectedNode.label;
     };
 
     $scope.selectPath = function(item) {
