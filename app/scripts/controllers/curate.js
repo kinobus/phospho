@@ -190,18 +190,29 @@ angular.module('phosphoApp')
     //$scope.metadata = objs.metadata; //why does this work but i can't do it from firebase??
     //$scope.interactome = $scope.interactomes.interactome;
     //console.log(objs);
+    $scope.editInit = function() {
+      $scope.selectedNode = null;
+      $scope.selectedPath = null;
+      $scope.editMode = false;
+      $scope.newNode = {label: 'node label', type: 'prot'};
+      $scope.newPath = {source: 'source', target: 'target', type: 'activate'};
+    };
 
-    $scope.selectedNode = null;
-    $scope.selectedPath = null;
-    $scope.editMode = false;
+    $scope.editInit();
 
-    $scope.editNode = {label: 'node label'};
+    $scope.updateNode = function() {
+      if ($scope.newNode.label) {
+        $scope.selectedNode.label = $scope.newNode.label;
+        $scope.selectedNode.type = $scope.newNode.type;
+        $scope.editInit();
+      }
+    };
 
     $scope.spliceNode = function(node) {
       if ($scope.selectedNode) {
         $scope.interactome.nodes.splice($scope.interactome.nodes.indexOf(node), 1);
         $scope.spliceLinksForNode(node);
-        $scope.selectedNode = null;
+        $scope.editInit();
       }
     };
 
@@ -216,21 +227,22 @@ angular.module('phosphoApp')
 
     $scope.spliceLink = function(link) {
       $scope.interactome.links.splice($scope.interactome.links.indexOf(link), 1);
-      $scope.selectedPath = null;
+      $scope.editInit();
     };
 
     $scope.selectNode = function(item) {
+      $scope.editInit;
       $scope.$apply(function() {
         $scope.selectedNode = item;
-        $scope.selectedPath = null;
       });
-      $scope.editNode.label = $scope.selectedNode.label;
+      $scope.newNode.label = $scope.selectedNode.label;
+      $scope.newNode.type = $scope.selectedNode.type;
     };
 
     $scope.selectPath = function(item) {
+      $scope.editInit;
       $scope.$apply(function() {
         $scope.selectedPath = item;
-        $scope.selectedNode = null;
       });
     };
 

@@ -47,23 +47,35 @@
           </div>
         </li>
       </ul>
-      <div class="panel-body" ng-hide="editMode === false">
-        New Label: <input type="text" name="lastName" ng-model="editNode.label"
-          ng-minlength="3" ng-maxlength="10" size="10">
-        <span class="error" ng-show="myForm.lastName.$error.minlength">
-          Too short!</span>
-        <span class="error" ng-show="myForm.lastName.$error.maxlength">
-          Too long!</span><br>
-        <span>Type: {{selectedNode.type}}</span>
-        <div class="btn-group btn-group-sm">
-          <button type="button" class="btn btn-success" ng-click="selectedNode = null">
-            Accept
-          </button>
-          <button type="button" class="btn btn-warning" ng-click="editMode = false; selectedNode = null">
-            Cancel
-          </button>
-        </div>
-      </div>
+      <ul class="list-group" ng-hide="editMode === false">
+        <form name="nodeForm" ng-submit="updateNode(newNode)">
+          <li class="list-group-item">
+            <strong class="list-group-item-heading">Label</strong><br>
+            <input type="text" name="nodeLabel" ng-model="newNode.label"
+              ng-minlength="3" ng-maxlength="14" size="14">
+            <div class="error alert alert-danger" ng-show="nodeForm.nodeLabel.$error.minlength">
+              Too short!</div>
+            <div class="error alert alert-danger" ng-show="nodeForm.nodeLabel.$error.maxlength">
+              Too long!</div>
+          </li>
+          <li class="list-group-item">
+            <strong class="list-group-item-heading">Type</strong><br>
+            <input type="radio" ng-model="newNode.type" value="prot">  prot <br/>
+            <input type="radio" ng-model="newNode.type" value="event">  event <br/>
+            <input type="radio" ng-model="newNode.type" value="pathway">  pathway <br/>
+          </li>
+          <li class="list-group-item">
+            <div class="btn-group btn-group-sm">
+              <button class="btn btn-success" type="submit" id="submit" value="Submit">
+                Accept
+              </button>
+              <button type="button" class="btn btn-warning" ng-click="editMode = false; selectedNode = null">
+                Cancel
+              </button>
+            </div>
+          </li>
+        </form>
+      </ul>
     </div>
     <div class="panel panel-default" id="pathSelectPanel" ng-hide="!selectedPath || selectedNode">
       <div class="panel-heading">
@@ -127,9 +139,6 @@
     <div class="panel panel-default" id="graphPanel">
       <div class="panel-heading">
         <h3 class="panel-title">{{interactome.metadata.title}}</h3>
-        <button type="button" class="btn btn-primary" ng-click="">
-          <span class="glyphicon glyphicon-pencil"></span>
-        </button>
       </div>
         <dm-edit val="interactome" scaler="dmScale" select-node="selectNode(item)" select-path="selectPath(item)"></dm-edit>
     </div>
