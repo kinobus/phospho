@@ -77,7 +77,8 @@ angular.module('phosphoApp')
 
           var force = d3.layout.force()
             .size([width , height])
-            .charge(-820)
+            .gravity(0.1)
+            .charge(-1000)
             .linkDistance(120)
             .on('tick', tick)
             .nodes(nodes)
@@ -120,12 +121,23 @@ angular.module('phosphoApp')
             
           function tick() {
 
-            //bounding box
+            //horizontal boundaries
             node.attr('x', function (d) {
                 return d.x = Math.max(60, Math.min(width - 64, d.x));
               })
-              .attr('y', function (d) {
-                return d.y = Math.max(36, Math.min(height - 36, d.y));
+
+            //vertical boundaries (based on node compartment)
+            node.attr('y', function (d) {
+                if (d.compartment === 'membrane') {
+                  return d.y = 50;
+                } else if (d.compartment === 'nucleus') {
+                  return d.y = height - 50;
+                } else if (d.compartment === 'cytosol') {
+                  return d.y = Math.max(86, Math.min(height - 86, d.y));
+                } else {
+                  return d.y = Math.max(36, Math.min(height - 36, d.y));
+                }
+                //TODO add cytosol bounding box
               });
 
             //update node positions

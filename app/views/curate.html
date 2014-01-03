@@ -34,6 +34,10 @@
           {{selectedNode.type}}
         </li>
         <li class="list-group-item">
+          <strong class="list-group-item-heading">Compartment</strong><br>
+          {{selectedNode.compartment}}
+        </li>
+        <li class="list-group-item">
           <div class="btn-group">
             <button type="button" class="btn btn-primary" ng-click="selectedNode = null">
               <span class="glyphicon glyphicon-ok"></span>
@@ -63,6 +67,12 @@
             <input type="radio" ng-model="newNode.type" value="prot">  prot <br/>
             <input type="radio" ng-model="newNode.type" value="event">  event <br/>
             <input type="radio" ng-model="newNode.type" value="pathway">  pathway <br/>
+          </li>
+          <li class="list-group-item">
+            <strong class="list-group-item-heading">Compartment</strong><br>
+            <input type="radio" ng-model="newNode.compartment" value="membrane">  membrane <br/>
+            <input type="radio" ng-model="newNode.compartment" value="cytosol">  cytosol <br/>
+            <input type="radio" ng-model="newNode.compartment" value="nucleus">  nucleus <br/>
           </li>
           <li class="list-group-item">
             <div class="btn-group btn-group-sm">
@@ -96,7 +106,7 @@
         </li>
         <li class="list-group-item">
           <div class="btn-group">
-            <button type="button" class="btn btn-primary" ng-click="selectedLink = null">
+            <button type="button" class="btn btn-primary" ng-click="selectedPath = null">
               <span class="glyphicon glyphicon-ok"></span>
             </button>
             <button type="button" class="btn btn-warning" ng-click="editMode = true">
@@ -107,6 +117,33 @@
             </button>
           </div>
         </li>
+      </ul>
+      <ul class="list-group" ng-hide="editMode === false">
+        <form name="pathForm" ng-submit="updatePath(newPath)">
+          <li class="list-group-item">
+            <strong class="list-group-item-heading">Source</strong><br>
+            <select class="form-control" ng-model="newPath.sourceNodeLabel" ng-options="l for l in nodeLabels"><option></option></select>
+          </li>
+          <li class="list-group-item">
+            <strong class="list-group-item-heading">Target</strong><br>
+            <select class="form-control" ng-model="newPath.targetNodeLabel" ng-options="l for l in nodeLabels"><option></option></select>
+          </li>
+          <li class="list-group-item">
+            <strong class="list-group-item-heading">Type</strong><br>
+            <input type="radio" ng-model="newPath.type" value="activate">  activate <br/>
+            <input type="radio" ng-model="newPath.type" value="inhibit">  inhibit <br/>
+          </li>
+          <li class="list-group-item">
+            <div class="btn-group btn-group-sm">
+              <button class="btn btn-success" type="submit" id="submit" value="Submit">
+                Accept
+              </button>
+              <button type="button" class="btn btn-warning" ng-click="editMode = false; selectedPath = null">
+                Cancel
+              </button>
+            </div>
+          </li>
+        </form>
       </ul>
     </div>
     <div class="panel panel-default" id="mainOptionsPanel">
