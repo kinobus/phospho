@@ -191,10 +191,16 @@ angular.module('phosphoApp')
     //$scope.interactome = $scope.interactomes.interactome;
     //console.log(objs);
     $scope.editInit = function() {
+      //reset editing state
       $scope.selectedNode = null;
       $scope.selectedPath = null;
       $scope.editMode = false;
-      $scope.newNode = {label: 'node label', type: 'prot'};
+
+      //find the max current id, add 1 and set it to newID
+      var newId = _.max($scope.interactome.nodes, function(node) {return node.id}).id + 1;
+
+      //set up new elements
+      $scope.newNode = {label: 'node label', type: 'prot', id: newId};
       $scope.newPath = {source: 'source', target: 'target', type: 'activate'};
     };
 
@@ -206,6 +212,13 @@ angular.module('phosphoApp')
         $scope.selectedNode.type = $scope.newNode.type;
         $scope.editInit();
       }
+    };
+
+    $scope.insertNode = function() {
+      $scope.editInit();
+      $scope.interactome.nodes.push($scope.newNode);
+      $scope.selectedNode = $scope.newNode;
+      $scope.editMode = true;
     };
 
     $scope.spliceNode = function(node) {
@@ -231,12 +244,16 @@ angular.module('phosphoApp')
     };
 
     $scope.selectNode = function(item) {
+      //doing editInit here may be a bad idea, consider refactoring
       $scope.editInit;
       $scope.$apply(function() {
         $scope.selectedNode = item;
       });
+
+      //consider changing this part to: $scope.newNode = $scope.selectedNode;
       $scope.newNode.label = $scope.selectedNode.label;
       $scope.newNode.type = $scope.selectedNode.type;
+      $scope.newNode.id = $scope.selectedNode.id;
     };
 
     $scope.selectPath = function(item) {
