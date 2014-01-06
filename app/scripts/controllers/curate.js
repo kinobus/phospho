@@ -9,7 +9,7 @@ angular.module('phosphoApp')
 
     $scope.dmScale = 1;
 
-    $scope.interactomes = $firebase(new Firebase('https://phospho.firebaseio.com/test2'));
+    //$scope.interactomes = $firebase(new Firebase('https://phospho.firebaseio.com/test2'));
     //console.log($scope.interactomes);
 
     //using objs as a hard coded place filler for $scope.interactomes loaded from firebase... 
@@ -19,82 +19,98 @@ angular.module('phosphoApp')
         {
           'id':0,
           'label':'BCR',
-          'type':'prot'
+          'type':'prot',
+          'compartment':'membrane'
         },
         {
           'id':1,
           'label':'PIK3CD',
-          'type':'prot'
+          'type':'prot',
+          'compartment':'cytosol'
         },
         {
           'id':2,
           'label':'PIK3R1',
-          'type':'prot'
+          'type':'prot',
+          'compartment':'cytosol'
         },
         {
           'id':3,
           'label':'Cell Growth',
-          'type':'event'
+          'type':'event',
+          'compartment':'nucleus'
         },
         {
           'id':4,
           'label':'LYN',
-          'type':'prot'
+          'type':'prot',
+          'compartment':'cytosol'
         },
         {
           'id':5,
           'label':'CD79',
-          'type':'prot'
+          'type':'prot',
+          'compartment':'membrane'
         },
         {
           'id':6,
           'label':'SYK',
-          'type':'prot'
+          'type':'prot',
+          'compartment':'cytosol'
         },
         {
           'id':7,
           'label':'IRAK4',
-          'type':'prot'
+          'type':'prot',
+          'compartment':'cytosol'
         },
         {
           'id':8,
           'label':'BCL6',
-          'type':'prot'
+          'type':'prot',
+          'compartment':'cytosol'
         },
         {
           'id':9,
           'label':'NFKB Path',
-          'type':'pathway'
+          'type':'pathway',
+          'compartment':'cytosol'
         },
         {
           'id':10,
           'label':'Ca2+ Rel',
-          'type':'event'
+          'type':'event',
+          'compartment':'membrane'
         },
         {
           'id':11,
           'label':'BTK',
-          'type':'prot'
+          'type':'prot',
+          'compartment':'cytosol'
         },
         {
           'id':12,
           'label':'CARD11',
-          'type':'prot'
+          'type':'prot',
+          'compartment':'cytosol'
         },
         {
           'id':13,
           'label':'JAK2',
-          'type':'prot'
+          'type':'prot',
+          'compartment':'cytosol'
         },
         {
           'id':14,
           'label':'STAT3',
-          'type':'prot'
+          'type':'prot',
+          'compartment':'cytosol'
         },
         {
           'id':15,
           'label':'Cell Survival',
-          'type':'event'
+          'type':'event',
+          'compartment':'nucleus'
         }
       ],
       'links': [
@@ -186,8 +202,130 @@ angular.module('phosphoApp')
     }
   };
 
-    $scope.interactome = objs.interactome; //why does this work but i can't do it from firebase??
+    $scope.interactome = objs.interactome;
+    //$scope.metadata = objs.metadata; //why does this work but i can't do it from firebase??
     //$scope.interactome = $scope.interactomes.interactome;
     //console.log(objs);
+    $scope.editInit = function() {
+      //reset editing state
+      $scope.selectedNode = null;
+      $scope.selectedPath = null;
+      $scope.editMode = false;
+      $scope.insertMode = false;
+
+
+      //find the max current id, add 1 and set it to newID
+      var newId = _.max($scope.interactome.nodes, function(node) {return node.id}).id + 1;
+
+      //make list of node labels for node select elements in path edit panel
+      $scope.nodeLabels = _.pluck($scope.interactome.nodes, 'label');
+
+      //set up new elements
+      $scope.newNode = {label: 'new node', type: 'prot', id: newId, compartment: 'cytosol'};
+      $scope.newPath = {type: 'activate'};
+    };
+
+    //call editInit right away
+    $scope.editInit();
+
+    $scope.updateNode = function() {
+      //consider making this logic part of the form validation
+      if ($scope.newNode.label) {
+        $scope.selectedNode.label = $scope.newNode.label;
+        $scope.selectedNode.type = $scope.newNode.type;
+        $scope.selectedNode.compartment = $scope.newNode.compartment;
+        if ($scope.insertMode === true) {
+          //re-order object so force doesn't f-up
+          $scope.interactome.nodes.push($scope.selectedNode);
+        }
+        $scope.editInit();
+      }
+    };
+
+    $scope.updatePath = function() {
+      
+      //TODO check for conflict between newPath and any existing path
+
+      if ($scope.newPath.sourceNode !== $scope.newPath.targetNode) {
+        //set selectedPath properties from newPath
+
+        $scope.selectedPath = {
+          source: $scope.newPath.sourceNode.id,
+          target: $scope.newPath.targetNode.id,
+          type: $scope.newPath.type
+        };
+        //$scope.selectedPath.source = $scope.newPath.sourceNode.id;
+        //$scope.selectedPath.target = $scope.newPath.targetNode.id;
+        //$scope.selectedPath.type = $scope.newPath.type;
+        if ($scope.insertMode === true) {
+          $scope.interactome.links.push($scope.selectedPath);
+          console.log($scope.selectedPath);
+        }
+        $scope.editInit();
+      }
+    };
+
+    //KNOWN ISSUE! THIS IS FUCKING UP D3, WHY???
+    $scope.insertPath = function() {
+      //TODO check for conflict between newPath and any existing path
+      $scope.editInit();
+      $scope.selectedPath = $scope.newPath;
+      $scope.insertMode = true;
+      $scope.editMode = true;
+    };
+    
+    $scope.insertNode = function() {
+      $scope.editInit();
+      $scope.selectedNode = $scope.newNode;
+      $scope.insertMode = true;
+      $scope.editMode = true;
+    };
+
+    $scope.spliceNode = function(node) {
+      //consider making this logic part of the form validation
+      if ($scope.selectedNode) {
+        $scope.interactome.nodes.splice($scope.interactome.nodes.indexOf(node), 1);
+        $scope.spliceLinksForNode(node);
+        $scope.editInit();
+      }
+    };
+
+    $scope.spliceLinksForNode = function(node) {
+      var toSplice = $scope.interactome.links.filter(function(l) {
+        return (l.source === node || l.target === node);
+      });
+      toSplice.map(function(l) {
+        $scope.interactome.links.splice($scope.interactome.links.indexOf(l), 1);
+      });
+    };
+
+    $scope.spliceLink = function(link) {
+      $scope.interactome.links.splice($scope.interactome.links.indexOf(link), 1);
+      $scope.editInit();
+    };
+
+    $scope.selectNode = function(item) {
+      $scope.selectedPath = null;
+      $scope.$apply(function() {
+        $scope.selectedNode = item;
+      });
+
+      //consider changing this part to: $scope.newNode = $scope.selectedNode;
+      $scope.newNode.label = $scope.selectedNode.label;
+      $scope.newNode.type = $scope.selectedNode.type;
+      $scope.newNode.id = $scope.selectedNode.id;
+      $scope.newNode.compartment = $scope.selectedNode.compartment;
+    };
+
+    $scope.selectPath = function(item) {
+      $scope.selectedNode = null;
+      $scope.$apply(function() {
+        $scope.selectedPath = item;
+      });
+
+      $scope.newPath.sourceNode = _.findWhere($scope.interactome.nodes, {id: $scope.selectedPath.source});
+      $scope.newPath.targetNode = _.findWhere($scope.interactome.nodes, {id: $scope.selectedPath.target});
+      $scope.newPath.type = $scope.selectedPath.type;
+    };
 
   });
