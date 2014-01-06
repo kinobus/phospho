@@ -124,7 +124,7 @@ angular.module('phosphoApp')
             //horizontal boundaries
             node.attr('x', function (d) {
                 return d.x = Math.max(60, Math.min(width - 64, d.x));
-              })
+              });
 
             //vertical boundaries (based on node compartment)
             node.attr('y', function (d) {

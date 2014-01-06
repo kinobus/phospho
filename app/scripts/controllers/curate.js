@@ -211,6 +211,8 @@ angular.module('phosphoApp')
       $scope.selectedNode = null;
       $scope.selectedPath = null;
       $scope.editMode = false;
+      $scope.insertMode = false;
+
 
       //find the max current id, add 1 and set it to newID
       var newId = _.max($scope.interactome.nodes, function(node) {return node.id}).id + 1;
@@ -219,8 +221,8 @@ angular.module('phosphoApp')
       $scope.nodeLabels = _.pluck($scope.interactome.nodes, 'label');
 
       //set up new elements
-      $scope.newNode = {label: 'node label', type: 'prot', id: newId, compartment: 'cytosol'};
-      $scope.newPath = {source: (newId - 2), target: (newId -1), type: 'activate'};
+      $scope.newNode = {label: 'new node', type: 'prot', id: newId, compartment: 'cytosol'};
+      $scope.newPath = {type: 'activate'};
     };
 
     //call editInit right away
@@ -232,46 +234,51 @@ angular.module('phosphoApp')
         $scope.selectedNode.label = $scope.newNode.label;
         $scope.selectedNode.type = $scope.newNode.type;
         $scope.selectedNode.compartment = $scope.newNode.compartment;
+        if ($scope.insertMode === true) {
+          //re-order object so force doesn't f-up
+          $scope.interactome.nodes.push($scope.selectedNode);
+        }
         $scope.editInit();
       }
     };
 
     $scope.updatePath = function() {
-      //consider making this logic part of the form validation
+      
       //TODO check for conflict between newPath and any existing path
-
-      //parse sourceNodeLabel and targetNodeLabel on newPath
-      $scope.newPath.source = $scope.newPath.sourceNodeLabel
 
       if ($scope.newPath.sourceNode !== $scope.newPath.targetNode) {
-
         //set selectedPath properties from newPath
-        $scope.selectedPath.source = $scope.newPath.source;
-        $scope.selectedPath.target = $scope.newPath.target;
-        $scope.selectedPath.type = $scope.newPath.type;
+
+        $scope.selectedPath = {
+          source: $scope.newPath.sourceNode.id,
+          target: $scope.newPath.targetNode.id,
+          type: $scope.newPath.type
+        };
+        //$scope.selectedPath.source = $scope.newPath.sourceNode.id;
+        //$scope.selectedPath.target = $scope.newPath.targetNode.id;
+        //$scope.selectedPath.type = $scope.newPath.type;
+        if ($scope.insertMode === true) {
+          $scope.interactome.links.push($scope.selectedPath);
+          console.log($scope.selectedPath);
+        }
         $scope.editInit();
       }
+    };
+
+    //KNOWN ISSUE! THIS IS FUCKING UP D3, WHY???
+    $scope.insertPath = function() {
+      //TODO check for conflict between newPath and any existing path
+      $scope.editInit();
+      $scope.selectedPath = $scope.newPath;
+      $scope.insertMode = true;
+      $scope.editMode = true;
     };
     
-    $scope.insertPath = function() {
-      //check that there is more than one node and that newPath doesn't conflict w any existing path
-      //TODO check for conflict between newPath and any existing path
-      if ($scope.newPath.source > -1) {
-        $scope.editInit();
-        $scope.interactome.links.push($scope.newPath);
-        $scope.selectedPath = $scope.newPath;
-        $scope.editMode = true;
-      }
-    };
-
     $scope.insertNode = function() {
       $scope.editInit();
-      $scope.interactome.nodes.push($scope.newNode);
       $scope.selectedNode = $scope.newNode;
+      $scope.insertMode = true;
       $scope.editMode = true;
-
-      //update node labels list
-      $scope.nodeLabels = _.pluck($scope.interactome.nodes, 'label')
     };
 
     $scope.spliceNode = function(node) {
@@ -316,8 +323,8 @@ angular.module('phosphoApp')
         $scope.selectedPath = item;
       });
 
-      $scope.newPath.source = $scope.selectedPath.source;
-      $scope.newPath.target = $scope.selectedPath.target;
+      $scope.newPath.sourceNode = _.findWhere($scope.interactome.nodes, {id: $scope.selectedPath.source});
+      $scope.newPath.targetNode = _.findWhere($scope.interactome.nodes, {id: $scope.selectedPath.target});
       $scope.newPath.type = $scope.selectedPath.type;
     };
 
