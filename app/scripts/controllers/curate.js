@@ -246,14 +246,10 @@ angular.module('phosphoApp')
       
       //TODO check for conflict between newPath and any existing path
 
-      if ($scope.newPath.sourceNode !== $scope.newPath.targetNode) {
+      if ($scope.newPath.source !== $scope.newPath.target) {
         //set selectedPath properties from newPath
 
-        $scope.selectedPath = {
-          source: $scope.newPath.sourceNode.id,
-          target: $scope.newPath.targetNode.id,
-          type: $scope.newPath.type
-        };
+        $scope.selectedPath = $scope.newPath;
         //$scope.selectedPath.source = $scope.newPath.sourceNode.id;
         //$scope.selectedPath.target = $scope.newPath.targetNode.id;
         //$scope.selectedPath.type = $scope.newPath.type;
@@ -323,9 +319,19 @@ angular.module('phosphoApp')
         $scope.selectedPath = item;
       });
 
-      $scope.newPath.sourceNode = _.findWhere($scope.interactome.nodes, {id: $scope.selectedPath.source});
-      $scope.newPath.targetNode = _.findWhere($scope.interactome.nodes, {id: $scope.selectedPath.target});
-      $scope.newPath.type = $scope.selectedPath.type;
+
+      //selectedPath comes out of d3 formatted for d3 and not for angular, so make newPath the correct angular formatting
+      //$scope.newPath.source = $scope.interactome.nodes[$scope.selectedPath.source.id];
+      //$scope.newPath.target = $scope.interactome.nodes[$scope.selectedPath.target.id];
+      $scope.newPath = $scope.selectedPath;
+
+      //$scope.newPath.source = {$ref: $["nodes"][$scope.selectedPath.source.id]};
+      //$scope.newPath.target = {$ref: $["nodes"][$scope.selectedPath.target.id]};
+      //$scope.newPath.type = $scope.selectedPath.type;
+
+
+      //$scope.newPath.source = _.findWhere($scope.interactome.nodes, {id: $scope.selectedPath.source});
+      //$scope.newPath.target = _.findWhere($scope.interactome.nodes, {id: $scope.selectedPath.target});
     };
 
   });

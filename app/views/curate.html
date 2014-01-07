@@ -122,11 +122,11 @@
         <form name="pathForm" ng-submit="updatePath(newPath)">
           <li class="list-group-item">
             <strong class="list-group-item-heading">Source</strong><br>
-            <select class="form-control" ng-model="newPath.sourceNode" ng-options="n.label for n in interactome.nodes"><option></option></select>
+            <select class="form-control" ng-model="newPath.source" ng-options="n.label for n in interactome.nodes"><option></option></select>
           </li>
           <li class="list-group-item">
             <strong class="list-group-item-heading">Target</strong><br>
-            <select class="form-control" ng-model="newPath.targetNode" ng-options="n.label for n in interactome.nodes"><option></option></select>
+            <select class="form-control" ng-model="newPath.target" ng-options="n.label for n in interactome.nodes"><option></option></select>
           </li>
           <li class="list-group-item">
             <strong class="list-group-item-heading">Type</strong><br>
