@@ -250,9 +250,6 @@ angular.module('phosphoApp')
         //set selectedPath properties from newPath
 
         $scope.selectedPath = $scope.newPath;
-        //$scope.selectedPath.source = $scope.newPath.sourceNode.id;
-        //$scope.selectedPath.target = $scope.newPath.targetNode.id;
-        //$scope.selectedPath.type = $scope.newPath.type;
         if ($scope.insertMode === true) {
           $scope.interactome.links.push($scope.selectedPath);
           console.log($scope.selectedPath);
@@ -318,20 +315,8 @@ angular.module('phosphoApp')
       $scope.$apply(function() {
         $scope.selectedPath = item;
       });
-
-
-      //selectedPath comes out of d3 formatted for d3 and not for angular, so make newPath the correct angular formatting
-      //$scope.newPath.source = $scope.interactome.nodes[$scope.selectedPath.source.id];
-      //$scope.newPath.target = $scope.interactome.nodes[$scope.selectedPath.target.id];
       $scope.newPath = $scope.selectedPath;
 
-      //$scope.newPath.source = {$ref: $["nodes"][$scope.selectedPath.source.id]};
-      //$scope.newPath.target = {$ref: $["nodes"][$scope.selectedPath.target.id]};
-      //$scope.newPath.type = $scope.selectedPath.type;
-
-
-      //$scope.newPath.source = _.findWhere($scope.interactome.nodes, {id: $scope.selectedPath.source});
-      //$scope.newPath.target = _.findWhere($scope.interactome.nodes, {id: $scope.selectedPath.target});
     };
 
   });

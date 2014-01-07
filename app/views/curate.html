@@ -156,7 +156,7 @@
             <button type="button" class="btn btn-primary" ng-click="">
               <span class="glyphicon glyphicon-cloud-upload"></span>
             </button>
-            <button type="button" class="btn btn-primary" ng-click="">
+            <button type="button" class="btn btn-primary" svg-download="#disease-map" title={{interactome.metadata.title}}>
               <span class="glyphicon glyphicon-floppy-save"></span>
             </button>
           </div>
@@ -177,7 +177,7 @@
       <div class="panel-heading">
         <h3 class="panel-title">{{interactome.metadata.title}}</h3>
       </div>
-        <dm-edit val="interactome" scaler="dmScale" select-node="selectNode(item)" select-path="selectPath(item)"></dm-edit>
+        <dm-edit val="interactome" scaler="dmScale" select-node="selectNode(item)" select-path="selectPath(item)" id="disease-map"></dm-edit>
     </div>
   </div>
 </div>
