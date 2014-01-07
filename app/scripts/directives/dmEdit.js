@@ -29,7 +29,9 @@ angular.module('phosphoApp')
             return;
           }
 
-          svg.append('svg:defs').append('svg:marker')
+          var defs = svg.append('svg:defs');
+
+          defs.append('svg:marker')
               .attr('id', 'activate-arrow')
               .attr('viewBox', '0 -5 10 10')
               .attr('refX', 6)
@@ -40,7 +42,7 @@ angular.module('phosphoApp')
               .attr('d', 'M0,-5L10,0L0,5')
               .attr('fill', '#00FF00');
 
-          svg.append('svg:defs').append('svg:marker')
+          defs.append('svg:marker')
               .attr('id', 'inhibit-arrow')
               .attr('viewBox', '0 -5 10 10')
               .attr('refX', 6)
@@ -51,21 +53,21 @@ angular.module('phosphoApp')
               .attr('d', 'M0,-5L10,0L0,5')
               .attr('fill', '#FF0000');
 
-          svg.append('svg:defs').append('svg:path')
+          defs.append('svg:path')
               .attr('id', 'prot-node')
               .attr('d','M24.5,18.5 L96.5,18.5 C103.127,18.5 108.5,23.873 108.5,30.5 L108.5,42.5 C108.5,49.127 103.127,54.5 96.5,54.5 L24.5,54.5 C17.873,54.5 12.5,49.127 12.5,42.5 L12.5,30.5 C12.5,23.873 17.873,18.5 24.5,18.5 z')
               .attr('fill','#F3B73E')
               .attr('stroke', '#000')
               .attr('stroke-width', '2px');
 
-          svg.append('svg:defs').append('svg:path')
+          defs.append('svg:path')
               .attr('id', 'event-node')
               .attr('d','M0.5,12.5 L120.5,12.5 L120.5,60.5 L0.5,60.5 z')
               .attr('fill','#B5D5C6')
               .attr('stroke', '#000')
               .attr('stroke-width', '2px');
 
-          svg.append('svg:defs').append('svg:path')
+          defs.append('svg:path')
               .attr('id', 'pathway-node')
               .attr('d','M0.5,12.5 L120.5,12.5 L120.5,60.5 L0.5,60.5 z')
               .attr('fill','#DE3265')
