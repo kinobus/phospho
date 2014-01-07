@@ -97,6 +97,16 @@ angular.module('phosphoApp')
           path.attr('class', function(d) { return d.type; })
             .style('marker-end', function(d) { return 'url(#' + d.type + '-arrow)'; });
 
+          path.style('stroke-width', '4px')
+            .style('stroke', function(d) { 
+              if (d.type === 'activate') { 
+                return '#00FF00';
+              }
+              else if (d.type === 'inhibit') {
+                return '#FF0000';
+              }
+            });
+
           path.on('dblclick', dblclickPath);
 
           var node = svg.append('svg:g')
