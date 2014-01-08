@@ -1,0 +1,179 @@
+<div class="header">
+  <ul class="nav nav-pills pull-right">
+    <li><a ng-href="#feed">Data Feed</a></li>
+    <li><a ng-href="#share">Share</a></li>
+    <li class="active"><a ng-href="#curate">Curate</a></li>
+    <li ng-hide="auth.user"><a ng-href="#" ng-click="login()">Log In</a></li>
+    <li ng-show="auth.user"><a ng-href="#" ng-click="logout()">Log Out</a></li>
+    <li><a ng-href="#">About</a></li>
+  </ul>
+  <div>
+    <img class="pull-left" src="images/phosphate.png">
+    <h3 class="text-muted">Phospho</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3">
+    <div class="panel panel-default" id="nodeSelectPanel" ng-hide="!selectedNode || selectedPath">
+      <div class="panel-heading">
+        <h3 class="panel-title">Node</h3>
+      </div>
+      <ul class="list-group" ng-hide="editMode === true">
+        <li class="list-group-item">
+          <strong class="list-group-item-heading">Label</strong><br>
+          {{selectedNode.label}}
+        </li>
+        <li class="list-group-item">
+          <strong class="list-group-item-heading">Type</strong><br>
+          {{selectedNode.type}}
+        </li>
+        <li class="list-group-item">
+          <strong class="list-group-item-heading">Compartment</strong><br>
+          {{selectedNode.compartment}}
+        </li>
+        <li class="list-group-item">
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary" ng-click="selectedNode = null">
+              <span class="glyphicon glyphicon-ok"></span>
+            </button>
+            <button type="button" class="btn btn-warning" ng-click="editMode = true">
+              <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+            <button type="button" class="btn btn-danger" ng-click="spliceNode(selectedNode)">
+              <span class="glyphicon glyphicon-trash"></span>
+            </button>
+          </div>
+        </li>
+      </ul>
+      <ul class="list-group" ng-hide="editMode === false">
+        <form name="nodeForm" ng-submit="updateNode(newNode)">
+          <li class="list-group-item">
+            <strong class="list-group-item-heading">Label</strong><br>
+            <input type="text" name="nodeLabel" ng-model="newNode.label"
+              ng-minlength="3" ng-maxlength="14" size="14">
+            <div class="error alert alert-danger" ng-show="nodeForm.nodeLabel.$error.minlength">
+              Too short!</div>
+            <div class="error alert alert-danger" ng-show="nodeForm.nodeLabel.$error.maxlength">
+              Too long!</div>
+          </li>
+          <li class="list-group-item">
+            <strong class="list-group-item-heading">Type</strong><br>
+            <input type="radio" ng-model="newNode.type" value="prot">  prot <br/>
+            <input type="radio" ng-model="newNode.type" value="event">  event <br/>
+            <input type="radio" ng-model="newNode.type" value="pathway">  pathway <br/>
+          </li>
+          <li class="list-group-item">
+            <strong class="list-group-item-heading">Compartment</strong><br>
+            <input type="radio" ng-model="newNode.compartment" value="membrane">  membrane <br/>
+            <input type="radio" ng-model="newNode.compartment" value="cytosol">  cytosol <br/>
+            <input type="radio" ng-model="newNode.compartment" value="nucleus">  nucleus <br/>
+          </li>
+          <li class="list-group-item">
+            <div class="btn-group btn-group-sm">
+              <button class="btn btn-success" type="submit" id="submit" value="Submit">
+                Accept
+              </button>
+              <button type="button" class="btn btn-warning" ng-click="editInit()">
+                Cancel
+              </button>
+            </div>
+          </li>
+        </form>
+      </ul>
+    </div>
+    <div class="panel panel-default" id="pathSelectPanel" ng-hide="selectedNode || !selectedPath">
+      <div class="panel-heading">
+        <h3 class="panel-title">Link</h3>
+      </div>
+      <ul class="list-group" ng-hide="editMode === true">
+        <li class="list-group-item">
+          <strong class="list-group-item-heading">Source</strong><br>
+          {{selectedPath.source.label}}
+        </li>
+        <li class="list-group-item">
+          <strong class="list-group-item-heading">Target</strong><br>
+          {{selectedPath.target.label}}
+        </li>
+        <li class="list-group-item">
+          <strong class="list-group-item-heading">Type</strong><br>
+          {{selectedPath.type}}
+        </li>
+        <li class="list-group-item">
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary" ng-click="selectedPath = null">
+              <span class="glyphicon glyphicon-ok"></span>
+            </button>
+            <button type="button" class="btn btn-warning" ng-click="editMode = true">
+              <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+            <button type="button" class="btn btn-danger" ng-click="spliceLink(selectedPath)">
+              <span class="glyphicon glyphicon-trash"></span>
+            </button>
+          </div>
+        </li>
+      </ul>
+      <ul class="list-group" ng-hide="editMode === false">
+        <form name="pathForm" ng-submit="updatePath(newPath)">
+          <li class="list-group-item">
+            <strong class="list-group-item-heading">Source</strong><br>
+            <select class="form-control" ng-model="newPath.source" ng-options="n.label for n in interactome.nodes"><option></option></select>
+          </li>
+          <li class="list-group-item">
+            <strong class="list-group-item-heading">Target</strong><br>
+            <select class="form-control" ng-model="newPath.target" ng-options="n.label for n in interactome.nodes"><option></option></select>
+          </li>
+          <li class="list-group-item">
+            <strong class="list-group-item-heading">Type</strong><br>
+            <input type="radio" ng-model="newPath.type" value="activate">  activate <br/>
+            <input type="radio" ng-model="newPath.type" value="inhibit">  inhibit <br/>
+          </li>
+          <li class="list-group-item">
+            <div class="btn-group btn-group-sm">
+              <button class="btn btn-success" type="submit" id="submit" value="Submit">
+                Accept
+              </button>
+              <button type="button" class="btn btn-warning" ng-click="editInit()">
+                Cancel
+              </button>
+            </div>
+          </li>
+        </form>
+      </ul>
+    </div>
+    <div class="panel panel-default" id="mainOptionsPanel">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary" ng-click="">
+              <span class="glyphicon glyphicon-file"></span>
+            </button>
+            <button type="button" class="btn btn-primary" ng-click="">
+              <span class="glyphicon glyphicon-cloud-upload"></span>
+            </button>
+            <button type="button" class="btn btn-primary" svg-download="#disease-map" title={{interactome.metadata.title}}>
+              <span class="glyphicon glyphicon-floppy-save"></span>
+            </button>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <button type="button" class="btn btn-primary btn-block" ng-click="insertNode()">Insert Node</button>
+          <button type="button" class="btn btn-primary btn-block" ng-click="insertPath()">Insert Link</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <div class="alert alert-info alert-dismissable" font-size="x-small">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <strong>Tip:</strong> Drag to move, doubleclick to select/edit.
+    </div>
+    <div class="panel panel-default" id="graphPanel">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{interactome.metadata.title}}</h3>
+      </div>
+      <div align="center">
+        <dm-edit val="interactome" scaler="dmScale" select-node="selectNode(item)" select-path="selectPath(item)" id="disease-map"></dm-edit>
+      </div>
+    </div>
+  </div>
+</div>
