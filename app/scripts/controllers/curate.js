@@ -21,8 +21,6 @@ angular.module('phosphoApp')
 
     //using objs as a hard coded place filler for $scope.interactomes loaded from firebase... 
     //something is getting f-ed up w that
-    var objs = {'interactome':{
-      'nodes': [
         {
           'id':0,
           'label':'BCR',
@@ -201,13 +199,10 @@ angular.module('phosphoApp')
           'target':3,
           'type': 'activate'
         }
-      ],
-      'metadata': {
         'user': 'Ricker',
         'title': 'DLBCL pathway'
       }
     }
-  };
 
     $scope.interactome = objs.interactome;
     $scope.pathway = objs;
