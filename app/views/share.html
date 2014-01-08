@@ -12,16 +12,31 @@
     <h3 class="text-muted">Phospho</h3>
   </div>
 </div>
-
-<p> The kinome of 
-  <select ng-model="dataset" ng-options="d.title for d in ms2datasets | orderByPriority" ng-change="change()">
-    <option value="">-- experimental condition --</option>
-  </select>
-  using
-  <select ng-model="interactome" ng-options="i.title for i in interactomes | orderByPriority" ng-change="change()">
-    <option value="">-- kinase interactome --</option>
-  </select>
-  <button ng-disabled="!kinome" ng-click="shareKinome()">Share This Kinome</button>
-</p>
-
-<ko-render val="kinome" scaler="kinomeScale"></ko-render>
+<div class="row">
+  <div class="col-md-3">
+    <div class="panel panel-default" id="dataSelectPanel">
+      <div class="panel-heading">
+        <h3 class="panel-title">Share Data</h3>
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <strong class="list-group-item-heading">MS2 Dataset</strong><br>
+          <select width="100%" ng-model="dataset" ng-options="d.title for d in ms2datasets | orderByPriority" ng-change="change()">
+            <option></option>
+          </select>
+        </li>
+        <li class="list-group-item">
+          <strong class="list-group-item-heading">Interactome</strong><br>
+          <select width="100%" ng-model="interactome" ng-options="i.title for i in interactomes | orderByPriority" ng-change="change()">
+            <option></option>
+          </select>
+        </li>
+        <li class="list-group-item">
+          <button type="button" class="btn btn-primary btn-block" ng-disabled="!kinome" ng-click="shareKinome()">Share to Feed</button>
+        </li>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <ko-render val="kinome" scaler="kinomeScale"></ko-render>
+  </div>
+</div>
