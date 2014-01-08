@@ -9,6 +9,12 @@ angular.module('phosphoApp')
 
     $scope.dmScale = 1;
 
+    $scope.pathways = $firebase(new Firebase('https://phospho.firebaseio.com/pathways').limit(2));
+
+    $scope.upload = function () {
+      $scope.pathways.$add($scope.interactome);
+    };
+
     //$scope.interactomes = $firebase(new Firebase('https://phospho.firebaseio.com/test2'));
     //console.log($scope.interactomes);
 

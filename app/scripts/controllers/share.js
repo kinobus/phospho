@@ -16,6 +16,8 @@ angular.module('phosphoApp')
 
     $scope.kinomes = $firebase(new Firebase('https://phospho.firebaseio.com/kinomes'));
 
+    $scope.pathways = $firebase(new Firebase('https://phospho.firebaseio.com/pathways').limit(2));
+
     $scope.shareKinome = function () {
       $scope.kinomes.$add({
         kinome: $scope.kinome,
