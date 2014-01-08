@@ -20,7 +20,18 @@
       </div>
       <li class="list-group-item">
         <strong class="list-group-item-heading">Interactome</strong><br>
-        <select width="100%" ng-model="interactome" ng-options="i.title for i in interactomes | orderByPriority" ng-change="change()">
+        <select ng-model="interactome" ng-options="i.title for i in interactomes | orderByPriority" ng-change="change()">
+          <option></option>
+        </select>
+      </li>
+    </div>
+    <div class="panel panel-default" id="kinomeOptionsPanel" ng-show="shareMode === 'pathway' || shareMode === 'both'">
+      <div class="panel-heading">
+        <h3 class="panel-title">Pathway Options</h3>
+      </div>
+      <li class="list-group-item">
+        <strong class="list-group-item-heading">Pathway</strong><br>
+        <select ng-model="interactome" ng-options="p.title for p in pathways | orderByPriority">
           <option></option>
         </select>
       </li>
@@ -29,7 +40,7 @@
       <ul class="list-group">
         <li class="list-group-item">
           <strong class="list-group-item-heading">MS2 Data</strong><br>
-          <select width="100%" ng-model="dataset" ng-options="d.title for d in ms2datasets | orderByPriority" ng-change="change()">
+          <select ng-model="dataset" ng-options="d.title for d in ms2datasets | orderByPriority" ng-change="change()">
             <option></option>
           </select>
         </li>
@@ -59,6 +70,7 @@
       </div>
       <div align="center" ng-show="shareMode === 'pathway' || shareMode === 'both'">
         <div align="left" class="alert alert-info" ng-show="!pathway"><span class="glyphicon glyphicon-hand-left"></span> Choose a pathway.</div>
+        <dm-show val="pathway" scaler="dmScale" select-node="selectNode(item)" select-path="selectPath(item)" id="disease-map"></dm-show>
       </div>
       <div align="center" ng-show="shareMode === 'kinome' || shareMode === 'both'">
         <div align="left" class="alert alert-info" ng-show="!kinome"><span class="glyphicon glyphicon-hand-left"></span> Choose a kinase-substrate interactome.</div>

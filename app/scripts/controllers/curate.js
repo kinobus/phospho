@@ -13,6 +13,7 @@ angular.module('phosphoApp')
 
     $scope.upload = function () {
       $scope.pathways.$add($scope.interactome);
+      $scope.pathways.$add($scope.pathway);
     };
 
     //$scope.interactomes = $firebase(new Firebase('https://phospho.firebaseio.com/test2'));
@@ -209,6 +210,7 @@ angular.module('phosphoApp')
   };
 
     $scope.interactome = objs.interactome;
+    $scope.pathway = objs;
     //$scope.metadata = objs.metadata; //why does this work but i can't do it from firebase??
     //$scope.interactome = $scope.interactomes.interactome;
     //console.log(objs);
@@ -222,9 +224,11 @@ angular.module('phosphoApp')
 
       //find the max current id, add 1 and set it to newID
       var newId = _.max($scope.interactome.nodes, function(node) {return node.id}).id + 1;
+      var newId = _.max($scope.pathway.graph.nodes, function(node) {return node.id}).id + 1;
 
       //make list of node labels for node select elements in path edit panel
       $scope.nodeLabels = _.pluck($scope.interactome.nodes, 'label');
+      $scope.nodeLabels = _.pluck($scope.pathway.graph.nodes, 'label');
 
       //set up new elements
       $scope.newNode = {label: 'new node', type: 'prot', id: newId, compartment: 'cytosol'};
@@ -243,6 +247,7 @@ angular.module('phosphoApp')
         if ($scope.insertMode === true) {
           //re-order object so force doesn't f-up
           $scope.interactome.nodes.push($scope.selectedNode);
+          $scope.pathway.graph.nodes.push($scope.selectedNode);
         }
         $scope.editInit();
       }
@@ -258,6 +263,7 @@ angular.module('phosphoApp')
         $scope.selectedPath = $scope.newPath;
         if ($scope.insertMode === true) {
           $scope.interactome.links.push($scope.selectedPath);
+          $scope.pathway.graph.links.push($scope.selectedPath);
           console.log($scope.selectedPath);
         }
         $scope.editInit();
@@ -284,6 +290,7 @@ angular.module('phosphoApp')
       //consider making this logic part of the form validation
       if ($scope.selectedNode) {
         $scope.interactome.nodes.splice($scope.interactome.nodes.indexOf(node), 1);
+        $scope.pathway.graph.splice($scope.pathway.graph.nodes.indexOf(node), 1);
         $scope.spliceLinksForNode(node);
         $scope.editInit();
       }
@@ -291,15 +298,18 @@ angular.module('phosphoApp')
 
     $scope.spliceLinksForNode = function(node) {
       var toSplice = $scope.interactome.links.filter(function(l) {
+      var toSplice = $scope.pathway.graph.links.filter(function(l) {
         return (l.source === node || l.target === node);
       });
       toSplice.map(function(l) {
         $scope.interactome.links.splice($scope.interactome.links.indexOf(l), 1);
+        $scope.pathway.graph.links.splice($scope.pathway.graph.links.indexOf(l), 1);
       });
     };
 
     $scope.spliceLink = function(link) {
       $scope.interactome.links.splice($scope.interactome.links.indexOf(link), 1);
+      $scope.pathway.graph.links.splice($scope.pathway.graph.links.indexOf(link), 1);
       $scope.editInit();
     };
 
