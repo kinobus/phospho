@@ -5,7 +5,8 @@ angular.module('phosphoApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'firebase'
+  'firebase',
+  'hc.downloader'
 ])
   .config(function ($routeProvider) {
     $routeProvider

@@ -246,17 +246,10 @@ angular.module('phosphoApp')
       
       //TODO check for conflict between newPath and any existing path
 
-      if ($scope.newPath.sourceNode !== $scope.newPath.targetNode) {
+      if ($scope.newPath.source !== $scope.newPath.target) {
         //set selectedPath properties from newPath
 
-        $scope.selectedPath = {
-          source: $scope.newPath.sourceNode.id,
-          target: $scope.newPath.targetNode.id,
-          type: $scope.newPath.type
-        };
-        //$scope.selectedPath.source = $scope.newPath.sourceNode.id;
-        //$scope.selectedPath.target = $scope.newPath.targetNode.id;
-        //$scope.selectedPath.type = $scope.newPath.type;
+        $scope.selectedPath = $scope.newPath;
         if ($scope.insertMode === true) {
           $scope.interactome.links.push($scope.selectedPath);
           console.log($scope.selectedPath);
@@ -322,10 +315,8 @@ angular.module('phosphoApp')
       $scope.$apply(function() {
         $scope.selectedPath = item;
       });
+      $scope.newPath = $scope.selectedPath;
 
-      $scope.newPath.sourceNode = _.findWhere($scope.interactome.nodes, {id: $scope.selectedPath.source});
-      $scope.newPath.targetNode = _.findWhere($scope.interactome.nodes, {id: $scope.selectedPath.target});
-      $scope.newPath.type = $scope.selectedPath.type;
     };
 
   });
