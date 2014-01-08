@@ -14,29 +14,56 @@
 </div>
 <div class="row">
   <div class="col-md-3">
-    <div class="panel panel-default" id="dataSelectPanel">
+    <div class="panel panel-default" id="kinomeOptionsPanel" ng-show="shareMode === 'kinome' || shareMode === 'both'">
       <div class="panel-heading">
-        <h3 class="panel-title">Share Data</h3>
+        <h3 class="panel-title">Kinome Options</h3>
       </div>
+      <li class="list-group-item">
+        <strong class="list-group-item-heading">Interactome</strong><br>
+        <select width="100%" ng-model="interactome" ng-options="i.title for i in interactomes | orderByPriority" ng-change="change()">
+          <option></option>
+        </select>
+      </li>
+    </div>
+    <div class="panel panel-default" id="dataSelectPanel">
       <ul class="list-group">
         <li class="list-group-item">
-          <strong class="list-group-item-heading">MS2 Dataset</strong><br>
+          <strong class="list-group-item-heading">MS2 Data</strong><br>
           <select width="100%" ng-model="dataset" ng-options="d.title for d in ms2datasets | orderByPriority" ng-change="change()">
             <option></option>
           </select>
         </li>
         <li class="list-group-item">
-          <strong class="list-group-item-heading">Interactome</strong><br>
-          <select width="100%" ng-model="interactome" ng-options="i.title for i in interactomes | orderByPriority" ng-change="change()">
-            <option></option>
-          </select>
+          <strong class="list-group-item-heading">Bind To</strong><br>
+          <div class="btn-group-vertical btn-block">
+            <button type="button" class="btn btn-primary" ng-model="shareMode" btn-radio="'kinome'">Kinome</button>
+            <button type="button" class="btn btn-primary" ng-model="shareMode" btn-radio="'pathway'">Pathway</button>
+            <button type="button" class="btn btn-primary" ng-model="shareMode" btn-radio="'both'">Both</button>
+          </div>
         </li>
         <li class="list-group-item">
-          <button type="button" class="btn btn-primary btn-block" ng-disabled="!kinome" ng-click="shareKinome()">Share to Feed</button>
+          <button type="button" class="btn btn-success btn-block" ng-disabled="!kinome" ng-click="shareKinome()">Share to Feed</button>
         </li>
     </div>
   </div>
   <div class="col-md-9">
-    <ko-render val="kinome" scaler="kinomeScale"></ko-render>
+    <div class="alert alert-info" ng-show="!dataset">
+      <span class="glyphicon glyphicon-hand-left"></span> Choose MS2 Data.
+    </div>
+    <div class="alert alert-info" ng-show="!shareMode">
+      <span class="glyphicon glyphicon-hand-left"></span> Bind your data to a kinome, pathway, or both.
+    </div>
+    <div class="panel panel-default" id="graphPanel" ng-hide="!shareMode || !dataset">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{dataset.title}}</h3>
+      </div>
+      <div align="center" ng-show="shareMode === 'pathway' || shareMode === 'both'">
+        <div align="left" class="alert alert-info" ng-show="!pathway"><span class="glyphicon glyphicon-hand-left"></span> Choose a pathway.</div>
+      </div>
+      <div align="center" ng-show="shareMode === 'kinome' || shareMode === 'both'">
+        <div align="left" class="alert alert-info" ng-show="!kinome"><span class="glyphicon glyphicon-hand-left"></span> Choose a kinase-substrate interactome.</div>
+        <ko-render val="kinome" scaler="kinomeScale"></ko-render>
+      </div>
+    </div>
   </div>
 </div>
