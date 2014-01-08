@@ -9,8 +9,9 @@ angular.module('phosphoApp')
     return {
       restrict: 'E',
       scope: { // attributes bound to the scope of the directive
-        val: '=',
+        graph: '=',
         scaler: '=',
+        dataset: '=',
         selectNode: '&',
         selectPath: '&'
       },
@@ -21,13 +22,28 @@ angular.module('phosphoApp')
             .attr('width', width)
             .attr('height', height);
 
-        scope.$watch('val', function (newVal, oldVal) {
+        scope.$watch('graph', function (newGraph, oldGraph) {
+          return scope.renderGraph(newGraph, scope.dataset);
+        }, true);
+
+        scope.$watch('dataset', function (newDataset, oldDataset) {
+          return scope.renderGraph(scope.graph, newDataset);
+        }, true);
+
+        scope.renderGraph = function (graph, dataset) {
 
           svg.selectAll('*').remove();
 
-          if (!newVal) {
+          if (!graph) {
             return;
           }
+
+          //TODO
+          //bind ptms from dataset onto graph.nodes
+          //_.map(graph.nodes, function (node) {
+            //var nodeMean = _.findWhere(dataset, {gene: node.label});
+            //return _.extend(node, {mean: nodeMean.mean});
+          //});
 
           var defs = svg.append('svg:defs');
 
@@ -108,8 +124,8 @@ angular.module('phosphoApp')
             .attr('height', height)
             .style('fill', 'url(#gradient)');
 
-          var nodes = newVal.nodes,
-            links = newVal.links;
+          var nodes = graph.nodes,
+            links = graph.links;
 
           var path = svg.append('svg:g')
             .selectAll('path')
@@ -164,8 +180,10 @@ angular.module('phosphoApp')
             .attr('text-anchor', 'middle')
             .text(function(d) { return d.label; });
 
-          node.on('dblclick', dblclickNode)
-            .call(force.drag);
+          //TODO (hint: check how circles are drawn in koRender)
+          //draw ptms as circles on each node
+
+          node.on('dblclick', dblclickNode);
 
           node.attr('transform', function (d) {
                 return 'translate(' + (d.x - 60) + ',' + (d.y - 36) + ')';
@@ -179,7 +197,7 @@ angular.module('phosphoApp')
             return scope.selectPath({item: d});
           }
 
-        }, true);
+        };
       }
     };
   });
