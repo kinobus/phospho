@@ -22,10 +22,12 @@ angular.module('phosphoApp')
             .attr('width', width)
             .attr('height', height);
 
+        //consider changing to shallow watch instead of deep watch
         scope.$watch('graph', function (newGraph, oldGraph) {
           return scope.renderGraph(newGraph, scope.dataset);
         }, true);
 
+        //consider changing to shallow watch instead of deep watch
         scope.$watch('dataset', function (newDataset, oldDataset) {
           return scope.renderGraph(scope.graph, newDataset);
         }, true);
@@ -34,16 +36,19 @@ angular.module('phosphoApp')
 
           svg.selectAll('*').remove();
 
-          if (!graph) {
+          if (!graph || !dataset) {
             return;
           }
 
           //TODO
           //bind ptms from dataset onto graph.nodes
-          //_.map(graph.nodes, function (node) {
-            //var nodeMean = _.findWhere(dataset, {gene: node.label});
-            //return _.extend(node, {mean: nodeMean.mean});
-          //});
+          _.map(graph.nodes, function (node) {
+            var nodeData = _.findWhere(dataset.data, {gene: node.label});
+            if (nodeData) {
+              var newObj = {mean: nodeData.mean};
+              return _.extend(node, newObj);
+            }
+          });
 
           var defs = svg.append('svg:defs');
 
@@ -118,6 +123,10 @@ angular.module('phosphoApp')
               .attr('stop-color', '#FF2A85')
               .attr('stop-opacity', 1);
 
+          var colorScale = d3.scale.quantize()
+            .domain([0, 10])
+            .range(['#a50026','#d73027','#f46d43','#fdae61','#fee08b','#ffffbf','#d9ef8b','#a6d96a','#66bd63','#1a9850','#006837']);
+
           //draw background
           svg.append('svg:rect')
             .attr('width', width)
@@ -182,6 +191,18 @@ angular.module('phosphoApp')
 
           //TODO (hint: check how circles are drawn in koRender)
           //draw ptms as circles on each node
+
+          //select nodes to draw ptms on
+          var ptmNode = node.filter(function(d) { return d.mean; });
+
+          ptmNode.append('svg:circle')
+            .attr('cx', 12)
+            .attr('cy', 12)
+            .attr('r', 12)
+            .attr('class', 'kinase')
+            .attr('fill', function(d) {return colorScale(d.mean); })
+            .style('stroke', 'black')
+            .style('stroke-width', '3px');
 
           node.on('dblclick', dblclickNode);
 

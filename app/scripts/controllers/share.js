@@ -10,7 +10,8 @@ angular.module('phosphoApp')
 
     $scope.kinomeScale = 0.125; //hard coded for now, note that koRender directive needs this
 
-    $scope.interactomes = $firebase(new Firebase('https://phospho.firebaseio.com/interactomes'));
+    //TODO: change these so they don't pull big stuff from firebase, get rid of interactomes .limit(1)
+    $scope.interactomes = $firebase(new Firebase('https://phospho.firebaseio.com/interactomes').limit(1));
 
     $scope.ms2datasets = $firebase(new Firebase('https://phospho.firebaseio.com/ms2datasets'));
 
