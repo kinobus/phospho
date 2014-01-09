@@ -17,10 +17,12 @@ angular.module('phosphoApp')
       },
       link: function postLink(scope, element, attrs) {
 
+        var scale = scope.scaler;
+
         var svg = d3.select(element[0])
             .append('svg')
-            .attr('width', width)
-            .attr('height', height);
+            .attr('width', width * scale)
+            .attr('height', height * scale);
 
         //consider changing to shallow watch instead of deep watch
         scope.$watch('graph', function (newGraph, oldGraph) {
@@ -79,21 +81,24 @@ angular.module('phosphoApp')
               .attr('d','M24.5,18.5 L96.5,18.5 C103.127,18.5 108.5,23.873 108.5,30.5 L108.5,42.5 C108.5,49.127 103.127,54.5 96.5,54.5 L24.5,54.5 C17.873,54.5 12.5,49.127 12.5,42.5 L12.5,30.5 C12.5,23.873 17.873,18.5 24.5,18.5 z')
               .attr('fill','#F3B73E')
               .attr('stroke', '#000')
-              .attr('stroke-width', '3px');
+              .attr('stroke-width', '3px')
+              .attr('transform', function() { return 'scale(' + scale +')'; });
 
           defs.append('svg:path')
               .attr('id', 'event-node')
               .attr('d','M0.5,12.5 L120.5,12.5 L120.5,60.5 L0.5,60.5 z')
               .attr('fill','#2AFFFF')
               .attr('stroke', '#000')
-              .attr('stroke-width', '3px');
+              .attr('stroke-width', '3px')
+              .attr('transform', function() { return 'scale(' + scale +')'; });
 
           defs.append('svg:path')
               .attr('id', 'pathway-node')
               .attr('d','M0.5,12.5 L120.5,12.5 L120.5,60.5 L0.5,60.5 z')
               .attr('fill','#55FF6D')
               .attr('stroke', '#000')
-              .attr('stroke-width', '3px');
+              .attr('stroke-width', '3px')
+              .attr('transform', function() { return 'scale(' + scale +')'; });
 
           var gradient = defs.append('svg:linearGradient')
               .attr('id', 'gradient')
@@ -129,8 +134,8 @@ angular.module('phosphoApp')
 
           //draw background
           svg.append('svg:rect')
-            .attr('width', width)
-            .attr('height', height)
+            .attr('width', width * scale)
+            .attr('height', height * scale)
             .style('fill', 'url(#gradient)');
 
           var nodes = graph.nodes,
@@ -153,7 +158,8 @@ angular.module('phosphoApp')
               else if (d.type === 'inhibit') {
                 return '#FF0000';
               }
-            });
+            })
+            .attr('transform', function() { return 'scale(' + scale +')'; });
 
           path.attr('d', function(d) {
               var deltaX = d.target.x - d.source.x,
@@ -182,10 +188,10 @@ angular.module('phosphoApp')
             .attr('xlink:href',function(d) { return '#' + d.type + '-node'; });
 
           node.append('svg:text')
-            .attr('x', 60)
-            .attr('y', 42)
+            .attr('x', 60 * scale)
+            .attr('y', 42 * scale)
             .attr('font-family', 'HelveticaNeue-Bold')
-            .attr('font-size', '18px')
+            .attr('font-size', 18 * scale)
             .attr('text-anchor', 'middle')
             .text(function(d) { return d.label; });
 
@@ -196,9 +202,9 @@ angular.module('phosphoApp')
           var ptmNode = node.filter(function(d) { return d.mean; });
 
           ptmNode.append('svg:circle')
-            .attr('cx', 12)
-            .attr('cy', 12)
-            .attr('r', 12)
+            .attr('cx', 12 * scale)
+            .attr('cy', 12 * scale)
+            .attr('r', 12 * scale)
             .attr('class', 'kinase')
             .attr('fill', function(d) {return colorScale(d.mean); })
             .style('stroke', 'black')
@@ -207,7 +213,7 @@ angular.module('phosphoApp')
           node.on('dblclick', dblclickNode);
 
           node.attr('transform', function (d) {
-                return 'translate(' + (d.x - 60) + ',' + (d.y - 36) + ')';
+                return 'translate(' + ((d.x - 60) * scale) + ',' + ((d.y - 36) * scale) + ')';
               });
 
           function dblclickNode (d) {
