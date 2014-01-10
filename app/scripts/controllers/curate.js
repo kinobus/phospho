@@ -7,6 +7,8 @@ angular.module('phosphoApp')
       $location.path('/');
     };
 
+    //$scope.auth = $rootScope.auth;
+
     $scope.dmScale = 1;
 
     $scope.pathways = $firebase(new Firebase('https://phospho.firebaseio.com/pathways').limit(2));

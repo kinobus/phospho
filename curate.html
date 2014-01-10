@@ -2,7 +2,7 @@
 <!-- Page Container -->
 <!-- In the PHP version you can set the following options from the config file -->
 <!-- Add the class .full-width for a full width page -->
-
+<div id="page-container" class="full-width">
     <!-- Header -->
     <!-- In the PHP version you can set the following options from the config file -->
     <!-- Add the class .navbar-fixed-top or .navbar-fixed-bottom for a fixed header on top or bottom respectively -->
@@ -40,7 +40,7 @@
 
                 <!-- Logo -->
                 <a href="index.html" class="navbar-brand">
-                    <img src="images/phosphate.png" alt="logo">
+                    <img src="img/template/logo.png" alt="logo">
                 </a>
                 <!-- END Logo -->
 
@@ -280,50 +280,301 @@
         -->
         <div class="side-scrollable">
             <!-- Mini Profile -->
-            <div class="mini-profile" style="font-size: 18px;">
+            <div class="mini-profile">
                 <div class="mini-profile-options">
+                    <a href="javascript:void(0)" class="badge badge-info loading-on" data-toggle="tooltip" data-placement="right" title="Refresh">
+                        <i class="icon-refresh"></i>
+                    </a>
+                    <a href="page_ready_shopping_cart.html" class="badge badge-warning" data-toggle="tooltip" data-placement="right" title="6 Products">
+                        <i class="glyphicon-shopping_cart"></i>
+                    </a>
+                    <!-- Modal div is at the bottom of the page before including javascript code, we use .enable-tooltip class for the tooltip because data-toggle is used for modal -->
+                    <a href="#modal-user-account" class="badge badge-success enable-tooltip" role="button" data-toggle="modal" data-placement="right" title="Settings">
+                        <i class="glyphicon-cogwheel"></i>
+                    </a>
                     <a href="page_login.html" class="badge badge-danger" data-toggle="tooltip" data-placement="right" title="Log out">
                         <i class="icon-signout"></i>
                     </a>
                 </div>
                 <a href="page_ready_user_profile.html">
-                    <img src={{auth.user.profile_image_url}} alt="Avatar" style="width: 32px; height: 32px;">
-                    {{auth.user.username}}
+                    <img src="img/template/avatar2.jpg" alt="Avatar" class="img-circle">
                 </a>
             </div>
             <!-- END Mini Profile -->
 
-            <!-- Primary Navigation -->
-            <nav id="primary-nav">
-              <ul style="font-size: 18px;">
-                <li>
-                    <a href="#upload"><i class="icon-upload-alt"></i>Upload Data</a>
-                </li>
-                <li>
-                    <a href="#curate"><i class="glyphicon-pen"></i>Draw Pathway</a>
-                </li>
-                <li>
-                    <a href="#share"><i class="icon-cloud"></i>Publish Report</a>
-                </li>
-                <li>
-                    <a href="#feed"><i class="icon-group"></i>Report Feed</a>
-                </li>
-              </ul>
-            </nav>
-            <!-- END Primary Navigation -->
+            <!-- Sidebar Tabs -->
+            <div class="sidebar-tabs-con">
+                <ul class="sidebar-tabs" data-toggle="tabs">
+                    <li class="active">
+                        <a href="#side-tab-menu"><i class="glyphicon-list"></i></a>
+                    </li>
+                    <li>
+                        <a href="#side-tab-extra"><i class="glyphicon-charts"></i></a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="side-tab-menu">
+                        <!-- Primary Navigation -->
+                        <nav id="primary-nav">
+                            <ul>
+                                <li>
+                                    <a href="index.html"><i class="glyphicon-display"></i>Dashboard</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="menu-link"><i class="glyphicon-vector_path_circle"></i>User Interface</a>
+                                    <ul>
+                                        <li>
+                                            <a href="page_ui_blocks.html">Blocks</a>
+                                        </li>
+                                        <li>
+                                            <a href="page_ui_grid.html">Grid</a>
+                                        </li>
+                                        <li>
+                                            <a href="page_ui_typography.html">Typography</a>
+                                        </li>
+                                        <li>
+                                            <a href="page_ui_navigation.html">Navigation</a>
+                                        </li>
+                                        <li>
+                                            <a href="page_ui_tabs_accordions.html">Tabs &amp; Accordions</a>
+                                        </li>
+                                        <li>
+                                            <a href="page_ui_buttons_dropdowns.html">Buttons &amp; Dropdowns</a>
+                                        </li>
+                                        <li>
+                                            <a href="page_ui_progress_bars.html">Progress Bars</a>
+                                        </li>
+                                        <li>
+                                            <a href="page_ui_carousel.html">Carousel</a>
+                                        </li>
+                                        <li>
+                                            <a href="page_ui_extras.html">Extras</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#" class="menu-link"><i class="glyphicon-table"></i>Tables</a>
+                                    <ul>
+                                        <li>
+                                            <a href="page_tables_static.html">Static</a>
+                                        </li>
+                                        <li>
+                                            <a href="page_tables_dynamic.html">Dynamic</a>
+                                        </li>
+                                        <li>
+                                            <a href="page_tables_editable.html">Editable</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#" class="menu-link"><i class="glyphicon-more_windows"></i>Forms</a>
+                                    <ul>
+                                        <li>
+                                            <a href="page_forms_general.html">General</a>
+                                        </li>
+                                        <li>
+                                            <a href="page_forms_layouts_styles.html">Layouts &amp; Styles</a>
+                                        </li>
+                                        <li>
+                                            <a href="page_forms_pickers_grid.html">Pickers &amp; Grid</a>
+                                        </li>
+                                        <li>
+                                            <a href="page_forms_textareas_wysiwyg.html">Textareas &amp; WYSIWYG</a>
+                                        </li>
+                                        <li>
+                                            <a href="page_forms_upload_dropzone.html">File Upload &amp; Dropzone</a>
+                                        </li>
+                                        <li>
+                                            <a href="page_forms_validation.html">Validation</a>
+                                        </li>
+                                        <li>
+                                            <a href="page_forms_wizard.html">Wizard</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#" class="menu-link"><i class="glyphicon-fire"></i>Components</a>
+                                    <ul>
+                                        <li>
+                                            <a href="page_comp_inbox.html">Inbox</a>
+                                        </li>
+                                        <li>
+                                            <a href="page_comp_chat.html">Chat</a>
+                                        </li>
+                                        <li>
+                                            <a href="page_comp_timeline.html">Timeline</a>
+                                        </li>
+                                        <li>
+                                            <a href="page_comp_tiles.html">Tiles</a>
+                                        </li>
+                                        <li>
+                                            <a href="page_comp_gallery.html">Gallery</a>
+                                        </li>
+                                        <li>
+                                            <a href="page_comp_charts.html">Charts</a>
+                                        </li>
+                                        <li>
+                                            <a href="page_comp_calendar.html">Calendar</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="submenu-link">Maps</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="page_comp_vector_maps.html">Vector Maps</a>
+                                                </li>
+                                                <li>
+                                                    <a href="page_comp_google_maps.html">Google Maps</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="page_comp_syntax_highlighting.html">Syntax Highlighting</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#" class="menu-link"><i class="glyphicon-pizza"></i>Icon Packs</a>
+                                    <ul>
+                                        <li>
+                                            <a href="page_icons_glyphicons_pro.html">Glyphicons Pro</a>
+                                        </li>
+                                        <li>
+                                            <a href="page_icons_fontawesome.html">FontAwesome</a>
+                                        </li>
+                                        <li>
+                                            <a href="page_icons_gemicon.html">Gemicon</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="active">
+                                    <a href="#" class="menu-link"><i class="glyphicon-certificate"></i>Ready UI</a>
+                                    <ul>
+                                        <li>
+                                            <a href="page_ready_search_results.html">Search Results</a>
+                                        </li>
+                                        <li>
+                                            <a href="page_ready_user_profile.html">User Profile</a>
+                                        </li>
+                                        <li>
+                                            <a href="page_ready_pricing_tables.html">Pricing Tables</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="submenu-link">Forum</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="page_ready_forum_categories.html">Categories</a>
+                                                </li>
+                                                <li>
+                                                    <a href="page_ready_forum_topics.html">Topics</a>
+                                                </li>
+                                                <li>
+                                                    <a href="page_ready_forum_conversation.html">Conversation</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="submenu-link">e-Shop</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="page_ready_product.html">Product</a>
+                                                </li>
+                                                <li>
+                                                    <a href="page_ready_products_list.html">Products List</a>
+                                                </li>
+                                                <li>
+                                                    <a href="page_ready_shopping_cart.html">Shopping Cart</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="page_ready_invoice.html">Invoice</a>
+                                        </li>
+                                        <li>
+                                            <a href="page_ready_article.html">Article</a>
+                                        </li>
+                                        <li>
+                                            <a href="page_ready_faq.html">FAQ</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="submenu-link">Errors</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="page_ready_errors.html">In-Page</a>
+                                                </li>
+                                                <li>
+                                                    <a href="page_ready_standalone_error.html">Standalone</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="page_ready_blank.html" class=" active">Blank</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#" class="menu-link"><i class="glyphicon-power"></i>Login Pages</a>
+                                    <ul>
+                                        <li>
+                                            <a href="page_login.html">Login with animation</a>
+                                        </li>
+                                        <li>
+                                            <a href="page_login_alt.html">Login without animation</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="page_landing.html"><i class="glyphicon-leaf"></i>Landing Page</a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <!-- END Primary Navigation -->
+                    </div>
+                    <div class="tab-pane tab-pane-side" id="side-tab-extra">
+                        <h5><i class="icon-briefcase pull-right"></i><a href="javascript:void(0)" class="side-link">Balance</a></h5>
+                        <div>$25.230,00</div>
 
+                        <h5><i class="icon-dollar pull-right"></i><a href="javascript:void(0)" class="side-link">Earnings (today)</a></h5>
+                        <div>$1.752,00</div>
+
+                        <h5><i class="icon-shopping-cart pull-right"></i><a href="javascript:void(0)" class="side-link">Sales (today)</a></h5>
+                        <div>368</div>
+
+                        <h5><i class="icon-shopping-cart pull-right"></i><a href="javascript:void(0)" class="side-link">Sales (this month)</a></h5>
+                        <div class="text-success">+38%</div>
+
+                        <h5><i class="icon-ticket pull-right"></i><a href="javascript:void(0)" class="side-link">Open Tickets</a></h5>
+                        <div>23</div>
+
+                        <h5><i class="icon-bug pull-right"></i><a href="javascript:void(0)" class="side-link">Bugs to fix</a></h5>
+                        <div>2 important</div>
+                        <div>5 normal</div>
+                    </div>
+                </div>
+            </div>
+            <!-- END Sidebar Tabs -->
         </div>
         <!-- END Wrapper for scrolling functionality -->
     </aside>
     <!-- END Left Sidebar -->
     <!-- Pre Page Content -->
     <div id="pre-page-content">
-        <h1><i class="glyphicon-brush themed-color"></i>Curate<br><small>Create your content!</small></h1>
+        <h1><i class="glyphicon-brush themed-color"></i>Blank<br><small>Create your content!</small></h1>
     </div>
     <!-- END Pre Page Content -->
 
     <!-- Page Content -->
     <div id="page-content">
+        <!-- Breadcrumb -->
+        <ul class="breadcrumb breadcrumb-top">
+            <li>
+                <a href="index.html"><i class="glyphicon-display"></i></a>
+            </li>
+            <li>
+                <a href="#">Ready UI</a>
+            </li>
+            <li><a href="">Blank</a></li>
+        </ul>
+        <!-- END Breadcrumb -->
 
         <!-- Your Content -->
         <p>...</p>
@@ -345,7 +596,7 @@
 <!-- END Page Container -->
 
 <!-- Scroll to top link, check main.js - scrollToTop() -->
-<a href="" id="to-top"><i class="icon-chevron-up"></i></a>
+<a href="#" id="to-top"><i class="icon-chevron-up"></i></a>
 
 <!-- User Modal Account, appears when clicking on 'User Settings' link found on user dropdown menu (header, top right) -->
 <div id="modal-user-account" class="modal fade">
@@ -454,7 +705,7 @@
         <!-- END Modal Content -->
     </div>
     <!-- END Modal Dialog -->
-
+</div>
 <!-- END User Modal Settings -->
 
 <!-- Excanvas for Flot (Charts plugin) support on IE8 -->

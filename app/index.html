@@ -12,8 +12,10 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
         <!-- build:css({.tmp,app}) styles/main.css -->
-        <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,700,700italic">
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="styles/main.css">
+        
         <!-- endbuild -->
 </head>
   <body ng-app="phosphoApp">
@@ -27,7 +29,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container" ng-view=""></div>
+    <div id="page-container" class="container full-width" ng-view=""></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <script>
@@ -78,6 +80,8 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/jquery.typer.js"></script>
         <script src="scripts/app.js"></script>
+        <script src="scripts/flatMain.js"></script>
+        <script src="scripts/flatPlugins.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/share.js"></script>
         <script src="scripts/directives/koRender.js"></script>
