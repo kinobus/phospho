@@ -9,200 +9,207 @@ angular.module('phosphoApp')
 
     $scope.dmScale = 1;
 
+    $scope.pathways = $firebase(new Firebase('https://phospho.firebaseio.com/pathways').limit(2));
+
+    $scope.upload = function () {
+      $scope.pathways.$add($scope.pathway);
+    };
+
     //$scope.interactomes = $firebase(new Firebase('https://phospho.firebaseio.com/test2'));
     //console.log($scope.interactomes);
 
     //using objs as a hard coded place filler for $scope.interactomes loaded from firebase... 
     //something is getting f-ed up w that
-    var objs = {'interactome':{
-      'nodes': [
-        {
-          'id':0,
-          'label':'BCR',
-          'type':'prot',
-          'compartment':'membrane'
-        },
-        {
-          'id':1,
-          'label':'PIK3CD',
-          'type':'prot',
-          'compartment':'cytosol'
-        },
-        {
-          'id':2,
-          'label':'PIK3R1',
-          'type':'prot',
-          'compartment':'cytosol'
-        },
-        {
-          'id':3,
-          'label':'Cell Growth',
-          'type':'event',
-          'compartment':'nucleus'
-        },
-        {
-          'id':4,
-          'label':'LYN',
-          'type':'prot',
-          'compartment':'cytosol'
-        },
-        {
-          'id':5,
-          'label':'CD79',
-          'type':'prot',
-          'compartment':'membrane'
-        },
-        {
-          'id':6,
-          'label':'SYK',
-          'type':'prot',
-          'compartment':'cytosol'
-        },
-        {
-          'id':7,
-          'label':'IRAK4',
-          'type':'prot',
-          'compartment':'cytosol'
-        },
-        {
-          'id':8,
-          'label':'BCL6',
-          'type':'prot',
-          'compartment':'cytosol'
-        },
-        {
-          'id':9,
-          'label':'NFKB Path',
-          'type':'pathway',
-          'compartment':'cytosol'
-        },
-        {
-          'id':10,
-          'label':'Ca2+ Rel',
-          'type':'event',
-          'compartment':'membrane'
-        },
-        {
-          'id':11,
-          'label':'BTK',
-          'type':'prot',
-          'compartment':'cytosol'
-        },
-        {
-          'id':12,
-          'label':'CARD11',
-          'type':'prot',
-          'compartment':'cytosol'
-        },
-        {
-          'id':13,
-          'label':'JAK2',
-          'type':'prot',
-          'compartment':'cytosol'
-        },
-        {
-          'id':14,
-          'label':'STAT3',
-          'type':'prot',
-          'compartment':'cytosol'
-        },
-        {
-          'id':15,
-          'label':'Cell Survival',
-          'type':'event',
-          'compartment':'nucleus'
-        }
-      ],
-      'links': [
-        {
-          'source':0,
-          'target':1,
-          'type': 'activate'
-        },
-        {
-          'source':1,
-          'target':2,
-          'type': 'activate'
-        },
-        {
-          'source':2,
-          'target':3,
-          'type': 'activate'
-        },
-        {
-          'source':4,
-          'target':0,
-          'type': 'inhibit'
-        },
-        {
-          'source':4,
-          'target':5,
-          'type': 'inhibit'
-        },
-        {
-          'source':4,
-          'target':6,
-          'type': 'activate'
-        },
-        {
-          'source':6,
-          'target':11,
-          'type': 'activate'
-        },
-        {
-          'source':11,
-          'target':10,
-          'type': 'activate'
-        },
-        {
-          'source':10,
-          'target':12,
-          'type': 'activate'
-        },
-        {
-          'source':12,
-          'target':9,
-          'type': 'activate'
-        },
-        {
-          'source':13,
-          'target':14,
-          'type': 'activate'
-        },
-        {
-          'source':14,
-          'target':15,
-          'type': 'activate'
-        },
-        {
-          'source':7,
-          'target':9,
-          'type': 'activate'
-        },
-        {
-          'source':8,
-          'target':3,
-          'type': 'activate'
-        },
-        {
-          'source':9,
-          'target':15,
-          'type': 'activate'
-        },
-        {
-          'source':9,
-          'target':3,
-          'type': 'activate'
-        }
-      ],
-      'metadata': {
+    var objs = {'metadata': {
         'user': 'Ricker',
         'title': 'DLBCL pathway'
-      }
-    }
-  };
+      },
+      'graph': {
+        'nodes': [
+          {
+            'id':0,
+            'label':'BCR',
+            'type':'prot',
+            'compartment':'membrane'
+          },
+          {
+            'id':1,
+            'label':'PIK3CD',
+            'type':'prot',
+            'compartment':'cytosol'
+          },
+          {
+            'id':2,
+            'label':'PIK3R1',
+            'type':'prot',
+            'compartment':'cytosol'
+          },
+          {
+            'id':3,
+            'label':'Cell Growth',
+            'type':'event',
+            'compartment':'nucleus'
+          },
+          {
+            'id':4,
+            'label':'LYN',
+            'type':'prot',
+            'compartment':'cytosol'
+          },
+          {
+            'id':5,
+            'label':'CD79',
+            'type':'prot',
+            'compartment':'membrane'
+          },
+          {
+            'id':6,
+            'label':'SYK',
+            'type':'prot',
+            'compartment':'cytosol'
+          },
+          {
+            'id':7,
+            'label':'IRAK4',
+            'type':'prot',
+            'compartment':'cytosol'
+          },
+          {
+            'id':8,
+            'label':'BCL6',
+            'type':'prot',
+            'compartment':'cytosol'
+          },
+          {
+            'id':9,
+            'label':'NFKB Path',
+            'type':'pathway',
+            'compartment':'cytosol'
+          },
+          {
+            'id':10,
+            'label':'Ca2+ Rel',
+            'type':'event',
+            'compartment':'membrane'
+          },
+          {
+            'id':11,
+            'label':'BTK',
+            'type':'prot',
+            'compartment':'cytosol'
+          },
+          {
+            'id':12,
+            'label':'CARD11',
+            'type':'prot',
+            'compartment':'cytosol'
+          },
+          {
+            'id':13,
+            'label':'JAK2',
+            'type':'prot',
+            'compartment':'cytosol'
+          },
+          {
+            'id':14,
+            'label':'STAT3',
+            'type':'prot',
+            'compartment':'cytosol'
+          },
+          {
+            'id':15,
+            'label':'Cell Survival',
+            'type':'event',
+            'compartment':'nucleus'
+          }
+        ],
+        'links': [
+          {
+            'source':0,
+            'target':1,
+            'type': 'activate'
+          },
+          {
+            'source':1,
+            'target':2,
+            'type': 'activate'
+          },
+          {
+            'source':2,
+            'target':3,
+            'type': 'activate'
+          },
+          {
+            'source':4,
+            'target':0,
+            'type': 'inhibit'
+          },
+          {
+            'source':4,
+            'target':5,
+            'type': 'inhibit'
+          },
+          {
+            'source':4,
+            'target':6,
+            'type': 'activate'
+          },
+          {
+            'source':6,
+            'target':11,
+            'type': 'activate'
+          },
+          {
+            'source':11,
+            'target':10,
+            'type': 'activate'
+          },
+          {
+            'source':10,
+            'target':12,
+            'type': 'activate'
+          },
+          {
+            'source':12,
+            'target':9,
+            'type': 'activate'
+          },
+          {
+            'source':13,
+            'target':14,
+            'type': 'activate'
+          },
+          {
+            'source':14,
+            'target':15,
+            'type': 'activate'
+          },
+          {
+            'source':7,
+            'target':9,
+            'type': 'activate'
+          },
+          {
+            'source':8,
+            'target':3,
+            'type': 'activate'
+          },
+          {
+            'source':9,
+            'target':15,
+            'type': 'activate'
+          },
+          {
+            'source':9,
+            'target':3,
+            'type': 'activate'
+          }
+        ]
+      }};
 
-    $scope.interactome = objs.interactome;
+
+
+    $scope.pathway = objs;
     //$scope.metadata = objs.metadata; //why does this work but i can't do it from firebase??
     //$scope.interactome = $scope.interactomes.interactome;
     //console.log(objs);
@@ -215,10 +222,10 @@ angular.module('phosphoApp')
 
 
       //find the max current id, add 1 and set it to newID
-      var newId = _.max($scope.interactome.nodes, function(node) {return node.id}).id + 1;
+      var newId = _.max($scope.pathway.graph.nodes, function(node) {return node.id}).id + 1;
 
       //make list of node labels for node select elements in path edit panel
-      $scope.nodeLabels = _.pluck($scope.interactome.nodes, 'label');
+      $scope.nodeLabels = _.pluck($scope.pathway.graph.nodes, 'label');
 
       //set up new elements
       $scope.newNode = {label: 'new node', type: 'prot', id: newId, compartment: 'cytosol'};
@@ -236,7 +243,7 @@ angular.module('phosphoApp')
         $scope.selectedNode.compartment = $scope.newNode.compartment;
         if ($scope.insertMode === true) {
           //re-order object so force doesn't f-up
-          $scope.interactome.nodes.push($scope.selectedNode);
+          $scope.pathway.graph.nodes.push($scope.selectedNode);
         }
         $scope.editInit();
       }
@@ -251,7 +258,7 @@ angular.module('phosphoApp')
 
         $scope.selectedPath = $scope.newPath;
         if ($scope.insertMode === true) {
-          $scope.interactome.links.push($scope.selectedPath);
+          $scope.pathway.graph.links.push($scope.selectedPath);
           console.log($scope.selectedPath);
         }
         $scope.editInit();
@@ -277,23 +284,23 @@ angular.module('phosphoApp')
     $scope.spliceNode = function(node) {
       //consider making this logic part of the form validation
       if ($scope.selectedNode) {
-        $scope.interactome.nodes.splice($scope.interactome.nodes.indexOf(node), 1);
+        $scope.pathway.graph.splice($scope.pathway.graph.nodes.indexOf(node), 1);
         $scope.spliceLinksForNode(node);
         $scope.editInit();
       }
     };
 
     $scope.spliceLinksForNode = function(node) {
-      var toSplice = $scope.interactome.links.filter(function(l) {
+      var toSplice = $scope.pathway.graph.links.filter(function(l) {
         return (l.source === node || l.target === node);
       });
       toSplice.map(function(l) {
-        $scope.interactome.links.splice($scope.interactome.links.indexOf(l), 1);
+        $scope.pathway.graph.links.splice($scope.pathway.graph.links.indexOf(l), 1);
       });
     };
 
     $scope.spliceLink = function(link) {
-      $scope.interactome.links.splice($scope.interactome.links.indexOf(link), 1);
+      $scope.pathway.graph.links.splice($scope.pathway.graph.links.indexOf(link), 1);
       $scope.editInit();
     };
 

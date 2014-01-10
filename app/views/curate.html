@@ -1,21 +1,15 @@
 <div class="header">
-  <div class="row">
-    <div class="col-md-4">
-      <div class="content-heading clearfix media">
-        <img class="pull-left" src="images/phosphate.png">
-        <h3 class="text-muted">Phospho</h3>
-      </div>
-    </div>
-    <div class="col-md-8">
-      <ul class="nav nav-pills pull-right">
-        <li><a ng-href="#feed">Data Feed</a></li>
-        <li><a ng-href="#share">Share</a></li>
-        <li class="active"><a ng-href="#curate">Curate</a></li>
-        <li ng-hide="auth.user"><a ng-href="#" ng-click="login()">Log In</a></li>
-        <li ng-show="auth.user"><a ng-href="#" ng-click="logout()">Log Out</a></li>
-        <li><a ng-href="#">About</a></li>
-      </ul>
-    </div>
+  <ul class="nav nav-pills pull-right">
+    <li><a ng-href="#feed">Data Feed</a></li>
+    <li><a ng-href="#share">Share</a></li>
+    <li class="active"><a ng-href="#curate">Curate</a></li>
+    <li ng-hide="auth.user"><a ng-href="#" ng-click="login()">Log In</a></li>
+    <li ng-show="auth.user"><a ng-href="#" ng-click="logout()">Log Out</a></li>
+    <li><a ng-href="#">About</a></li>
+  </ul>
+  <div>
+    <img class="pull-left" src="images/phosphate.png">
+    <h3 class="text-muted">Phospho</h3>
   </div>
 </div>
 <div class="row">
@@ -153,7 +147,7 @@
             <button type="button" class="btn btn-primary" ng-click="">
               <span class="glyphicon glyphicon-file"></span>
             </button>
-            <button type="button" class="btn btn-primary" ng-click="">
+            <button type="button" class="btn btn-primary" ng-click="upload()">
               <span class="glyphicon glyphicon-cloud-upload"></span>
             </button>
             <button type="button" class="btn btn-primary" svg-download="#disease-map" title={{interactome.metadata.title}}>
@@ -178,7 +172,7 @@
         <h3 class="panel-title">{{interactome.metadata.title}}</h3>
       </div>
       <div align="center">
-        <dm-edit val="interactome" scaler="dmScale" select-node="selectNode(item)" select-path="selectPath(item)" id="disease-map"></dm-edit>
+        <dm-edit val="pathway.graph" scaler="dmScale" select-node="selectNode(item)" select-path="selectPath(item)" id="disease-map"></dm-edit>
       </div>
     </div>
   </div>
