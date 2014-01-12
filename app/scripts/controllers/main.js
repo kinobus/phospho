@@ -1,25 +1,23 @@
 'use strict';
 
 angular.module('phosphoApp')
-  .controller('MainCtrl', function ($scope, loginService, $location) {
-    $scope.login = function() {
-      $scope.err = null;
-      loginService.login(function(err, user) {
-        $scope.err = err? err + '' : null;
-        if( !err ) {
-          $location.replace();
-          $location.path('/');
-        }
-      });
+  .controller('MainCtrl', function ($scope, $filter, dashboards) {
+    $scope.dashboards = dashboards.getDashboards();
+    $scope.dashboard = $scope.dashboards[0];
+
+    $scope.setDash = function (d) {
+      return $scope.dashboard = d;
     };
 
-    $scope.logout = function() {
-      loginService.logout();
-      $location.path('/');
-    };
-
-    //jQuery typer function
-    $(function () {
-      $('[data-typer-targets]').typer();
-    });
+    $scope.filterGroups = [
+      {
+        'id':'myObjects',
+        'title':'My Collection',
+        'userlist': [{'user':'selfUser'}]
+      },
+      {
+        'id':'moonlabObjects',
+        'userlist': [{'group':'moonLab'}]
+      }
+    ];
   });
