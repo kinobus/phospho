@@ -238,3 +238,9 @@ a:after {
 .btn-menu {
   text-align: center;
 }
+.btn-icon {
+  height: 48px;
+}
+.dash-pane {
+  background-color: #5bc0de;
+}

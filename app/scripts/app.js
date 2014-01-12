@@ -6,7 +6,8 @@ angular.module('phosphoApp', [
   'ngSanitize',
   'ngRoute',
   'ngAnimate',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'firebase'
 ])
   .config(function ($routeProvider) {
     $routeProvider
