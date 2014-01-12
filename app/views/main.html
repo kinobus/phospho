@@ -38,7 +38,7 @@
   <div class="col-xs-12 col-sm-8 col-md-9 col-lg-10">
 
     <!--dashboard-->
-    <div class="col-xs-12 col-sm-6 col-md-8 col-lg-9" ng-if="dashboard">
+    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9" ng-if="dashboard">
       <div class="panel panel-default dash-pane" ng-repeat="pane in dashboard.panels">
         <button type="button" class="btn btn-info btn">
           <img src="images/icons/{{pane.icon}}.png" class="btn-icon">
@@ -56,7 +56,7 @@
     <!--end dashboard header-->
 
     <!--user panel-->
-    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 pull-right">
       <div class="user-panel-container animated fadeInDown" ng-switch on="authState">
 
         <!-- when logged in --> 
@@ -82,9 +82,9 @@
 
         <!-- when in guest mode --> 
         <div class="user-panel" ng-switch-when="guest">
-          <div class="panel panel-default">
+          <div class="panel panel-default panel-block">
             <div class="panel-heading">
-               <img src="images/icons/user.png" class="btn-icon">Guest User
+               <img src="images/icons/user.png" class="btn-icon">Guest1337
             </div>
           </div>
         </div>
@@ -92,6 +92,12 @@
       </div>
     </div>
     <!-- end user panel-->
+
+    <!-- who is online widget -->
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 pull-right">
+      
+    </div>
+    <!-- end who is online widget -->
 
   </div>
     

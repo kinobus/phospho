@@ -23,12 +23,12 @@ angular.module('phosphoApp')
         'headerText':'Build a figure out of data-panels.',
         'panels': [{
           'id': 'saveFigure',
-          'title': 'Save Figure',
+          'title': 'Save',
           'icon': 'cloud_diskette'
         },{
           'id': 'newFigure',
           'icon':'brushes',
-          'title':'Untitled Figure',
+          'title':'Untitled',
           'titleButtons':[{'id':'growkWidth','icon':'image_right'},{'id':'shrinkWidth','icon':'image_left'}]
         }]
       },

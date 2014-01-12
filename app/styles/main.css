@@ -244,3 +244,7 @@ a:after {
 .dash-pane {
   background-color: #5bc0de;
 }
+.navbar-search {
+  margin-top: 0px;
+  margin-left: 200px;
+}
