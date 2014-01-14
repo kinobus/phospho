@@ -4,6 +4,8 @@ angular.module('phosphoApp')
   .factory('userFactory', function () {
     // Service logic
     // ...
+    //These values should be passed to userFactory from a method invoked after a succesful firebase login
+    //The input arguments will be passed from the $scope.auth.user (initialized by firebaseAuth)
 
     var userModel = {
       'user':[

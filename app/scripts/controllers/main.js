@@ -1,35 +1,48 @@
 'use strict';
 
 angular.module('phosphoApp')
-  .controller('MainCtrl', function ($rootScope, $scope, $filter, dashboards, $firebaseAuth, $firebase) {
+  .controller('MainCtrl', function ($rootScope, $scope, $filter, dashboards, userFactory, $firebaseAuth, $firebase) {
 
-    var ref = new Firebase('https://phospho.firebaseio.com/users');
-    $scope.auth = $firebaseAuth(ref);
+    var userRef = new Firebase('https://phospho.firebaseio.com/users');
 
-    $scope.items = $firebase(ref);
+    $scope.auth = $firebaseAuth(userRef);
+
+    $scope.initLogin = function (user) {
+      if (!user) {
+        console.log('sup');
+        $scope.login('guest');
+      }
+    };
 
     $scope.selectedItem = null;
 
-    //$rootScope.$on('$firebaseAuth:login', function(e, user) {
-    //  $scope.authState = 'loggedIn';
-    //  console.log('User ' + user.id + 'successfully logged in!');
-    //});
+    $scope.user = userFactory.makeUser();
 
     $scope.newFigure = {'cols':12};
 
-    $scope.authState = 'loggedOut';
-
-    $rootScope.$on('$firebaseAuth:logout', function(e, user) {
-      $scope.authState = 'loggedOut';
+    $rootScope.$on('$firebaseAuth:logout', function() {
       console.log('loggedOut');
     });
 
-    $scope.dashPicker = function (dash, authState) {
-      $scope.dashboard = dash;
-      if (authState !== 'loggedIn') {
-        $scope.authState = 'guest';
+    $rootScope.$on('$firebaseAuth:login', function(e, user) {
+      console.log('User ' + user.id + ' successfully logged in!');
+      $scope.users = $firebase(userRef);
+      
+      //create a profile (will be denied by firebase if user already exists)
+      $scope.user = $scope.users.$child(user.uid);
+      $scope.user.userid = user.id;
+
+      //set username
+      if (user.username) {
+        $scope.user.username = user.username;
+      } else {
+        var rando = Math.floor((Math.random()*9999)+1);
+        $scope.user.username = 'guest' + rando;
       }
-    };
+
+      //save object
+      $scope.user.$save();
+    });
 
     $scope.logout = function () {
       $scope.auth.$logout();
@@ -38,14 +51,17 @@ angular.module('phosphoApp')
     $scope.login = function (source) {
       if (source === 'twitter') {
         $scope.auth.$login('twitter').then(function(user) {
-          $rootScope.user = user;
-          $scope.authState = 'loggedIn';
+          //$rootScope.user = user;
           console.log('Logged in as: ', user.uid);
         }, function(error) {
           console.error('Login failed: ', error);
         });
       } else if (source === 'guest') {
-        $scope.authState = 'guest';
+        $scope.auth.$login('anonymous').then(function(user) {
+          console.log('Logged in as: ', user.uid);
+        }, function(error) {
+          console.error('Login failed: ', error);
+        });
       }
     };
 
@@ -67,4 +83,6 @@ angular.module('phosphoApp')
         'userlist': [{'group':'moonLab'}]
       }
     ];
+
+    //$scope.initLogin($scope.auth.user);
   });

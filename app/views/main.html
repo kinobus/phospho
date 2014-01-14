@@ -1,3 +1,4 @@
+<div class="row">  
   <!--left col-->
   <div class="col-xs-12 col-sm-4 col-md-3 col-lg-2">
 
@@ -13,19 +14,19 @@
     </div>
 
     <!--Guest Mode Alert-->
-    <div ng-switch on="authState">
-      <div class="panel panel-default" ng-switch-when="guest">
+    <div ng-switch on="auth.user.provider">
+      <div class="panel panel-default" ng-switch-when="anonymous">
         <div class="panel-body">
            Sharing limited while in guest mode.
         </div>
-        <button type="button" class="btn btn-primary btn-block" ng-click="createAccount()"><img src="images/icons/user_add.png" class="btn-icon">Sign Up</button>
+        <button type="button" class="btn btn-success btn-block" ng-click="login('twitter')"><img src="images/icons/antenna.png" class="btn-icon">Log In</button>
       </div>
     </div>
     <!--End Guest Mode Alert-->
 
     <!--dashboard picker-->
     <div class="btn-group-vertical animated fadeInLeft">
-      <button type="button" class="btn btn-default btn-menu" ng-repeat="d in dashboards" ng-click="dashPicker(d, authState)">
+      <button type="button" class="btn btn-default btn-menu" ng-repeat="d in dashboards" ng-click="$parent.dashboard = d">
         <img src="images/icons/{{d.icon}}.png" class="btn-icon">
         <i class="{{d.icon}}"></i>
       {{d.title}}
@@ -34,72 +35,49 @@
 
   </div>
 
-  <!--main col-->
-  <div class="col-xs-12 col-sm-8 col-md-9 col-lg-10">
+  <!--main col class="col-xs-12 col-sm-4 col-md-6 col-lg-8" -->
 
-    <!--dashboard-->
-    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9" ng-if="dashboard">
-      <div class="panel panel-default dash-pane" ng-repeat="pane in dashboard.panels">
-        <button type="button" class="btn btn-info btn">
+  <!--dashboard-->
+    <div ng-if="dashboard">
+      <div class="panel panel-default dash-pane {{pane.cols}}" ng-repeat="pane in dashboard.panels">
+        <button type="button" class="btn btn-info btn-block">
           <img src="images/icons/{{pane.icon}}.png" class="btn-icon">
           {{pane.title}}
         </button>
         <div class="btn-group btn-group pull-right">
           <button ng-repeat="button in pane.titleButtons" type="button" class="btn btn-info pull-right"><img src="images/icons/{{button.icon}}.png" class="btn-icon"></button> 
         </div> 
-        <div class="panel-body">
-           {{pane}}
-        </div>
       </div>
       
     </div>
     <!--end dashboard header-->
 
-    <!--user panel-->
-    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 pull-right">
-      <div class="user-panel-container animated fadeInDown" ng-switch on="authState">
 
-        <!-- when logged in --> 
-        <div class="user-panel" ng-switch-when="loggedIn">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-               <img src={{user.profile_image_url}} class="btn-icon">{{user.username}}
-            </div>
-            <div class="panel-body">
-               Profile blah blah
-            </div>
-            <button type="button" class="btn btn-warning btn-block" ng-click="logout()"><img src="images/icons/connect_close.png" class="btn-icon">Log Out</button>
+  <!--end main col-->
+
+  <!--user panel-->
+  <div class="col-xs-12 col-sm-4 col-md-3 col-lg-2 pull-right">
+    <div class="user-panel-container animated fadeInDown" ng-show="auth.user">
+
+      <!-- user profile--> 
+      <div class="user-panel">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+             <img src={{auth.user.profile_image_url}} class="btn-icon">{{user.username}}
           </div>
-        </div>
-
-        <!-- when logged out -->
-        <div class="user-panel" ng-switch-when="loggedOut">
-          <div class="btn-group-vertical">
-            <button type="button" class="btn btn-success btn-block" ng-click="login('twitter')"><img src="images/icons/antenna.png" class="btn-icon">Log In</button>
-            <button type="button" class="btn btn-primary btn-block" ng-click="signup()"><img src="images/icons/user_add.png" class="btn-icon">Sign Up</button>
+          <div class="panel-body">
+             Profile blah blah
           </div>
+          <button type="button" class="btn btn-warning btn-block" ng-hide="auth.user.provider === 'anonymous'" ng-click="login('guest')"><img src="images/icons/connect_close.png" class="btn-icon">Log Out</button>
         </div>
-
-        <!-- when in guest mode --> 
-        <div class="user-panel" ng-switch-when="guest">
-          <div class="panel panel-default panel-block">
-            <div class="panel-heading">
-               <img src="images/icons/user.png" class="btn-icon">Guest1337
-            </div>
-          </div>
-        </div>
-
       </div>
-    </div>
-    <!-- end user panel-->
+      <!--end user profile-->
 
-    <!-- who is online widget -->
-    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 pull-right">
-      
     </div>
-    <!-- end who is online widget -->
-
   </div>
+  <!--end user panel-->
+
+</div>
     
 
     
