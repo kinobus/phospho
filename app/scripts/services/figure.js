@@ -7,10 +7,16 @@ angular.module('phosphoApp')
 
     var figureModels = [{
       'pathway': {
-        'title': 'Cell Signaling Pathway', 'directive': 'ph-pathway'
+        'title': 'Cell Signaling Pathway',
+        'directive': 'ph-pathway'
       },
       'kinome': {
-        'title': 'Kinome Snapshot', 'directive': 'ph-kinome'
+        'title': 'Kinome Snapshot',
+        'directiveName': 'ph-kinome',
+        'inputs': [
+          'scaler',
+          'kinomeData'
+        ]
       }
     }];
 

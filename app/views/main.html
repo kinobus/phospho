@@ -35,22 +35,8 @@
 
   </div>
 
-  <!--main col class="col-xs-12 col-sm-4 col-md-6 col-lg-8" -->
-
   <!--dashboard-->
-    <div ng-if="dashboard">
-      <div class="panel panel-default dash-pane {{pane.cols}}" ng-repeat="pane in dashboard.panels">
-        <button type="button" class="btn btn-info btn-block">
-          <img src="images/icons/{{pane.icon}}.png" class="btn-icon">
-          {{pane.title}}
-        </button>
-        <div class="btn-group btn-group pull-right">
-          <button ng-repeat="button in pane.titleButtons" type="button" class="btn btn-info pull-right"><img src="images/icons/{{button.icon}}.png" class="btn-icon"></button> 
-        </div> 
-      </div>
-      
-    </div>
-    <!--end dashboard header-->
+  <ph-dashboard d="dashboard" ng-if="dashboard"></ph-dashboard>
 
 
   <!--end main col-->
