@@ -1,8 +1,18 @@
 'use strict';
 
 angular.module('phosphoApp')
-  .controller('MainCtrl', function ($rootScope, $scope, $filter, dashboards, userFactory, $firebaseAuth, $firebase) {
+  .controller('MainCtrl', function ($rootScope, $scope, $filter, dashboards, figures, userFactory, $firebaseAuth, $firebase) {
 
+    //get figure types from figures and initiailize figureType model 
+    $scope.figureModels = figures;
+    $scope.figureType = $scope.figureModels[0];
+
+    //get dashboards
+    $scope.dashboards = dashboards;
+
+    //Login Stuff --
+
+    //TODO follow angularfire seed example to move firebase into service
     var userRef = new Firebase('https://phospho.firebaseio.com/users');
 
     $scope.auth = $firebaseAuth(userRef);
@@ -14,11 +24,7 @@ angular.module('phosphoApp')
       }
     };
 
-    $scope.selectedItem = null;
-
     $scope.user = userFactory.makeUser();
-
-    $scope.newFigure = {'cols':12};
 
     $rootScope.$on('$firebaseAuth:logout', function() {
       console.log('loggedOut');
@@ -64,25 +70,6 @@ angular.module('phosphoApp')
         });
       }
     };
+    //-- end login stuff
 
-    $scope.deselect = function () {
-      $scope.selectedItem = null;
-    };
-
-
-    $scope.dashboards = dashboards.getDashboards();
-
-    $scope.filterGroups = [
-      {
-        'id':'myObjects',
-        'title':'My Collection',
-        'userlist': [{'user':'selfUser'}]
-      },
-      {
-        'id':'moonlabObjects',
-        'userlist': [{'group':'moonLab'}]
-      }
-    ];
-
-    //$scope.initLogin($scope.auth.user);
   });

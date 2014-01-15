@@ -1,31 +1,24 @@
 <!--header-->
 <div class="panel panel-default col-xs-12 col-sm-8 col-md-9 col-lg-10">
   <div class="panel-body">
-     {{d.headerText}}
+     {{dashboard.headerText}}
   </div>
 </div>
 
-<!--dashboard panels-->
-<div class="panel panel-default dash-pane {{panel.cols}}" ng-repeat="panel in d.panels">
+<!--body-->
+<div ng-switch on="dashboard.dashId">
 
-  <!-- title button-->
-  <button type="button" class="btn btn-info btn-block">
-    <img src="images/icons/{{panel.icon}}.png" class="btn-icon">
-    {{panel.title}}
-  </button>
-
-  <!--body panes-->
-  <div ng-repeat="pane in panel.body">
-
-    <!-- if pane is a selector -->
-    <div ng-if="pane.type === 'select'">
-      <select ng-model="{{pane.model}}">
-    </div>
-
-    <!-- if pane is a graph directive -->
-    <div ng-if="pane.type === 'graphDirective'">
-      <ph-graph type="{{pane.figureType}}" data="{{pane.data}}"></ph-graph>
-    </div>
-
+  <div ng-switch-when="uploadData">
   </div>
+
+  <div ng-switch-when="buildFigure">
+    <ph-build-figure></ph-build-figure>
+  </div>
+
+  <div ng-switch-when="browseFigures">
+  </div>
+
+  <div ng-switch-when="searchFigures">
+  </div>
+
 </div>

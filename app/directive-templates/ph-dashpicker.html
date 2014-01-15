@@ -1,0 +1,8 @@
+<!--dashboard picker-->
+<div class="btn-group-vertical animated fadeInLeft">
+  <button type="button" class="btn btn-default btn-menu" ng-repeat="d in dashboards" ng-click="$parent.dashboard = d">
+    <img src="images/icons/{{d.icon}}.png" class="btn-icon">
+    <i class="{{d.icon}}"></i>
+  {{d.title}}
+  </button>
+</div>

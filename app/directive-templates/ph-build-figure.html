@@ -1,0 +1,28 @@
+<!-- Figure Type Picker -->
+<div class="panel panel-default col-xs-12 col-sm-8 col-md-4 col-lg-4">
+  <div class="panel-heading">
+    Pick a figure type
+  </div>
+  <select ng-model="figureType" ng-options="fig.title for fig in figureModels"></select>
+</div>
+
+<!-- Data Picker -->
+<div class="panel panel-default col-xs-12 col-sm-4 col-md-3 col-lg-4">
+  <div class="panel-heading">
+    Pick Data
+  </div>
+  <select ng-model="data" ng-options="ud.title for ud in userData"></select>
+</div>
+
+<!-- Save Button -->
+<div class="panel panel-default col-xs-12 col-sm-4 col-md-2 col-lg-2">
+  <button type="button" class="btn btn-default">Save</button>
+</div>
+
+<!-- Graph -->
+<div class="panel panel-default col-xs-12 col-sm-8 col-md-9 col-lg-10">
+  <div class="panel-heading">
+    Here is your figure
+  </div>
+  <ph-graph type="figureType" data="data"></ph-graph>
+</div>
