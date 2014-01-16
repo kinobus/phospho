@@ -1,24 +1,32 @@
 <!--header-->
-<div class="panel panel-default col-xs-12 col-sm-8 col-md-9 col-lg-10">
-  <div class="panel-body">
-     {{dashboard.headerText}}
+<div class="row">
+  <div class="col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+         {{dashboard.headerText}}
+      </div>
+    </div>
   </div>
 </div>
 
 <!--body-->
-<div ng-switch on="dashboard.dashId">
+<div class="row">
+  <div ng-switch on="dashboard.dashId">
 
-  <div ng-switch-when="uploadData">
+    <div ng-switch-when="drawPathway">
+      <ph-draw-pathway></ph-draw-pathway>
+    </div>
+
+    <div ng-switch-when="buildFigure">
+      <ph-build-figure></ph-build-figure>
+    </div>
+
+    <div ng-switch-when="browseFigures">
+    </div>
+
+    <div ng-switch-when="searchFigures">
+    </div>
+
   </div>
-
-  <div ng-switch-when="buildFigure">
-    <ph-build-figure></ph-build-figure>
-  </div>
-
-  <div ng-switch-when="browseFigures">
-  </div>
-
-  <div ng-switch-when="searchFigures">
-  </div>
-
 </div>
+  

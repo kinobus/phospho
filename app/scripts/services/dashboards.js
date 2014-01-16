@@ -3,15 +3,15 @@
 angular.module('phosphoApp')
   .constant('dashboards', [
     {
-      'dashId': 'uploadData',
-      'title': 'Upload',
-      'icon': 'curriculum_add',
-      'headerText': 'Upload some data so that you can use it to build a figure.'
+      'dashId': 'drawPathway',
+      'title': 'Pathway',
+      'icon': 'hammer',
+      'headerText': 'Draw a cell signaling pathway that you are interested in.'
     },
     {
       'dashId': 'buildFigure',
-      'title': 'Create',
-      'icon': 'hammer',
+      'title': 'Figure',
+      'icon': 'image_add',
       'headerText':'Build a figure out of data-panels.'
     },{
       'dashId':'browseFigures',

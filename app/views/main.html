@@ -11,43 +11,18 @@
         <button type="button" class="btn btn-success btn-block" ng-click="login('twitter')"><img src="images/icons/antenna.png" class="btn-icon">Log In</button>
       </div>
     </div>
-    <!--End Guest Mode Alert-->
 
     <!--dashboard picker-->
     <ph-dashpicker></ph-dashpicker>
 
   </div>
 
-  <!--dashboard-->
-  <ph-dashboard ng-if="dashboard"></ph-dashboard>
+  <!--right col-->
+  <div class="col-xs-12 col-sm-8 col-md-9 col-lg-10">
+    
+    <!--dashboard-->
+    <ph-dashboard ng-if="dashboard"></ph-dashboard>
 
-  <!--end main col-->
-
-  <!--user panel-->
-  <div class="col-xs-12 col-sm-4 col-md-3 col-lg-2 pull-right">
-    <div class="user-panel-container animated fadeInDown" ng-show="auth.user">
-
-      <!-- user profile--> 
-      <div class="user-panel">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-             <img src={{auth.user.profile_image_url}} class="btn-icon">{{user.username}}
-          </div>
-          <div class="panel-body">
-             Profile blah blah
-          </div>
-          <button type="button" class="btn btn-warning btn-block" ng-hide="auth.user.provider === 'anonymous'" ng-click="login('guest')"><img src="images/icons/connect_close.png" class="btn-icon">Log Out</button>
-        </div>
-      </div>
-      <!--end user profile-->
-
-    </div>
   </div>
-  <!--end user panel-->
-
+  
 </div>
-    
-
-    
-
-

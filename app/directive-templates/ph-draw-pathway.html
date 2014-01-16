@@ -1,0 +1,25 @@
+
+  <!-- Pathway Picker -->
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Choose a Cell Signaling Pathway
+      </div>
+      <select ng-model="pathwayTemplateTitle" ng-options="value for (key, value) in pathwayTemplateTitles" ng-change="getPathwayTemplate(pathwayTemplateTitle)"></select>
+    </div>
+  </div>
+
+  <!-- Pathway Graph -->
+  <div class="col-xs-12 col-sm-8 col-md-9 col-lg-10">
+    <div class="panel panel-default" ng-hide="!pathway">
+        <ph-pathway-edit scaler="1" graph="pathwayTemplate.graph"></ph-pathway-render>
+    </div>
+  </div>
+</div>
+
+<!-- Save Button -->
+<div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
+  <div class="panel panel-default">
+    <button type="button" class="btn btn-default">Save</button>
+  </div>
+</div>

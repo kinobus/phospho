@@ -1,75 +1,71 @@
 'use strict';
 
 angular.module('phosphoApp')
-  .controller('MainCtrl', function ($rootScope, $scope, $filter, dashboards, figures, userFactory, $firebaseAuth, $firebase) {
-
-    //get figure types from figures and initiailize figureType model 
-    $scope.figureModels = figures;
-    $scope.figureType = $scope.figureModels[0];
+  .controller('MainCtrl', function ($scope, dashboards, figures, userFactory, $firebase, FBURL, $firebaseSimpleLogin) {
 
     //get dashboards
     $scope.dashboards = dashboards;
 
-    //Login Stuff --
+    //get figure types from figures 
+    $scope.figureModels = figures;
 
-    //TODO follow angularfire seed example to move firebase into service
-    var userRef = new Firebase('https://phospho.firebaseio.com/users');
-
-    $scope.auth = $firebaseAuth(userRef);
-
-    $scope.initLogin = function (user) {
-      if (!user) {
-        console.log('sup');
-        $scope.login('guest');
-      }
-    };
-
+    //initialize user
     $scope.user = userFactory.makeUser();
 
-    $rootScope.$on('$firebaseAuth:logout', function() {
-      console.log('loggedOut');
-    });
+    //FIREBASE STUFF BELOW, TODO: move it all somewhere else
 
-    $rootScope.$on('$firebaseAuth:login', function(e, user) {
-      console.log('User ' + user.id + ' successfully logged in!');
-      $scope.users = $firebase(userRef);
-      
-      //create a profile (will be denied by firebase if user already exists)
-      $scope.user = $scope.users.$child(user.uid);
-      $scope.user.userid = user.id;
-
-      //set username
-      if (user.username) {
-        $scope.user.username = user.username;
-      } else {
-        var rando = Math.floor((Math.random()*9999)+1);
-        $scope.user.username = 'guest' + rando;
-      }
-
-      //save object
-      $scope.user.$save();
-    });
-
-    $scope.logout = function () {
-      $scope.auth.$logout();
+    //function to get data from firebase
+    $scope.fb = function (dir) {
+      var ref = new Firebase(FBURL + dir);
+      return $firebase(ref);
     };
 
-    $scope.login = function (source) {
-      if (source === 'twitter') {
-        $scope.auth.$login('twitter').then(function(user) {
-          //$rootScope.user = user;
-          console.log('Logged in as: ', user.uid);
-        }, function(error) {
-          console.error('Login failed: ', error);
-        });
-      } else if (source === 'guest') {
-        $scope.auth.$login('anonymous').then(function(user) {
-          console.log('Logged in as: ', user.uid);
-        }, function(error) {
-          console.error('Login failed: ', error);
-        });
-      }
+    //** Login Stuff **
+    $scope.login = function (provider) {
+      //log in via simpleLogin with specified provider
+      var ref = new Firebase(FBURL);
+      $scope.loginObj = $firebaseSimpleLogin(ref);
+      $scope.loginObj.$login(provider).then(function (user) {
+
+        //succesful login
+        console.log('Logged in as: ', user.uid);
+
+      }, function(error) {
+        console.error('Login failed: ', error);
+      });
     };
-    //-- end login stuff
+
+    $scope.initLogin = function () {
+      //login as an anonymous user
+      //TODO override this if already signed in
+      $scope.login('anonymous');
+
+      //make an account
+      //TODO override this if already have an account (check in $scope.users)
+      //$scope.user = $scope.users.$child(user.uid);
+      //$scope.user.userid = user.id;
+    };
+
+    //log in right away
+    $scope.initLogin();
+
+    //Get kinase-substrate interactome titles from firebase
+    $scope.ksIntTitles = $scope.fb('/interactomes/titles');
+
+    //Get cell signaling pathway titles from firebase
+    $scope.pathwayTitles = $scope.fb('/pathways/titles');
+
+    //function to get pathway
+    $scope.getPathway = function (title) {
+      $scope.pathway = $scope.fb('/pathways/' + title);
+    };
+
+    //Get cell signaling pathway template titles from firebase
+    $scope.pathwayTemplateTitles = $scope.fb('/pathwayTemplates/titles');
+
+    //function to get pathwayTemplate
+    $scope.getPathwayTemplate = function (title) {
+      $scope.pathwayTemplate = $scope.fb('/pathwayTemplates/' + title);
+    };
 
   });

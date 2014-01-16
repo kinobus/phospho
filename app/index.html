@@ -62,12 +62,15 @@
        ga('send', 'pageview');
     </script>
 
-    <script src="bower_components/jquery/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
+    <script src="bower_components/d3/d3.js"></script>
+    <script src="//cdn.firebase.com/v0/firebase-simple-login.js"></script>
+    <script src="//cdn.firebase.com/v0/firebase.js"></script>
 
         <!-- build:js scripts/plugins.js -->
-        <script src="bower_components/firebase/firebase.js"></script>
-        <script src="bower_components/firebase-simple-login/firebase-simple-login.js"></script>
+        
+        
         <!-- endbuild -->
 
         <!-- build:js scripts/modules.js -->
@@ -77,7 +80,7 @@
         <script src="bower_components/angular-route/angular-route.js"></script>
         <script src="bower_components/angular-animate/angular-animate.min.js"></script>
         <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-        <script src="bower_components/angularfire/angularfire.min.js"></script>
+        <script src='https://cdn.firebase.com/libs/angularfire/0.6.0/angularfire.min.js'></script>
         <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
@@ -94,6 +97,10 @@
         <script src="scripts/directives/phGraphpicker.js"></script>
         <script src="scripts/directives/phBuildFigure.js"></script>
         <script src="scripts/services/demoData.js"></script>
+        <script src="scripts/services/FBURL.js"></script>
+        <script src="scripts/directives/phDrawPathway.js"></script>
+        <script src="scripts/directives/phPathwayRender.js"></script>
+        <script src="scripts/directives/phPathwayEdit.js"></script>
         <!-- endbuild -->
 </body>
 </html>
