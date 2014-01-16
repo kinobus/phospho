@@ -16,6 +16,8 @@ angular.module('phosphoApp')
       },
       link: function postLink(scope, element, attrs) {
 
+        var scale = scope.scaler;
+
         var svg = d3.select(element[0])
             .append('svg')
             .attr('width', width)
@@ -58,21 +60,24 @@ angular.module('phosphoApp')
               .attr('d','M24.5,18.5 L96.5,18.5 C103.127,18.5 108.5,23.873 108.5,30.5 L108.5,42.5 C108.5,49.127 103.127,54.5 96.5,54.5 L24.5,54.5 C17.873,54.5 12.5,49.127 12.5,42.5 L12.5,30.5 C12.5,23.873 17.873,18.5 24.5,18.5 z')
               .attr('fill','#F3B73E')
               .attr('stroke', '#000')
-              .attr('stroke-width', '3px');
+              .attr('stroke-width', '3px')
+              .attr('transform', function() { return 'scale(' + scale +')'; });
 
           defs.append('svg:path')
               .attr('id', 'event-node')
               .attr('d','M0.5,12.5 L120.5,12.5 L120.5,60.5 L0.5,60.5 z')
               .attr('fill','#2AFFFF')
               .attr('stroke', '#000')
-              .attr('stroke-width', '3px');
+              .attr('stroke-width', '3px')
+              .attr('transform', function() { return 'scale(' + scale +')'; });
 
           defs.append('svg:path')
               .attr('id', 'pathway-node')
               .attr('d','M0.5,12.5 L120.5,12.5 L120.5,60.5 L0.5,60.5 z')
               .attr('fill','#55FF6D')
               .attr('stroke', '#000')
-              .attr('stroke-width', '3px');
+              .attr('stroke-width', '3px')
+              .attr('transform', function() { return 'scale(' + scale +')'; });
 
           var gradient = defs.append('svg:linearGradient')
               .attr('id', 'gradient')
