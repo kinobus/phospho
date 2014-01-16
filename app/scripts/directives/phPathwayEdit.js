@@ -11,8 +11,7 @@ angular.module('phosphoApp')
       scope: { // attributes bound to the scope of the directive
         graph: '=',
         scaler: '=',
-        selectNode: '&',
-        selectPath: '&'
+        selectItem: '&'
       },
       link: function postLink(scope, element, attrs) {
 
@@ -218,14 +217,18 @@ angular.module('phosphoApp')
           }
 
           function dblclickNode (d) {
-            return scope.selectNode({item: d});
+            return scope.selectItem({item: 
+              {graphItem: d, type: 'node'}
+            });
           }
 
           function dblclickPath (d) {
-            return scope.selectPath({item: d});
+            return scope.selectItem({item: 
+              {graphItem: d, type: 'link'}
+            });
           }
 
-        });
+        }, true);
       }
     };
   });
