@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Controller: GraphCtrl', function () {
+describe('Controller: DrawPathwayCtrl', function () {
 
   // load the controller's module
   beforeEach(module('phosphoApp'));
@@ -11,7 +11,7 @@ describe('Controller: GraphCtrl', function () {
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    GraphCtrl = $controller('GraphCtrl', {
+    DrawPathwayCtrl = $controller('DrawPathwayCtrl', {
       $scope: scope
     });
   }));

@@ -29,7 +29,7 @@
         <div class="panel-heading">
           Choose a Cell Signaling Pathway
         </div>
-        <select ng-model="pathwayTitle" ng-options="value for (key, value) in pathwayTitles" ng-change="getPathway(pathwayTitle)"></select>
+        <select ng-model="pathwayTitle" ng-options="value for (key, value) in user.collection.pathways.titles" ng-change="getPathway(pathwayTitle)"></select>
       </div>
     </div>
     <!-- Pathway Graph -->

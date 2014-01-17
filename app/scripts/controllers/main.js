@@ -57,7 +57,8 @@ angular.module('phosphoApp')
 
     //function to get pathway
     $scope.getPathway = function (title) {
-      $scope.pathway = $scope.fb('/pathways/' + title);
+      $scope.pathway = $scope.user.collection.pathways.pathways[title];
+      //$scope.pathway = $scope.fb('/pathways/' + title);
     };
 
     //Get cell signaling pathway template titles from firebase

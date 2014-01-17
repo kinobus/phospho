@@ -5,6 +5,6 @@ angular.module('phosphoApp')
     return {
       templateUrl: 'directive-templates/ph-draw-pathway.html',
       restrict: 'E',
-      controller: 'GraphCtrl'
+      controller: 'DrawPathwayCtrl'
     };
   });

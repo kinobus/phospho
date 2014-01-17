@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('phosphoApp')
-  .controller('GraphCtrl', function ($scope) {
+  .controller('DrawPathwayCtrl', function ($scope) {
 
     //initialize pathway title
     $scope.pathwayTitle = "Untitled Pathway";
@@ -72,7 +72,8 @@ angular.module('phosphoApp')
     }
 
     $scope.savePathway = function () {
-      
+      $scope.user.collection.pathways.titles.push($scope.pathwayTitle);
+      $scope.user.collection.pathways.pathways.push($scope.pathwayTemplate);
     };
 
   });

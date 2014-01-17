@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('phosphoApp')
-  .factory('userFactory', function (demoData) {
+  .factory('userFactory', function (demoData, demoPathways) {
     // Service logic
     // ...
     //These values should be passed to userFactory from a method invoked after a succesful firebase login
@@ -11,7 +11,7 @@ angular.module('phosphoApp')
       'username': 'guest',
       'collection': {
         'datasets': demoData,
-        'pathways': []
+        'pathways': demoPathways
       }
     };
 
