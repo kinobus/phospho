@@ -67,4 +67,6 @@ angular.module('phosphoApp')
       $scope.pathwayTemplate.graph.links.push(newLink);
     }
 
+    $scope.pathwayTitle = "Untitled Pathway";
+
   });

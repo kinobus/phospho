@@ -3,7 +3,7 @@
 angular.module('phosphoApp')
   .directive('phPathwayEdit', function () {
     //constants
-    var width = 516,
+    var width = 514,
       height = 600;
 
     return {
