@@ -6,6 +6,10 @@ angular.module('phosphoApp')
     //get dashboards
     $scope.dashboards = dashboards;
 
+    $scope.setDash = function (dash) {
+      $scope.dashboard = dash
+    };
+
     //get figure types from figures 
     $scope.figureModels = figures;
 
@@ -30,24 +34,20 @@ angular.module('phosphoApp')
         //succesful login
         console.log('Logged in as: ', user.uid);
 
+        //add firebase's simpleLoginObj userId to current user
+        $scope.user.userid = $scope.loginObj.user.id;
+
+        //make an account
+        //$scope.fbUsers = $scope.fb('/users');
+        //$scope.fbUsers.$add($scope.user);
+
       }, function(error) {
         console.error('Login failed: ', error);
       });
     };
 
-    $scope.initLogin = function () {
-      //login as an anonymous user
-      //TODO override this if already signed in
-      $scope.login('anonymous');
-
-      //make an account
-      //TODO override this if already have an account (check in $scope.users)
-      //$scope.user = $scope.users.$child(user.uid);
-      //$scope.user.userid = user.id;
-    };
-
-    //log in right away
-    $scope.initLogin();
+    //log in right away as anonymous
+    $scope.login('anonymous');
 
     //Get kinase-substrate interactome titles from firebase
     $scope.ksIntTitles = $scope.fb('/interactomes/titles');

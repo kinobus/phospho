@@ -8,9 +8,10 @@ angular.module('phosphoApp')
     //The input arguments will be passed from the $scope.auth.user (initialized by firebaseAuth)
 
     var userModel = {
-      'user': 'guest',
+      'username': 'guest',
       'collection': {
-        'datasets': demoData
+        'datasets': demoData,
+        'pathways': []
       }
     };
 

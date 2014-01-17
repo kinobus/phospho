@@ -3,6 +3,9 @@
 angular.module('phosphoApp')
   .controller('GraphCtrl', function ($scope) {
 
+    //initialize pathway title
+    $scope.pathwayTitle = "Untitled Pathway";
+
     $scope.clearSelection = function () {
       $scope.selectedItem = null;
     };
@@ -58,6 +61,7 @@ angular.module('phosphoApp')
       $scope.pathwayTemplate.graph.nodes.push(newNode);
     }
 
+    //TODO fix this!
     $scope.newLink = function (source, target) {
       var newLink = {
         "source": source,
@@ -67,6 +71,8 @@ angular.module('phosphoApp')
       $scope.pathwayTemplate.graph.links.push(newLink);
     }
 
-    $scope.pathwayTitle = "Untitled Pathway";
+    $scope.savePathway = function () {
+      
+    };
 
   });
