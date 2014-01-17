@@ -5,7 +5,7 @@ describe('Controller: DrawPathwayCtrl', function () {
   // load the controller's module
   beforeEach(module('phosphoApp'));
 
-  var GraphCtrl,
+  var DrawPathwayCtrl,
     scope;
 
   // Initialize the controller and a mock scope

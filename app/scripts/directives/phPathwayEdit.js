@@ -1,3 +1,4 @@
+/* global d3 */
 'use strict';
 
 angular.module('phosphoApp')
@@ -13,7 +14,7 @@ angular.module('phosphoApp')
         scaler: '=',
         selectItem: '&'
       },
-      link: function postLink(scope, element, attrs) {
+      link: function postLink(scope, element) {
 
         var scale = scope.scaler;
 
@@ -22,9 +23,9 @@ angular.module('phosphoApp')
             .attr('width', width)
             .attr('height', height);
 
-        scope.$watch('graph', function (newVal, oldVal) {
+        scope.$watch('graph', function (newVal) {
 
-          svg.selectAll('*').remove();
+          //svg.selectAll('*').remove();
 
           if (!newVal) {
             return;

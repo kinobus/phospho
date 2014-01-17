@@ -5,179 +5,194 @@ angular.module('phosphoApp')
     'titles':[
       'DLBCL'
     ],
-    'pathways': [
-      {'DLBCL':{
+    'pathways': {
+      'DLBCL':{
+        'metadata':{
+          'user':'Ricker',
+          'title':'DLBCL pathway'
+        },
         'graph':{
           'nodes':[
             {
               'id':0,
-              'Label':'BCR',
-              'Type':'prot'
+              'label':'BCR',
+              'type':'prot',
+              'compartment':'membrane'
             },
             {
               'id':1,
-              'Label':'PIK3CD',
-              'Type':'prot'
+              'label':'PIK3CD',
+              'type':'prot',
+              'compartment':'cytosol'
             },
             {
               'id':2,
-              'Label':'PIK3R1',
-              'Type':'prot'
+              'label':'PIK3R1',
+              'type':'prot',
+              'compartment':'cytosol'
             },
             {
               'id':3,
-              'Label':'Cell Growth',
-              'Type':'event'
+              'label':'Cell Growth',
+              'type':'event',
+              'compartment':'nucleus'
             },
             {
               'id':4,
-              'Label':'LYN',
-              'Type':'prot'
+              'label':'LYN',
+              'type':'prot',
+              'compartment':'cytosol'
             },
             {
               'id':5,
-              'Label':'CD79',
-              'Type':'prot'
+              'label':'CD79',
+              'type':'prot',
+              'compartment':'membrane'
             },
             {
               'id':6,
-              'Label':'SYK',
-              'Type':'prot'
+              'label':'SYK',
+              'type':'prot',
+              'compartment':'cytosol'
             },
             {
               'id':7,
-              'Label':'IRAK4',
-              'Type':'prot'
+              'label':'IRAK4',
+              'type':'prot',
+              'compartment':'cytosol'
             },
             {
               'id':8,
-              'Label':'BCL6',
-              'Type':'prot'
+              'label':'BCL6',
+              'type':'prot',
+              'compartment':'cytosol'
             },
             {
               'id':9,
-              'Label':'NFKB Path',
-              'Type':'Path'
+              'label':'NFKB Path',
+              'type':'pathway',
+              'compartment':'cytosol'
             },
             {
               'id':10,
-              'Label':'Ca2+ Rel',
-              'Type':'event'
+              'label':'Ca2+ Rel',
+              'type':'event',
+              'compartment':'membrane'
             },
             {
               'id':11,
-              'Label':'BTK',
-              'Type':'prot'
+              'label':'BTK',
+              'type':'prot',
+              'compartment':'cytosol'
             },
             {
               'id':12,
-              'Label':'CARD11',
-              'Type':'prot'
+              'label':'CARD11',
+              'type':'prot',
+              'compartment':'cytosol'
             },
             {
               'id':13,
-              'Label':'JAK2',
-              'Type':'prot'
+              'label':'JAK2',
+              'type':'prot',
+              'compartment':'cytosol'
             },
             {
               'id':14,
-              'Label':'STAT3',
-              'Type':'prot'
+              'label':'STAT3',
+              'type':'prot',
+              'compartment':'cytosol'
             },
             {
               'id':15,
-              'Label':'Cell Survival',
-              'Type':'event'
+              'label':'Cell Survival',
+              'type':'event',
+              'compartment':'nucleus'
             }
           ],
           'links':[
             {
               'source':0,
               'target':1,
-              'Type':'activate'
+              'type':'activate'
             },
             {
               'source':1,
               'target':2,
-              'Type':'activate'
+              'type':'activate'
             },
             {
               'source':2,
               'target':3,
-              'Type':'activate'
+              'type':'activate'
             },
             {
               'source':4,
               'target':0,
-              'Type':'inhibit'
+              'type':'inhibit'
             },
             {
               'source':4,
               'target':5,
-              'Type':'inhibit'
+              'type':'inhibit'
             },
             {
               'source':4,
               'target':6,
-              'Type':'activate'
+              'type':'activate'
             },
             {
               'source':6,
               'target':11,
-              'Type':'activate'
+              'type':'activate'
             },
             {
               'source':11,
               'target':10,
-              'Type':'activate'
+              'type':'activate'
             },
             {
               'source':10,
               'target':12,
-              'Type':'activate'
+              'type':'activate'
             },
             {
               'source':12,
               'target':9,
-              'Type':'activate'
+              'type':'activate'
             },
             {
               'source':13,
               'target':14,
-              'Type':'activate'
+              'type':'activate'
             },
             {
               'source':14,
               'target':15,
-              'Type':'activate'
+              'type':'activate'
             },
             {
               'source':7,
               'target':9,
-              'Type':'activate'
+              'type':'activate'
             },
             {
               'source':8,
               'target':3,
-              'Type':'activate'
+              'type':'activate'
             },
             {
               'source':9,
               'target':15,
-              'Type':'activate'
+              'type':'activate'
             },
             {
               'source':9,
               'target':3,
-              'Type':'activate'
+              'type':'activate'
             }
-          ],
-          'metadata':{
-            'author':'Phospho',
-            'title':'DLBCL'
-          }
+          ]
         }
       }
     }
-    ]
   });

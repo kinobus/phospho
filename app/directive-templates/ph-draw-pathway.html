@@ -1,11 +1,11 @@
 <!-- Pathway Graph -->
-<div class="col-xs-12 col-sm-10 col-md-9 col-lg-7" ng-show="pathwayTemplate">
+<div class="col-xs-12 col-sm-10 col-md-9 col-lg-7" ng-show="pathway">
   <div class="panel panel-default">
     <div class="panel-heading">
-      {{pathwayTitle}}
+      {{newPathwayTitle}}
     </div>
     <div>
-      <ph-pathway-edit scaler="1" graph="pathwayTemplate.graph" select-node="selectNode(item)" select-item="selectItem(item)"></ph-pathway-render>
+      <ph-pathway-edit scaler="1" graph="pathway.graph" select-item="selectItem(item)"></ph-pathway-edit>
     </div>
   </div>
 </div>
@@ -41,7 +41,7 @@
             </li>
             <li class="list-group-item">
               <strong class="list-group-item-heading">Add Target</strong><br>
-              <select ng-model="newTarget" ng-options="n as n.label for n in pathwayTemplate.graph.nodes"></select>
+              <select ng-model="newTarget" ng-options="n as n.label for n in pathway.graph.nodes"></select>
               <button type="button" class="btn btn-default" ng-click="newLink(selectedItem.graphItem, newTarget)">+</button>
             </li>
           </div>
@@ -50,11 +50,11 @@
           <div ng-switch-when="link">
             <li class="list-group-item">
               <strong class="list-group-item-heading">Source</strong><br>
-              <select ng-model="selectedItem.graphItem.source" ng-options="n as n.label for n in pathwayTemplate.graph.nodes"></select>
+              <select ng-model="selectedItem.graphItem.source" ng-options="n as n.label for n in pathway.graph.nodes"></select>
             </li>
             <li class="list-group-item">
               <strong class="list-group-item-heading">Target</strong><br>
-              <select ng-model="selectedItem.graphItem.target" ng-options="n as n.label for n in pathwayTemplate.graph.nodes"></select>
+              <select ng-model="selectedItem.graphItem.target" ng-options="n as n.label for n in pathway.graph.nodes"></select>
             </li>
             <li class="list-group-item">
               <strong class="list-group-item-heading">Type</strong><br>
@@ -86,19 +86,19 @@
   <div ng-hide="selectedItem">
     <div class="panel panel-default">
       <ul class="list-group">
-        <li class="list-group-item" ng-show="pathwayTemplate">
+        <li class="list-group-item" ng-show="pathway">
           <strong class="list-group-item-heading">Title</strong><br>
-          <input type="text" size="14" ng-model="pathwayTitle">
+          <input type="text" size="14" ng-model="newPathwayTitle">
         </li>
-        <li class="list-group-item" ng-show="pathwayTemplate">
+        <li class="list-group-item" ng-show="pathway">
           <button type="button" class="btn btn-default btn-block" ng-click="savePathway()"><img class="btn-icon" src="images/icons/treasure_chest_add.png">Save</button>
         </li>
 
         <li class="list-group-item">
           <strong class="list-group-item-heading">Template</strong><br>
-          <select ng-model="pathwayTemplateTitle" ng-options="value for (key, value) in pathwayTemplateTitles" ng-change="getPathwayTemplate(pathwayTemplateTitle)"></select>
+          <select ng-model="templateTitle" ng-options="t for t in user.collection.pathways.titles" ng-change="getPathway(templateTitle)"></select>
         </li>
-        <li class="list-group-item" ng-show="pathwayTemplate">
+        <li class="list-group-item" ng-show="pathway">
           <button type="button" class="btn btn-default" ng-click="newNode()">Add Node</button>
         </li>
       </ul>

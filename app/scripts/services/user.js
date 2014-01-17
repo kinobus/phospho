@@ -11,7 +11,10 @@ angular.module('phosphoApp')
       'username': 'guest',
       'collection': {
         'datasets': demoData,
-        'pathways': demoPathways
+        'pathways': {
+          'titles': demoPathways.titles,
+          'pathways': demoPathways.pathways
+        }
       }
     };
 

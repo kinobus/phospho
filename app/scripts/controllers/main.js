@@ -1,17 +1,15 @@
+/* global Firebase */
 'use strict';
 
 angular.module('phosphoApp')
-  .controller('MainCtrl', function ($scope, dashboards, figures, userFactory, $firebase, FBURL, $firebaseSimpleLogin) {
+  .controller('MainCtrl', function ($scope, dashboards, userFactory, $firebase, FBURL, $firebaseSimpleLogin) {
 
     //get dashboards
     $scope.dashboards = dashboards;
 
     $scope.setDash = function (dash) {
-      $scope.dashboard = dash
+      $scope.dashboard = dash;
     };
-
-    //get figure types from figures 
-    $scope.figureModels = figures;
 
     //initialize user
     $scope.user = userFactory.makeUser();
@@ -51,22 +49,5 @@ angular.module('phosphoApp')
 
     //Get kinase-substrate interactome titles from firebase
     $scope.ksIntTitles = $scope.fb('/interactomes/titles');
-
-    //Get cell signaling pathway titles from firebase
-    $scope.pathwayTitles = $scope.fb('/pathways/titles');
-
-    //function to get pathway
-    $scope.getPathway = function (title) {
-      $scope.pathway = $scope.user.collection.pathways.pathways[title];
-      //$scope.pathway = $scope.fb('/pathways/' + title);
-    };
-
-    //Get cell signaling pathway template titles from firebase
-    $scope.pathwayTemplateTitles = $scope.fb('/pathwayTemplates/titles');
-
-    //function to get pathwayTemplate
-    $scope.getPathwayTemplate = function (title) {
-      $scope.pathwayTemplate = $scope.fb('/pathwayTemplates/' + title);
-    };
 
   });

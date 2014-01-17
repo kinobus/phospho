@@ -1,3 +1,5 @@
+/* global d3 */
+/* global _ */
 'use strict';
 
 angular.module('phosphoApp')
@@ -15,7 +17,15 @@ angular.module('phosphoApp')
         selectNode: '&',
         selectPath: '&'
       },
-      link: function postLink(scope, element, attrs) {
+      link: function postLink(scope, element) {
+
+        function dblclickNode (d) {
+          return scope.selectNode({item: d});
+        }
+
+        function dblclickPath (d) {
+          return scope.selectPath({item: d});
+        }
 
         var scale = scope.scaler;
 
@@ -24,13 +34,15 @@ angular.module('phosphoApp')
             .attr('width', width * scale)
             .attr('height', height * scale);
 
+        //SHOULD PROBABLY GET RID OF BOTH WATCHES BELOW, ISN'T THIS DIRECTIVE JUST FOR RENDERING ONCE?
+
         //consider changing to shallow watch instead of deep watch
-        scope.$watch('graph', function (newGraph, oldGraph) {
+        scope.$watch('graph', function (newGraph) {
           return scope.renderGraph(newGraph, scope.dataset);
         }, true);
 
         //consider changing to shallow watch instead of deep watch
-        scope.$watch('dataset', function (newDataset, oldDataset) {
+        scope.$watch('dataset', function (newDataset) {
           return scope.renderGraph(scope.graph, newDataset);
         }, true);
 
@@ -55,78 +67,78 @@ angular.module('phosphoApp')
           var defs = svg.append('svg:defs');
 
           defs.append('svg:marker')
-              .attr('id', 'activate-arrow')
-              .attr('viewBox', '0 -5 10 10')
-              .attr('refX', 6)
-              .attr('markerWidth', 3)
-              .attr('markerHeight', 3)
-              .attr('orient', 'auto')
+            .attr('id', 'activate-arrow')
+            .attr('viewBox', '0 -5 10 10')
+            .attr('refX', 6)
+            .attr('markerWidth', 3)
+            .attr('markerHeight', 3)
+            .attr('orient', 'auto')
             .append('svg:path')
-              .attr('d', 'M0,-5L10,0L0,5')
-              .attr('fill', '#00FF00');
+            .attr('d', 'M0,-5L10,0L0,5')
+            .attr('fill', '#00FF00');
 
           defs.append('svg:marker')
-              .attr('id', 'inhibit-arrow')
-              .attr('viewBox', '0 -5 10 10')
-              .attr('refX', 6)
-              .attr('markerWidth', 3)
-              .attr('markerHeight', 3)
-              .attr('orient', 'auto')
+            .attr('id', 'inhibit-arrow')
+            .attr('viewBox', '0 -5 10 10')
+            .attr('refX', 6)
+            .attr('markerWidth', 3)
+            .attr('markerHeight', 3)
+            .attr('orient', 'auto')
             .append('svg:path')
-              .attr('d', 'M0,-5L10,0L0,5')
-              .attr('fill', '#FF0000');
+            .attr('d', 'M0,-5L10,0L0,5')
+            .attr('fill', '#FF0000');
 
           defs.append('svg:path')
-              .attr('id', 'prot-node')
-              .attr('d','M24.5,18.5 L96.5,18.5 C103.127,18.5 108.5,23.873 108.5,30.5 L108.5,42.5 C108.5,49.127 103.127,54.5 96.5,54.5 L24.5,54.5 C17.873,54.5 12.5,49.127 12.5,42.5 L12.5,30.5 C12.5,23.873 17.873,18.5 24.5,18.5 z')
-              .attr('fill','#F3B73E')
-              .attr('stroke', '#000')
-              .attr('stroke-width', '3px')
-              .attr('transform', function() { return 'scale(' + scale +')'; });
+            .attr('id', 'prot-node')
+            .attr('d','M24.5,18.5 L96.5,18.5 C103.127,18.5 108.5,23.873 108.5,30.5 L108.5,42.5 C108.5,49.127 103.127,54.5 96.5,54.5 L24.5,54.5 C17.873,54.5 12.5,49.127 12.5,42.5 L12.5,30.5 C12.5,23.873 17.873,18.5 24.5,18.5 z')
+            .attr('fill','#F3B73E')
+            .attr('stroke', '#000')
+            .attr('stroke-width', '3px')
+            .attr('transform', function() { return 'scale(' + scale +')'; });
 
           defs.append('svg:path')
-              .attr('id', 'event-node')
-              .attr('d','M0.5,12.5 L120.5,12.5 L120.5,60.5 L0.5,60.5 z')
-              .attr('fill','#2AFFFF')
-              .attr('stroke', '#000')
-              .attr('stroke-width', '3px')
-              .attr('transform', function() { return 'scale(' + scale +')'; });
+            .attr('id', 'event-node')
+            .attr('d','M0.5,12.5 L120.5,12.5 L120.5,60.5 L0.5,60.5 z')
+            .attr('fill','#2AFFFF')
+            .attr('stroke', '#000')
+            .attr('stroke-width', '3px')
+            .attr('transform', function() { return 'scale(' + scale +')'; });
 
           defs.append('svg:path')
-              .attr('id', 'pathway-node')
-              .attr('d','M0.5,12.5 L120.5,12.5 L120.5,60.5 L0.5,60.5 z')
-              .attr('fill','#55FF6D')
-              .attr('stroke', '#000')
-              .attr('stroke-width', '3px')
-              .attr('transform', function() { return 'scale(' + scale +')'; });
+            .attr('id', 'pathway-node')
+            .attr('d','M0.5,12.5 L120.5,12.5 L120.5,60.5 L0.5,60.5 z')
+            .attr('fill','#55FF6D')
+            .attr('stroke', '#000')
+            .attr('stroke-width', '3px')
+            .attr('transform', function() { return 'scale(' + scale +')'; });
 
           var gradient = defs.append('svg:linearGradient')
-              .attr('id', 'gradient')
-              .attr('x1', '0%')
-              .attr('y1', '0%')
-              .attr('x2', '0%')
-              .attr('y2', '100%')
-              .attr('spreadMethod', 'pad');
+            .attr('id', 'gradient')
+            .attr('x1', '0%')
+            .attr('y1', '0%')
+            .attr('x2', '0%')
+            .attr('y2', '100%')
+            .attr('spreadMethod', 'pad');
 
           gradient.append('svg:stop')
-              .attr('offset', '0%')
-              .attr('stop-color', '#3F91A3')
-              .attr('stop-opacity', 1);
+            .attr('offset', '0%')
+            .attr('stop-color', '#3F91A3')
+            .attr('stop-opacity', 1);
 
           gradient.append('svg:stop')
-              .attr('offset', '10%')
-              .attr('stop-color', '#6A6A6A')
-              .attr('stop-opacity', 1);
+            .attr('offset', '10%')
+            .attr('stop-color', '#6A6A6A')
+            .attr('stop-opacity', 1);
 
           gradient.append('svg:stop')
-              .attr('offset', '90%')
-              .attr('stop-color', '#6A6A6A')
-              .attr('stop-opacity', 1);
+            .attr('offset', '90%')
+            .attr('stop-color', '#6A6A6A')
+            .attr('stop-opacity', 1);
 
           gradient.append('svg:stop')
-              .attr('offset', '100%')
-              .attr('stop-color', '#FF2A85')
-              .attr('stop-opacity', 1);
+            .attr('offset', '100%')
+            .attr('stop-color', '#FF2A85')
+            .attr('stop-opacity', 1);
 
           var colorScale = d3.scale.quantize()
             .domain([0, 10])
@@ -213,17 +225,8 @@ angular.module('phosphoApp')
           node.on('dblclick', dblclickNode);
 
           node.attr('transform', function (d) {
-                return 'translate(' + ((d.x - 60) * scale) + ',' + ((d.y - 36) * scale) + ')';
-              });
-
-          function dblclickNode (d) {
-            return scope.selectNode({item: d});
-          }
-
-          function dblclickPath (d) {
-            return scope.selectPath({item: d});
-          }
-
+            return 'translate(' + ((d.x - 60) * scale) + ',' + ((d.y - 36) * scale) + ')';
+          });
         };
       }
     };
