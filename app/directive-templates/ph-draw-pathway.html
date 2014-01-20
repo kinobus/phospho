@@ -2,7 +2,7 @@
 <div class="col-xs-12 col-sm-12 col-md-9 col-lg-7" ng-show="pathway">
   <div class="panel panel-default panel-pathway">
     <div class="panel-heading">
-      {{newPathwayTitle}}
+      {{newTitle}}
     </div>
     <div>
       <ph-pathway-edit scaler="1" graph="pathway.graph" select-item="selectItem(item)"></ph-pathway-edit>
@@ -89,11 +89,11 @@
       <ul class="list-group">
         <li class="list-group-item" ng-show="pathway">
           <strong class="list-group-item-heading">Title</strong><br>
-          <input type="text" size="14" ng-model="newPathwayTitle">
+          <input type="text" size="14" ng-model="newTitle">
         </li>
         <li class="list-group-item">
           <strong class="list-group-item-heading">Template</strong><br>
-          <select class="sidebar-select" ng-model="templateTitle" ng-options="t for t in user.collection.pathways.titles" ng-change="getPathway(templateTitle)"></select>
+          <select class="sidebar-select" ng-model="templateTitle" ng-options="t for t in user.collection.pathways.titles" ng-change="getTemplate(templateTitle)"></select>
         </li>
         <li class="list-group-item" ng-show="pathway">
           <button type="button" class="btn btn-default btn-block" ng-click="newNode()">Add Node</button>
@@ -102,7 +102,7 @@
           <tags-input ng-model="pathway.metadata.tags"></tags-input>
         </li>
         <li class="list-group-item" ng-show="pathway">
-          <button type="button" class="btn btn-default btn-block" ng-click="savePathway()"><img class="btn-icon" src="images/icons/treasure_chest_add.png">Save</button>
+          <button type="button" class="btn btn-default btn-block" ng-click="save()"><img class="btn-icon" src="images/icons/treasure_chest_add.png">Save</button>
         </li>
       </ul>
     </div>

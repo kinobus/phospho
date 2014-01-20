@@ -1,5 +1,4 @@
 /* global d3 */
-/* global _ */
 'use strict';
 
 angular.module('phosphoApp')
@@ -13,9 +12,7 @@ angular.module('phosphoApp')
       scope: {
         graph: '=',
         scaler: '=',
-        dataset: '=',
-        selectNode: '&',
-        selectPath: '&'
+        selectItem: '&'
       },
       link: function postLink(scope, element) {
 
@@ -34,35 +31,19 @@ angular.module('phosphoApp')
             .attr('width', width * scale)
             .attr('height', height * scale);
 
-        //SHOULD PROBABLY GET RID OF BOTH WATCHES BELOW, ISN'T THIS DIRECTIVE JUST FOR RENDERING ONCE?
 
         //consider changing to shallow watch instead of deep watch
         scope.$watch('graph', function (newGraph) {
-          return scope.renderGraph(newGraph, scope.dataset);
+          return scope.renderGraph(newGraph);
         }, true);
 
-        //consider changing to shallow watch instead of deep watch
-        scope.$watch('dataset', function (newDataset) {
-          return scope.renderGraph(scope.graph, newDataset);
-        }, true);
-
-        scope.renderGraph = function (graph, dataset) {
+        scope.renderGraph = function (graph) {
 
           svg.selectAll('*').remove();
 
-          if (!graph || !dataset) {
+          if (!graph) {
             return;
           }
-
-          //TODO
-          //bind ptms from dataset onto graph.nodes
-          _.map(graph.nodes, function (node) {
-            var nodeData = _.findWhere(dataset.data, {gene: node.label});
-            if (nodeData) {
-              var newObj = {mean: nodeData.mean};
-              return _.extend(node, newObj);
-            }
-          });
 
           var defs = svg.append('svg:defs');
 

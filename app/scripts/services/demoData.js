@@ -3,7 +3,7 @@
 angular.module('phosphoApp')
   .constant('demoData', [
   {
-    'title': 'Ibrutinib vs DMSO',
+    'title': 'Ibrutinib',
     'type': 'ms2',
     'data': [
       {'gene':'BLK','mean':0.30396680755360805},
@@ -35,7 +35,7 @@ angular.module('phosphoApp')
       {'gene':'PTPN6','mean':1.05548985482689}
     ]
   },{
-    'title': 'Dasatinib vs DMSO',
+    'title': 'Dasatinib',
     'type': 'ms2',
     'data': [
       {'gene':'BLK','mean':0.20037612935747798},

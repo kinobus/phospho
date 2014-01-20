@@ -68,20 +68,25 @@ angular.module('phosphoApp')
       $scope.pathway.graph.links.push(newLink);
     };
 
+    //TODO make this part of a service or place it in the main controller
     //function to get pathway
-    $scope.getPathway = function (title) {
-      $scope.pathway = angular.copy($scope.user.collection.pathways.pathways[title]);
+    $scope.getTemplate = function (title) {
+      $scope.pathway = angular.copy($scope.user.collection.templates.templates[title]);
     };
 
-    $scope.savePathway = function () {
-      $scope.user.collection.pathways.titles.push($scope.newPathwayTitle);
-      $scope.user.collection.pathways.pathways[$scope.newPathwayTitle] = $scope.pathway;
+    $scope.save = function () {
+      //save as a template
+
+      //save as a pathway
+      $scope.user.collection.pathways.titles.push($scope.newTitle);
+      $scope.user.collection.pathways.pathways[$scope.newTitle] = $scope.pathway;
     };
 
     //initialize new pathway title
-    $scope.newPathwayTitle = 'Untitled Pathway';
+    $scope.newTitle = 'Untitled Pathway';
 
-    //initialize with first pathway in list
-    $scope.getPathway($scope.user.collection.pathways.titles[0]);
+    //initialize with first template in list
+    $scope.templateTitle = $scope.user.collection.templates.titles[0];
+    $scope.getTemplate($scope.templateTitle);
 
   });
