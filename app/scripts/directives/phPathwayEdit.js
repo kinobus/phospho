@@ -113,6 +113,23 @@ angular.module('phosphoApp')
             .attr('height', height)
             .style('fill', 'url(#gradient)');
 
+          function dragstart (d) {
+            /*jshint validthis:true */
+            d3.select(this).classed('fixed', d.fixed = true);
+          }
+
+          function dblclickNode (d) {
+            return scope.selectItem({item:
+              {graphItem: d, type: 'node'}
+            });
+          }
+
+          function dblclickPath (d) {
+            return scope.selectItem({item:
+              {graphItem: d, type: 'link'}
+            });
+          }
+
           var nodes = newVal.nodes,
             links = newVal.links;
 
@@ -120,13 +137,9 @@ angular.module('phosphoApp')
             .size([width , height])
             .gravity(0.1)
             .charge(-1000)
-            .linkDistance(120)
-            .on('tick', tick)
-            .nodes(nodes)
-            .links(links)
-            .start();
+            .linkDistance(120);
 
-          var drag = force.drag()
+          force.drag()
             .on('dragstart', dragstart);
 
           var path = svg.append('svg:g')
@@ -174,21 +187,22 @@ angular.module('phosphoApp')
 
             //horizontal boundaries
             node.attr('x', function (d) {
-                return d.x = Math.max(60, Math.min(width - 64, d.x));
+                d.x = Math.max(60, Math.min(width - 64, d.x));
+                return d.x;
               });
 
             //vertical boundaries (based on node compartment)
             node.attr('y', function (d) {
                 if (d.compartment === 'membrane') {
-                  return d.y = 50;
+                  d.y = 50;
                 } else if (d.compartment === 'nucleus') {
-                  return d.y = height - 50;
+                  d.y = height - 50;
                 } else if (d.compartment === 'cytosol') {
-                  return d.y = Math.max(86, Math.min(height - 86, d.y));
+                  d.y = Math.max(86, Math.min(height - 86, d.y));
                 } else {
-                  return d.y = Math.max(36, Math.min(height - 36, d.y));
+                  d.y = Math.max(36, Math.min(height - 36, d.y));
                 }
-                //TODO add cytosol bounding box
+                return d.y;
               });
 
             //update node positions
@@ -213,21 +227,10 @@ angular.module('phosphoApp')
             });
           }
 
-          function dragstart (d) {
-            d3.select(this).classed('fixed', d.fixed = true);
-          }
-
-          function dblclickNode (d) {
-            return scope.selectItem({item: 
-              {graphItem: d, type: 'node'}
-            });
-          }
-
-          function dblclickPath (d) {
-            return scope.selectItem({item: 
-              {graphItem: d, type: 'link'}
-            });
-          }
+          force.on('tick', tick)
+            .nodes(nodes)
+            .links(links)
+            .start();
 
         }, true);
       }

@@ -16,7 +16,7 @@ describe('Controller: DrawPathwayCtrl', function () {
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.awesomeThings.length).toBe(3);
+  it('should initialize new pathway title', function () {
+    expect(scope.newPathwayTitle).toBe('Untitled Pathway');
   });
 });
