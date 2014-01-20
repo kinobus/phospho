@@ -248,3 +248,6 @@ a:after {
   margin-top: 0px;
   margin-left: 200px;
 }
+.panel-pathway {
+  max-width: 514px;
+}
