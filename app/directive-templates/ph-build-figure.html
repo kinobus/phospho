@@ -1,24 +1,30 @@
 <!-- Data Picker -->
 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
   <div class="panel panel-default">
-    <div class="panel-heading">
-      Pick a Dataset
-    </div>
-    <select ng-model="dataset" ng-options="ds.title for ds in user.collection.datasets"></select>
-  </div>
-</div>
-
-<!-- Figure Type Picker -->
-<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-  <div class="panel panel-default" ng-show="dataset">
-    <div class="panel-heading">
-      Bind data to
-    </div>
-    <li class="list-group-item">
-      <strong class="list-group-item-heading">Type</strong><br>
+    <ul class="list-group">
+      <li class="list-group-item">
+        <strong class="list-group-item-heading">Pick Dataset</strong><br>
+        <select ng-model="dataset" ng-options="ds.title for ds in user.collection.datasets"></select>
+      </li>
+      <li class="list-group-item">
+        <strong class="list-group-item-heading">Bind To</strong><br>
         <input type="radio" ng-model="figureType" value="pathway">  Pathway <br/>
         <input type="radio" ng-model="figureType" value="kinome"> Kinome <br/>
-    </li>
+      </li>
+      <div ng-switch on="figureType">
+        <li class="list-group-item" ng-switch-when="pathway">
+          <strong class="list-group-item-heading">Cell Signaling Pathway</strong><br>
+          <select ng-model="pathwayTitle" ng-options="value for (key, value) in user.collection.pathways.titles" ng-change="getPathway(pathwayTitle)"></select>
+        </li>
+        <li class="list-group-item" ng-switch-when="kinome">
+          <strong class="list-group-item-heading">Kinase-substrate interactome</strong><br>
+          <select ng-model="interactome" ng-options="value for (key, value) in ksIntTitles"></select>
+        </li>
+      </div>
+      <li class="list-group-item">
+        <button type="button" class="btn btn-default">Save</button>
+      </li>
+    </ul>
   </div>
 </div>
 
@@ -27,16 +33,6 @@
   
   <!-- Pathway -->
   <div ng-switch-when="pathway">
-    <!-- Pathway Picker -->
-    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-6">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          Choose a Cell Signaling Pathway
-        </div>
-        <select ng-model="pathwayTitle" ng-options="value for (key, value) in user.collection.pathways.titles" ng-change="getPathway(pathwayTitle)"></select>
-      </div>
-    </div>
-    <!-- Pathway Graph -->
     <div class="col-xs-12 col-sm-8 col-md-9 col-lg-10">
       <div class="panel panel-default" ng-hide="!pathway">
           <ph-pathway-render scaler="1" graph="pathway.graph" dataset="dataset"></ph-pathway-render>
@@ -46,29 +42,12 @@
 
   <!-- Kinome -->
   <div ng-switch-when="kinome">
-    <!-- KS Interactome Picker -->
-    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-6">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          Choose a kinase-substrate interactome
-        </div>
-        <select ng-model="interactome" ng-options="value for (key, value) in ksIntTitles"></select>
-      </div>
-    </div>
-    <!-- Kinome Graph -->
     <div class="col-xs-12 col-sm-8 col-md-9 col-lg-10">
       <div class="panel panel-default">
-        Kinome Graph Directive Goes Here
+        <ph-kinome kinomeData="kinome" scaler="1"></ph-kinome> 
       </div>
     </div>
   </div>
     
 </div>
 <!-- end of figure -->
-
-<!-- Save Button -->
-<div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
-  <div class="panel panel-default">
-    <button type="button" class="btn btn-default">Save</button>
-  </div>
-</div>
