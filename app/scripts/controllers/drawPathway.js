@@ -61,8 +61,8 @@ angular.module('phosphoApp')
     //TODO fix this!
     $scope.newLink = function (source, target) {
       var newLink = {
-        'source': source,
-        'target': target,
+        'source': source.id,
+        'target': target.id,
         'type': 'activate'
       };
       $scope.pathway.graph.links.push(newLink);
@@ -70,12 +70,12 @@ angular.module('phosphoApp')
 
     //function to get pathway
     $scope.getPathway = function (title) {
-      $scope.pathway = $scope.user.collection.pathways.pathways[title];
+      $scope.pathway = angular.copy($scope.user.collection.pathways.pathways[title]);
     };
 
     $scope.savePathway = function () {
       $scope.user.collection.pathways.titles.push($scope.newPathwayTitle);
-      $scope.user.collection.pathways.pathways.push($scope.pathway);
+      $scope.user.collection.pathways.pathways[$scope.newPathwayTitle] = $scope.pathway;
     };
 
     //initialize new pathway title
