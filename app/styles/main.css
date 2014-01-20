@@ -251,3 +251,6 @@ a:after {
 .panel-pathway {
   max-width: 516px;
 }
+.sidebar-select {
+  width: 129px;
+}
