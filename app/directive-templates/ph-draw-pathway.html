@@ -96,7 +96,7 @@
 
         <li class="list-group-item">
           <strong class="list-group-item-heading">Template</strong><br>
-          <select ng-model="templateTitle" ng-options="t for t in user.collection.pathways.titles" ng-change="getPathway(templateTitle)"></select>
+          <select ng-model="pathway" ng-options="key for (key, value) in templatePathways"></select>
         </li>
         <li class="list-group-item" ng-show="pathway">
           <button type="button" class="btn btn-default" ng-click="newNode()">Add Node</button>
