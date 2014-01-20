@@ -25,7 +25,7 @@ angular.module('phosphoApp')
 
         scope.$watch('graph', function (newVal) {
 
-          svg.selectAll('*').remove();
+          //svg.selectAll('*').remove();
 
           if (!newVal) {
             return;

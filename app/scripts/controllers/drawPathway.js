@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('phosphoApp')
-  .controller('DrawPathwayCtrl', function ($scope, demoPathways) {
+  .controller('DrawPathwayCtrl', function ($scope) {
 
     $scope.clearSelection = function () {
       $scope.selectedItem = null;
@@ -69,18 +69,16 @@ angular.module('phosphoApp')
     };
 
     //function to get pathway
-    //$scope.getPathway = function (title) {
-      //$scope.pathway = $scope.user.collection.pathways.pathways[title];
-    //};
+    $scope.getPathway = function (title) {
+      $scope.pathway = $scope.user.collection.pathways.pathways[title];
+    };
 
     $scope.savePathway = function () {
       $scope.user.collection.pathways.titles.push($scope.newPathwayTitle);
-      $scope.user.collection.pathways.pathways[$scope.newPathwayTitle] = $scope.pathway;
+      $scope.user.collection.pathways.pathways.push($scope.pathway);
     };
 
     //initialize new pathway title
     $scope.newPathwayTitle = 'Untitled Pathway';
-
-    $scope.templatePathways = demoPathways.pathways;
 
   });
