@@ -81,4 +81,7 @@ angular.module('phosphoApp')
     //initialize new pathway title
     $scope.newPathwayTitle = 'Untitled Pathway';
 
+    //initialize with first pathway in list
+    $scope.getPathway($scope.user.collection.pathways.titles[0]);
+
   });

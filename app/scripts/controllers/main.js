@@ -11,6 +11,9 @@ angular.module('phosphoApp')
       $scope.dashboard = dash;
     };
 
+    //set scope to first dashboard immediately
+    $scope.setDash($scope.dashboards[0]);
+
     //initialize user
     $scope.user = userFactory.makeUser();
 
