@@ -1,51 +1,28 @@
-<div class="header">
-  <div class="row">
-    <div class="col-md-4">
-      <div class="content-heading clearfix media">
-        <img class="pull-left" src="images/phosphate.png">
-        <h3 class="text-muted">Phospho</h3>
+<div class="row">  
+  <!--left col-->
+  <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
+
+    <!--Guest Mode Alert-->
+    <div ng-switch on="auth.user.provider">
+      <div class="panel panel-default" ng-switch-when="anonymous">
+        <div class="panel-body">
+           Sharing limited while in guest mode.
+        </div>
+        <button type="button" class="btn btn-success btn-block" ng-click="login('twitter')"><img src="images/icons/antenna.png" class="btn-icon">Log In</button>
       </div>
     </div>
-    <div class="col-md-8">
-      <ul class="nav nav-pills pull-right">
-        <li ng-show="auth.user"><a ng-href="#feed">Data Feed</a></li>
-        <li ng-show="auth.user"><a ng-href="#share">Share</a></li>
-        <li ng-show="auth.user"><a ng-href="#curate">Curate</a></li>
-        <li ng-hide="auth.user"><a ng-href="#feed" ng-click="login()">Log In</a></li>
-        <li ng-show="auth.user"><a ng-href="#" ng-click="logout()">Log Out</a></li>
-        <li><a ng-href="#">About</a></li>
-      </ul>
-    </div>
-  </div>
-</div>
 
-<div class="container">
-  <div class="jumbotron">
-    <div class="row">
-      <h2>Proteomics meets Clinical</h2>
-      <p data-typer-targets="Does dasatinib inhibit phospho AKT?,Does ibrutinib inhibit phospho AKT?,What's the level of AKT phosphorylation in lymphoma patients?,Which substrates does BRAF phosphorylate in melanoma patients?">
-    </p>
-    <p><a class="btn btn-primary btn-lg" role="button" ng-href="#feed">Take a look at the data &raquo;</a></p>
+    <!--dashboard picker-->
+    <ph-dashpicker></ph-dashpicker>
+
   </div>
+
+  <!--right col-->
+  <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
+    
+    <!--dashboard-->
+    <ph-dashboard ng-if="dashboard"></ph-dashboard>
+
   </div>
-</div>
-<div class="container">
-  <!-- row of columns -->
-  <div class="row">
-    <div class="col-md-4">
-      <h4>Instant Collaboration</h4>
-      <p>Phospho enables seamless collaboration between proteomics experts and clinicians. </p>
-    </div>
-    <div class="col-md-4">
-      <h4>Spend More Time Exploring MS2 Data.</h4>
-      <p>Phospho takes care of the data processesing so investigators can focus on uncovering connections between cell signaling and disease.</p>
-    </div>
-    <div class="col-md-4">
-      <h4>Why Phospho?</h4>
-      <p>Modern MS instruments can capture high-resolution proteomic snapshots of patient biopsies. Phospho enables researchers to bind biochemical models to disease data.</p>
-    </div>
-  </div>
-</div>
-<div class="footer">
-  <p>Kinobus 2014</p>
+  
 </div>
