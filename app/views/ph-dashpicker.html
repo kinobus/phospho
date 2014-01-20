@@ -1,0 +1,20 @@
+<!--dashboard picker-->
+<div class="btn-group-vertical animated fadeInLeft">
+  <button type="button" class="btn btn-default btn-menu" ng-repeat="d in dashboards" ng-click="setDash(d)">
+    <div ng-switch on="d.icon">
+      <div ng-switch-when="hammer">
+        <img src="images/icons/hammer.png" class="btn-icon">
+      </div>
+      <div ng-switch-when="image_add">
+        <img src="images/icons/image_add.png" class="btn-icon">
+      </div>
+      <div ng-switch-when="binoculars">
+        <img ng-src="images/icons/binoculars.png" class="btn-icon">
+      </div>
+      <div ng-switch-when="cloud_zoom">
+        <img ng-src="images/icons/cloud_zoom.png" class="btn-icon">
+      </div>
+    </div>
+    {{d.title}}
+  </button>
+</div>

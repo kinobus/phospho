@@ -3,7 +3,7 @@
 angular.module('phosphoApp')
   .directive('phDrawPathway', function () {
     return {
-      templateUrl: 'directive-templates/ph-draw-pathway.html',
+      templateUrl: 'views/ph-draw-pathway.html',
       restrict: 'E',
       controller: 'DrawPathwayCtrl'
     };
