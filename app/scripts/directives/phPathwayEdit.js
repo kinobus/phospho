@@ -159,7 +159,8 @@ angular.module('phosphoApp')
               else if (d.type === 'inhibit') {
                 return '#FF0000';
               }
-            });
+            })
+            .style('cursor', 'pointer');
 
           path.on('dblclick', dblclickPath);
 
@@ -171,6 +172,8 @@ angular.module('phosphoApp')
 
           node.append('use')
             .attr('xlink:href',function(d) { return '#' + d.type + '-node'; });
+
+          node.style('cursor', 'pointer');
 
           node.append('svg:text')
             .attr('x', 60)
