@@ -1,23 +1,22 @@
 'use strict';
 
-describe('Controller: MainCtrl', function () {
+describe('Controller: DrawPathwayCtrl', function () {
 
   // load the controller's module
   beforeEach(module('phosphoApp'));
 
-  var MainCtrl,
+  var DrawPathwayCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    MainCtrl = $controller('MainCtrl', {
+    DrawPathwayCtrl = $controller('DrawPathwayCtrl', {
       $scope: scope
     });
   }));
 
-  //tests start here
-  it('should start with a null value for selectedItem', function () {
-    expect(scope.selectedItem).toBe(null);
+  it('should initialize new pathway title', function () {
+    expect(scope.newPathwayTitle).toBe('Untitled Pathway');
   });
 });
