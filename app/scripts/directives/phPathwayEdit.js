@@ -136,8 +136,8 @@ angular.module('phosphoApp')
           var force = d3.layout.force()
             .size([width , height])
             .gravity(0.1)
-            .charge(-1000)
-            .linkDistance(120);
+            .charge(-500)
+            .linkDistance(150);
 
           force.drag()
             .on('dragstart', dragstart);
