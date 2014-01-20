@@ -9,7 +9,9 @@ angular.module('phosphoApp')
       'DLBCL':{
         'metadata':{
           'user':'Ricker',
-          'title':'DLBCL pathway'
+          'title':'DLBCL pathway',
+          'tags': ['lymphoma', 'B-cell', 'ibrutinib',
+          'dasatinib']
         },
         'graph':{
           'nodes':[

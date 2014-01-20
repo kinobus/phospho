@@ -7,7 +7,8 @@ angular.module('phosphoApp', [
   'ngRoute',
   'ngAnimate',
   'ui.bootstrap',
-  'firebase'
+  'firebase',
+  'ngTagsInput'
 ])
   .config(function ($routeProvider) {
     $routeProvider

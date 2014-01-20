@@ -98,6 +98,9 @@
         <li class="list-group-item" ng-show="pathway">
           <button type="button" class="btn btn-default" ng-click="newNode()">Add Node</button>
         </li>
+        <li class="list-group-item">
+          <tags-input ng-model="pathway.metadata.tags"></tags-input>
+        </li>
         <li class="list-group-item" ng-show="pathway">
           <button type="button" class="btn btn-default btn-block" ng-click="savePathway()"><img class="btn-icon" src="images/icons/treasure_chest_add.png">Save</button>
         </li>
