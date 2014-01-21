@@ -3,7 +3,7 @@
 angular.module('phosphoApp')
   .directive('phDashboard', function () {
     return {
-      templateUrl: 'directive-templates/ph-dashboard.html',
+      templateUrl: 'views/ph-dashboard.html',
       restrict: 'E'
     };
   });

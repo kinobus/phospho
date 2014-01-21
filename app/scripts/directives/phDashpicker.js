@@ -3,7 +3,7 @@
 angular.module('phosphoApp')
   .directive('phDashpicker', function () {
     return {
-      templateUrl: 'directive-templates/ph-dashpicker.html',
+      templateUrl: 'views/ph-dashpicker.html',
       restrict: 'E'
     };
   });
