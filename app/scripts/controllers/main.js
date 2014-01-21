@@ -50,7 +50,4 @@ angular.module('phosphoApp')
     //log in right away as anonymous
     $scope.login('anonymous');
 
-    //Get kinase-substrate interactome titles from firebase
-    $scope.ksIntTitles = $scope.fb('/interactomes/titles');
-
   });

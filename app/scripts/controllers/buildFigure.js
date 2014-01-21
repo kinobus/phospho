@@ -2,12 +2,22 @@
 'use strict';
 
 angular.module('phosphoApp')
-  .controller('BuildFigureCtrl', function ($scope) {
+  .controller('BuildFigureCtrl', function ($scope, allKinases) {
 
     //function for getting a pathway
     //TODO make this part of service/factory, combine functionality w what is happening in drawPathway
     $scope.getPathway = function (title) {
       $scope.pathway = $scope.user.collection.pathways.pathways[title];
+
+      //bind data right away
+      $scope.bindData();
+    };
+
+    $scope.getInteractome = function (title) {
+      $scope.interactome = $scope.fb('/interactomes/interactomes/' + title);
+
+      //bind data right away
+      $scope.bindData();
     };
 
     //function for binding data to pathway or kinome
@@ -26,7 +36,29 @@ angular.module('phosphoApp')
 
       //bind dataset to kinases in kinome
       if ($scope.figureType === 'kinome') {
-        //do something
+        var ms2data = $scope.dataset.data;
+        var links = $scope.interactome.links;
+
+
+        var ms2linkedNested = _.map(ms2data, function (datapoint) {
+          var linkedObjects = _.where(links, {substrate: datapoint.gene});
+          _.map(linkedObjects, function (linkedObject) {
+            return _.extend(linkedObject, {mean: datapoint.mean});
+          });
+          return linkedObjects;
+        });
+        var ms2linked = _.flatten(ms2linkedNested);
+
+        var initkinome = allKinases;
+        var kinome = _.map(initkinome, function (thiskinase) {
+          var meanObjects = _.where(ms2linked, {kinase: thiskinase});
+          var means = _.pluck(meanObjects, 'mean');
+          var reducedMeans = _.reduce(means, function(memo, num){ return memo * num; }, 1);
+          return {gene: thiskinase, activity: reducedMeans};
+        });
+
+        var kinomeFilt = _.filter(kinome, function(kinase){ return kinase.activity  !== 1; });
+        $scope.kinome = kinomeFilt;
       }
     };
 
@@ -43,6 +75,10 @@ angular.module('phosphoApp')
     $scope.pathwayTitle = $scope.user.collection.pathways.titles[0];
     $scope.getPathway($scope.pathwayTitle);
 
-    //bind data right away
-    $scope.bindData();
+    //Get kinase-substrate interactome titles from firebase
+    $scope.interactomeTitles = $scope.fb('/interactomes/titles');
+
+    //Get first interactome right away
+    $scope.interactomeTitle = $scope.interactomeTitles[0];
+    $scope.interactome = $scope.getInteractome($scope.interactomeTitle);
   });

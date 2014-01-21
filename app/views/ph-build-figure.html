@@ -17,6 +17,7 @@
     <!-- Kinome -->
     <div ng-switch-when="kinome">
       <div class="panel panel-default">
+        {{kinome}}
         <ph-kinome kinomeData="kinome" scaler="1"></ph-kinome> 
       </div>
     </div>
@@ -40,7 +41,7 @@
         </li>
         <li class="list-group-item" ng-switch-when="kinome">
           <strong class="list-group-item-heading">Interactome</strong><br>
-          <select ng-model="interactome" ng-options="value for (key, value) in ksIntTitles"></select>
+          <select ng-model="interactomeTitle" ng-options="value for (key, value) in interactomeTitles" ng-change="getInteractome(interactomeTitle)"></select>
         </li>
       </div>
       <li class="list-group-item">
