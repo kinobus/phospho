@@ -1,6 +1,18 @@
 'use strict';
 
-angular.module('phosphoElementsApp', [])
-  .config(function () {
-    return;
+angular.module('phosphoBaseApp', [
+  'ngCookies',
+  'ngResource',
+  'ngSanitize',
+  'ngRoute'
+])
+  .config(function ($routeProvider) {
+    $routeProvider
+      .when('/', {
+        templateUrl: 'views/main.html',
+        controller: 'MainCtrl'
+      })
+      .otherwise({
+        redirectTo: '/'
+      });
   });
