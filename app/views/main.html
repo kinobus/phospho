@@ -55,8 +55,10 @@
           </div>
         </div>
 
-        <!-- "Edit Figure" Panel for Mutables -->
+        <!-- Contextual Panels for Mutables -->
         <div ng-if="gridSelection.immutable === false">
+
+          <!-- "Edit Figure" Panel -->
           <div class="panel panel-info">
             <div class="panel-heading">
               <h3 class="panel-title">Edit Figure</h3>
@@ -71,6 +73,23 @@
               <li class="list-group-item">Share</li>
             </ul>
           </div>
+
+          <!-- "Edit Pathway" Panel -->
+          <div class="panel panel-success" ng-if="gridSelection.type === 'newPathway'">
+            <div class="panel-heading">
+              <h3 class="panel-title">Edit Pathway</h3>
+            </div>
+            <div class="panel-body">
+              Tip: Double-click a node or link to modify it.
+            </div>
+            <ul class="list-group">
+              <li class="list-group-item">Insert a Node</li>
+              <li class="list-group-item">Insert a Link</li>
+              <li class="list-group-item">Restart from Template</li>
+            </ul>
+          </div>
+
+
         </div>
 
       </div>
