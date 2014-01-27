@@ -12,7 +12,9 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
         <!-- build:css({.tmp,app}) styles/main.css -->
+        <link rel="stylesheet" href="styles/bootstrap.cosmo.css">
         <link rel="stylesheet" href="styles/main.css">
+
         <!-- endbuild -->
 </head>
   <body ng-app="phosphoBaseApp">
@@ -26,11 +28,15 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container" ng-view=""></div>
-    <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
-      <button type="button" class="btn btn-default navbar-btn">Sign in</button>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <a class="navbar-brand" href="#">Phospho</a>
+      <ul class="nav navbar-nav pull-right nav-right">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#docs">Docs &amp; Api</a></li>
+        <li><button type="button" class="btn btn-default navbar-btn">Log In / Create Account</button></li>
+      </ul>
     </nav>
-
+    <div class="container" ng-view=""></div>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -44,6 +50,9 @@
 
     <script src="bower_components/jquery/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/d3/d3.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
+
 
         <!-- build:js scripts/plugins.js -->
         <script src="bower_components/sass-bootstrap/js/affix.js"></script>
@@ -65,11 +74,14 @@
         <script src="bower_components/angular-cookies/angular-cookies.js"></script>
         <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
         <script src="bower_components/angular-route/angular-route.js"></script>
+        <script src="scripts/phElements.js"></script>
         <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/docs.js"></script>
+        <script src="scripts/controllers/overview.js"></script>
         <!-- endbuild -->
 </body>
 </html>

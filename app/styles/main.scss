@@ -1,45 +1,49 @@
-$icon-font-path: "/bower_components/sass-bootstrap/fonts/";
+//$icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 
-@import 'sass-bootstrap/lib/bootstrap';
+//@import 'sass-bootstrap/lib/bootstrap';
 
-.browsehappy {
-    margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
-    padding: 0.2em 0;
+/* Give nav panel on right some margin */
+.nav-right {
+    padding-right: 15px;
 }
 
-/* Space out content a bit */
-body {
-    padding-top: 20px;
-    padding-bottom: 20px;
+.navbar-btn {
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
-.container-narrow > hr {
-    margin: 30px 0;
-}
-
-/* Main marketing message and sign up button */
-.jumbotron {
+.alert-instruction {
     text-align: center;
-    border-bottom: 1px solid #e5e5e5;
 }
 
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-    .container {
-        max-width: 730px;
-    }
+/* Grid Hover Image Opacity */
+.grid {
+    opacity: .7;
+}
+.grid:hover {
+    opacity: 1;
+    cursor: pointer;
+}
 
-    /* Remove the padding we set earlier */
-    .header,
-    .marketing,
-    .footer {
-        padding-left: 0;
-        padding-right: 0;
-    }
-    /* Space out the masthead */
-    .header {
-        margin-bottom: 30px;
-    }
+.grid-footer {
+    text-align: right;
+}
+
+.grid-newpathway-graph {
+    max-width: 160px;
+    border-width:3pt;
+    border-color: #f8f8f8;   
+    border-style:dashed;
+}
+
+.grid-panel-new {
+    
+}
+
+.panel-body {
+    align-items:center;
+}
+
+.panel-focus {
+    max-width: 640px;
 }
