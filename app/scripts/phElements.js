@@ -4,7 +4,7 @@ angular.module('ph.Elements', [])
   .controller('PathwayCtrl', function ($scope) {
 
     $scope.width = 640;
-    $scope.height = 640;
+    $scope.height = 480;
     
     //set default options if none are already set
     if (!$scope.options.scale) {

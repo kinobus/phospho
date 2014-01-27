@@ -3,10 +3,22 @@
 angular.module('phosphoBaseApp')
   .controller('MainCtrl', function ($scope) {
     //$scope.gridSelection = "sup";
+    $scope.gridSelect = function (selection) {
+      if (selection === 'newPathway') {
+        $scope.gridSelection = {
+          'type': 'newPathway',
+          'immutable': false,
+          'title': $scope.newPathwayTemplate.metadata.title
+        };
+      } else if (selection === 'empty') {
+        $scope.gridSelection = null;
+      }
+    };
+
     $scope.newPathwayTemplate = {
       'metadata':{
         'user':'Ricker',
-        'title':'DLBCL pathway',
+        'title':'Untitled Pathway Figure',
         'tags': ['lymphoma', 'B-cell', 'ibrutinib',
         'dasatinib']
       },
