@@ -24,7 +24,7 @@
     <div class="col-sm-4 col-md-3 col-lg-3">
       <div class="alert alert-info gridblock gridblock-home">
         <h4><i class="fa fa-th fa-fw"></i> Figure Grid</h4>
-          <p><br>Explore figures shared by the community, fork them to create your own. <br><br>Download as PDF and share locally, or Publish online to Open Source your Data.</p>
+          <p><br>Explore figures published by the community, sort using filters, and click the <i class="fa fa-flask fa-fw"></i>  on figures that are interesting or helpful. <br><br>You can download as PDF and share locally, or instantly publish online.</p>
       </div>
     </div>
 
@@ -54,7 +54,7 @@
     </div>
 
     <!-- Loaded Blocks -->
-    <div class="col-sm-4 col-md-3 col-lg-3" ng-repeat="fig in sharedFigs">
+    <div class="col-sm-4 col-md-3 col-lg-3" ng-repeat="fig in sharedFigs" ng-click="gridSelect(fig)">
       <div class="panel panel-primary gridblock">
         <div class="panel-heading">
           <h3 class="panel-title">{{fig.title}}</h3>

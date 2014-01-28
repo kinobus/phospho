@@ -4,12 +4,15 @@ angular.module('phosphoBaseApp')
   .controller('MainCtrl', function ($scope) {
     //$scope.gridSelection = "sup";
     $scope.gridSelect = function (selection) {
+      //for the special case of 'newPathway', construct a fig object
       if (selection === 'newPathway') {
         $scope.gridSelection = {
           'type': 'newPathway',
           'isImmutable': false,
           'title': 'Untitled New Figure'
         };
+
+      //use 'empty' as a selection to deselect and go back to the Grid
       } else if (selection === 'empty') {
         $scope.gridSelection = null;
       }
