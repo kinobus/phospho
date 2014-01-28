@@ -22,6 +22,10 @@ angular.module('phosphoBaseApp', [
         templateUrl: 'views/overview.html',
         controller: 'OverviewCtrl'
       })
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

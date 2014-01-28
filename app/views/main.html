@@ -1,23 +1,41 @@
 <!-- Navigation Grid View -->
 <div class="nav-grid" ng-show="!gridSelection">
-  <div class="alert alert-info alert-instruction"> Start by exploring figures made by the community, or create your own and share. {{gridSelection}}</div>
   <div class="row">
 
-    <div class="col-sm-6 col-md-4 col-lg-3" ng-click="gridSelect('newPathway')">
-      <div class="panel panel-success grid grid-panel-new">
+    <!-- Nav Block -->
+    <div class="col-sm-4 col-md-3 col-lg-2">
+      <div class="panel panel-info gridblock gridblock-nav">
         <div class="panel-heading">
-          <h3 class="panel-title">New Pathway</h3>
+          <i class="fa fa-th fa-fw"></i> Figure Grid
         </div>
         <div class="panel-body">
-           <div class="grid-newpathway-graph" phos-pathway graph="newPathwayTemplate.graph" options="gridNewPathwayOptions"></div>
+          Explore figures, or create your own.
         </div>
+        <ul class="nav nav-pills nav-stacked">
+          <li><a href=""><i class="fa fa-search fa-fw"></i> Search </a></li>
+          <li><a href=""><i class="fa fa-tags fa-fw"></i> Browse by Tag </a></li>
+          <li><a href=""><i class="fa fa-users fa-fw"></i> Browse by User</a></li>
+        </ul>
       </div>
     </div>
 
-    <div class="col-sm-6 col-md-4 col-lg-3">
-      <div class="panel panel-success grid">
+    <!-- New Pathway Block -->
+    <div class="col-sm-4 col-md-3 col-lg-2" ng-click="gridSelect('newPathway')">
+      <div class="panel panel-success gridblock">
         <div class="panel-heading">
-          <h3 class="panel-title">New Kinome</h3>
+          <h3 class="panel-title"><i class="fa fa-plus fa-fw"></i> New Pathway</h3>
+        </div>
+        </br>
+        </br>
+        <div class="gridblock-newpathway-graph" phos-pathway graph="newPathwayTemplate.graph" options="gridblockNewPathwayOptions"></div>
+      </div>
+    </div>
+
+    <!-- New Kinome Block -->
+    <div class="col-sm-4 col-md-3 col-lg-2">
+      <div class="panel panel-success gridblock">
+        <div class="panel-heading">
+          <h3 class="panel-title"><i class="fa fa-plus fa-fw"></i> New Kinome</h3>
         </div>
         <div class="panel-body">
            New Kinome
@@ -25,15 +43,22 @@
       </div>
     </div>
 
-    <div class="col-sm-6 col-md-4 col-lg-3" ng-repeat="fig in sharedFigs">
-      <div class="panel panel-primary grid">
+    <!-- Loaded Blocks -->
+    <div class="col-sm-4 col-md-3 col-lg-2" ng-repeat="fig in sharedFigs">
+      <div class="panel panel-primary gridblock">
         <div class="panel-heading">
           <h3 class="panel-title">{{fig.title}}</h3>
         </div>
         <div class="panel-body">
           {{fig.content}}
         </div>
-        <div class="panel-footer grid-footer">Author: {{fig.author}}</div>
+        <div class="panel-footer">
+          <span>
+            <i class="fa fa-user fa-fw"></i> {{fig.author}}
+          </span class="flask-counter">
+            <i class="fa fa-flask fa-fw"></i> {{fig.flasks}}
+          <span>
+          </span>
       </div>
     </div>
 
@@ -46,46 +71,47 @@
     <div class="row">
 
       <!-- Sidebar -->
-      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+      <div class="col-md-3">
 
         <!-- Back Button -->
-        <div class="panel panel-danger" ng-click="gridSelect('empty')">
-          <div class="panel-heading">
-             go back to the grid
-          </div>
+        <div class="panel panel-danger">
+          <button type="button" class="btn btn-danger btn-block" ng-click="gridSelect('empty')">
+            <i class="fa fa-th fa-fw">
+            </i> Back to the Figure Grid
+          </button>
         </div>
 
         <!-- Contextual Panels for Mutables -->
-        <div ng-if="gridSelection.immutable === false">
+        <div ng-if="!gridSelection.isImmutable">
 
           <!-- "Edit Figure" Panel -->
-          <div class="panel panel-info">
+          <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">Edit Figure</h3>
+              <h3 class="panel-title"><i class="fa fa-edit fa-fw"></i> Figure</h3>
             </div>
-            <ul class="list-group">
-              <li class="list-group-item">
-                <h5 class="list-group-item-heading">Title</h5>
-                <input type="text" ng-model="gridSelection.title">
-              </li>
-              <li class="list-group-item">Tags</li>
-              <li class="list-group-item">Download</li>
-              <li class="list-group-item">Share</li>
+            <div class="panel-body">
+              <i class="fa fa-file-o fa-fw text-info"></i>
+              <input type="text" ng-model="gridSelection.title" size="16">
+            </div>
+            <ul class="nav nav-pills nav-stacked">
+              <li><a href=""><i class="fa fa-tags fa-fw"></i> Add/Modify Tags</a></li>
+              <li><a href=""><i class="fa fa-download fa-fw"></i> Download as PDF</a></li>
+              <li><a href=""><i class="fa fa-share-square-o fa-fw"></i> Share to Figure Grid</a></li>
+              <li><a href=""><i class="fa fa-share-square-o fa-fw"></i> Share to Twitter</a></li>
             </ul>
           </div>
 
-          <!-- "Edit Pathway" Panel -->
-          <div class="panel panel-success" ng-if="gridSelection.type === 'newPathway'">
+          <!-- "Load Template" Panel -->
+          <div class="panel panel-info" ng-if="gridSelection.type === 'newPathway'">
             <div class="panel-heading">
-              <h3 class="panel-title">Edit Pathway</h3>
+              <h3 class="panel-title"><i class="fa fa-anchor fa-fw"></i> Template</h3>
             </div>
             <div class="panel-body">
               Tip: Double-click a node or link to modify it.
             </div>
-            <ul class="list-group">
-              <li class="list-group-item">Insert a Node</li>
-              <li class="list-group-item">Insert a Link</li>
-              <li class="list-group-item">Restart from Template</li>
+            <ul class="nav nav-pills nav-stacked">
+              <li><a href=""><i class="fa fa-book fa-fw"></i> Load from Curated </a></li>
+              <li><a href=""><i class="fa fa-cloud-download fa-fw"></i> Load from Shared</a></li>
             </ul>
           </div>
 
@@ -95,7 +121,7 @@
       </div>
 
       <!-- Main Column -->
-      <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+      <div class="col-md-9">
 
         <!-- Main Figure Visualization -->
         <div class="panel panel-primary panel-focus">

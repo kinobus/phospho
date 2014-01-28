@@ -6,15 +6,16 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
+    <title>Phospho</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
         <!-- build:css({.tmp,app}) styles/main.css -->
-        <link rel="stylesheet" href="styles/bootstrap.cosmo.css">
+        <link rel="stylesheet" href="styles/bootstrap.spacelab.css">
         <link rel="stylesheet" href="styles/main.css">
-
+        <link rel="stylesheet" href="styles/font-awesome-4.0.3/css/font-awesome.css">
+        <link rel="stylesheet" href="styles/animation.css">
         <!-- endbuild -->
 </head>
   <body ng-app="phosphoBaseApp">
@@ -29,11 +30,15 @@
 
     <!-- Add your site or application content here -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation">
-      <a class="navbar-brand" href="#">Phospho</a>
+        <div class="pull-left phospho-icon">
+            <img src="images/phosphate.png">
+        </div>
+      <a class="navbar-brand" href="#"><strong>Phospho</strong></a>
       <ul class="nav navbar-nav pull-right nav-right">
         <li><a href="#overview">Overview</a></li>
         <li><a href="#docs">Docs &amp; Api</a></li>
-        <li><button type="button" class="btn btn-default navbar-btn">Log In / Create Account</button></li>
+        <li ng-if="!user"><a href="#login">Log In / Create Account</a></li>
+        <li ng-if="user"><a href="#login"><i class="fa fa-user fa-fw"></i>{{user.email}}</a></li>
       </ul>
     </nav>
     <div class="container" ng-view=""></div>
@@ -85,6 +90,7 @@
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/docs.js"></script>
         <script src="scripts/controllers/overview.js"></script>
+        <script src="scripts/controllers/login.js"></script>
         <!-- endbuild -->
 </body>
 </html>

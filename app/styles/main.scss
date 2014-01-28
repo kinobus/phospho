@@ -17,27 +17,31 @@
 }
 
 /* Grid Hover Image Opacity */
-.grid {
+.gridblock {
     opacity: .7;
+    height: 240px;
+    position:relative;
 }
-.grid:hover {
+
+.gridblock:hover {
     opacity: 1;
     cursor: pointer;
 }
 
-.grid-footer {
-    text-align: right;
+.gridblock-nav {
+    opacity: 1;
 }
 
-.grid-newpathway-graph {
+.panel-footer {
+    //text-align: right;
+    position:absolute;
+    bottom:0;
+    //background-color: #eeeeee;
+    width:100%;
+}
+
+.gridblock-newpathway-graph {
     max-width: 160px;
-    border-width:3pt;
-    border-color: #f8f8f8;   
-    border-style:dashed;
-}
-
-.grid-panel-new {
-    
 }
 
 .panel-body {
@@ -46,4 +50,19 @@
 
 .panel-focus {
     max-width: 640px;
+}
+
+.phospho-icon {
+    padding-left: 30px;
+    padding-top: 8px;
+    height: 42px;
+}
+
+.navbar-brand {
+    font-size: 24px;
+    padding-left: 5px;
+}
+
+.flask-counter {
+    text-align: right;
 }

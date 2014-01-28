@@ -7,8 +7,8 @@ angular.module('phosphoBaseApp')
       if (selection === 'newPathway') {
         $scope.gridSelection = {
           'type': 'newPathway',
-          'immutable': false,
-          'title': $scope.newPathwayTemplate.metadata.title
+          'isImmutable': false,
+          'title': 'Untitled New Figure'
         };
       } else if (selection === 'empty') {
         $scope.gridSelection = null;
@@ -18,7 +18,7 @@ angular.module('phosphoBaseApp')
     $scope.newPathwayTemplate = {
       'metadata':{
         'user':'Ricker',
-        'title':'Untitled Pathway Figure',
+        'title':'Untitled Pathway',
         'tags': ['lymphoma', 'B-cell', 'ibrutinib',
         'dasatinib']
       },
@@ -210,22 +210,26 @@ angular.module('phosphoBaseApp')
       {
         'title':'Phosphoproteome of DLBCL',
         'author':'Ricker',
-        'content':'kinome'
+        'content':'kinome',
+        'flasks':15
       },
       {
         'title':'Integrated Colon Cancer Screen',
         'author':'James',
-        'content':'pathway'
+        'content':'pathway',
+        'flasks':12
       },
       {
         'title':'DUX4 in FSHD',
         'author':'Greg',
-        'content':'pathway'
+        'content':'pathway',
+        'flasks':9
       },
       {
         'title':'Vemurafinib Resistance and WNT',
         'author':'Kathy',
-        'content':'pathway'
+        'content':'pathway',
+        'flasks':4
       }
     ];
 
@@ -234,7 +238,7 @@ angular.module('phosphoBaseApp')
       'editable': true
     };
 
-    $scope.gridNewPathwayOptions = {
+    $scope.gridblockNewPathwayOptions = {
       'scale':0.25,
       'editable': true
     };

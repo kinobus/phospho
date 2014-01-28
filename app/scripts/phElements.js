@@ -1,3 +1,6 @@
+/* global d3 */
+/* global _ */
+
 'use strict';
 
 angular.module('ph.Elements', [])
