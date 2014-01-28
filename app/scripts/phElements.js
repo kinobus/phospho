@@ -9,37 +9,36 @@ angular.module('ph.Elements', [])
     $scope.width = 640;
     $scope.height = 480;
 
-    if (!$scope.isImmutable) {
-      console.log('sup');
-      var tick = function () {
+    var tick = function () {
       //boundaries
-        angular.forEach($scope.graph.nodes, function (node) {
-          //horizontal
-          if (node.x > $scope.width -60) {
-            node.x = $scope.width -60;
-          } else if (node.x < 60) {
-            node.x = 60;
+      angular.forEach($scope.graph.nodes, function (node) {
+        //horizontal
+        if (node.x > $scope.width -60) {
+          node.x = $scope.width -60;
+        } else if (node.x < 60) {
+          node.x = 60;
+        }
+
+        //vertical, based on compartment
+        if (node.compartment === 'membrane') {
+          node.y = 50;
+        } else if (node.compartment === 'nucleus') {
+          node.y = $scope.height - 50;
+        } else if (node.compartment === 'cytosol') {
+          if (node.y > $scope.height - 101) {
+            node.y = $scope.height - 101;
+          } else if (node.y < 101) {
+            node.y = 101;
           }
+        }
+      });
 
-          //vertical, based on compartment
-          if (node.compartment === 'membrane') {
-            node.y = 50;
-          } else if (node.compartment === 'nucleus') {
-            node.y = $scope.height - 50;
-          } else if (node.compartment === 'cytosol') {
-            if (node.y > $scope.height - 101) {
-              node.y = $scope.height - 101;
-            } else if (node.y < 101) {
-              node.y = 101;
-            }
-          }
-        });
+      //apply changes so that pathway directive updates
+      $scope.$apply();
+    };
 
-        //apply changes so that pathway directive updates
-        $scope.$apply();
-      };
-
-      $scope.force = d3.layout.force()
+    $scope.startForce = function () {
+      var force = d3.layout.force()
         .size([$scope.width , $scope.height])
         .gravity(0.1)
         .charge(-500)
@@ -49,8 +48,10 @@ angular.module('ph.Elements', [])
         .links([])
         .start();
 
-      $scope.force.drag();
-    }
+      $scope.drag = force.drag();
+    };
+      
+    
   })
   .directive('phosPathway', function () {
     return {
@@ -60,7 +61,7 @@ angular.module('ph.Elements', [])
       scope: {
         graph: '=',
         scale: '=',
-        isImmutable: '=',
+        mutable: '=',
         options: '=',
         selectItem: '&'
       },
@@ -166,7 +167,10 @@ angular.module('ph.Elements', [])
             .attr('text-anchor', 'middle')
             .text(function(d) { return d.label; });
 
-          scope.node.call(scope.force.drag);
+          if (scope.mutable) {
+            scope.node.call(scope.drag);
+          }
+          
         };
 
         scope.drawLinks = function () {
@@ -209,13 +213,17 @@ angular.module('ph.Elements', [])
           });
         };
 
-        //draw nodes right away
+        //if scope is mutable, fire up the force layout
+        if (scope.mutable) {
+          scope.startForce();
+        }
+
         scope.drawLinks();
         scope.drawNodes();
-        scope.moveNodes();
 
         //watch graph and redraw whenever it changes
         scope.$watch('graph', function () {
+          
           scope.moveNodes();
         }, true);
       }

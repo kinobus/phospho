@@ -29,7 +29,7 @@
     </div>
 
     <!-- New Pathway Block -->
-    <div class="col-sm-4 col-md-3 col-lg-3" ng-click="gridSelect(newPathway)">
+    <div class="col-sm-4 col-md-3 col-lg-3" ng-click="gridSelect(newPathway, true)">
       <div class="panel panel-success gridblock">
         <div class="panel-heading">
           <h3 class="panel-title">
@@ -37,7 +37,7 @@
           </h3>
         </div>
         <br>
-        <div class="gridblock-newpathway-graph" phos-pathway graph="newPathway.graph" isImmutable="newPathway.isImmutable" scale="displayScale.gridblock"></div>
+        <div class="gridblock-newpathway-graph" phos-pathway graph="newPathway.graph"  scale="displayScale.gridblock" mutable="true"></div>
       </div>
     </div>
 
@@ -67,8 +67,7 @@
         <!-- Graph -->
         <div ng-switch on="fig.type">
           <div ng-switch-when="pathway">
-            {{fig.isImmutable}}
-            <div class="gridblock-graph" phos-pathway graph="fig.graph" isImmutable="fig.isImmutable" scale="displayScale.gridblock"></div>
+            <div class="gridblock-graph" phos-pathway graph="fig.graph" mutable="false" scale="displayScale.gridblock"></div>
           </div>
         </div>
 
@@ -166,7 +165,7 @@
         <div class="panel-heading">
           <h3 class="panel-title">{{gridSelection.title}}</h3> 
         </div>
-        <div phos-pathway graph="gridSelection.graph" isImmutable="gridSelection.isImmutable" scale="displayScale.focus"></div>
+        <div phos-pathway graph="gridSelection.graph" mutable="gridSelection.mutable" scale="displayScale.focus"></div>
       </div>
 
     </div>

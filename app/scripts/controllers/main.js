@@ -13,12 +13,16 @@ angular.module('phosphoBaseApp')
     //   'title': 'Untitled New Figure'
     // };
 
-    $scope.gridSelect = function (selection) {
+    $scope.gridSelect = function (selection, mutable) {
       //clear selection if no selection was specified
       if (!selection) {
         $scope.gridSelection = null;
       } else {
         $scope.gridSelection = angular.copy(selection);
+      }
+
+      if (mutable) {
+        $scope.gridSelection.mutable = true;
       }
     };
 
@@ -56,7 +60,7 @@ angular.module('phosphoBaseApp')
     $scope.publishedFigs = PhosphoIO;
 
     $scope.publish = function (figure) {
-      figure.isImmutable = true;
+      $scope.gridSelection.mutable = true;
       figure.flasks = 0;
       figure.forks = 0;
       if ($rootScope.user) {

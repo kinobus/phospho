@@ -6,7 +6,6 @@ angular.module('phosphoBaseApp')
     // ...
 
     var newPathwayTemplate = {
-      'isImmutable': false,
       'title': 'Untitled Figure',
       'type': 'pathway',
       'flasks': 0,
