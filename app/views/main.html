@@ -20,18 +20,16 @@
   <!-- Grid -->
   <div class="row">
 
-    <!-- Nav Block -->
-    <div class="col-sm-4 col-md-3 col-lg-2">
-      <div class="alert alert-info gridblock gridblock-nav">
-        <br>
+    <!-- Home Block -->
+    <div class="col-sm-4 col-md-3 col-lg-3">
+      <div class="alert alert-info gridblock gridblock-home">
         <h4><i class="fa fa-th fa-fw"></i> Figure Grid</h4>
-        <br>
-        <h5>Explore figures shared by the community, or create your own.</h5>
+          <p><br>Explore figures shared by the community, fork them to create your own. <br><br>Download as PDF and share locally, or Publish online to Open Source your Data.</p>
       </div>
     </div>
 
     <!-- New Pathway Block -->
-    <div class="col-sm-4 col-md-3 col-lg-2" ng-click="gridSelect('newPathway')">
+    <div class="col-sm-4 col-md-3 col-lg-3" ng-click="gridSelect('newPathway')">
       <div class="panel panel-success gridblock">
         <div class="panel-heading">
           <h3 class="panel-title">
@@ -39,12 +37,12 @@
           </h3>
         </div>
         <br>
-        <div class="gridblock-newpathway-graph" phos-pathway graph="newPathwayTemplate.graph" options="gridblockNewPathwayOptions"></div>
+        <span class="gridblock-newpathway-graph" phos-pathway graph="newPathwayTemplate.graph" options="gridblockNewPathwayOptions"></span>
       </div>
     </div>
 
     <!-- New Kinome Block -->
-    <div class="col-sm-4 col-md-3 col-lg-2">
+    <div class="col-sm-4 col-md-3 col-lg-3">
       <div class="panel panel-success gridblock">
         <div class="panel-heading">
           <h3 class="panel-title"><i class="fa fa-plus fa-fw"></i> New Kinome</h3>
@@ -88,67 +86,80 @@
 
 <!-- Panel-Focus View -->
 <div ng-if="gridSelection">
-    <div class="row">
 
-      <!-- Sidebar -->
-      <div class="col-md-3">
+  <div class="row">
 
-        <!-- Back Button -->
-        <div class="panel panel-danger">
-          <button type="button" class="btn btn-danger btn-block" ng-click="gridSelect('empty')">
-            <i class="fa fa-th fa-fw">
-            </i> Back to the Figure Grid
-          </button>
-        </div>
-
-        <!-- Contextual Panels for Mutables -->
-        <div ng-if="!gridSelection.isImmutable">
-
-          <!-- "Edit Figure" Panel -->
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title"><i class="fa fa-edit fa-fw"></i> Figure</h3>
-            </div>
-            <div class="panel-body">
-              <i class="fa fa-file-o fa-fw text-info"></i>
-              <input type="text" ng-model="gridSelection.title" size="16">
-            </div>
-            <ul class="nav nav-pills nav-stacked">
-              <li><a href=""><i class="fa fa-download fa-fw"></i> Download PDF</a></li>
-              <li><a href=""><i class="fa fa-share-square-o fa-fw"></i> Publish to Figure Grid</a></li>
-              <li><a href=""><i class="fa fa-share-square-o fa-fw"></i> Share on Twitter</a></li>
-            </ul>
-          </div>
-
-          <!-- "Load Template" Panel -->
-          <div class="panel panel-default" ng-if="gridSelection.type === 'newPathway'">
-            <div class="panel-heading">
-              <h3 class="panel-title"><i class="fa fa-anchor fa-fw"></i> Template</h3>
-            </div>
-            <ul class="nav nav-pills nav-stacked">
-              <li><a href=""><i class="fa fa-book fa-fw"></i> Import from XML/JSON </a></li>
-              <li><a href=""><i class="fa fa-book fa-fw"></i> Curated by Phospho.io </a></li>
-              <li><a href=""><i class="fa fa-cloud-download fa-fw"></i> Load from Shared</a></li>
-            </ul>
-          </div>
-        </div>
-
+    <!-- Sidebar -->
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <ul class="nav nav-pills nav-justified">
+          <li ng-click="gridSelect('empty')"><a href=""><i class="fa fa-th fa-fw"></i> Back to Grid </a></li>
+        </ul>
       </div>
 
-      <!-- Main Column -->
-      <div class="col-md-9">
 
-        <!-- Main Figure Visualization -->
-        <div class="panel panel-primary panel-focus">
+
+      <!-- Contextual Panels for Mutables -->
+      <div ng-if="!gridSelection.isImmutable">
+
+        <!-- "Edit Figure" Panel -->
+        <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">{{gridSelection.title}}</h3>
+            <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Biological Data</h3>
           </div>
-            <div phos-pathway graph="newPathwayTemplate.graph" options="panelNewPathwayOptions"></div>
+          <ul class="nav nav-pills nav-stacked">
+            <li><a href=""><i class="fa fa-floppy-o fa-fw"></i> Import Files</a></li>
+            <li><a href=""><i class="fa fa-list-alt fa-fw"></i> Lay Out Conditions</a></li>
+            <li><a href=""><i class="fa fa-signal fa-fw"></i> Scale and Preprocess </a></li>      
+          </ul>
+        </div>
+
+        <!-- "Pathway" Panel -->
+        <div class="panel panel-default" ng-if="gridSelection.type === 'newPathway'">
+          <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-picture-o fa-fw"></i> Pathway</h3>
+          </div>
+          <ul class="nav nav-pills nav-stacked">
+            <li><a href=""><i class="fa fa-anchor fa-fw"></i> Load Template </a></li>
+            <li><a href=""><i class="fa fa-plus-circle fa-fw"></i> Add Node </a></li>
+            <li><a href=""><i class="fa fa-plus-circle fa-fw"></i> Add Path </a></li>
+          </ul>
+        </div>
+
+        <!-- "Figure" Panel -->
+        <div class="panel panel-default" ng-if="gridSelection.type === 'newPathway'">
+          <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-file-o fa-fw"></i> Figure</h3>
+          </div>
+          <ul class="nav nav-pills nav-stacked">
+            <li><a href=""><i class="fa fa-play fa-fw"></i> Bind Data </a></li>
+            <li><a href=""><i class="fa fa-download fa-fw"></i> Download </a></li>
+            <li><a href=""><i class="fa fa-cloud-upload fa-fw"></i> Publish </a></li>
+          </ul>
         </div>
 
       </div>
 
     </div>
+
+    <!-- Main Column -->
+    <div class="col-md-8">
+
+      <!-- Main Figure Visualization -->
+      <div class="panel panel-default panel-focus">
+        <div class="panel-heading panel-focus-heading">
+          <div class="input-group margin-bottom-sm">
+            <span class="input-group-addon"><i class="fa fa-file-o fa-fw"></i></span>
+            <input class="form-control" type="text" placeholder="Email address" ng-model="gridSelection.title">
+          </div>
+          <!-- <h3 class="panel-title">{{gridSelection.title}}</h3> -->
+        </div>
+        <div phos-pathway graph="newPathwayTemplate.graph" options="panelNewPathwayOptions"></div>
+      </div>
+
+    </div>
+
+  </div>
 
 </div>
   

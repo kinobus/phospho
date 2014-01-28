@@ -28,8 +28,9 @@
     cursor: pointer;
 }
 
-.gridblock-nav {
+.gridblock-home {
     opacity: 1;
+    text-align: center;
 }
 
 .panel-footer {
@@ -49,7 +50,10 @@
 }
 
 .panel-focus {
-    max-width: 640px;
+    //max-width: 640px;
+}
+.panel-focus-heading {
+    padding: 5px;
 }
 
 .phospho-icon {
