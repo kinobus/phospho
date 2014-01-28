@@ -1,21 +1,32 @@
 <!-- Navigation Grid View -->
 <div class="nav-grid" ng-show="!gridSelection">
+
+  <!-- Figure Grid Filtering Options -->
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <div class="panel panel-default">
+        <ul class="nav nav-pills nav-justified">
+          <li><a href=""><i class="fa fa-search fa-fw"></i> Search </a></li>
+          <li><a href=""><i class="fa fa-clock-o fa-fw"></i> Recent </a></li>
+          <li><a href=""><i class="fa fa-tags fa-fw"></i> Topics </a></li>
+          <li><a href=""><i class="fa fa-users fa-fw"></i> Users </a></li>
+          <li><a href=""><i class="fa fa-code-fork fa-fw"></i> Forks </a></li>
+          <li><a href=""><i class="fa fa-flask fa-fw"></i> Flasks </a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grid -->
   <div class="row">
 
     <!-- Nav Block -->
     <div class="col-sm-4 col-md-3 col-lg-2">
-      <div class="panel panel-info gridblock gridblock-nav">
-        <div class="panel-heading">
-          <i class="fa fa-th fa-fw"></i> Figure Grid
-        </div>
-        <div class="panel-body">
-          Explore figures, or create your own.
-        </div>
-        <ul class="nav nav-pills nav-stacked">
-          <li><a href=""><i class="fa fa-search fa-fw"></i> Search </a></li>
-          <li><a href=""><i class="fa fa-tags fa-fw"></i> Browse by Tag </a></li>
-          <li><a href=""><i class="fa fa-users fa-fw"></i> Browse by User</a></li>
-        </ul>
+      <div class="alert alert-info gridblock gridblock-nav">
+        <br>
+        <h4><i class="fa fa-th fa-fw"></i> Figure Grid</h4>
+        <br>
+        <h5>Explore figures shared by the community, or create your own.</h5>
       </div>
     </div>
 
@@ -23,10 +34,11 @@
     <div class="col-sm-4 col-md-3 col-lg-2" ng-click="gridSelect('newPathway')">
       <div class="panel panel-success gridblock">
         <div class="panel-heading">
-          <h3 class="panel-title"><i class="fa fa-plus fa-fw"></i> New Pathway</h3>
+          <h3 class="panel-title">
+            <i class="fa fa-plus fa-fw"></i> New Pathway
+          </h3>
         </div>
-        </br>
-        </br>
+        <br>
         <div class="gridblock-newpathway-graph" phos-pathway graph="newPathwayTemplate.graph" options="gridblockNewPathwayOptions"></div>
       </div>
     </div>
@@ -44,7 +56,7 @@
     </div>
 
     <!-- Loaded Blocks -->
-    <div class="col-sm-4 col-md-3 col-lg-2" ng-repeat="fig in sharedFigs">
+    <div class="col-sm-4 col-md-3 col-lg-3" ng-repeat="fig in sharedFigs">
       <div class="panel panel-primary gridblock">
         <div class="panel-heading">
           <h3 class="panel-title">{{fig.title}}</h3>
@@ -53,21 +65,29 @@
           {{fig.content}}
         </div>
         <div class="panel-footer">
-          <span>
-            <i class="fa fa-user fa-fw"></i> {{fig.author}}
-          </span class="flask-counter">
-            <i class="fa fa-flask fa-fw"></i> {{fig.flasks}}
-          <span>
+          <span class="pull-right">
+            <span class="badge">
+              <i class="fa fa-code-fork fa-fw"></i> {{fig.forks}}
+            </span>
+            &nbsp;
+            <span class="badge">
+              <i class="fa fa-flask fa-fw"></i> {{fig.flasks}}
+            </span>
           </span>
+          <span class="pull-left">
+            <i class="fa fa-user fa-fw"></i> {{fig.author}}
+          </span>
+        </div>
       </div>
     </div>
 
   </div>
+
+
 </div>
 
 <!-- Panel-Focus View -->
-<div ng-show="gridSelection">
-
+<div ng-if="gridSelection">
     <div class="row">
 
       <!-- Sidebar -->
@@ -94,28 +114,23 @@
               <input type="text" ng-model="gridSelection.title" size="16">
             </div>
             <ul class="nav nav-pills nav-stacked">
-              <li><a href=""><i class="fa fa-tags fa-fw"></i> Add/Modify Tags</a></li>
-              <li><a href=""><i class="fa fa-download fa-fw"></i> Download as PDF</a></li>
-              <li><a href=""><i class="fa fa-share-square-o fa-fw"></i> Share to Figure Grid</a></li>
-              <li><a href=""><i class="fa fa-share-square-o fa-fw"></i> Share to Twitter</a></li>
+              <li><a href=""><i class="fa fa-download fa-fw"></i> Download PDF</a></li>
+              <li><a href=""><i class="fa fa-share-square-o fa-fw"></i> Publish to Figure Grid</a></li>
+              <li><a href=""><i class="fa fa-share-square-o fa-fw"></i> Share on Twitter</a></li>
             </ul>
           </div>
 
           <!-- "Load Template" Panel -->
-          <div class="panel panel-info" ng-if="gridSelection.type === 'newPathway'">
+          <div class="panel panel-default" ng-if="gridSelection.type === 'newPathway'">
             <div class="panel-heading">
               <h3 class="panel-title"><i class="fa fa-anchor fa-fw"></i> Template</h3>
             </div>
-            <div class="panel-body">
-              Tip: Double-click a node or link to modify it.
-            </div>
             <ul class="nav nav-pills nav-stacked">
-              <li><a href=""><i class="fa fa-book fa-fw"></i> Load from Curated </a></li>
+              <li><a href=""><i class="fa fa-book fa-fw"></i> Import from XML/JSON </a></li>
+              <li><a href=""><i class="fa fa-book fa-fw"></i> Curated by Phospho.io </a></li>
               <li><a href=""><i class="fa fa-cloud-download fa-fw"></i> Load from Shared</a></li>
             </ul>
           </div>
-
-
         </div>
 
       </div>

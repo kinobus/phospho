@@ -33,13 +33,13 @@
         <div class="pull-left phospho-icon">
             <img src="images/phosphate.png">
         </div>
-      <a class="navbar-brand" href="#"><strong>Phospho</strong></a>
-      <ul class="nav navbar-nav pull-right nav-right">
-        <li><a href="#overview">Overview</a></li>
-        <li><a href="#docs">Docs &amp; Api</a></li>
-        <li ng-if="!user"><a href="#login">Log In / Create Account</a></li>
-        <li ng-if="user"><a href="#login"><i class="fa fa-user fa-fw"></i>{{user.email}}</a></li>
-      </ul>
+          <a class="navbar-brand" href="#"><strong>Phospho</strong></a>
+          <ul class="nav navbar-nav pull-right nav-right">
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#docs">Docs &amp; Api</a></li>
+            <li ng-if="!user"><a href="#login">Log In / Create Account</a></li>
+            <li ng-if="user"><a href="#login"><i class="fa fa-user fa-fw"></i>{{user.email}}</a></li>
+          </ul>
     </nav>
     <div class="container" ng-view=""></div>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->

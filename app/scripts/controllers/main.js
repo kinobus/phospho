@@ -211,25 +211,29 @@ angular.module('phosphoBaseApp')
         'title':'Phosphoproteome of DLBCL',
         'author':'Ricker',
         'content':'kinome',
-        'flasks':15
+        'flasks':15,
+        'forks': 3
       },
       {
         'title':'Integrated Colon Cancer Screen',
         'author':'James',
         'content':'pathway',
-        'flasks':12
+        'flasks':12,
+        'forks': 2
       },
       {
         'title':'DUX4 in FSHD',
         'author':'Greg',
         'content':'pathway',
-        'flasks':9
+        'flasks':9,
+        'forks': 7
       },
       {
         'title':'Vemurafinib Resistance and WNT',
         'author':'Kathy',
         'content':'pathway',
-        'flasks':4
+        'flasks':4,
+        'forks': 0
       }
     ];
 
