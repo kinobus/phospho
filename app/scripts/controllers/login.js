@@ -2,7 +2,7 @@
 'use strict';
 
 angular.module('phosphoBaseApp')
-  .controller('LoginCtrl', function ($scope, $firebaseSimpleLogin, $rootScope, $location) {
+  .controller('LoginCtrl', function ($scope, $firebaseSimpleLogin, $rootScope) {
     
     // Set up firebase simple login object
     var dataRef = new Firebase('https://phosphobase.firebaseio.com');

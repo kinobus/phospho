@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('phosphoBaseApp')
-  .controller('MainCtrl', function ($scope) {
+  .controller('MainCtrl', function ($scope, PhosphoIO) {
     //$scope.gridSelection = "sup";
     $scope.gridSelect = function (selection) {
       //for the special case of 'newPathway', construct a fig object
@@ -239,6 +239,12 @@ angular.module('phosphoBaseApp')
         'forks': 0
       }
     ];
+
+    $scope.publishedFigs = PhosphoIO;
+
+    $scope.publish = function (figure) {
+      $scope.publishedFigs.$add(figure);
+    };
 
     $scope.panelNewPathwayOptions = {
       'scale': 1,

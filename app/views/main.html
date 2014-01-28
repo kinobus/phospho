@@ -24,7 +24,7 @@
     <div class="col-sm-4 col-md-3 col-lg-3">
       <div class="alert alert-info gridblock gridblock-home">
         <h4><i class="fa fa-th fa-fw"></i> Figure Grid</h4>
-          <p><br>Explore figures published by the community, sort using filters, and click the <i class="fa fa-flask fa-fw"></i>  on figures that are interesting or helpful. <br><br>You can download as PDF and share locally, or instantly publish online.</p>
+          <p><br>Explore figures, sort using filters, and click the <i class="fa fa-flask fa-fw"></i>  on those that are interesting or helpful. <br><br>You can download as PDF and share locally, or instantly publish online.</p>
       </div>
     </div>
 
@@ -134,7 +134,7 @@
           <ul class="nav nav-pills nav-stacked">
             <li><a href=""><i class="fa fa-play fa-fw"></i> Bind Data </a></li>
             <li><a href=""><i class="fa fa-download fa-fw"></i> Download </a></li>
-            <li><a href=""><i class="fa fa-cloud-upload fa-fw"></i> Publish </a></li>
+            <li ng-click="publish(gridSelection)"><a href=""><i class="fa fa-cloud-upload fa-fw"></i> Publish </a></li>
           </ul>
         </div>
 
