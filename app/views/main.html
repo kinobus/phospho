@@ -29,7 +29,7 @@
     </div>
 
     <!-- New Pathway Block -->
-    <div class="col-sm-4 col-md-3 col-lg-3" ng-click="gridSelect('newPathway')">
+    <div class="col-sm-4 col-md-3 col-lg-3" ng-click="gridSelect(newPathway)">
       <div class="panel panel-success gridblock">
         <div class="panel-heading">
           <h3 class="panel-title">
@@ -37,7 +37,7 @@
           </h3>
         </div>
         <br>
-        <span class="gridblock-newpathway-graph" phos-pathway graph="newPathwayTemplate.graph" options="gridblockNewPathwayOptions"></span>
+        <div class="gridblock-newpathway-graph" phos-pathway graph="newPathway.graph" isImmutable="newPathway.isImmutable" scale="displayScale.gridblock"></div>
       </div>
     </div>
 
@@ -54,14 +54,24 @@
     </div>
 
     <!-- Loaded Blocks -->
-    <div class="col-sm-4 col-md-3 col-lg-3" ng-repeat="fig in sharedFigs" ng-click="gridSelect(fig)">
+    <div class="col-sm-4 col-md-3 col-lg-3" ng-repeat="fig in publishedFigs" ng-click="gridSelect(fig)">
+
+      <!-- Block Panel -->
       <div class="panel panel-primary gridblock">
+
+        <!-- Heading -->
         <div class="panel-heading">
           <h3 class="panel-title">{{fig.title}}</h3>
         </div>
-        <div class="panel-body">
-          {{fig.content}}
+
+        <!-- Graph -->
+        <div ng-switch on="fig.type">
+          <div ng-switch-when="pathway">
+            {{fig.isImmutable}}
+            <div class="gridblock-graph" phos-pathway graph="fig.graph" isImmutable="fig.isImmutable" scale="displayScale.gridblock"></div>
+          </div>
         </div>
+
         <div class="panel-footer">
           <span class="pull-right">
             <span class="badge">
@@ -91,9 +101,11 @@
 
     <!-- Sidebar -->
     <div class="col-md-4">
+
+      <!-- Back to Grid Button -->
       <div class="panel panel-default">
         <ul class="nav nav-pills nav-justified">
-          <li ng-click="gridSelect('empty')"><a href=""><i class="fa fa-th fa-fw"></i> Back to Grid </a></li>
+          <li ng-click="gridSelect()"><a href=""><i class="fa fa-th fa-fw"></i> Back to Grid </a></li>
         </ul>
       </div>
 
@@ -115,7 +127,7 @@
         </div>
 
         <!-- "Pathway" Panel -->
-        <div class="panel panel-default" ng-if="gridSelection.type === 'newPathway'">
+        <div class="panel panel-default" ng-if="gridSelection.type === 'pathway'">
           <div class="panel-heading">
             <h3 class="panel-title"><i class="fa fa-picture-o fa-fw"></i> Pathway</h3>
           </div>
@@ -127,9 +139,13 @@
         </div>
 
         <!-- "Figure" Panel -->
-        <div class="panel panel-default" ng-if="gridSelection.type === 'newPathway'">
+        <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title"><i class="fa fa-file-o fa-fw"></i> Figure</h3>
+          </div>
+          <div class="input-group margin-bottom-sm">
+            <span class="input-group-addon"><i class="fa fa-file-o fa-fw"></i></span>
+            <input class="form-control" type="text" placeholder="Email address" ng-model="gridSelection.title">
           </div>
           <ul class="nav nav-pills nav-stacked">
             <li><a href=""><i class="fa fa-play fa-fw"></i> Bind Data </a></li>
@@ -147,14 +163,10 @@
 
       <!-- Main Figure Visualization -->
       <div class="panel panel-default panel-focus">
-        <div class="panel-heading panel-focus-heading">
-          <div class="input-group margin-bottom-sm">
-            <span class="input-group-addon"><i class="fa fa-file-o fa-fw"></i></span>
-            <input class="form-control" type="text" placeholder="Email address" ng-model="gridSelection.title">
-          </div>
-          <!-- <h3 class="panel-title">{{gridSelection.title}}</h3> -->
+        <div class="panel-heading">
+          <h3 class="panel-title">{{gridSelection.title}}</h3> 
         </div>
-        <div phos-pathway graph="newPathwayTemplate.graph" options="panelNewPathwayOptions"></div>
+        <div phos-pathway graph="gridSelection.graph" isImmutable="gridSelection.isImmutable" scale="displayScale.focus"></div>
       </div>
 
     </div>

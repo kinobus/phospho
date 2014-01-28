@@ -8,15 +8,9 @@ angular.module('ph.Elements', [])
 
     $scope.width = 640;
     $scope.height = 480;
-    
-    //set default options if none are already set
-    if (!$scope.options.scale) {
-      $scope.options = {
-        'scale':1
-      };
-    }
 
-    if ($scope.options.editable) {
+    if (!$scope.isImmutable) {
+      console.log('sup');
       var tick = function () {
       //boundaries
         angular.forEach($scope.graph.nodes, function (node) {
@@ -65,11 +59,13 @@ angular.module('ph.Elements', [])
       controller: 'PathwayCtrl',
       scope: {
         graph: '=',
+        scale: '=',
+        isImmutable: '=',
         options: '=',
         selectItem: '&'
       },
       link: function postLink(scope, element) {
-        var scale = scope.options.scale;
+        var scale = scope.scale;
 
         //insert SVG element
         var svg = d3.select(element[0])
