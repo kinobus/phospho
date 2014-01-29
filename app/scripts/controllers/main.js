@@ -33,10 +33,12 @@ angular.module('phosphoBaseApp')
 
     $scope.publishedFigs = PhosphoIO;
 
-    $scope.publish = function (snapshot) {
+    $rootScope.publish = function (snapshot) {
       $scope.selectedItem.mutable = false;
       snapshot.flasks = 0;
       snapshot.forks = 0;
+      var d = new Date();
+      snapshot.pubDate = d.getTime();
       if ($rootScope.user) {
         snapshot.author = $rootScope.user.email;
       } else {
