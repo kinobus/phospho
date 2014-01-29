@@ -13,16 +13,16 @@ angular.module('phosphoBaseApp')
     //   'title': 'Untitled New Figure'
     // };
 
-    $scope.gridSelect = function (selection, mutable) {
+    $scope.clickItem = function (selection, mutable) {
       //clear selection if no selection was specified
       if (!selection) {
-        $scope.gridSelection = null;
-      } else {
-        $scope.gridSelection = angular.copy(selection);
+        $scope.selectedItem = null;
       }
-
       if (mutable) {
-        $scope.gridSelection.mutable = true;
+        $scope.selectedItem.mutable = true;
+        $scope.selectedItem = angular.copy(selection);
+      } else {
+        $scope.selectedItem = selection;
       }
     };
 
@@ -59,16 +59,16 @@ angular.module('phosphoBaseApp')
 
     $scope.publishedFigs = PhosphoIO;
 
-    $scope.publish = function (figure) {
-      $scope.gridSelection.mutable = true;
-      figure.flasks = 0;
-      figure.forks = 0;
+    $scope.publish = function (snapshot) {
+      $scope.selectedItem.mutable = false;
+      snapshot.flasks = 0;
+      snapshot.forks = 0;
       if ($rootScope.user) {
-        figure.author = $rootScope.user.email;
+        snapshot.author = $rootScope.user.email;
       } else {
-        figure.author = 'guest';
+        snapshot.author = 'guest';
       }
-      $scope.publishedFigs.$add(figure);
+      $scope.publishedFigs.$add(snapshot);
     };
 
     $scope.panelNewPathwayOptions = {

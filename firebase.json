@@ -1,4 +1,5 @@
 {
   "firebase": "phosphobase",
-  "public": "dist"
+  "public": "dist",
+  "rules": "security-rules.json"
 }

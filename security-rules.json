@@ -1,0 +1,10 @@
+{
+  "rules": {
+    "figures": {
+      "$figure": {
+        ".read": true,
+        ".write": true
+      }
+    }
+  }
+}

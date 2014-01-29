@@ -70,3 +70,6 @@
 .flask-counter {
     text-align: right;
 }
+// Fix bootstrap styling to work with angular-ui-bootstrap
+// [http://angular-ui.github.io/bootstrap/#/getting_started]
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }

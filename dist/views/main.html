@@ -1,36 +1,194 @@
-<div class="header">
-  <ul class="nav nav-pills pull-right">
-    <li class="active"><a ng-href="#">Home</a></li>
-    <li><a ng-href="#">About</a></li>
-    <li><a ng-href="#">Contact</a></li>
-  </ul>
-  <h3 class="text-muted">phosphoBase</h3>
+<!-- view: grid -->
+<div class="nav-grid" ng-show="!selectedItem">
+
+  <!-- grid-filters -->
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <div class="panel panel-default">
+        <ul class="nav nav-pills nav-justified">
+          <li><a href=""><i class="fa fa-search fa-fw"></i> Search </a></li>
+          <li><a href=""><i class="fa fa-clock-o fa-fw"></i> Recent </a></li>
+          <li><a href=""><i class="fa fa-tags fa-fw"></i> Topics </a></li>
+          <li><a href=""><i class="fa fa-users fa-fw"></i> Users </a></li>
+          <li><a href=""><i class="fa fa-code-fork fa-fw"></i> Forks </a></li>
+          <li><a href=""><i class="fa fa-flask fa-fw"></i> Flasks </a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- grid -->
+  <div class="row">
+
+    <!-- gridblock-home -->
+    <div class="col-sm-4 col-md-3 col-lg-3">
+      <div class="alert alert-info gridblock gridblock-home">
+        <h4><i class="fa fa-th fa-fw"></i> Figure Grid</h4>
+          <p><br>Explore figures, sort using filters, and click the <i class="fa fa-flask fa-fw"></i>  on those that are interesting or helpful. <br><br>You can download as PDF and share locally, or instantly publish online.</p>
+      </div>
+    </div>
+
+    <!-- griblock-newPathway (data from static resource)-->
+    <div class="col-sm-4 col-md-3 col-lg-3" ng-click="clickItem(newPathway, true)">
+      <div class="panel panel-success gridblock">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <i class="fa fa-plus fa-fw"></i> New Pathway
+          </h3>
+        </div>
+        <br>
+        <div class="gridblock-newpathway-graph" phos-pathway="" graph="newPathway.graph" scale="displayScale.gridblock" mutable="true"></div>
+      </div>
+    </div>
+
+    <!-- gridblock-newDendrogram (data from static resource) -->
+    <div class="col-sm-4 col-md-3 col-lg-3">
+      <div class="panel panel-success gridblock">
+        <div class="panel-heading">
+          <h3 class="panel-title"><i class="fa fa-plus fa-fw"></i> New Kinome</h3>
+        </div>
+        <div class="panel-body">
+           New Kinome
+        </div>
+      </div>
+    </div>
+
+    <!-- gridblock-fromResource (data from dynamic resource, unless mocked for testing) uses ng-repeat to display all figures currently loaded from resource -->
+    <div class="col-sm-4 col-md-3 col-lg-3" ng-repeat="fig in publishedFigs" ng-click="clickItem(fig)">
+
+      <!-- Block Panel -->
+      <div class="panel panel-primary gridblock">
+
+        <!-- Heading -->
+        <div class="panel-heading">
+          <h3 class="panel-title">{{fig.title}}</h3>
+        </div>
+
+        <!-- Graph -->
+        <div ng-switch="" on="fig.type">
+          <div ng-switch-when="pathway">
+            <div class="gridblock-graph" phos-pathway="" graph="fig.graph" mutable="false" scale="displayScale.gridblock"></div>
+          </div>
+        </div>
+
+        <div class="panel-footer">
+          <span class="pull-right">
+            <span class="badge">
+              <i class="fa fa-code-fork fa-fw"></i> {{fig.forks}}
+            </span>
+            &nbsp;
+            <span class="badge">
+              <i class="fa fa-flask fa-fw"></i> {{fig.flasks}}
+            </span>
+          </span>
+          <span class="pull-left">
+            <i class="fa fa-user fa-fw"></i> {{fig.author}}
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
 </div>
 
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/47b431ed.yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!</a></p>
-</div>
+<!-- view: gridItem -->
+<div ng-if="selectedItem">
+  <div class="row">
 
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
+    <!-- sidebar-left -->
+    <div class="col-md-4">
 
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
+      <!-- Consume or Contribute item -->
+      <div class="panel panel-default">
+        <ul class="nav nav-pills nav-justified">
 
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
-</div>
+          <!-- Deselect (and go back to grid view) -->
+          <li ng-click="clickItem()"><a href=""><i class="fa fa-eject fa-fw"></i> Close </a></li>
 
-<div class="footer">
-  <p>♥ from the Yeoman team</p>
+          <!-- Download resource item as static file -->
+          <li><a href="">
+            <i class="fa fa-floppy-o fa-fw"></i> Download 
+          </a></li>
+
+          <!-- Push to back-end resource (contextual for mutable items) -->
+          <li ng-click="publish(selectedItem)"><a href="">
+            <i class="fa fa-camera-retro fa-fw"></i> Publish 
+          </a></li>
+
+        </ul>
+      </div>
+
+      <!-- Edit Figure Data (contextual for mutable items) -->
+      <div ng-if="selectedItem.mutable">
+
+        
+        <!-- Rename -->
+        <div class="panel panel-default">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-file-o fa-fw"></i></span>
+            <input class="form-control" type="text" ng-model="selectedItem.title">
+          </div>
+        </div>
+
+        <!-- Edit Contents -->
+        <accordion close-others="true">
+          <accordion-group is-open="isopen">
+            <accordion-heading>
+              <i class="fa fa-pencil fa-fw"></i> Edit Pathway <i class="fa pull-right" ng-class="{'fa-minus-square': isopen, 'fa-plus-square': !isopen}"></i>
+            </accordion-heading>
+            <ul class="nav nav-pills nav-stacked">
+              <li><a href=""><i class="fa fa-anchor fa-fw"></i> Load Template </a></li>
+              <li><a href=""><i class="fa fa-plus-circle fa-fw"></i> Add Node </a></li>
+              <li><a href=""><i class="fa fa-plus-circle fa-fw"></i> Add Path </a></li>
+            </ul>
+          </accordion-group>
+          <accordion-group>
+            <accordion-heading>
+              <i class="fa fa-bar-chart-o fa-fw"></i> Biological Data
+            </accordion-heading>
+            <ul class="nav nav-pills nav-stacked">
+              <li><a href=""><i class="fa fa-floppy-o fa-fw"></i> Import Files</a></li>
+              <li><a href=""><i class="fa fa-list-alt fa-fw"></i> Lay Out Conditions</a></li>
+              <li><a href=""><i class="fa fa-signal fa-fw"></i> Scale and Preprocess </a></li>      
+            </ul>
+          </accordion-group>
+          <accordion-group>
+            <accordion-heading>
+              <i class="fa fa-bar-chart-o fa-fw"></i> Tags
+            </accordion-heading>
+          This content is straight in the template.
+          </accordion-group>
+        
+      </accordion></div>
+
+      <!-- Display Figure Data (contextual for immutable items) -->
+      <div ng-if="selectedItem.mutable">
+
+        <!-- Stuff to show -->
+        <div class="panel panel-default">
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Main Column -->
+    <div class="col-md-8">
+
+      <!-- Main Figure Visualization -->
+      <div class="panel panel-primary panel-focus">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{selectedItem.title}}</h3>
+
+        </div>
+        <div phos-pathway="" graph="selectedItem.graph" mutable="selectedItem.mutable" scale="displayScale.focus"></div>
+      </div>
+
+    </div>
+
+  </div>
+
 </div>

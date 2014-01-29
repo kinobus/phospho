@@ -8,8 +8,6 @@ angular.module('phosphoBaseApp')
     var newPathwayTemplate = {
       'title': 'Untitled Figure',
       'type': 'pathway',
-      'flasks': 0,
-      'forks': 0,
       'graph':{
         'nodes':[
           {

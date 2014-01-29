@@ -1,7 +1,7 @@
-<!-- Navigation Grid View -->
-<div class="nav-grid" ng-show="!gridSelection">
+<!-- view: grid -->
+<div class="nav-grid" ng-show="!selectedItem">
 
-  <!-- Figure Grid Filtering Options -->
+  <!-- grid-filters -->
   <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-12">
       <div class="panel panel-default">
@@ -17,10 +17,10 @@
     </div>
   </div>
 
-  <!-- Grid -->
+  <!-- grid -->
   <div class="row">
 
-    <!-- Home Block -->
+    <!-- gridblock-home -->
     <div class="col-sm-4 col-md-3 col-lg-3">
       <div class="alert alert-info gridblock gridblock-home">
         <h4><i class="fa fa-th fa-fw"></i> Figure Grid</h4>
@@ -28,8 +28,8 @@
       </div>
     </div>
 
-    <!-- New Pathway Block -->
-    <div class="col-sm-4 col-md-3 col-lg-3" ng-click="gridSelect(newPathway, true)">
+    <!-- griblock-newPathway (data from static resource)-->
+    <div class="col-sm-4 col-md-3 col-lg-3" ng-click="clickItem(newPathway, true)">
       <div class="panel panel-success gridblock">
         <div class="panel-heading">
           <h3 class="panel-title">
@@ -41,7 +41,7 @@
       </div>
     </div>
 
-    <!-- New Kinome Block -->
+    <!-- gridblock-newDendrogram (data from static resource) -->
     <div class="col-sm-4 col-md-3 col-lg-3">
       <div class="panel panel-success gridblock">
         <div class="panel-heading">
@@ -53,8 +53,8 @@
       </div>
     </div>
 
-    <!-- Loaded Blocks -->
-    <div class="col-sm-4 col-md-3 col-lg-3" ng-repeat="fig in publishedFigs" ng-click="gridSelect(fig)">
+    <!-- gridblock-fromResource (data from dynamic resource, unless mocked for testing) uses ng-repeat to display all figures currently loaded from resource -->
+    <div class="col-sm-4 col-md-3 col-lg-3" ng-repeat="fig in publishedFigs" ng-click="clickItem(fig)">
 
       <!-- Block Panel -->
       <div class="panel panel-primary gridblock">
@@ -93,64 +93,82 @@
 
 </div>
 
-<!-- Panel-Focus View -->
-<div ng-if="gridSelection">
-
+<!-- view: gridItem -->
+<div ng-if="selectedItem">
   <div class="row">
 
-    <!-- Sidebar -->
+    <!-- sidebar-left -->
     <div class="col-md-4">
 
-      <!-- Back to Grid Button -->
+      <!-- Consume or Contribute item -->
       <div class="panel panel-default">
         <ul class="nav nav-pills nav-justified">
-          <li ng-click="gridSelect()"><a href=""><i class="fa fa-th fa-fw"></i> Back to Grid </a></li>
+
+          <!-- Deselect (and go back to grid view) -->
+          <li ng-click="clickItem()"><a href=""><i class="fa fa-eject fa-fw"></i> Close </a></li>
+
+          <!-- Download resource item as static file -->
+          <li><a href="">
+            <i class="fa fa-floppy-o fa-fw"></i> Download 
+          </a></li>
+
+          <!-- Push to back-end resource (contextual for mutable items) -->
+          <li ng-click="publish(selectedItem)"><a href="">
+            <i class="fa fa-camera-retro fa-fw"></i> Publish 
+          </a></li>
+
         </ul>
       </div>
 
+      <!-- Edit Figure Data (contextual for mutable items) -->
+      <div ng-if="selectedItem.mutable">
 
-
-      <!-- Contextual Panels for Mutables -->
-      <div ng-if="!gridSelection.isImmutable">
-
-        <!-- "Edit Figure" Panel -->
+        
+        <!-- Rename -->
         <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Biological Data</h3>
-          </div>
-          <ul class="nav nav-pills nav-stacked">
-            <li><a href=""><i class="fa fa-floppy-o fa-fw"></i> Import Files</a></li>
-            <li><a href=""><i class="fa fa-list-alt fa-fw"></i> Lay Out Conditions</a></li>
-            <li><a href=""><i class="fa fa-signal fa-fw"></i> Scale and Preprocess </a></li>      
-          </ul>
-        </div>
-
-        <!-- "Pathway" Panel -->
-        <div class="panel panel-default" ng-if="gridSelection.type === 'pathway'">
-          <div class="panel-heading">
-            <h3 class="panel-title"><i class="fa fa-picture-o fa-fw"></i> Pathway</h3>
-          </div>
-          <ul class="nav nav-pills nav-stacked">
-            <li><a href=""><i class="fa fa-anchor fa-fw"></i> Load Template </a></li>
-            <li><a href=""><i class="fa fa-plus-circle fa-fw"></i> Add Node </a></li>
-            <li><a href=""><i class="fa fa-plus-circle fa-fw"></i> Add Path </a></li>
-          </ul>
-        </div>
-
-        <!-- "Figure" Panel -->
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title"><i class="fa fa-file-o fa-fw"></i> Figure</h3>
-          </div>
-          <div class="input-group margin-bottom-sm">
+          <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-file-o fa-fw"></i></span>
-            <input class="form-control" type="text" placeholder="Email address" ng-model="gridSelection.title">
+            <input class="form-control" type="text" ng-model="selectedItem.title">
           </div>
-          <ul class="nav nav-pills nav-stacked">
-            <li><a href=""><i class="fa fa-play fa-fw"></i> Bind Data </a></li>
-            <li><a href=""><i class="fa fa-download fa-fw"></i> Download </a></li>
-            <li ng-click="publish(gridSelection)"><a href=""><i class="fa fa-cloud-upload fa-fw"></i> Publish </a></li>
-          </ul>
+        </div>
+
+        <!-- Edit Contents -->
+        <accordion close-others="true">
+          <accordion-group is-open="isopen">
+            <accordion-heading>
+              <i class="fa fa-pencil fa-fw"></i> Edit Pathway <i class="fa pull-right" ng-class="{'fa-minus-square': isopen, 'fa-plus-square': !isopen}"></i>
+            </accordion-heading>
+            <ul class="nav nav-pills nav-stacked">
+              <li><a href=""><i class="fa fa-anchor fa-fw"></i> Load Template </a></li>
+              <li><a href=""><i class="fa fa-plus-circle fa-fw"></i> Add Node </a></li>
+              <li><a href=""><i class="fa fa-plus-circle fa-fw"></i> Add Path </a></li>
+            </ul>
+          </accordion-group>
+          <accordion-group>
+            <accordion-heading>
+              <i class="fa fa-bar-chart-o fa-fw"></i> Biological Data
+            </accordion-heading>
+            <ul class="nav nav-pills nav-stacked">
+              <li><a href=""><i class="fa fa-floppy-o fa-fw"></i> Import Files</a></li>
+              <li><a href=""><i class="fa fa-list-alt fa-fw"></i> Lay Out Conditions</a></li>
+              <li><a href=""><i class="fa fa-signal fa-fw"></i> Scale and Preprocess </a></li>      
+            </ul>
+          </accordion-group>
+          <accordion-group>
+            <accordion-heading>
+              <i class="fa fa-bar-chart-o fa-fw"></i> Tags
+            </accordion-heading>
+          This content is straight in the template.
+          </accordion-group>
+        </accordian>
+      </div>
+
+      <!-- Display Figure Data (contextual for immutable items) -->
+      <div ng-if="selectedItem.mutable">
+
+        <!-- Stuff to show -->
+        <div class="panel panel-default">
+
         </div>
 
       </div>
@@ -161,11 +179,12 @@
     <div class="col-md-8">
 
       <!-- Main Figure Visualization -->
-      <div class="panel panel-default panel-focus">
+      <div class="panel panel-primary panel-focus">
         <div class="panel-heading">
-          <h3 class="panel-title">{{gridSelection.title}}</h3> 
+          <h3 class="panel-title">{{selectedItem.title}}</h3>
+
         </div>
-        <div phos-pathway graph="gridSelection.graph" mutable="gridSelection.mutable" scale="displayScale.focus"></div>
+        <div phos-pathway graph="selectedItem.graph" mutable="selectedItem.mutable" scale="displayScale.focus"></div>
       </div>
 
     </div>
@@ -173,5 +192,3 @@
   </div>
 
 </div>
-  
-
