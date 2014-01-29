@@ -21,40 +21,35 @@
   <div class="row">
 
     <!-- gridblock-home -->
-    <div class="col-sm-4 col-md-3 col-lg-3">
+    <div class="col-sm-4 col-md-4 col-lg-3">
       <div class="alert alert-info gridblock gridblock-home">
         <h4><i class="fa fa-th fa-fw"></i> Figure Grid</h4>
           <p><br>Explore figures, sort using filters, and click the <i class="fa fa-flask fa-fw"></i>  on those that are interesting or helpful. <br><br>You can download as PDF and share locally, or instantly publish online.</p>
       </div>
     </div>
 
-    <!-- griblock-newPathway (data from static resource)-->
-    <div class="col-sm-4 col-md-3 col-lg-3" ng-click="clickItem(newPathway, true)">
+    <!-- griblock-newFigure (data from static resource)-->
+    <div class="col-sm-4 col-md-4 col-lg-3">
       <div class="panel panel-success gridblock">
         <div class="panel-heading">
-          <h3 class="panel-title">
-            <i class="fa fa-plus fa-fw"></i> New Pathway
-          </h3>
+          <h3 class="panel-title">Create Figure</h3>
         </div>
-        <br>
-        <!-- <div class="gridblock-newpathway-graph" phos-pathway graph="newPathway.graph"  scale="displayScale.gridblock" mutable="false"></div> -->
-      </div>
-    </div>
-
-    <!-- gridblock-newDendrogram (data from static resource) -->
-    <div class="col-sm-4 col-md-3 col-lg-3">
-      <div class="panel panel-success gridblock">
+        <ul class="nav nav-pills nav-stacked">
+          <li><a><i class="fa fa-plus-square-o fa-fw"></i> Pathway</a></li>
+          <li><a><i class="fa fa-plus-square-o fa-fw"></i> Dendrogram</a></li>
+        </ul>
         <div class="panel-heading">
-          <h3 class="panel-title"><i class="fa fa-plus fa-fw"></i> New Kinome</h3>
+          <h3 class="panel-title">Grid Size</h3>
         </div>
-        <div class="panel-body">
-           New Kinome
-        </div>
+        <ul class="nav nav-pills nav-stacked">
+          <li><a><i class="fa fa-compress fa-fw"></i> Compress</a></li>
+          <li><a><i class="fa fa-expand fa-fw"></i> Expand</a></li>
+        </ul>
       </div>
     </div>
 
     <!-- gridblock-fromResource (data from dynamic resource, unless mocked for testing) uses ng-repeat to display all figures currently loaded from resource -->
-    <div class="col-sm-4 col-md-3 col-lg-3" ng-repeat="fig in publishedFigs" ng-click="clickItem(fig)">
+    <div class="col-sm-4 col-md-4 col-lg-3" ng-repeat="fig in publishedFigs" ng-click="clickItem(fig)">
 
       <!-- Block Panel -->
       <div class="panel panel-primary gridblock">
