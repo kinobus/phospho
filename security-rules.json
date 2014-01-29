@@ -1,8 +1,8 @@
 {
   "rules": {
     "figures": {
+      ".read": true,
       "$figure": {
-        ".read": true,
         ".write": true
       }
     }
