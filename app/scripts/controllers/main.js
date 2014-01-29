@@ -3,7 +3,6 @@
 angular.module('phosphoBaseApp')
   .controller('MainCtrl', function ($scope, $rootScope, PhosphoIO, figureFactory, $modal) {
 
-
     $scope.newPathway = new figureFactory.pathway();
 
     // $scope.newPathway = {
@@ -15,7 +14,8 @@ angular.module('phosphoBaseApp')
 
 
     $scope.open = function () {
-      var modalInstance = $modal.open({
+      $rootScope.alerts = [];
+      $modal.open({
         templateUrl: 'views/figure-modal.html'
       });
     };
@@ -23,7 +23,7 @@ angular.module('phosphoBaseApp')
     $scope.clickItem = function (selection, mutable) {
 
       if (mutable) {
-        selection.mutable = true;
+        $rootScope.mutableSelection = true;
         $rootScope.selectedItem = angular.copy(selection);
       } else {
         $rootScope.selectedItem = selection;
@@ -33,8 +33,38 @@ angular.module('phosphoBaseApp')
 
     $scope.publishedFigs = PhosphoIO;
 
+    $rootScope.addAlert = function(alertType, alertMsg) {
+      $rootScope.alerts.push({type: alertType,msg: alertMsg});
+    };
+
+    $rootScope.closeAlert = function(index) {
+      $scope.alerts.splice(index, 1);
+    };
+
+    $rootScope.fork = function (selection) {
+      //add a fork count
+      $rootScope.parentFigure = selection;
+      //$scope.publishedFigs.$save();
+
+      //make snapshot into mutable selection
+      $rootScope.selectedItem = angular.copy(selection);
+      $rootScope.mutableSelection = true;
+      $rootScope.selectedItem.forks = 0;
+    };
+
     $rootScope.publish = function (snapshot) {
-      $scope.selectedItem.mutable = false;
+      if (!$rootScope.user) {
+        $rootScope.addAlert('info','In order to publish, first log-in');
+        return;
+      } else if (!snapshot.hasTitle) {
+        $rootScope.addAlert('danger','In order to publish, first edit the title this figure');
+        return;
+      }
+
+      if ($rootScope.parentFigure) {
+        //add username onto forklist
+      }
+      $rootScope.mutableSelection = false;
       snapshot.flasks = 0;
       snapshot.forks = 0;
       var d = new Date();
@@ -45,11 +75,7 @@ angular.module('phosphoBaseApp')
         snapshot.author = 'guest';
       }
       $scope.publishedFigs.$add(snapshot);
-    };
-
-    $scope.panelNewPathwayOptions = {
-      'scale': 1,
-      'editable': true
+      //$rootScope.selectedItem = null;
     };
 
     $rootScope.displayScale = {
