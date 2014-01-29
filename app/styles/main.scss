@@ -73,3 +73,13 @@
 // Fix bootstrap styling to work with angular-ui-bootstrap
 // [http://angular-ui.github.io/bootstrap/#/getting_started]
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+.first-column {
+  width: 34%;
+  float: left;
+}
+
+.second-column {
+  width: 64%;
+  float: right;
+}

@@ -134,9 +134,9 @@
 
         <!-- Edit Contents -->
         <accordion close-others="true">
-          <accordion-group is-open="isopen">
+          <accordion-group is-open="pathway">
             <accordion-heading>
-              <i class="fa fa-pencil fa-fw"></i> Edit Pathway <i class="fa pull-right" ng-class="{'fa-minus-square': isopen, 'fa-plus-square': !isopen}"></i>
+              <i class="fa fa-pencil fa-fw"></i> Edit Pathway <i class="fa pull-right" ng-class="{'fa-minus-square': pathway, 'fa-plus-square': !pathway}"></i>
             </accordion-heading>
             <ul class="nav nav-pills nav-stacked">
               <li><a href=""><i class="fa fa-anchor fa-fw"></i> Load Template </a></li>
@@ -144,9 +144,9 @@
               <li><a href=""><i class="fa fa-plus-circle fa-fw"></i> Add Path </a></li>
             </ul>
           </accordion-group>
-          <accordion-group>
+          <accordion-group is-open="biology">
             <accordion-heading>
-              <i class="fa fa-bar-chart-o fa-fw"></i> Biological Data
+              <i class="fa fa-bar-chart-o fa-fw"></i> Bind Data <i class="fa pull-right" ng-class="{'fa-minus-square': biology, 'fa-plus-square': !biology}"></i>
             </accordion-heading>
             <ul class="nav nav-pills nav-stacked">
               <li><a href=""><i class="fa fa-floppy-o fa-fw"></i> Import Files</a></li>
@@ -154,9 +154,9 @@
               <li><a href=""><i class="fa fa-signal fa-fw"></i> Scale and Preprocess </a></li>      
             </ul>
           </accordion-group>
-          <accordion-group>
+          <accordion-group is-open="tags">
             <accordion-heading>
-              <i class="fa fa-bar-chart-o fa-fw"></i> Tags
+              <i class="fa fa-tags fa-fw"></i> Add/Edit Tags <i class="fa pull-right" ng-class="{'fa-minus-square': tags, 'fa-plus-square': !tags}"></i>
             </accordion-heading>
           This content is straight in the template.
           </accordion-group>
