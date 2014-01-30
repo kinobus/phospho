@@ -5,17 +5,9 @@ angular.module('phosphoBaseApp')
 
     $scope.newPathway = new figureFactory.pathway();
 
-    // $scope.newPathway = {
-    //   'graph': new figureFactory.pathwayGraph(),
-    //   'type': 'pathway',
-    //   'isImmutable': false,
-    //   'title': 'Untitled New Figure'
-    // };
-
-
     $scope.open = function () {
       $rootScope.alerts = [];
-      $modal.open({
+      $scope.modalInstance = $modal.open({
         templateUrl: 'views/figure-modal.html'
       });
     };
@@ -31,7 +23,18 @@ angular.module('phosphoBaseApp')
       $scope.open();
     };
 
-    $scope.publishedFigs = PhosphoIO;
+    //TODO consider combining the two lines below
+    $scope.phosphoIO = PhosphoIO;
+    $scope.figures = $scope.phosphoIO.$child('figures');
+
+    $scope.figures.$on('loaded', function() {
+      var counter = 0;
+      angular.forEach($scope.figures, function(key, value){
+        counter++;
+      });
+      $scope.figureCount = counter;
+    });
+
 
     $rootScope.addAlert = function(alertType, alertMsg) {
       $rootScope.alerts.push({type: alertType,msg: alertMsg});
@@ -53,7 +56,7 @@ angular.module('phosphoBaseApp')
     };
 
     $rootScope.publish = function (snapshot) {
-      if (!$rootScope.user) {
+      if (!$rootScope.auth.user) {
         $rootScope.addAlert('info','In order to publish, first log-in');
         return;
       } else if (!snapshot.hasTitle) {
@@ -69,12 +72,15 @@ angular.module('phosphoBaseApp')
       snapshot.forks = 0;
       var d = new Date();
       snapshot.pubDate = d.getTime();
-      if ($rootScope.user) {
-        snapshot.author = $rootScope.user.email;
+      if ($rootScope.auth.user) {
+        snapshot.author = $rootScope.auth.user.email;
+        $scope.figures.$add(snapshot);
+
+        //close modal
+        $scope.modalInstance.close();
       } else {
-        snapshot.author = 'guest';
+        $rootScope.addAlert('danger','For some reason, your figure was not published.');
       }
-      $scope.publishedFigs.$add(snapshot);
       //$rootScope.selectedItem = null;
     };
 

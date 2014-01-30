@@ -21,7 +21,7 @@
   <div class="row">
 
     <!-- gridBlock-Hero -->
-    <div class="col-sm-4 col-md-4 col-lg-3">
+    <div class="col-sm-6 col-md-4 col-lg-3">
       <div class="hero-widget well well-sm">
         <div class="icon">
           <span class="fa-stack fa-3x">
@@ -30,11 +30,11 @@
           </span>
         </div>
         <div class="text">
-          <var>3</var>
+          <var>{{figureCount}}</var>
           <label class="text-muted">Published Figures</label>
         </div>
         <div class="options">
-          <a href="" class="btn btn-primary btn-lg" ng-click="clickItem(newPathway, true)"><i class="fa fa-plus-square-o"></i> Create a figure</a>
+          <a href="" class="btn btn-primary btn-lg" ng-click="clickItem(newPathway, true)"><i class="fa fa-plus"></i> Create a figure</a>
         </div>
       </div>
     </div>
@@ -48,7 +48,7 @@
     </div> -->
 
     <!-- gridblock-fromResource (data from dynamic resource, unless mocked for testing) uses ng-repeat to display all figures currently loaded from resource -->
-    <div class="col-sm-4 col-md-4 col-lg-3 gridblock-repeat-animation" ng-repeat="fig in publishedFigs | orderByPriority | reverse" ng-click="clickItem(fig)">
+    <div class="col-sm-6 col-md-4 col-lg-3 gridblock-repeat-animation" ng-repeat="fig in figures | orderByPriority | reverse" ng-click="clickItem(fig)">
 
       <!-- Block Panel -->
       <div class="panel panel-primary gridblock">

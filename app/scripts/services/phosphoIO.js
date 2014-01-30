@@ -4,6 +4,6 @@
 angular.module('phosphoBaseApp')
   .service('PhosphoIO', function PhosphoIO($firebase) {
     // AngularJS will instantiate a singleton by calling "new" on this function
-    var ref = new Firebase('https://phosphobase.firebaseio.com/figures');
+    var ref = new Firebase('https://phosphobase.firebaseio.com');
     return $firebase(ref);
   });

@@ -1,0 +1,82 @@
+<div>
+
+     <form class="form-horizontal">
+
+
+    <!-- Form Name -->
+    <legend class="login-legend">Log In / Sign Up</legend>
+
+    <!-- Multiple Radios (inline) -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="radios">New Account?</label>
+      <div class="col-md-4"> 
+        <label class="radio-inline" for="radios-0">
+          <input type="radio" name="radios" id="radios-0" ng-value="false" ng-model="auth.newAccount">
+          No
+        </label> 
+        <label class="radio-inline" for="radios-1">
+          <input type="radio" name="radios" id="radios-1" ng-value="true" ng-model="auth.newAccount">
+          Yes
+        </label>
+      </div>
+    </div>
+
+    <!-- Prepended text-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="email">Email</label>
+      <div class="col-md-6">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+          <input id="email" name="email" class="form-control" placeholder="Your Email Address" type="text" required ng-model="auth.email">
+        </div>
+        <p class="help-block">Enter your email address</p>
+      </div>
+    </div>
+
+    <!-- Prepended text-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="password">Password</label>
+      <div class="col-md-6">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+          <input id="password" name="password" class="form-control" placeholder="" type="password" required ng-model="auth.password">
+        </div>
+        <p class="help-block">Enter your password</p>
+      </div>
+    </div>
+
+    <!-- Prepended text-->
+    <div class="form-group" ng-if="auth.newAccount">
+      <label class="col-md-4 control-label" for="passRepeat"></label>
+      <div class="col-md-6">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+          <input id="passRepeat" name="passRepeat" class="form-control" placeholder="" type="password" required>
+        </div>
+        <p class="help-block">Re-enter password to verify</p>
+      </div>
+    </div>
+
+    <!-- Sign Up Button -->
+    <div class="form-group" ng-if="auth.newAccount">
+      <label class="col-md-4 control-label" for="login"></label>
+      <div class="col-md-4">
+        <button id="login" name="login" class="btn btn-primary" ng-click="fbSignup()">Sign Up</button>
+      </div>
+    </div>
+
+
+    <!-- Log In Button -->
+    <div class="form-group" ng-if="!auth.newAccount">
+      <label class="col-md-4 control-label" for="login"></label>
+      <div class="col-md-4">
+        <button id="login" name="login" class="btn btn-primary" ng-click="fbLogin()">Log In</button>
+      </div>
+    </div>
+
+
+    </form>
+
+</div>
+
+

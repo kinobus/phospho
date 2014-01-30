@@ -30,17 +30,26 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <nav class="navbar navbar-default navbar-static-top" role="navigation">
-        <div class="pull-left phospho-icon">
-            <img src="images/phosphate.png">
-        </div>
-          <a class="navbar-brand" href="#"><strong>Phospho</strong></a>
-          <ul class="nav navbar-nav pull-right nav-right">
-            <li><a href="#overview">Overview</a></li>
-            <li><a href="#docs">Docs &amp; Api</a></li>
-            <li ng-if="!user"><a href="#login">Log In / Create Account</a></li>
-            <li ng-if="user"><a href="#login"><i class="fa fa-user fa-fw"></i>{{user.email}}</a></li>
-          </ul>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" ng-controller="NavbarCtrl">
+      <div class="pull-left phospho-icon">
+        <img src="images/phosphate.png">
+      </div>
+        <a class="navbar-brand" href="#"><strong>Phospho</strong></a>
+        <ul class="nav navbar-nav pull-right nav-right">
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#docs">Docs &amp; Api</a></li>
+          <li ng-if="!auth.user" ng-click="loginModal()"><a href="">Log In / Create Account</a></li>
+          <li ng-if="auth.user">
+            <a href="" class="dropdown-toggle">
+              <i class="fa fa-user fa-fw"></i>{{auth.user.email}}
+            </a>
+            <ul class="dropdown-menu">
+              <li ng-repeat="choice in authDropdown.choices" ng-click="authDropdown.select(choice.action)">
+                <a>{{choice.text}}</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
     </nav>
     <div class="container" ng-view=""></div>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -97,6 +106,7 @@
         <script src="scripts/services/phosphoIO.js"></script>
         <script src="scripts/services/figureFactory.js"></script>
         <script src="scripts/filters/reverse.js"></script>
+        <script src="scripts/controllers/navbar.js"></script>
         <!-- endbuild -->
 </body>
 </html>

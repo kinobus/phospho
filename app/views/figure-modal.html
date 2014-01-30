@@ -3,90 +3,84 @@
       <!-- Alerts -->
       <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
 
-      <!-- Log-In Reminder -->
-      <div class="panel panel-default" ng-if="!user">
-        <ul class="nav nav-pills nav-stacked">
-          <li ng-click="$close()"><a href="#login"><i class="fa fa-user fa-fw"></i> Log In or Create an Account</a></li>
-        </ul>
-      </div>
-
       <div class="panel panel-default">
-        <!-- Consume or Contribute item -->
-        <ul class="nav nav-pills nav-justified">
 
-          <!-- Close Modal (and go back to grid view) -->
-          <li ng-click="$close()"><a href=""><i class="fa fa-eject fa-fw"></i> Close </a></li>
+        <ul class="list-group">
+          <li class="list-group-item figure-sidebar-item">
+            <!-- Consume or Contribute item -->
+            <ul class="nav nav-pills nav-justified">
 
-          <!-- Download resource item as static file -->
-          <li><a href="">
-            <i class="fa fa-floppy-o fa-fw"></i> Download 
-          </a></li>
+              <!-- Close Modal (and go back to grid view) -->
+              <li ng-click="$close()"><a href=""><i class="fa fa-eject fa-fw"></i> Close </a></li>
 
-          <!-- Push to back-end resource (contextual for mutable items) -->
-          <li ng-click="publish(selectedItem); $close();" ng-if="mutableSelection"><a href="">
-            <i class="fa fa-camera-retro fa-fw"></i> Publish 
-          </a></li>
+              <!-- Download resource item as static file -->
+              <li><a href="">
+                <i class="fa fa-floppy-o fa-fw"></i> Download 
+              </a></li>
 
-          <!-- Fork back-end resource (contextual for immutable items) -->
-          <li ng-click="fork(selectedItem)" ng-if="!mutableSelection"><a href="">
-            <i class="fa fa-code-fork fa-fw"></i> Fork 
-          </a></li>
+              <!-- Push to back-end resource (contextual for mutable items) -->
+              <li ng-click="publish(selectedItem)" ng-if="mutableSelection"><a href="">
+                <i class="fa fa-camera-retro fa-fw"></i> Publish 
+              </a></li>
 
+              <!-- Fork back-end resource (contextual for immutable items) -->
+              <li ng-click="fork(selectedItem)" ng-if="!mutableSelection"><a href="">
+                <i class="fa fa-code-fork fa-fw"></i> Fork 
+              </a></li>
+
+            </ul>
+          </li>
+          <li class="list-group-item figure-sidebar-item" ng-if="!auth.user">
+            <!-- Log-In Reminder -->
+            <ul class="nav nav-pills nav-stacked">
+              <li ng-click="$close(); loginModal();"><a href=""><i class="fa fa-user fa-fw"></i> Log In or Create an Account</a></li>
+            </ul>
+          </li>
+          <li class="list-group-item figure-sidebar-item" ng-if="mutableSelection">
+            <!-- Rename -->
+            <div class="panel-body">
+              <div class="input-group">
+                <span class="input-group-addon">Title</span>
+                <input class="form-control" type="text" ng-model="selectedItem.title" ng-change="selectedItem.hasTitle = true;">
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item figure-sidebar-item" ng-if="mutableSelection">
+            <!-- Edit Figure Contents (contextual for mutable items) -->
+            <accordion close-others="true">
+              <accordion-group is-open="pathway">
+                <accordion-heading>
+                  <i class="fa fa-pencil fa-fw"></i> Edit Pathway <i class="fa pull-right" ng-class="{'fa-minus-square': pathway, 'fa-plus-square': !pathway}"></i>
+                </accordion-heading>
+                <ul class="nav nav-pills nav-stacked">
+                  <li><a href=""><i class="fa fa-anchor fa-fw"></i> Load Template </a></li>
+                  <li><a href=""><i class="fa fa-plus-circle fa-fw"></i> Add Node </a></li>
+                  <li><a href=""><i class="fa fa-plus-circle fa-fw"></i> Add Path </a></li>
+                </ul>
+              </accordion-group>
+              <accordion-group  is-open="biology">
+                <accordion-heading>
+                  <i class="fa fa-bar-chart-o fa-fw"></i> Bind Data <i class="fa pull-right" ng-class="{'fa-minus-square': biology, 'fa-plus-square': !biology}"></i>
+                </accordion-heading>
+                <ul class="nav nav-pills nav-stacked">
+                  <li><a href=""><i class="fa fa-floppy-o fa-fw"></i> Import Files</a></li>
+                  <li><a href=""><i class="fa fa-list-alt fa-fw"></i> Lay Out Conditions</a></li>
+                  <li><a href=""><i class="fa fa-signal fa-fw"></i> Scale and Preprocess </a></li>      
+                </ul>
+              </accordion-group>
+              <accordion-group is-open="tags">
+                <accordion-heading>
+                  <i class="fa fa-tags fa-fw"></i> Add/Edit Tags <i class="fa pull-right" ng-class="{'fa-minus-square': tags, 'fa-plus-square': !tags}"></i>
+                </accordion-heading>
+              This content is straight in the template.
+              </accordion-group>
+            </accordian>
+          </li>
         </ul>
 
-        <!-- Rename -->
-        <div class="panel-body" ng-if="mutableSelection">
-          <div class="input-group">
-            <span class="input-group-addon">Title</span>
-            <input class="form-control" type="text" ng-model="selectedItem.title" ng-change="selectedItem.hasTitle = true;">
-          </div>
-        </div>
-
-        <!-- Edit Figure Contents (contextual for mutable items) -->
-        <div ng-if="mutableSelection">
-          <accordion close-others="true">
-            <accordion-group is-open="pathway">
-              <accordion-heading>
-                <i class="fa fa-pencil fa-fw"></i> Edit Pathway <i class="fa pull-right" ng-class="{'fa-minus-square': pathway, 'fa-plus-square': !pathway}"></i>
-              </accordion-heading>
-              <ul class="nav nav-pills nav-stacked">
-                <li><a href=""><i class="fa fa-anchor fa-fw"></i> Load Template </a></li>
-                <li><a href=""><i class="fa fa-plus-circle fa-fw"></i> Add Node </a></li>
-                <li><a href=""><i class="fa fa-plus-circle fa-fw"></i> Add Path </a></li>
-              </ul>
-            </accordion-group>
-            <accordion-group  is-open="biology">
-              <accordion-heading>
-                <i class="fa fa-bar-chart-o fa-fw"></i> Bind Data <i class="fa pull-right" ng-class="{'fa-minus-square': biology, 'fa-plus-square': !biology}"></i>
-              </accordion-heading>
-              <ul class="nav nav-pills nav-stacked">
-                <li><a href=""><i class="fa fa-floppy-o fa-fw"></i> Import Files</a></li>
-                <li><a href=""><i class="fa fa-list-alt fa-fw"></i> Lay Out Conditions</a></li>
-                <li><a href=""><i class="fa fa-signal fa-fw"></i> Scale and Preprocess </a></li>      
-              </ul>
-            </accordion-group>
-            <accordion-group is-open="tags">
-              <accordion-heading>
-                <i class="fa fa-tags fa-fw"></i> Add/Edit Tags <i class="fa pull-right" ng-class="{'fa-minus-square': tags, 'fa-plus-square': !tags}"></i>
-              </accordion-heading>
-            This content is straight in the template.
-            </accordion-group>
-          </accordian>
-        </div>
-
-      </div>
-
-        
-
-      <!-- Display Figure Data (contextual for immutable items) -->
-      <div ng-if="!mutableSelection">
-
-        <!-- Stuff to show -->
-        <div class="panel panel-default">
-          stuff
-        </div>
       </div>
    </div>
+
    <div class="second-column">
       <!-- Main Figure Visualization -->
       <div class="panel panel-primary panel-focus">
