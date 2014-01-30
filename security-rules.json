@@ -2,8 +2,7 @@
   "rules": {
     "figures": {
       ".read": true,
-      "$figure": {
-        ".write": true
+      ".write": true
       }
     }
   }

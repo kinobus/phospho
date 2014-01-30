@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <link rel="stylesheet" href="styles/73cb84a0.main.css"/>
+        <link rel="stylesheet" href="styles/99d09f9a.main.css"/>
 
         <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 </head>
@@ -26,17 +26,26 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <nav class="navbar navbar-default navbar-static-top" role="navigation">
-        <div class="pull-left phospho-icon">
-            <img src="images/28d477ca.phosphate.png">
-        </div>
-          <a class="navbar-brand" href="#"><strong>Phospho</strong></a>
-          <ul class="nav navbar-nav pull-right nav-right">
-            <li><a href="#overview">Overview</a></li>
-            <li><a href="#docs">Docs &amp; Api</a></li>
-            <li ng-if="!user"><a href="#login">Log In / Create Account</a></li>
-            <li ng-if="user"><a href="#login"><i class="fa fa-user fa-fw"></i>{{user.email}}</a></li>
-          </ul>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" ng-controller="NavbarCtrl">
+      <div class="pull-left phospho-icon">
+        <img src="images/28d477ca.phosphate.png">
+      </div>
+        <a class="navbar-brand" href="#"><strong>Phospho</strong></a>
+        <ul class="nav navbar-nav pull-right nav-right">
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#docs">Docs &amp; Api</a></li>
+          <li ng-if="!auth.user" ng-click="loginModal()"><a href="">Log In / Create Account</a></li>
+          <li ng-if="auth.user">
+            <a href="" class="dropdown-toggle">
+              <i class="fa fa-user fa-fw"></i>{{auth.user.email}}
+            </a>
+            <ul class="dropdown-menu">
+              <li ng-repeat="choice in authDropdown.choices" ng-click="authDropdown.select(choice.action)">
+                <a>{{choice.text}}</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
     </nav>
     <div class="container" ng-view=""></div>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -50,7 +59,6 @@
        ga('send', 'pageview');
     </script>
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/d3/d3.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
@@ -60,8 +68,8 @@
 
         <script src="scripts/a91d5f71.plugins.js"></script>
 
-        <script src="scripts/f8cf32d3.modules.js"></script>
+        <script src="scripts/80a33042.modules.js"></script>
 
-        <script src="scripts/0b800a93.scripts.js"></script>
+        <script src="scripts/337b5ba5.scripts.js"></script>
 </body>
 </html>

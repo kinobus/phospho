@@ -32,7 +32,7 @@ angular.module('phosphoBaseApp')
       angular.forEach($scope.figures, function(key, value){
         counter++;
       });
-      $scope.figureCount = counter;
+      $scope.figureCount = counter - 11;
     });
 
 
