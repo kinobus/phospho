@@ -57,10 +57,10 @@ angular.module('phosphoBaseApp')
 
     $rootScope.publish = function (snapshot) {
       if (!$rootScope.auth.user) {
-        $rootScope.addAlert('info','In order to publish, first log-in');
+        $rootScope.addAlert('success','Log In if you\'d like to share your figure with the community.');
         return;
       } else if (!snapshot.hasTitle) {
-        $rootScope.addAlert('danger','In order to publish, first edit the title this figure');
+        $rootScope.addAlert('danger','Give this figure a brief title');
         return;
       }
 
