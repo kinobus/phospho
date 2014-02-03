@@ -4,10 +4,10 @@
       <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
 
       <div class="panel panel-default">
-
         <ul class="list-group">
+
+          <!-- Consume or Contribute item -->
           <li class="list-group-item figure-sidebar-item">
-            <!-- Consume or Contribute item -->
             <ul class="nav nav-pills nav-justified">
 
               <!-- Close Modal (and go back to grid view) -->
@@ -27,9 +27,15 @@
               <li ng-click="fork(selectedItem)" ng-if="!mutableSelection"><a href="">
                 <i class="fa fa-code-fork fa-fw"></i> Fork 
               </a></li>
-
             </ul>
           </li>
+
+          <!-- Add a flask to this figure -->
+          <li class="list-group-item figure-sidebar-item">
+            <button type="button" class="btn btn-default" ng-click="addFlask()">Flask Me!</button>
+          </li>
+
+
           <li class="list-group-item figure-sidebar-item" ng-if="!auth.user">
             <!-- Log-In Reminder -->
             <button type="button" class="btn btn-success btn-block" ng-click="$close(); loginModal();"><i class="fa fa-user fa-fw"></i> Log In or Create an Account</button>

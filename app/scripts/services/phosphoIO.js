@@ -2,8 +2,13 @@
 'use strict';
 
 angular.module('phosphoBaseApp')
-  .service('PhosphoIO', function PhosphoIO($firebase) {
+  .factory('PhosphoIO', function PhosphoIO($firebase) {
     // AngularJS will instantiate a singleton by calling "new" on this function
-    var ref = new Firebase('https://phosphobase.firebaseio.com');
-    return $firebase(ref);
+    var FBURL = 'https://phosphobase.firebaseio.com/';
+    //var FBURL = new Firebase('https://phosphobase.firebaseio.com/');
+    return {
+      fbSync: function (path) {
+        return $firebase(new Firebase(FBURL + path));
+      }
+    };
   });
