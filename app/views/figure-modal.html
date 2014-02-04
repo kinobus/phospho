@@ -123,7 +123,7 @@
     <div class="panel-body">
       <div class="input-group">
         <span class="input-group-addon">Title</span>
-        <input class="form-control" type="text" ng-model="selectedFigure.title" ng-change="selectedFigure.hasTitle = true;">
+        <input class="form-control" type="text" ng-model="selectedFigure.title">
       </div>
     </div>
     <accordion close-others="true">
@@ -151,7 +151,7 @@
         <accordion-heading>
           <i class="fa fa-tags fa-fw"></i> Add/Edit Tags <i class="fa pull-right" ng-class="{'fa-minus-square': tags, 'fa-plus-square': !tags}"></i>
         </accordion-heading>
-      <input type="text" ui-select2="select2Options" ng-model="selectedFigure.tags">
+      <input type="text" ui-select2="select2Options" ng-model="selectedFigure.tags" size="14">
       </accordion-group>
     </accordian>
   </div>

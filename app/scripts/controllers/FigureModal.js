@@ -40,8 +40,13 @@ angular.module('phosphoBaseApp')
         return;
 
       //Check if user has titled figure, if not return title alert
-      } else if (!figure.hasTitle) {
-        $rootScope.addAlert('danger','Give this figure a brief title');
+      } else if (figure.title === 'Untitled Figure') {
+        $rootScope.addAlert('danger','Give this figure a brief title to be eligible to publish');
+        return;
+
+      //Check if the figure has any tags, if not return tag alert
+      } else if (figure.tags.length < 1) {
+        $rootScope.addAlert('danger','Add at least one tag to be eligible to publish');
         return;
       }
 
@@ -56,7 +61,8 @@ angular.module('phosphoBaseApp')
           'figureKey': p.name(),
           'author': $rootScope.auth.user.email,
           'date': pubDate,
-          'title': figure.title
+          'title': figure.title,
+          'tags': figure.tags
         };
 
         $rootScope.fullFigureMap.$add(mapEntry);
@@ -158,6 +164,7 @@ angular.module('phosphoBaseApp')
     };
 
     $rootScope.select2Options = {
+      'width': 'element',
       'multiple': true,
       'simple_tags': true,
       'tags': ['tag1', 'tag2', 'tag3', 'tag4']  // Can be empty list.

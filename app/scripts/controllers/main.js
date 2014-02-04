@@ -17,9 +17,6 @@ angular.module('phosphoBaseApp')
       if (mutable) {
         $rootScope.selectedFigure = angular.copy(selection);
         $rootScope.selectedFigure.mutable = true;
-
-        //TODO check if this is necessary... prob don't need to initiate tags
-        $rootScope.selectedFigure.tags = ['tag1', 'tag2'];
       } else {
         $rootScope.selectedFigure = selection;
         var mapKey = $rootScope.selectedFigure.mapKey;
