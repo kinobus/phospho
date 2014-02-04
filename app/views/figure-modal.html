@@ -72,6 +72,12 @@
                 <input type="radio" ng-model="selectedGraphItem.graphItem.compartment" value="cytosol">  cytosol <br/>
                 <input type="radio" ng-model="selectedGraphItem.graphItem.compartment" value="nucleus">  nucleus <br/>
               </li>
+              <li class="list-group-item">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default" ng-click="deselectGraphItem()">okay</button>
+                  <button type="button" class="btn btn-default" ng-click="spliceNode()">delete</button>
+                </div>
+              </li>
             </div>
             
             <!-- View the node if figure is immutable -->
@@ -90,7 +96,7 @@
   </div>
 
   <!-- Editing Sidebar panel (contextual for mutable figs) -->
-  <div class="panel panel-default" ng-if="selectedFigure.mutable">
+  <div class="panel panel-default" ng-if="selectedFigure.mutable && selectedGraphItem === null">
     <div class="panel-body">
       <div class="input-group">
         <span class="input-group-addon">Title</span>
@@ -103,9 +109,9 @@
           <i class="fa fa-pencil fa-fw"></i> Edit Pathway <i class="fa pull-right" ng-class="{'fa-minus-square': pathway, 'fa-plus-square': !pathway}"></i>
         </accordion-heading>
         <ul class="nav nav-pills nav-stacked">
-          <li><a href=""><i class="fa fa-anchor fa-fw"></i> Load Template </a></li>
-          <li><a href=""><i class="fa fa-plus-circle fa-fw"></i> Add Node </a></li>
-          <li><a href=""><i class="fa fa-plus-circle fa-fw"></i> Add Path </a></li>
+          <li><a><i class="fa fa-anchor fa-fw"></i> Load Template </a></li>
+          <li ng-click="addNode()"><a><i class="fa fa-plus-circle fa-fw"></i> Add Node </a></li>
+          <li ng-click="addLink()"><a><i class="fa fa-plus-circle fa-fw"></i> Add Link </a></li>
         </ul>
       </accordion-group>
       <accordion-group  is-open="biology">

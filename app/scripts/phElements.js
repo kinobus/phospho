@@ -9,7 +9,7 @@ angular.module('ph.Elements', [])
     $scope.width = 640;
     $scope.height = 480;
 
-    var tick = function () {
+    $scope.BoundingboxNodes = function () {
       //boundaries
       angular.forEach($scope.graph.nodes, function (node) {
         //horizontal
@@ -32,6 +32,12 @@ angular.module('ph.Elements', [])
           }
         }
       });
+    };
+
+    var tick = function () {
+
+      //TODO, consider moving this call to the MoveNodes function
+      $scope.BoundingboxNodes();
 
       //apply changes so that pathway directive updates
       $scope.$apply();
@@ -279,6 +285,13 @@ angular.module('ph.Elements', [])
             //console.log('something other than the coordinates changed');
             svg.selectAll('.node').remove();
             svg.selectAll('.link').remove();
+            scope.BoundingboxNodes();
+
+            // //if scope is mutable, fire up the force layout
+            // if (scope.mutable) {
+            //   scope.startForce();
+            // }
+
             scope.drawLinks();
             scope.drawNodes();
             scope.moveNodes();
