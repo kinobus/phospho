@@ -152,6 +152,18 @@ angular.module('ph.Elements', [])
           .attr('stop-color', '#FF2A85')
           .attr('stop-opacity', 1);
 
+        scope.dblclickNode = function (d) {
+          return scope.selectItem({item:
+            {graphItem: d, type: 'node'}
+          });
+        };
+
+        scope.dblclickLink = function (d) {
+          return scope.selectItem({item:
+            {graphItem: d, type: 'link'}
+          });
+        };
+
         scope.drawNodes = function () {
           scope.node = svg.selectAll('.node')
             .data(scope.graph.nodes)
@@ -173,6 +185,8 @@ angular.module('ph.Elements', [])
             .attr('font-size', 18 * scale)
             .attr('text-anchor', 'middle')
             .text(function(d) { return d.label; });
+
+          scope.node.on('dblclick', scope.dblclickNode);
 
           if (scope.mutable) {
             scope.node.call(scope.drag);
@@ -202,6 +216,8 @@ angular.module('ph.Elements', [])
               }
             })
             .attr('transform', function() { return 'scale(' + scale +')'; });
+
+          scope.link.on('dblclick', scope.dblclickLink);
         };
 
         scope.moveNodes = function () {
@@ -267,7 +283,7 @@ angular.module('ph.Elements', [])
             scope.drawNodes();
             scope.moveNodes();
           } else {
-            
+
             //console.log('coordinates changed');
             scope.moveNodes();
           }
