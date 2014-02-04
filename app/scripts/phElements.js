@@ -48,7 +48,12 @@ angular.module('ph.Elements', [])
         .links([])
         .start();
 
-      $scope.drag = force.drag();
+      var dragstart = function (d) {
+        d3.select(this).classed('fixed', d.fixed = true);
+      };
+
+      $scope.drag = force.drag()
+        .on('dragstart', dragstart);
     };
       
     
@@ -148,12 +153,14 @@ angular.module('ph.Elements', [])
           .attr('stop-opacity', 1);
 
         scope.drawNodes = function () {
-          scope.node = svg.append('svg:g')
-            .selectAll('g')
+          scope.node = svg.selectAll('.node')
             .data(scope.graph.nodes)
             .enter()
             .append('svg:g')
-            .attr('class','node');
+            .attr('class','node')
+            .attr('transform', function (d) {
+              return 'translate(' + ((d.x - 60) * scale) + ',' + ((d.y - 36) * scale) + ')';
+            });
 
           scope.node.append('use')
             .attr('xlink:href',function(d) { return '#' + d.type + '-node'; })
@@ -174,11 +181,13 @@ angular.module('ph.Elements', [])
         };
 
         scope.drawLinks = function () {
-          scope.link = svg.append('svg:g')
-            .selectAll('path')
+          scope.link = svg.selectAll('.link')
             .data(scope.graph.links)
             .enter()
+            .append('svg:g')
+            .attr('class','link')
             .append('svg:path');
+
 
           scope.link.attr('class', function(d) { return d.type; })
             .style('marker-end', function(d) { return 'url(#' + d.type + '-arrow)'; });
@@ -218,13 +227,51 @@ angular.module('ph.Elements', [])
           scope.startForce();
         }
 
-        scope.drawLinks();
-        scope.drawNodes();
+        //function to strip coordinates from node object list
+        var omitCoords = function (nodeList) {
+          var nodeListCoordless = _.map(nodeList, function(node){
+            var nodeCoordless = _.omit(node, ['x','px','y','py']);
+            return nodeCoordless;
+          });
+
+          return nodeListCoordless;
+        };
 
         //watch graph and redraw whenever it changes
-        scope.$watch('graph', function () {
+        scope.$watch('graph', function(newVal, oldVal) {
+
+          //return if undefined
+          if (!scope.graph.nodes) {
+            return;
+          }
+
+          if (_.isEqual(newVal, oldVal)) {
+
+            //console.log('nothing changed');
+            scope.drawLinks();
+            scope.drawNodes();
+            scope.moveNodes();
+            return;
+          }
+
+          var newNodesCoordless = omitCoords(newVal.nodes);
+          var oldNodesCoordless = omitCoords(oldVal.nodes);
+
+
+          if (!_.isEqual(newNodesCoordless, oldNodesCoordless)) {
+
+            //console.log('something other than the coordinates changed');
+            svg.selectAll('.node').remove();
+            svg.selectAll('.link').remove();
+            scope.drawLinks();
+            scope.drawNodes();
+            scope.moveNodes();
+          } else {
+            
+            //console.log('coordinates changed');
+            scope.moveNodes();
+          }
           
-          scope.moveNodes();
         }, true);
       }
     };

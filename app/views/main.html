@@ -55,13 +55,13 @@
 
         <!-- Heading -->
         <div class="panel-heading">
-          <h3 class="panel-title">{{fig.figData.title}}</h3>
+          <h3 class="panel-title">{{fig.title}}</h3>
         </div>
 
         <!-- Graph -->
         <div ng-switch on="fig.type">
           <div ng-switch-when="pathway">
-            <div class="gridblock-graph" phos-pathway graph="fig.figData.graph" mutable="false" scale="displayScale.gridblock"></div>
+            <div class="gridblock-graph" phos-pathway graph="fig.graph" mutable="false" scale="displayScale.gridblock"></div>
           </div>
         </div>
 

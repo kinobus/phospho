@@ -7,8 +7,8 @@ angular.module('phosphoBaseApp')
     var FBURL = 'https://phosphobase.firebaseio.com/';
     //var FBURL = new Firebase('https://phosphobase.firebaseio.com/');
     return {
-      fbSync: function (path) {
-        return $firebase(new Firebase(FBURL + path));
+      fbSync: function (path, limit) {
+        return $firebase(new Firebase(FBURL + path).limit(limit));
       }
     };
   });

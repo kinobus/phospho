@@ -15,8 +15,8 @@ angular.module('phosphoBaseApp')
     $scope.clickItem = function (selection, mutable) {
 
       if (mutable) {
-        $rootScope.mutableSelection = true;
         $rootScope.selectedItem = angular.copy(selection);
+        $rootScope.selectedItem.mutable = true;
       } else {
         $rootScope.selectedItem = selection;
       }
@@ -32,11 +32,13 @@ angular.module('phosphoBaseApp')
 
         //need to put this here to filter out firebase functions that get added to the ref
         if (angular.isObject(value)) {
-          var figData = PhosphoIO.fbSync('figures/' + value.figureKey);
+          var graph = PhosphoIO.fbSync('figures/' + value.figureKey + '/graph', 2);
           $scope.figures.push({
-            'figData': figData,
+            'graph': graph,
             'mapKey': key,
-            'author': value.author
+            'author': value.author,
+            'type': 'pathway',
+            'title': value.title
           });
         }
       });
@@ -44,39 +46,18 @@ angular.module('phosphoBaseApp')
 
 
     //load full figure map
-    $scope.fullFigureMap = PhosphoIO.fbSync('map');
+    $scope.fullFigureMap = PhosphoIO.fbSync('map', 500);
+    console.log($scope.fullFigureMap);
 
     //initiall load every figure in the figure map
     $scope.fullFigureMap.$on('loaded', function () {
       $scope.loadFigures($scope.fullFigureMap);
     });
 
-
-
-
-    // //synchronize index of figures
-    // $scope.figures.$on('value', function () {
-    //   var keysStr = $scope.figures.$getIndex();
-    //   $scope.keys = [];
-    //   keysStr.forEach( function (keyStr) {
-    //     var keyInt = parseInt(keyStr);
-    //     $scope.keys.push(keyInt);
-    //   });
-    //   $scope.lastKey = $scope.keys[$scope.keys.length - 1];
-    // });
-
-
-    //Set the figure counter when loaded
-    // $scope.figures.$on('loaded', function() {
-    //   var counter = 0;
-    //   angular.forEach($scope.figures, function(key, value){
-    //     counter++;
-    //   });
-    //   $scope.figureCount = counter - 11;
-    // });
-
-    //
-
+    //load every figure in the figure map on change
+    $scope.fullFigureMap.$on('change', function () {
+      $scope.loadFigures($scope.fullFigureMap);
+    });
 
     $rootScope.addAlert = function(alertType, alertMsg) {
       $rootScope.alerts.push({type: alertType,msg: alertMsg});
@@ -111,17 +92,23 @@ angular.module('phosphoBaseApp')
       }
 
       //publish figure then add metadata to figureMap
-      $scope.figures.$add(figure).then(function (p) {
+      $scope.publishedFigs = PhosphoIO.fbSync('figures', 1);
+
+      $scope.publishedFigs.$add({'graph': figure.graph}).then(function (p) {
 
         var pubDate = new Date().getTime();
 
         var mapEntry = {
           'figureKey': p.name(),
           'author': $rootScope.auth.user.email,
-          'date': pubDate
+          'date': pubDate,
+          'title': figure.title
         };
 
-        $scope.figureMap.$add(mapEntry);
+        $scope.fullFigureMap.$add(mapEntry);
+
+        //close modal
+        $scope.modalInstance.close();
       });
 
       $rootScope.addFlask = function () {
