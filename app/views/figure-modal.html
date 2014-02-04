@@ -19,20 +19,21 @@
               </a></li>
 
               <!-- Push to back-end resource (contextual for mutable items) -->
-              <li ng-click="publish(selectedItem)" ng-if="mutableSelection"><a href="">
+              <li ng-click="publish(selectedItem)" ng-if="selectedItem.mutable"><a href="">
                 <i class="fa fa-camera-retro fa-fw"></i> Publish 
               </a></li>
 
               <!-- Fork back-end resource (contextual for immutable items) -->
-              <li ng-click="fork(selectedItem)" ng-if="!mutableSelection"><a href="">
+              <li ng-click="fork(selectedItem)" ng-if="!selectedItem.mutable"><a href="">
                 <i class="fa fa-code-fork fa-fw"></i> Fork 
               </a></li>
             </ul>
           </li>
 
           <!-- Add a flask to this figure -->
-          <li class="list-group-item figure-sidebar-item">
-            <button type="button" class="btn btn-default" ng-click="addFlask()">Flask Me!</button>
+          <li class="list-group-item figure-sidebar-item" ng-if="!selectedItem.mutable">
+            <button type="button" class="btn btn-default" ng-click="addFlask()" ng-if="!selectedItem.userFlasked">Flask Me!</button>
+            <span ng-if="selectedItem.userFlasked">You've let the community know that this figure is helpful by flasking it.</span>
           </li>
 
 
@@ -40,7 +41,7 @@
             <!-- Log-In Reminder -->
             <button type="button" class="btn btn-success btn-block" ng-click="$close(); loginModal();"><i class="fa fa-user fa-fw"></i> Log In or Create an Account</button>
           </li>
-          <li class="list-group-item figure-sidebar-item" ng-if="mutableSelection">
+          <li class="list-group-item figure-sidebar-item" ng-if="selectedItem.mutable">
             <!-- Rename -->
             <div class="panel-body">
               <div class="input-group">
@@ -49,7 +50,7 @@
               </div>
             </div>
           </li>
-          <li class="list-group-item figure-sidebar-item" ng-if="mutableSelection">
+          <li class="list-group-item figure-sidebar-item" ng-if="selectedItem.mutable">
             <!-- Edit Figure Contents (contextual for mutable items) -->
             <accordion close-others="true">
               <accordion-group is-open="pathway">

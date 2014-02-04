@@ -1,19 +1,41 @@
 <!-- grid -->
 <div class="nav-grid">
 
-  <!-- grid-filters -->
+  <!-- list grid-filters -->
   <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-12">
       <div class="panel panel-default">
         <ul class="nav nav-pills nav-justified">
-          <li><a href=""><i class="fa fa-search fa-fw"></i> Search </a></li>
-          <li><a href=""><i class="fa fa-clock-o fa-fw"></i> Recent </a></li>
-          <li><a href=""><i class="fa fa-tags fa-fw"></i> Topics </a></li>
-          <li><a href=""><i class="fa fa-users fa-fw"></i> Users </a></li>
-          <li><a href=""><i class="fa fa-code-fork fa-fw"></i> Forks </a></li>
-          <li><a href=""><i class="fa fa-flask fa-fw"></i> Flasks </a></li>
+          <li><a><i class="fa fa-search fa-fw"></i> Search </a></li>
+          <li><a><i class="fa fa-clock-o fa-fw"></i> Recent </a></li>
+          <li ng-click="selectedFilter = 'tags'"><a><i class="fa fa-tags fa-fw"></i> Tags </a></li>
+          <li><a><i class="fa fa-users fa-fw"></i> Users </a></li>
+          <li><a><i class="fa fa-code-fork fa-fw"></i> Forks </a></li>
+          <li ng-click="selectedFilter = 'flasks'"><a href=""><i class="fa fa-flask fa-fw"></i> Flasks </a></li>
         </ul>
       </div>
+    </div>
+  </div>
+
+  <div class="row" ng-switch on="selectedFilter">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+
+      <div ng-switch-when="flasks">
+        <div class="panel panel-default">
+          <div class="panel-body">
+             Filter by flasks
+          </div>
+        </div>
+      </div>
+
+      <div ng-switch-when="tags">
+        <div class="panel panel-default">
+          <div class="panel-body">
+             Filter by tags
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -72,7 +94,7 @@
             </span>
             &nbsp;
             <span class="badge">
-              <i class="fa fa-flask fa-fw"></i> {{fig.flasks}}
+              <i class="fa fa-flask fa-fw"></i> {{fig.flaskCount}}
             </span>
           </span>
           <span class="pull-left">

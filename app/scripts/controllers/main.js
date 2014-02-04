@@ -19,6 +19,8 @@ angular.module('phosphoBaseApp')
         $rootScope.selectedItem.mutable = true;
       } else {
         $rootScope.selectedItem = selection;
+        var mapKey = $rootScope.selectedItem.mapKey;
+        $rootScope.selectedItem.mapRef = PhosphoIO.fbSync('map/' + mapKey, 1);
       }
       $scope.open();
     };
@@ -33,21 +35,35 @@ angular.module('phosphoBaseApp')
         //need to put this here to filter out firebase functions that get added to the ref
         if (angular.isObject(value)) {
           var graph = PhosphoIO.fbSync('figures/' + value.figureKey + '/graph', 2);
+          
+          //build list of flasks and check if user has flasked this figure yet
+          var flasks = [];
+          var userFlasked = false;
+          angular.forEach(value.flasks, function (value) { 
+            flasks.push(value);
+            if (value === $rootScope.auth.user.email) {
+              userFlasked = true;
+            }
+          });
+
+
           $scope.figures.push({
             'graph': graph,
             'mapKey': key,
             'author': value.author,
             'type': 'pathway',
-            'title': value.title
+            'title': value.title,
+            'flaskCount': flasks.length,
+            'userFlasked': userFlasked
           });
         }
+        $scope.figures.reverse();
       });
     };
 
 
     //load full figure map
     $scope.fullFigureMap = PhosphoIO.fbSync('map', 500);
-    console.log($scope.fullFigureMap);
 
     //initiall load every figure in the figure map
     $scope.fullFigureMap.$on('loaded', function () {
@@ -74,7 +90,7 @@ angular.module('phosphoBaseApp')
 
       //make snapshot into mutable selection
       $rootScope.selectedItem = angular.copy(selection);
-      $rootScope.mutableSelection = true;
+      $rootScope.selectedItem.mutable = true;
       $rootScope.selectedItem.forks = 0;
     };
 
@@ -110,59 +126,20 @@ angular.module('phosphoBaseApp')
         //close modal
         $scope.modalInstance.close();
       });
+    };
 
-      $rootScope.addFlask = function () {
+    $rootScope.addFlask = function () {
+      //Check if user is logged in, if not return login alert
+      if (!$rootScope.auth.user) {
+        $rootScope.addAlert('info','Log In to be able to flask figures.');
+        return;
+      } else {
+        var flasks = $rootScope.selectedItem.mapRef.$child('flasks');
+        flasks.$add($rootScope.auth.user.email);
 
-      };
-
-
-
-      //Check if what is being published is a fork, if so give credit to parent figure
-      //if ($rootScope.parentFigure) {
-        //add username onto forklist
-      //}
-
-      //Switch 'edit mode' to off (for grid view)
-      //$rootScope.mutableSelection = false;
-
-      //set initial level of flasks and forks (necessary?)
-      //snapshot.flasks = 0;
-      //snapshot.forks = 0;
-
-      //set publication date
-      //var d = new Date();
-      //snapshot.pubDate = d.getTime();
-
-
-      //check again whether user is logged in... seems unnecessary
-      //if ($rootScope.auth.user) {
-
-        //set author name
-        //snapshot.author = $rootScope.auth.user.email;
-
-        //add the figure data to the figures endpoint
-        //var newFigureRef = $scope.figures.$add()
-        //newFigureRef.$set
-
-        //$scope.figures.$add(snapshot);
-
-        //$scope.justAddedKey = snapshot.name();
-
-
-        //grab the index key for the figure that was just added
-        //$scope.justAddedKey = $scope.figures.$getIndex()[-1]
-
-        //add an entry to start tracking flasks for this figure
-        //$scope.flasks.$add({
-
-        //});
-
-        //close modal
-        //$scope.modalInstance.close();
-      //} else {
-        //$rootScope.addAlert('danger','For some reason, your figure was not published.');
-      //}
-      //$rootScope.selectedItem = null;
+        //notify client that this figure has been flasked
+        $rootScope.selectedItem.userFlasked = true;
+      }
     };
 
     $rootScope.displayScale = {
