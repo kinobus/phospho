@@ -17,6 +17,7 @@ angular.module('phosphoBaseApp')
       if (mutable) {
         $rootScope.selectedItem = angular.copy(selection);
         $rootScope.selectedItem.mutable = true;
+        $rootScope.selectedItem.tags = ['tag1', 'tag2']
       } else {
         $rootScope.selectedItem = selection;
         var mapKey = $rootScope.selectedItem.mapKey;
@@ -140,6 +141,12 @@ angular.module('phosphoBaseApp')
         //notify client that this figure has been flasked
         $rootScope.selectedItem.userFlasked = true;
       }
+    };
+
+    $rootScope.select2Options = {
+        'multiple': true,
+        'simple_tags': true,
+        'tags': ['tag1', 'tag2', 'tag3', 'tag4']  // Can be empty list.
     };
 
     $rootScope.displayScale = {

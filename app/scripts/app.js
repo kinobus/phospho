@@ -8,7 +8,8 @@ angular.module('phosphoBaseApp', [
   'firebase',
   'ph.Elements',
   'ui.bootstrap',
-  'ngAnimate'
+  'ngAnimate',
+  'ui.select2'
 ])
   .config(function ($routeProvider) {
     $routeProvider
