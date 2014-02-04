@@ -82,12 +82,35 @@
             
             <!-- View the node if figure is immutable -->
             <div ng-if="!selectedFigure.mutable">
-              
+              you selected {{selectedGraphItem.graphItem.label}}
             </div>
           </div>
 
+          <!-- When a link is selected -->
           <div ng-switch-when="link">
-               {{selectedGraphItem.graphItem}}
+            <!-- Edit the link if figure is mutable -->
+            <div ng-if="selectedFigure.mutable">
+
+              <li class="list-group-item">
+                <strong class="list-group-item-heading">Source</strong><br>
+                <select ng-model="selectedGraphItem.graphItem.source" ng-options="n.id as n.label for n in selectedFigure.graph.nodes"></select>
+              </li>
+              <li class="list-group-item">
+                <strong class="list-group-item-heading">Target</strong><br>
+                <select ng-model="selectedGraphItem.graphItem.target" ng-options="n.id as n.label for n in selectedFigure.graph.nodes"></select>
+              </li>
+              <li class="list-group-item">
+                <strong class="list-group-item-heading">Type</strong><br>
+                  <input type="radio" ng-model="selectedGraphItem.graphItem.type" value="activate">  activate <br/>
+                  <input type="radio" ng-model="selectedGraphItem.graphItem.type" value="inhibit">  inhibit <br/>
+              </li>
+              <li class="list-group-item">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default" ng-click="deselectGraphItem()">okay</button>
+                  <button type="button" class="btn btn-default" ng-click="spliceLink()">delete</button>
+                </div>
+              </li>
+            </div>
           </div>
 
         </ul>

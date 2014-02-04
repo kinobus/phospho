@@ -111,6 +111,28 @@ angular.module('phosphoBaseApp')
         'compartment': 'cytosol'
       };
       $rootScope.selectedFigure.graph.nodes.push(newNode);
+      $rootScope.selectedGraphItem = {
+        'type': 'node',
+        'graphItem': $rootScope.selectedFigure.graph.nodes[$rootScope.selectedFigure.graph.nodes.length - 1]
+      };
+    };
+
+    $rootScope.addLink = function () {
+      var nodeIds = _.pluck($rootScope.selectedFigure.graph.nodes, 'id');
+      if (nodeIds.length < 2) {
+        $rootScope.addAlert('warning','you must have more than one node to add a link');
+        return;
+      }
+      var newLink = {
+        'source': nodeIds[nodeIds.length - 1],
+        'target': nodeIds[nodeIds.length - 2],
+        'type': 'activate'
+      };
+      $rootScope.selectedFigure.graph.links.push(newLink);
+      $rootScope.selectedGraphItem = {
+        'type': 'link',
+        'graphItem': $rootScope.selectedFigure.graph.links[$rootScope.selectedFigure.graph.links.length - 1]
+      };
     };
 
     $rootScope.spliceNode = function () {
@@ -126,6 +148,12 @@ angular.module('phosphoBaseApp')
       toSplice.map(function(l) {
         $rootScope.selectedFigure.graph.links.splice($rootScope.selectedFigure.graph.links.indexOf(l), 1);
       });
+      $rootScope.deselectGraphItem();
+    };
+
+    $rootScope.spliceLink = function () {
+      var thisLinkIndex = $rootScope.selectedFigure.graph.links.indexOf($rootScope.selectedGraphItem.graphItem);
+      $rootScope.selectedFigure.graph.links.splice(thisLinkIndex, 1);
       $rootScope.deselectGraphItem();
     };
 
