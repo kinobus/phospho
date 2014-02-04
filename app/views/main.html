@@ -56,13 +56,13 @@
           <label class="text-muted">Published Figures</label>
         </div>
         <div class="options">
-          <a href="" class="btn btn-primary btn-lg" ng-click="selectGridblock(newPathway, true)"><i class="fa fa-plus"></i> Create a figure</a>
+          <a href="" class="btn btn-primary btn-lg" ng-click="selectFigure(newPathway, true)"><i class="fa fa-plus"></i> Create a figure</a>
         </div>
       </div>
     </div>
 
     <!-- gridblock figures repeat -->
-    <div class="col-xs-10 col-sm-6 col-md-4 col-lg-3 gridblock-repeat-animation" ng-repeat="fig in figures" ng-click="selectGridblock(fig)">
+    <div class="col-xs-10 col-sm-6 col-md-4 col-lg-3 gridblock-repeat-animation" ng-repeat="fig in figures" ng-click="selectFigure(fig)">
 
       <!-- Block Panel -->
       <div class="panel panel-primary gridblock">

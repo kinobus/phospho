@@ -3,6 +3,14 @@
 angular.module('phosphoBaseApp')
   .controller('FiguremodalCtrl', function ($scope, $rootScope, PhosphoIO) {
 
+    //Clear initial conditions
+    $rootScope.alerts = [];
+    //$rootScope.selectedGraphItem = null;
+
+    //this makes it so that the accordian group for 'edit pathway'
+    //is open by default
+    $rootScope.pathway = true;
+
     //insert an alert in the figure modal window
     $rootScope.addAlert = function(alertType, alertMsg) {
       $rootScope.alerts.push({type: alertType,msg: alertMsg});
@@ -18,9 +26,9 @@ angular.module('phosphoBaseApp')
       //$scope.publishedFigs.$save();
 
       //make snapshot into mutable selection
-      $rootScope.selectedItem = angular.copy(selection);
-      $rootScope.selectedItem.mutable = true;
-      $rootScope.selectedItem.forks = 0;
+      $rootScope.selectedFigure = angular.copy(selection);
+      $rootScope.selectedFigure.mutable = true;
+      $rootScope.selectedFigure.forks = 0;
     };
 
     $rootScope.publish = function (figure) {
@@ -63,16 +71,20 @@ angular.module('phosphoBaseApp')
         $rootScope.addAlert('info','Log In to be able to flask figures.');
         return;
       } else {
-        var flasks = $rootScope.selectedItem.mapRef.$child('flasks');
+        var flasks = $rootScope.selectedFigure.mapRef.$child('flasks');
         flasks.$add($rootScope.auth.user.email);
 
         //notify client that this figure has been flasked
-        $rootScope.selectedItem.userFlasked = true;
+        $rootScope.selectedFigure.userFlasked = true;
       }
     };
 
     $rootScope.selectGraphItem = function (item) {
-      $rootScope.selectedGraphItem = item;
+      $scope.$apply(function () {
+        //find the selected item in selectedFigure
+
+        $rootScope.selectedGraphItem = item;
+      });
     };
 
     $rootScope.select2Options = {

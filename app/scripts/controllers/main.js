@@ -6,23 +6,24 @@ angular.module('phosphoBaseApp')
     $scope.newPathway = new figureFactory.pathway();
 
     $scope.openFiguremodal = function () {
-      $rootScope.alerts = [];
       $rootScope.modalInstance = $modal.open({
         templateUrl: 'views/figure-modal.html',
         controller: 'FiguremodalCtrl'
       });
     };
 
-    $scope.selectGridblock = function (selection, mutable) {
+    $scope.selectFigure = function (selection, mutable) {
 
       if (mutable) {
-        $rootScope.selectedItem = angular.copy(selection);
-        $rootScope.selectedItem.mutable = true;
-        $rootScope.selectedItem.tags = ['tag1', 'tag2'];
+        $rootScope.selectedFigure = angular.copy(selection);
+        $rootScope.selectedFigure.mutable = true;
+
+        //TODO check if this is necessary... prob don't need to initiate tags
+        $rootScope.selectedFigure.tags = ['tag1', 'tag2'];
       } else {
-        $rootScope.selectedItem = selection;
-        var mapKey = $rootScope.selectedItem.mapKey;
-        $rootScope.selectedItem.mapRef = PhosphoIO.fbSync('map/' + mapKey, 1);
+        $rootScope.selectedFigure = selection;
+        var mapKey = $rootScope.selectedFigure.mapKey;
+        $rootScope.selectedFigure.mapRef = PhosphoIO.fbSync('map/' + mapKey, 1);
       }
       $scope.openFiguremodal();
     };
@@ -42,8 +43,10 @@ angular.module('phosphoBaseApp')
           var userFlasked = false;
           angular.forEach(value.flasks, function (value) {
             flasks.push(value);
-            if (value === $rootScope.auth.user.email) {
-              userFlasked = true;
+            if ($rootScope.auth.user) {
+              if (value === $rootScope.auth.user.email) {
+                userFlasked = true;
+              }
             }
           });
 
