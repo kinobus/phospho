@@ -28,8 +28,9 @@
                 Filter by flasks
               </div>
               
+              <!-- Filter By Tags -->
               <div ng-switch-when="tags">
-                Filter by tags
+                Filter by tag
               </div>
 
             </div>
@@ -74,17 +75,17 @@
 
         <!-- Graph -->
         <div ng-switch on="fig.type">
-          <div ng-switch-when="pathway">
-            <div class="gridblock-graph" phos-pathway graph="fig.graph" mutable="false" scale="0.25"></div>
+          <div ng-switch-when="pathway" class="gridblock-body-pathway">
+            <div class="gridblock-graph" phos-pathway graph="fig.graph" mutable="false" scale="0.325"></div>
           </div>
         </div>
 
-        <div class="panel-footer">
-          <span class="pull-right">
+        <div class="gridblock-footer">
+          <span class="pull-right gridblock-badges">
             <span class="badge">
               <i class="fa fa-code-fork fa-fw"></i> {{fig.forks}}
             </span>
-            &nbsp;
+
             <span class="badge">
               <i class="fa fa-flask fa-fw"></i> {{fig.flaskCount}}
             </span>

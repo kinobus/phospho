@@ -21,6 +21,16 @@
     opacity: .7;
     height: 240px;
     position:relative;
+    background-color: #FF0039;
+}
+
+.gridblock .panel-heading {
+    height: 55px;
+}
+
+.gridblock-body-pathway {
+    background: url(../images/cell_simple2sm.png);
+    background-repeat:repeat-x;
 }
 
 .gridblock:hover {
@@ -33,12 +43,18 @@
     text-align: center;
 }
 
-.panel-footer {
+.gridblock-footer {
     //text-align: right;
     position:absolute;
     bottom:0;
     //background-color: #eeeeee;
     width:100%;
+    padding: 4px;
+    color: white;
+}
+
+.gridblock-footer .badge {
+    background-color: #707070;
 }
 
 .gridblock-newpathway-graph {
@@ -88,7 +104,7 @@
 .hero-widget .icon { display: block; margin-bottom: 4px; text-align: center; }
 // .hero-widget .icon { display: block; font-size: 64px; line-height: 64px; margin-bottom: 10px; text-align: center; }
 .hero-widget var { display: block; height: 24px; font-size: 24px; line-height: 24px; font-style: normal; }
-.hero-widget label { font-size: 17px; }
+.hero-widget label { font-size: 16px; }
 .hero-widget .options { margin-top: 4px; }
 
 //Login Form
@@ -102,4 +118,26 @@
 .figure-sidebar-item {
     padding-left: 4px;
     padding-right: 4px;
+}
+
+
+//Cell image background for pathway graph
+.gridblock-graph {
+    margin-left:auto;
+    margin-right:auto;
+    width:213px;
+}
+
+//Cell image background for pathway graph
+.modal-graph {
+    background: url(../images/cell_simple2.png);
+    background-repeat:repeat-x;
+}
+
+.modal-main-panel {
+    background-color: #FF0039;
+}
+
+.modal-main-panel .panel-heading {
+    height: 55px;
 }

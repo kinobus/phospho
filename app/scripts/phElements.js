@@ -21,14 +21,14 @@ angular.module('ph.Elements', [])
 
         //vertical, based on compartment
         if (node.compartment === 'membrane') {
-          node.y = 50;
+          node.y = 60;
         } else if (node.compartment === 'nucleus') {
-          node.y = $scope.height - 50;
+          node.y = $scope.height - 60;
         } else if (node.compartment === 'cytosol') {
-          if (node.y > $scope.height - 101) {
-            node.y = $scope.height - 101;
-          } else if (node.y < 101) {
-            node.y = 101;
+          if (node.y > $scope.height - 140) {
+            node.y = $scope.height - 140;
+          } else if (node.y < 120) {
+            node.y = 120;
           }
         }
       });
@@ -66,7 +66,6 @@ angular.module('ph.Elements', [])
   })
   .directive('phosPathway', function () {
     return {
-      template: '<div></div>',
       restrict: 'A',
       controller: 'PathwayCtrl',
       scope: {

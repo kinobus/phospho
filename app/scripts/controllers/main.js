@@ -3,33 +3,34 @@
 angular.module('phosphoBaseApp')
   .controller('MainCtrl', function ($scope, $rootScope, PhosphoIO, figureFactory, $modal) {
 
-    $scope.newPathway = new figureFactory.pathway();
+    //Process a selected gridblock
+    //and then open it in a modal window
+    $scope.selectFigure = function (selection, newFigure) {
 
-    $scope.openFiguremodal = function () {
-      $rootScope.modalInstance = $modal.open({
-        templateUrl: 'views/figure-modal.html',
-        controller: 'FiguremodalCtrl'
-      });
-    };
-
-    $scope.selectFigure = function (selection, mutable) {
-
-      if (mutable) {
-        $rootScope.selectedFigure = angular.copy(selection);
+      //TODO make newFigure into its own function
+      if (newFigure) {
+        $rootScope.selectedFigure = new figureFactory.pathway();
         $rootScope.selectedFigure.mutable = true;
       } else {
         $rootScope.selectedFigure = selection;
         var mapKey = $rootScope.selectedFigure.mapKey;
         $rootScope.selectedFigure.mapRef = PhosphoIO.fbSync('map/' + mapKey, 1);
       }
-      $scope.openFiguremodal();
+
+      //TODO make this back into its own function
+      //open figure modal
+      $rootScope.modalInstance = $modal.open({
+        templateUrl: 'views/figure-modal.html',
+        controller: 'FiguremodalCtrl'
+      });
     };
 
 
-    //Construct list of figures using a figureMap
-    $scope.loadFigures = function (figureMap) {
+    //Load specified figures from the resource
+    //and place them on the grid
+    $scope.loadFigures = function (resourceMap) {
       $scope.figures = [];
-      angular.forEach(figureMap, function(value, key){
+      angular.forEach(resourceMap, function(value, key){
 
         //need to put this here to filter out firebase functions that get added to the ref
         if (angular.isObject(value)) {
@@ -62,16 +63,25 @@ angular.module('phosphoBaseApp')
       });
     };
 
-    //load full figure map
-    $rootScope.fullFigureMap = PhosphoIO.fbSync('map', 500);
+    //Generate statistics about a specified items in the resource
+    $scope.crunchStats = function (resourceMap) {
 
-    //initiall load every figure in the figure map
-    $rootScope.fullFigureMap.$on('loaded', function () {
-      $scope.loadFigures($rootScope.fullFigureMap);
+    };
+
+    //load a map describing everything figure in the resource
+    //should include: figures, authors, flasks, tags
+    $rootScope.globalResourceMap = PhosphoIO.fbSync('map', 500);
+
+    //On initial page-load, populate the grid with the 15 most recent figures
+    $rootScope.globalResourceMap.$on('loaded', function () {
+
+      //TODO make this load only the first 15
+      $scope.loadFigures($rootScope.globalResourceMap);
     });
 
-    //load every figure in the figure map on change
-    $rootScope.fullFigureMap.$on('change', function () {
-      $scope.loadFigures($rootScope.fullFigureMap);
+    //Watch the globalResourceMap, 
+    //and every time a figure is added, load it to the grid
+    $rootScope.globalResourceMap.$on('change', function () {
+      $scope.loadFigures($rootScope.globalResourceMap);
     });
   });
