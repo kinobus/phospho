@@ -21,7 +21,7 @@
     opacity: .7;
     height: 240px;
     position:relative;
-    background-color: #FF0039;
+    background-color: #666666;
 }
 
 .gridblock .panel-heading {
@@ -29,7 +29,7 @@
 }
 
 .gridblock-body-pathway {
-    background: url(../images/cell_simple2sm.png);
+    background: url(../images/cell_bkgrnd_GR_sm.png);
     background-repeat:repeat-x;
 }
 
@@ -54,7 +54,7 @@
 }
 
 .gridblock-footer .badge {
-    background-color: #707070;
+    background-color: #2A2A2A;
 }
 
 .gridblock-newpathway-graph {
@@ -130,12 +130,12 @@
 
 //Cell image background for pathway graph
 .modal-graph {
-    background: url(../images/cell_simple2.png);
+    background: url(../images/cell_bkgrnd_GR.png);
     background-repeat:repeat-x;
 }
 
 .modal-main-panel {
-    background-color: #FF0039;
+    background-color: #FF1C53;
 }
 
 .modal-main-panel .panel-heading {

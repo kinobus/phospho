@@ -32,25 +32,38 @@
 
     <!-- Add your site or application content here -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" ng-controller="NavbarCtrl">
-      <div class="pull-left phospho-icon">
-        <img src="images/phosphate.png">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#ph-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="pull-left phospho-icon">
+            <img src="images/phosphate.png">
+          </div>
+          <a class="navbar-brand" href="#"><strong>Phospho</strong></a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="ph-navbar-collapse">
+          <ul class="nav navbar-nav pull-right nav-right">
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#docs">Docs &amp; Api</a></li>
+            <li ng-if="!auth.user" ng-click="loginModal()"><a href="">Log In / Create Account</a></li>
+            <li ng-if="auth.user">
+              <a href="" class="dropdown-toggle">
+                <i class="fa fa-user fa-fw"></i>{{auth.user.email}}
+              </a>
+              <ul class="dropdown-menu">
+                <li ng-repeat="choice in authDropdown.choices" ng-click="authDropdown.select(choice.action)">
+                  <a>{{choice.text}}</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
       </div>
-        <a class="navbar-brand" href="#"><strong>Phospho</strong></a>
-        <ul class="nav navbar-nav pull-right nav-right">
-          <li><a href="#overview">Overview</a></li>
-          <li><a href="#docs">Docs &amp; Api</a></li>
-          <li ng-if="!auth.user" ng-click="loginModal()"><a href="">Log In / Create Account</a></li>
-          <li ng-if="auth.user">
-            <a href="" class="dropdown-toggle">
-              <i class="fa fa-user fa-fw"></i>{{auth.user.email}}
-            </a>
-            <ul class="dropdown-menu">
-              <li ng-repeat="choice in authDropdown.choices" ng-click="authDropdown.select(choice.action)">
-                <a>{{choice.text}}</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
     </nav>
     <div class="container" ng-view=""></div>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->

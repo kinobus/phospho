@@ -65,7 +65,7 @@ angular.module('phosphoBaseApp')
           'tags': figure.tags
         };
 
-        $rootScope.globalResourceMap.$add(mapEntry);
+        $rootScope.globalResource.$add(mapEntry);
 
         //close modal
         $rootScope.modalInstance.close();

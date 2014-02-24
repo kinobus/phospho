@@ -13,22 +13,22 @@ angular.module('ph.Elements', [])
       //boundaries
       angular.forEach($scope.graph.nodes, function (node) {
         //horizontal
-        if (node.x > $scope.width -60) {
-          node.x = $scope.width -60;
-        } else if (node.x < 60) {
-          node.x = 60;
+        if (node.x > $scope.width -100) {
+          node.x = $scope.width -100;
+        } else if (node.x < 80) {
+          node.x = 80;
         }
 
         //vertical, based on compartment
         if (node.compartment === 'membrane') {
-          node.y = 60;
+          node.y = 24;
         } else if (node.compartment === 'nucleus') {
-          node.y = $scope.height - 60;
+          node.y = $scope.height - 48;
         } else if (node.compartment === 'cytosol') {
-          if (node.y > $scope.height - 140) {
-            node.y = $scope.height - 140;
-          } else if (node.y < 120) {
-            node.y = 120;
+          if (node.y > $scope.height - 96) {
+            node.y = $scope.height - 96;
+          } else if (node.y < 72) {
+            node.y = 72;
           }
         }
       });
@@ -47,8 +47,8 @@ angular.module('ph.Elements', [])
       var force = d3.layout.force()
         .size([$scope.width , $scope.height])
         .gravity(0.1)
-        .charge(-500)
-        .linkDistance(150)
+        .charge(-750)
+        .linkDistance(60)
         .on('tick', tick)
         .nodes($scope.graph.nodes)
         .links([])
@@ -129,34 +129,6 @@ angular.module('ph.Elements', [])
           .attr('stroke', '#000')
           .attr('stroke-width', '3px');
 
-        var gradient = defs.append('svg:linearGradient')
-          .attr('id', 'gradient')
-          .attr('x1', '0%')
-          .attr('y1', '0%')
-          .attr('x2', '0%')
-          .attr('y2', '100%')
-          .attr('spreadMethod', 'pad');
-
-        gradient.append('svg:stop')
-          .attr('offset', '0%')
-          .attr('stop-color', '#3F91A3')
-          .attr('stop-opacity', 1);
-
-        gradient.append('svg:stop')
-          .attr('offset', '10%')
-          .attr('stop-color', '#6A6A6A')
-          .attr('stop-opacity', 1);
-
-        gradient.append('svg:stop')
-          .attr('offset', '90%')
-          .attr('stop-color', '#6A6A6A')
-          .attr('stop-opacity', 1);
-
-        gradient.append('svg:stop')
-          .attr('offset', '100%')
-          .attr('stop-color', '#FF2A85')
-          .attr('stop-opacity', 1);
-
         scope.dblclickNode = function (d) {
           return scope.selectItem({item:
             {graphItem: d, type: 'node'}
@@ -234,10 +206,17 @@ angular.module('ph.Elements', [])
           scope.link.attr('d', function (d) {
             var sourceNode = _.findWhere(scope.graph.nodes, {'id': d.source}),
                 targetNode = _.findWhere(scope.graph.nodes, {'id': d.target}),
-                sourceX = sourceNode.x,
-                sourceY = sourceNode.y,
-                targetX = targetNode.x,
-                targetY = targetNode.y;
+                deltaX = targetNode.x - sourceNode.x,
+                deltaY = targetNode.y - sourceNode.y,
+                dist = Math.sqrt(deltaX * deltaX + deltaY * deltaY),
+                normX = deltaX / dist,
+                normY = deltaY / dist,
+                sourcePadding = 0,
+                targetPadding = 60,
+                sourceX = sourceNode.x + (sourcePadding * normX),
+                sourceY = sourceNode.y + (sourcePadding * normY),
+                targetX = targetNode.x - (targetPadding * normX),
+                targetY = targetNode.y - (targetPadding * normY);
 
             return 'M' + sourceX + ',' + sourceY + 'L' + targetX + ',' + targetY;
           });

@@ -65,23 +65,38 @@ angular.module('phosphoBaseApp')
 
     //Generate statistics about a specified items in the resource
     $scope.crunchStats = function (resourceMap) {
+      //map reduce all the tags
+      var taglist = _(resourceMap).pluck('tags');
+      //var tagGroups = _.groupBy(taglist, )
+      console.log(taglist);
+    };
 
+    $scope.fbStrip = function (fbResource) {
+      var resourceMap = _.reject(fbResource, function (value) {return _.isFunction(value); });
+      return resourceMap;
     };
 
     //load a map describing everything figure in the resource
     //should include: figures, authors, flasks, tags
-    $rootScope.globalResourceMap = PhosphoIO.fbSync('map', 500);
+    $rootScope.globalResource = PhosphoIO.fbSync('map', 500);
 
     //On initial page-load, populate the grid with the 15 most recent figures
-    $rootScope.globalResourceMap.$on('loaded', function () {
+    $rootScope.globalResource.$on('loaded', function () {
+
+      //Make a copy without firebase functions
+      $rootScope.globalResourceMap = $scope.fbStrip($rootScope.globalResource);
 
       //TODO make this load only the first 15
       $scope.loadFigures($rootScope.globalResourceMap);
+      $scope.crunchStats($rootScope.globalResourceMap);
     });
 
     //Watch the globalResourceMap, 
     //and every time a figure is added, load it to the grid
-    $rootScope.globalResourceMap.$on('change', function () {
-      $scope.loadFigures($rootScope.globalResourceMap);
+    $rootScope.globalResource.$on('change', function () {
+
+      //$rootScope.globalResourceMap = $scope.fbStrip($rootScope.globalResource);
+      //$scope.loadFigures($rootScope.globalResourceMap);
+      //$scope.crunchStats($rootScope.globalResourceMap);
     });
   });
